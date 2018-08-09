@@ -37,7 +37,9 @@
         </div>
     </div>
 
+<div style="width: 1200px">
     <g:layoutBody/>
+</div>
 
     <div class="footer" role="contentinfo"></div>
 

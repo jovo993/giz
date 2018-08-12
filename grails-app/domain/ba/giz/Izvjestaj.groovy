@@ -10,7 +10,12 @@ class Izvjestaj {
   String podaciPonudeUgradnjaIndividualnihUredjaja
   String podaciOstaloEnergetskaEfikasnost
 
-  static embedded = ['preduzece', 'podaciDozvolaObavljanjeDjelatnosti', 'podaciPodnosenjeIzvjestaja']
-
-
+  static constraints = {
+    preduzece nullable: true
+    podaciDozvolaObavljanjeDjelatnosti nullable: true
+    podaciPodnosenjeIzvjestaja nullable: true
+    podaciPonudeEnergetskihUsluga nullable: true
+    podaciPonudeUgradnjaIndividualnihUredjaja nullable: true
+    podaciOstaloEnergetskaEfikasnost nullable: true
+  }
 }

@@ -6,7 +6,7 @@
     <title><g:message code="default.create.label" args="[entityName]" /></title>
 </head>
 <body>
-<meta name="layout" content="page" />
+
 <a href="#create-izvjestaj" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 <div class="nav" role="navigation">
     <ul>
@@ -26,26 +26,71 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
+    <g:applyLayout name="singleblock">
     <g:form resource="${this.izvjestaj}" method="POST">
-        <fieldset class="form">
-            <f:all bean="izvjestaj"/>
-        </fieldset>
+        <content tag="left1">
+            <h5><g:message code="preduzece.fieldset.title"/></h5>
+            <f:field bean="izvjestaj" property="preduzece.naziv" label="${message(code: 'preduzece.naziv.title')}" />
+            <f:field bean="izvjestaj" property="preduzece.adresa" label="${message(code: 'preduzece.adresa.title')}" />
+            <f:field bean="izvjestaj" property="preduzece.maticniBrojJedinstvenogRegistra" label="${message(code: 'preduzece.maticni.title')}" />
+            <f:field bean="izvjestaj" property="preduzece.jib" label="${message(code: 'preduzece.jib.title')}" />
+            <f:field bean="izvjestaj" property="preduzece.pib" label="${message(code: 'preduzece.pib.title')}" />
+            <f:field bean="izvjestaj" property="preduzece.telefon" label="${message(code: 'preduzece.telefon.title')}" />
+            <f:field bean="izvjestaj" property="preduzece.fax" label="${message(code: 'preduzece.fax.title')}" />
+            <f:field bean="izvjestaj" property="preduzece.email" label="${message(code: 'preduzece.email.title')}" />
+            <f:field bean="izvjestaj" property="preduzece.brojZaposlenih" label="${message(code: 'preduzece.brojzaposlenih.title')}" />
+            <f:field bean="izvjestaj" property="preduzece.ukupanGodisnjiPromet" label="${message(code: 'preduzece.promet.title')}" />
+        </content>
+
+        <content tag="left2">
+            <h5><g:message code="podaciDozvolaObavljanjeDjelatnosti.fieldset.title"/></h5>
+            <f:field bean="izvjestaj" property="podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj" label="${message(code: 'preduzece.naziv.title')}" />
+            <f:field bean="izvjestaj" property="podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija" label="${message(code: 'preduzece.adresa.title')}" />
+            <f:field bean="izvjestaj" property="podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" label="${message(code: 'preduzece.maticni.title')}" />
+            <f:field bean="izvjestaj" property="podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja" label="${message(code: 'preduzece.jib.title')}" />
+            <f:field bean="izvjestaj" property="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj" label="${message(code: 'preduzece.pib.title')}" />
+            <f:field bean="izvjestaj" property="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija" label="${message(code: 'preduzece.telefon.title')}" />
+            <f:field bean="izvjestaj" property="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" label="${message(code: 'preduzece.fax.title')}" />
+            <f:field bean="izvjestaj" property="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja" label="${message(code: 'preduzece.email.title')}" />
+        </content>
+
+        <content tag="left3">
+            <h5><g:message code="podaciPodnosenjeIzvjestaja.fieldset.title"/></h5>
+            <f:field bean="izvjestaj" property="podaciPodnosenjeIzvjestaja.godina" label="${message(code: 'podaciPodnosenjeIzvjestaja.godina.title')}" />
+            <f:field bean="izvjestaj" property="podaciPodnosenjeIzvjestaja.prezime" label="${message(code: 'podaciPodnosenjeIzvjestaja.prezime.title')}" />
+            <f:field bean="izvjestaj" property="podaciPodnosenjeIzvjestaja.telefon" label="${message(code: 'podaciPodnosenjeIzvjestaja.telefon.title')}" />
+            <f:field bean="izvjestaj" property="podaciPodnosenjeIzvjestaja.email" label="${message(code: 'podaciPodnosenjeIzvjestaja.email.title')}" />
+        </content>
+
+        <content tag="left4">
+            <h5><g:message code="izvjestaj.podaciPonudeEnergetskihUsluga.title"/></h5>
+            <f:field bean="izvjestaj" property="podaciPonudeEnergetskihUsluga" />
+            <h5><g:message code="izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.EE.title"/></h5>
+            <f:field bean="izvjestaj" property="podaciPonudeUgradnjaIndividualnihUredjaja" />
+            <h5><g:message code="izvjestaj.podaciOstaloEnergetskaEfikasnost.title"/></h5>
+            <f:field bean="izvjestaj" property="podaciOstaloEnergetskaEfikasnost" />
+        </content>
+
         <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Snimi')}" />
         </fieldset>
     </g:form>
 
-    <div id="list-izvjestaj" class="content scaffold-list" role="main">
-        <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-        <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-        </g:if>
-        <f:table collection="${list}" />
+    <content tag="right">
+        <div id="list-izvjestaj" class="content scaffold-list" role="main">
+            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <g:if test="${flash.message}">
+                <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <f:table collection="${list}" />
 
-        <div class="pagination">
-            <g:paginate total="${count ?: 0}" />
+            <div class="pagination">
+                <g:paginate total="${count ?: 0}" />
+            </div>
         </div>
-    </div>
+    </content>
+
+    </g:applyLayout>
 </div>
 </body>
 </html>

@@ -572,3 +572,10 @@ img.grails-logo {
     height:340px;
     margin-top:-10px;
 }
+
+.fieldset {
+    border-radius: 25px;
+    border: 2px solid #115fad;
+    margin: 20px;
+    padding: 20px;
+}

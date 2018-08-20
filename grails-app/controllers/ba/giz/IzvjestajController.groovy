@@ -23,7 +23,7 @@ class IzvjestajController {
   }
 
   def create() {
-    respond new Izvjestaj(params), model:[list: Izvjestaj.list(), count: Izvjestaj.count]
+    respond new Izvjestaj(params), model:[list: Izvjestaj.list(), izvjestajCount: Izvjestaj.count]
   }
 
   @Transactional
@@ -49,10 +49,6 @@ class IzvjestajController {
       }
       '*' { respond izvjestaj, [status: CREATED] }
     }
-  }
-
-  def edit(Book izvjestaj) {
-    respond izvjestaj
   }
 
   @Transactional

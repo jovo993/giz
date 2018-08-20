@@ -13,14 +13,14 @@ class PodaciDozvolaObavljanjeDjelatnosti {
   Integer snabdijevanjePeriodVazenja
 
   static constraints = {
-    distribucijaRegistarskiBroj nullable: true
-    distribucijaKomisija nullable: true
-    distribucijaDatumPocetkaVazenje nullable: true
-    distribucijaPeriodVazenja nullable: true
+    distribucijaRegistarskiBroj blank: true, nullable: true
+    distribucijaKomisija blank: true, nullable: true
+    distribucijaDatumPocetkaVazenje blank: true, nullable: true
+    distribucijaPeriodVazenja blank: true, nullable: true
 
-    snabdijevanjeRegistarskiBroj nullable: true
-    snabdijevanjeKomisija nullable: true
-    snabdijevanjeDatumPocetkaVazenje nullable: true
-    snabdijevanjePeriodVazenja nullable: true
+    snabdijevanjeRegistarskiBroj blank: true, nullable: true
+    snabdijevanjeKomisija blank: true, nullable: true
+    snabdijevanjeDatumPocetkaVazenje blank: true, nullable: true
+    snabdijevanjePeriodVazenja blank: true, nullable: true
   }
 }

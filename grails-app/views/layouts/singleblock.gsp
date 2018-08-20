@@ -23,7 +23,11 @@
         <g:pageProperty name="page.set4"/>
     </div>
 
-    <div id="main5" width="1200px">
+    <div id="main5">
+        <g:pageProperty name="page.set5"/>
+    </div>
+
+    <div id="main6" width="1200px">
         <g:pageProperty name="page.list1"/>
     </div>
 </div>

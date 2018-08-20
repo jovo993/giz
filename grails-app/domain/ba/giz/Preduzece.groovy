@@ -14,16 +14,16 @@ class Preduzece {
   Double ukupanGodisnjiPromet
 
   static constraints = {
-    naziv blank: false
-    adresa blank: false
-    maticniBrojJedinstvenogRegistra blank: false
-    jib blank: false
-    pib blank: false
-    telefon matches: "[0-9]{3}/[0-9]{3}-[0-9]{3}"
-    fax phone: true
-    email email: true
-    brojZaposlenih blank: true
-    ukupanGodisnjiPromet blank: true
+    naziv blank: true, nullable: true
+    adresa blank: true, nullable: true
+    maticniBrojJedinstvenogRegistra blank: true, nullable: true
+    jib blank: true, nullable: true
+    pib blank: true, nullable: true
+    telefon matches: "[0-9]{3}/[0-9]{3}-[0-9]{3}", blank: false, nullable: true
+    fax phone: true, blank: false, nullable: true
+    email email: true, blank: false, nullable: true
+    brojZaposlenih blank: true, nullable: true
+    ukupanGodisnjiPromet blank: true, nullable: true
   }
 
   String toString() {

@@ -40,7 +40,6 @@
                     <ul class="dropdown-menu">
                         <li><g:link controller="izvjestaj" action="index"><g:message code="meni.izvjestaj.lista.title"/></g:link></li>
                         <li><g:link controller="izvjestaj" action="create"><g:message code="meni.izvjestaj.novi.title"/></g:link></li>
-                        <li><g:link controller="izvjestaj" action="edit"><g:message code="meni.izvjestaj.izmjeni.title"/></g:link></li>
                     </ul>
                 </li>
             </ul>

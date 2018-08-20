@@ -6,26 +6,27 @@
 </head>
 
 <body>
-<div id="left">
+<div id="page">
     <div id="main1" class="fieldset">
-        <g:pageProperty name="page.left1"/>
+        <g:pageProperty name="page.set1"/>
     </div>
 
     <div id="main2" class="fieldset">
-        <g:pageProperty name="page.left2"/>
+        <g:pageProperty name="page.set2"/>
     </div>
 
     <div id="main3" class="fieldset">
-        <g:pageProperty name="page.left3"/>
+        <g:pageProperty name="page.set3"/>
     </div>
 
-    <div id="main4">
-        <g:pageProperty name="page.left4"/>
+    <div id="main4" class="fieldset">
+        <g:pageProperty name="page.set4"/>
+    </div>
+
+    <div id="main5" width="1200px">
+        <g:pageProperty name="page.list1"/>
     </div>
 </div>
 
-<div id="right">
-    <g:pageProperty name="main.right1"/>
-</div>
 </body>
 </html>

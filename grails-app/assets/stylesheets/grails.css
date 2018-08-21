@@ -413,7 +413,8 @@ h4 {
 h5 {
     font-size: 1.125em;
     font-weight: bold;
-    color: #db4800;
+    color: #115fad;
+    padding-left: 20px;
 }
 
 h6 {

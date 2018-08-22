@@ -89,7 +89,7 @@ environments:
                 port: 27017
                 username: ""
                 password: ""
-                databaseName: "bookstore"
+                databaseName: "gizDB"
     production:
         grails:
             mongodb:
@@ -97,4 +97,4 @@ environments:
                 port: 27017
                 username: ""
                 password: ""
-                databaseName: "bookstore"
+                databaseName: "gizDB"

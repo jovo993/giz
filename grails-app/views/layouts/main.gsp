@@ -6,6 +6,7 @@
     <title>
         <g:layoutTitle default="rODS"/>
     </title>
+    <asset:link rel="icon" href="logo_fond.ico" type="image/x-ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <asset:stylesheet src="application.css"/>

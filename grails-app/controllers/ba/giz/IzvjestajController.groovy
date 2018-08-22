@@ -1,6 +1,5 @@
 package ba.giz
 
-import com.bookstore.Book
 import grails.transaction.Transactional
 
 import static org.springframework.http.HttpStatus.CREATED
@@ -52,7 +51,7 @@ class IzvjestajController {
   }
 
   @Transactional
-  def update(Book izvjestaj) {
+  def update(Izvjestaj izvjestaj) {
     if (izvjestaj == null) {
       transactionStatus.setRollbackOnly()
       notFound()
@@ -69,7 +68,7 @@ class IzvjestajController {
 
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'izvjestaj.create.title', default: 'Book'), izvjestaj.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'izvjestaj.create.title', default: 'Izvjestaj'), izvjestaj.id])
         redirect izvjestaj
       }
       '*'{ respond izvjestaj, [status: OK] }
@@ -89,7 +88,7 @@ class IzvjestajController {
 
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: 'default.deleted.message', args: [message(code: 'izvjestaj.create.title', default: 'Book'), izvjestaj.id])
+        flash.message = message(code: 'default.deleted.message', args: [message(code: 'izvjestaj.create.title', default: 'Izvjestaj'), izvjestaj.id])
         redirect action:"index", method:"GET"
       }
       '*'{ render status: NO_CONTENT }
@@ -99,7 +98,7 @@ class IzvjestajController {
   protected void notFound() {
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: 'default.not.found.message', args: [message(code: 'izvjestaj.label', default: 'Book'), params.id])
+        flash.message = message(code: 'default.not.found.message', args: [message(code: 'izvjestaj.create.title', default: 'Izvjestaj'), params.id])
         redirect action: "index", method: "GET"
       }
       '*'{ render status: NOT_FOUND }

@@ -34,7 +34,7 @@
 
         <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
             <ul class="nav navbar-nav navbar-right">
-                <li><g:link uri="/"><g:message code="meni.pocetna.title"/></g:link></li>
+                <li><g:link controller="homepage" action="homepage"><g:message code="meni.homepage.title"/></g:link></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.izvjestaj.title"/><span
                             class="caret"></span></a>

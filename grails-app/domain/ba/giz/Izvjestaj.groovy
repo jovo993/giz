@@ -11,11 +11,11 @@ class Izvjestaj {
   String podaciOstaloEnergetskaEfikasnost
 
   static constraints = {
-    preduzece blank: true
-    podaciDozvolaObavljanjeDjelatnosti blank: true
-    podaciPodnosenjeIzvjestaja blank: true
-    podaciPonudeEnergetskihUsluga widget :'textarea', blank: true
-    podaciPonudeUgradnjaIndividualnihUredjaja widget :'textarea', blank: true
-    podaciOstaloEnergetskaEfikasnost widget :'textarea', blank: true
+    preduzece blank: true, nullable: true
+    podaciDozvolaObavljanjeDjelatnosti blank: true, nullable: true
+    podaciPodnosenjeIzvjestaja blank: true, nullable: true
+    podaciPonudeEnergetskihUsluga widget :'textarea', blank: true, nullable: true
+    podaciPonudeUgradnjaIndividualnihUredjaja widget :'textarea', blank: true, nullable: true
+    podaciOstaloEnergetskaEfikasnost widget :'textarea', blank: true, nullable: true
   }
 }

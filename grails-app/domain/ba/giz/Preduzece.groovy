@@ -19,9 +19,9 @@ class Preduzece {
     maticniBrojJedinstvenogRegistra blank: true, nullable: true
     jib blank: true, nullable: true
     pib blank: true, nullable: true
-    telefon matches: "[0-9]{3}/[0-9]{3}-[0-9]{3}", blank: false, nullable: true
-    fax phone: true, blank: false, nullable: true
-    email email: true, blank: false, nullable: true
+    telefon matches: "[0-9]{3}/[0-9]{3}-[0-9]{3}", blank: true, nullable: true
+    fax phone: true, blank: true, nullable: true
+    email email: true, blank: true, nullable: true
     brojZaposlenih blank: true, nullable: true
     ukupanGodisnjiPromet blank: true, nullable: true
   }

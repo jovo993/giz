@@ -249,10 +249,6 @@ input[type=checkbox], input[type=radio] {
     padding: 0;
 }
 
-input {
-    width: 320px;
-}
-
 input:focus, select:focus, textarea:focus {
     background-color: #ffffff;
     border: 1px solid #eeeeee;
@@ -580,7 +576,46 @@ img.grails-logo {
 
 .fieldset {
     border-radius: 25px;
-    border: 2px solid #115fad;
+    border: 2px solid #ec9204;
     margin: 20px;
-    padding: 20px;
+    padding: 10px;
+}
+
+label {
+    width:30%;
+    margin-right:0.5em;
+    padding-top:0.7em;
+    padding-bottom:0.7em;
+    text-align:right;
+    font-weight:bold;
+    color: #6f7077;
+}
+
+legend {
+    display: block;
+    text-align: center;
+    width: 25%;
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: inherit;
+    color: #5777ad;
+    border: 0
+}
+
+select {
+    width: 20%;
+}
+
+input {
+    width: 20%;
+}
+
+textarea {
+    width: 80%;
+    height: 150px;
+    overflow: auto;
+    vertical-align: top;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

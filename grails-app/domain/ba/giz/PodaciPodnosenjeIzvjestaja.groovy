@@ -8,6 +8,13 @@ class PodaciPodnosenjeIzvjestaja {
   String pozicija
   String telefon
   String email
+  String displayName
+
+  static transients = ["displayName"]
+
+  String getDisplayName() {
+    "${prezime ?: ""} ${ime ?: ""}, ${pozicija ?: ""}".trim()
+  }
 
   static constraints = {
     godina blank: true, nullable: true
@@ -16,5 +23,6 @@ class PodaciPodnosenjeIzvjestaja {
     pozicija blank: true, nullable: true
     telefon blank: true, nullable: true
     email blank: true, nullable: true
+    displayName blank: true, nullable: true
   }
 }

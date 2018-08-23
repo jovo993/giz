@@ -4,9 +4,9 @@ class Preduzece {
 
   String naziv
   String adresa
-  Long maticniBrojJedinstvenogRegistra
-  Long jib
-  Long pib
+  String maticniBrojJedinstvenogRegistra
+  String jib
+  String pib
   String telefon
   String fax
   String email
@@ -16,7 +16,7 @@ class Preduzece {
   static constraints = {
     naziv blank: true, nullable: true
     adresa blank: true, nullable: true
-    maticniBrojJedinstvenogRegistra blank: true, nullable: true
+    maticniBrojJedinstvenogRegistra matches: "^\\d+\$", blank: true, nullable: true
     jib blank: true, nullable: true
     pib blank: true, nullable: true
     telefon matches: "[0-9]{3}/[0-9]{3}-[0-9]{3}", blank: true, nullable: true

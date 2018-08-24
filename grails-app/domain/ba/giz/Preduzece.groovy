@@ -3,6 +3,9 @@ package ba.giz
 class Preduzece {
 
   String naziv
+  Sektor sektor
+  Uloga uloga
+  PreduzeceStatus status
   String adresa
   String maticniBrojJedinstvenogRegistra
   String jib
@@ -13,17 +16,22 @@ class Preduzece {
   Integer brojZaposlenih
   Double ukupanGodisnjiPromet
 
+  static embedded = ["uloga", "status"]
+
   static constraints = {
-    naziv blank: true, nullable: true
-    adresa blank: true, nullable: true
-    maticniBrojJedinstvenogRegistra matches: "^\\d+\$", blank: true, nullable: true
-    jib blank: true, nullable: true
-    pib blank: true, nullable: true
-    telefon matches: "[0-9]{3}/[0-9]{3}-[0-9]{3}", blank: true, nullable: true
-    fax phone: true, blank: true, nullable: true
-    email email: true, blank: true, nullable: true
-    brojZaposlenih blank: true, nullable: true
-    ukupanGodisnjiPromet blank: true, nullable: true
+    naziv nullable: false
+    sektor nullable: false
+    uloga nullable: false
+    status nullable: false
+    adresa nullable: false
+    maticniBrojJedinstvenogRegistra matches: "^\\d+\$", nullable: false
+    jib nullable: false
+    pib nullable: false
+    telefon matches: "[0-9]{3}/[0-9]{3}-[0-9]{3}", blank: false, nullable: false
+    fax phone: true, blank: false, nullable: true
+    email email: true, blank: false, nullable: false
+    brojZaposlenih nullable: true
+    ukupanGodisnjiPromet nullable: true
   }
 
   String toString() {

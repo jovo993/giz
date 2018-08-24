@@ -27,4 +27,5 @@ class Izvjestaj {
     datumSlanja nullable: true
     status nullable: true
   }
+
 }

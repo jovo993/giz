@@ -1,6 +1,7 @@
 package ba.giz
 
 import grails.transaction.Transactional
+import org.springframework.boot.autoconfigure.security.SecurityProperties
 
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -22,7 +23,8 @@ class IzvjestajController {
   }
 
   def create() {
-    respond new Izvjestaj(params), model:[list: Izvjestaj.list(), izvjestajCount: Izvjestaj.count]
+    Preduzece preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
+    respond new Izvjestaj(params), model:[preduzece: preduzece]
   }
 
   @Transactional

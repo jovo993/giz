@@ -27,7 +27,7 @@
     </g:hasErrors>
     <form id="createIzvjestajForm">
         <fieldset class="fieldset">
-            <legend><g:message code="preduzece.fieldset.title"/></legend>
+            <legend><g:message code="homepage.preduzece.fieldset.title"/></legend>
             <label for="naziv">
                 <g:message code="preduzece.naziv.title"/>
 
@@ -45,10 +45,10 @@
 
             </label>
 
-            <label for="operater" style="width: 10%">
-                <g:message code="preduzece.uloga.operater.title"/>
+            <label for="operator" style="width: 10%">
+                <g:message code="preduzece.uloga.operator.title"/>
             </label>
-            <g:checkBox name="operater" value="${preduzece?.uloga?.operater}" style="width: 5%"/>
+            <g:checkBox name="operator" value="${preduzece?.uloga?.operator}" style="width: 5%"/>
 
             <label for="distributer" style="width: 10%">
                 <g:message code="preduzece.uloga.distributer.title"/>

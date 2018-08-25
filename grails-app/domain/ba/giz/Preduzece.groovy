@@ -19,17 +19,17 @@ class Preduzece {
   static embedded = ["uloga", "status"]
 
   static constraints = {
-    naziv nullable: false
-    sektor nullable: false
-    uloga nullable: false
-    status nullable: false
-    adresa nullable: false
-    maticniBrojJedinstvenogRegistra matches: "^\\d+\$", nullable: false
-    jib nullable: false
-    pib nullable: false
-    telefon matches: "[0-9]{3}/[0-9]{3}-[0-9]{3}", blank: false, nullable: false
-    fax phone: true, blank: false, nullable: true
-    email email: true, blank: false, nullable: false
+    naziv nullable: false, blank: false
+    sektor nullable: false, blank: false
+    uloga nullable: false, blank: false, validator: {val -> if (!val || !(val.operator || val.distributer || val.snabdjevac)) return ['ulogaObavezna'] }
+    status nullable: false, blank: false
+    adresa nullable: false, blank: false
+    maticniBrojJedinstvenogRegistra matches: "^\\d+\$", nullable: false, blank: false
+    jib nullable: false, blank: false
+    pib nullable: false, blank: false
+    telefon matches: "[0-9]{3}/[0-9]{3}-[0-9]{3}", nullable: false, blank: false
+    fax phone: true, nullable: true
+    email email: true, nullable: false, blank: false
     brojZaposlenih nullable: true
     ukupanGodisnjiPromet nullable: true
   }

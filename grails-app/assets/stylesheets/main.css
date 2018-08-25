@@ -339,6 +339,11 @@ fieldset.embedded legend {
     text-indent: 2.2em;
 }
 
+.info {
+    background: transparent url(../images/skin/information.png) 0.5em 50% no-repeat;
+    text-indent: 1.5em;
+}
+
 /* form fields with errors */
 
 .error input, .error select, .error textarea {

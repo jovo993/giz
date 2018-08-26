@@ -21,11 +21,6 @@
             </div></td>
         </tr>
     </g:each>
-    <tr class="hide">
-        <td style="text-align:center">
-            <span class="list fa fa-trash fa-2x"></span>
-        </td>
-    </tr>
     </tbody>
 </table>
 

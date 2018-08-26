@@ -16,6 +16,8 @@ class Preduzece {
   Integer brojZaposlenih
   Double ukupanGodisnjiPromet
 
+  static auditable = true
+
   static embedded = ["uloga", "status"]
 
   static constraints = {

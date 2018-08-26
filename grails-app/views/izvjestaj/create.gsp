@@ -37,7 +37,7 @@
             <label for="sektor">
                 <g:message code="preduzece.sektor.title"/>
             </label>
-            <g:select name="sektor" from="${ba.giz.Sektor.values()}" value="${izvjestaj?.preduzece?.sektor}" /><br/>
+            <g:select name="sektor" from="${ba.giz.Sektor.values()}" value="${izvjestaj?.preduzece?.sektor}"/><br/>
 
             <label><g:message code="preduzece.uloga.title"/></label>
 
@@ -201,25 +201,162 @@
         <g:javascript library='jquery'>
             (function($) {
                 $(document).ready(function() {
-                    var $TABLE = $('#procjenaStanjaTable');
-                    var $BTN = $('#submitButton');
+                    var preuzetaIsporucena = "preuzetaIsporucena";
+                    var $TABLE = $('#' + preuzetaIsporucena + 'Table');
 
-                    $('.table-add').click(function() {
+                    $('#' + preuzetaIsporucena).click(function() {
                         var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
                         $TABLE.find('table').append($clone);
+                        calculateSum();
                     });
 
-                    $('.table-remove').click(function() {
+                    $('#' + preuzetaIsporucena + 'Remove').click(function() {
                         $(this).parents('tr').detach();
+                        calculateSum();
                     });
 
-                    $('.table-up').click(function() {
+                    $('#' + preuzetaIsporucena + 'Up').click(function() {
                         var $row = $(this).parents('tr');
                         if ($row.index() === 1) return; // Don't go above the header
                         $row.prev().before($row.get(0));
                     });
 
-                    $('.table-down').click(function() {
+                    $('#' + preuzetaIsporucena + 'Down').click(function() {
+                        var $row = $(this).parents('tr');
+                        $row.next().after($row.get(0));
+                    });
+
+                    function DelayedSubmission() {
+                        var date = new Date();
+                        initial_time = date.getTime();
+                        if (typeof setInverval_Variable == 'undefined') {
+                            setInverval_Variable = setInterval(DelayedSubmission_Check, 50);
+                        }
+                    }
+
+                    function DelayedSubmission_Check() {
+                        var date = new Date();
+                        check_time = date.getTime();
+                        var limit_ms=check_time-initial_time;
+                        if (limit_ms > 800) { //Change value in milliseconds
+                            // kod koji sabira redove i upisuje u footer
+                            clearInterval(setInverval_Variable);
+                            delete setInverval_Variable;
+                        }
+                    }
+
+                    $('.contenteditable').change(function() {
+                        DelayedSubmission();
+                    });
+
+                    function calculateSum() {
+                      debugger;
+                        // var result = [];
+                        // $TABLE.rows.each(function(){
+                        //     // $('td', this).each(function(index, val){
+                        //     //     if(!result[index]) result[index] = 0;
+                        //     //     result[index] += parseInt($(val).text());
+                        //     // });
+                        // });
+                        //
+                        // $TABLE.append('<tr></tr>');
+                        // $(result).each(function(){
+                        //     $('table tr').last().append('<td>'+this+'</td>')
+                        // });
+                    }
+
+                });
+            })(jQuery);
+        </g:javascript>
+        <fieldset class="fieldset">
+            <div id="preuzetaIsporucenaTable" class="table-editable">
+                <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
+                <table id= "table1" class="table">
+                    <tr>
+                        <th id="radnaJedinica" scope="col" style="width: 10%; vertical-align: middle;" rowspan="2">Radna jedinica</th>
+                        <th id="preuzetaElektricnaEnergija" scope="col" style="width: 10%; vertical-align: middle;" rowspan="2">PREUZETA EL.EN. (MWh)</th>
+                        <th scope="col" style="width: 10%; vertical-align: middle;" colspan="7">ISPORUČENA EL.EN. (MWh)</th>
+                        <th id="gubici" scope="col" style="width: 10%; vertical-align: middle;" rowspan="2">GUBICI (%)</th>
+                    </tr>
+                    <tr>
+                        <th id="potrosnjaNa110kV" scope="col" style="width: 10%; vertical-align: middle;">potrošnja na 110 kV naponu</th>
+                        <th id="potrosnjaNa35kV" scope="col" style="width: 10%; vertical-align: middle;">potrošnja na 35 kV naponu</th>
+                        <th id="potrosnjaNa1Do35kV" scope="col" style="width: 10%; vertical-align: middle;">potrošnja na naponskom nivou od 1 kV do 35 kV</th>
+                        <th id="potrosnjaOstala" scope="col" style="width: 10%; vertical-align: middle;">ostala potrošnja na niskom naponu (0.4kV)</th>
+                        <th id="potrisnjaDomacinstva" scope="col" style="width: 10%; vertical-align: middle;">domaćinstva (0.4kV)</th>
+                        <th id="potrosnjaJavnaRasvjeta" scope="col" style="width: 10%; vertical-align: middle;">javna rasvjeta (0.4kV)</th>
+                        <th id="ukupnoIsporuceno" scope="col" style="width: 10%; vertical-align: middle;">UKUPNO ISPORUČENO</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr class="hide">
+                        <td class="contenteditable" contenteditable="true"></td>
+                        <td class="contenteditable" contenteditable="true"></td>
+                        <td class="contenteditable" contenteditable="true"></td>
+                        <td class="contenteditable" contenteditable="true"></td>
+                        <td contenteditable="true">Untitled</td>
+                        <td contenteditable="true">Untitled</td>
+                        <td contenteditable="true">Untitled</td>
+                        <td contenteditable="true">Untitled</td>
+                        <td contenteditable="true">Untitled</td>
+                        <td contenteditable="true">Untitled</td>
+                        <td style="text-align:center">
+                            <span id="preuzetaIsporucenaRemove" class="table-remove fa fa-trash fa-2x"></span>
+                        </td>
+                        <td style="text-align:center">
+                            <span id="preuzetaIsporucenaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
+                        </td>
+                        <td style="text-align:center">
+                            <span id="preuzetaIsporucenaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
+                        </td>
+                    </tr>
+                    <tfoot>
+                    <tr>
+                        <td style="vertical-align: middle; text-align: right;">UKUPNO:</td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="9" style="vertical-align: middle; text-align: right;">Ukupno isporučena energija krajnjim kupcima u TJ:</td>
+                        <td colspan="5"><input type="text" class="form-control" value="&nbsp;"></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </fieldset>
+
+
+        <g:javascript library='jquery'>
+            (function($) {
+                $(document).ready(function() {
+                    var $TABLE = $('#procjenaStanjaTable');
+
+
+                    $('#procjenaStanja').click(function() {
+                        var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
+                        $TABLE.find('table').append($clone);
+                    });
+
+                    $('#procjenaStanjaRemove').click(function() {
+                        $(this).parents('tr').detach();
+                    });
+
+                    $('#procjenaStanjaUp').click(function() {
+                        var $row = $(this).parents('tr');
+                        if ($row.index() === 1) return; // Don't go above the header
+                        $row.prev().before($row.get(0));
+                    });
+
+                    $('#procjenaStanjaDown').click(function() {
                         var $row = $(this).parents('tr');
                         $row.next().after($row.get(0));
                     });
@@ -227,7 +364,7 @@
                     jQuery.fn.pop = [].pop;
                     jQuery.fn.shift = [].shift;
 
-
+                    var $BTN = $('#submitButton');
                     $BTN.click(function() {
                         var $rows = $TABLE.find('tr:not(:hidden)');
                         var headers = [];
@@ -236,29 +373,29 @@
                         var dataJSON = $("#formIzvjestaj").serialize() + "&izvjestaj.procjenaStanjaEnergetskeEfikasnostiList=";
 
                         // Get the headers (add special header logic here)
-                        $([$rows].shift()).find('th:not(:empty)').each(function () {
+                        $([$rows].shift()).find('th:not(:empty)').each(function() {
                             headers.push(this.id);
                         });
 
                         // Turn all existing rows into a loopable array
-                        $rows.each(function () {
+                        $rows.each(function() {
                             var $td = $(this).find('td');
                             var h = {};
                             // Use the headers from earlier to name our hash keys
                             var append = true;
                             dataJSON += "{";
-                            headers.forEach(function (header, i) {
-                              if($td.text() != "") {
-                                  h[header] = $td.eq(i).text();
-                                  dataJSON += '"' + header + '"' + ":" + '"' + $td.eq(i).text() + '"' + ",";
-                              }
-                              else {
-                                append = false;
-                              }
+                            headers.forEach(function(header, i) {
+                                if ($td.text() != "") {
+                                    h[header] = $td.eq(i).text();
+                                    dataJSON += '"' + header + '"' + ":" + '"' + $td.eq(i).text() + '"' + ",";
+                                }
+                                else {
+                                    append = false;
+                                }
                             });
 
                             dataJSON = dataJSON.substr(0, dataJSON.length - 1);
-                            if(append) {
+                            if (append) {
                                 dataJSON += "},";
                             }
 
@@ -278,11 +415,10 @@
                 });
             })(jQuery);
         </g:javascript>
-        
-        <div class="container">
+        <fieldset class="fieldset">
             <div id="procjenaStanjaTable" class="table-editable">
-                <span class="table-add fa fa-plus fa-2x"></span>
-                <table id="izvjestaj.procjenaStanjaEnergetskeEfikasnostiList" class="table">
+                <span id="procjenaStanja" class="table-add fa fa-plus fa-2x"></span>
+                <table class="table">
                     <tr>
                         <th id="primjenjenaMjera" scope="col" style="width: 30%; vertical-align: middle;">Primijenjena mjera</th>
                         <th id="vrstaUstede" scope="col" style="width: 30%; vertical-align: middle;">Vrsta uštede</th>
@@ -292,29 +428,26 @@
                         <th></th>
                     </tr>
                     <tr class="hide">
-                        <td id="xxx" contenteditable="true">Untitled</td>
                         <td contenteditable="true">Untitled</td>
                         <td contenteditable="true">Untitled</td>
+                        <td contenteditable="true">Untitled</td>
                         <td style="text-align:center">
-                            <span class="table-remove fa fa-trash fa-2x"></span>
+                            <span id="procjenaStanjaRemove" class="table-remove fa fa-trash fa-2x"></span>
                         </td>
                         <td style="text-align:center">
-                            <span class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;" ></span>
+                            <span id="procjenaStanjaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
                         </td>
                         <td style="text-align:center">
-                            <span class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
+                            <span id="procjenaStanjaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
                         </td>
                     </tr>
                 </table>
             </div>
-        </div>
-        <fieldset class="buttons">
-            <g:submitButton onClick="" name="create" class="save" value="${message(code: 'default.button.create.label')}" />
         </fieldset>
+
     </form>
 
     <button id="submitButton" class="some-class">Submit</button>
-
 
 </div>
 </body>

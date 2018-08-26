@@ -174,29 +174,21 @@
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.email"/><br/>
         </fieldset>
 
-        <fieldset class="fieldset">
-            <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciPonudeEnergetskihUsluga.title"/></h5>
-            <g:textArea name="izvjestaj.podaciPonudeEnergetskihUsluga" rows="5" cols="100"/><br/>
-
-            <g:if test="${preduzece?.sektor == ba.giz.Sektor.ELEKTRICNA_ENERGIJA}">
-                <g:set var="ponudeUgradnjaIndividualnihUredjaja" value="${message(code: 'izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.EE.title')}"/>
-                <g:set var="preuzetaIsporucenaEnergija" value="${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.EE.title')}"/>
-            </g:if>
-            <g:elseif test="${preduzece?.sektor == Sektor.GAS}">
-                <g:set var="ponudeUgradnjaIndividualnihUredjaja" value="${message(code: 'izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.G.title')}"/>
-                <g:set var="preuzetaIsporucenaEnergija" value="${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.G.title')}"/>
-            </g:elseif>
-            <g:elseif test="${preduzece?.sektor == Sektor.TOPLOTNA_ENERGIJA}">
-                <g:set var="ponudeUgradnjaIndividualnihUredjaja" value="${message(code: 'izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.TE.title')}"/>
-                <g:set var="preuzetaIsporucenaEnergija" value="${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.TE.title')}"/>
-            </g:elseif>
-
-            <h5 style="text-align: center;color: #5777ad">${ponudeUgradnjaIndividualnihUredjaja}</h5>
-            <g:textArea name="izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja" rows="5" cols="100"/><br/>
-
-            <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciOstaloEnergetskaEfikasnost.title"/></h5>
-            <g:textArea name="izvjestaj.podaciOstaloEnergetskaEfikasnost" rows="5" cols="100"/><br/>
-        </fieldset>
+        <g:if test="${preduzece?.sektor == ba.giz.Sektor.ELEKTRICNA_ENERGIJA}">
+            <g:set var="ponudeUgradnjaIndividualnihUredjaja" value="${message(code: 'izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.EE.title')}"/>
+            <g:set var="preuzetaIsporucenaEnergija" value="${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.EE.title')}"/>
+            <g:set var="stepenMjerenja" value="${message(code: 'izvjestaj.podaciStepenMjerenja.EE.fieldset.title')}"/>
+        </g:if>
+        <g:elseif test="${preduzece?.sektor == Sektor.GAS}">
+            <g:set var="ponudeUgradnjaIndividualnihUredjaja" value="${message(code: 'izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.G.title')}"/>
+            <g:set var="preuzetaIsporucenaEnergija" value="${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.G.title')}"/>
+            <g:set var="stepenMjerenja" value="${message(code: 'izvjestaj.podaciStepenMjerenja.G.fieldset.title')}"/>
+        </g:elseif>
+        <g:elseif test="${preduzece?.sektor == Sektor.TOPLOTNA_ENERGIJA}">
+            <g:set var="ponudeUgradnjaIndividualnihUredjaja" value="${message(code: 'izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.TE.title')}"/>
+            <g:set var="preuzetaIsporucenaEnergija" value="${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.TE.title')}"/>
+            <g:set var="stepenMjerenja" value="${message(code: 'izvjestaj.podaciStepenMjerenja.TE.fieldset.title')}"/>
+        </g:elseif>
 
         <g:javascript library='jquery'>
             (function($) {
@@ -269,6 +261,7 @@
             })(jQuery);
         </g:javascript>
         <fieldset class="fieldset">
+            <legend style="width: 60%"><g:message code="${preuzetaIsporucenaEnergija}"/></legend>
             <div id="preuzetaIsporucenaTable" class="table-editable">
                 <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
                 <table id= "table1" class="table">
@@ -416,13 +409,14 @@
             })(jQuery);
         </g:javascript>
         <fieldset class="fieldset">
+        <legend style="width: 50%"><g:message code="izvjestaj.procjenastanja.fieldset.title"/></legend>
             <div id="procjenaStanjaTable" class="table-editable">
                 <span id="procjenaStanja" class="table-add fa fa-plus fa-2x"></span>
                 <table class="table">
                     <tr>
-                        <th id="primjenjenaMjera" scope="col" style="width: 30%; vertical-align: middle;">Primijenjena mjera</th>
-                        <th id="vrstaUstede" scope="col" style="width: 30%; vertical-align: middle;">Vrsta uštede</th>
-                        <th id="kolicinaUstede" scope="col" style="width: 20%; vertical-align: middle;">Količina uštede</br>(smanjenje gubitaka)</th>
+                        <th id="primjenjenaMjera" scope="col" class="prety-th">Primijenjena mjera</th>
+                        <th id="vrstaUstede" scope="col" class="prety-th">Vrsta uštede</th>
+                        <th id="kolicinaUstede" class="prety-th">Količina uštede (smanjenje gubitaka)</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -445,9 +439,62 @@
             </div>
         </fieldset>
 
+        <fieldset class="fieldset">
+            <legend style="width: 80%"><g:message code="${stepenMjerenja}"/></legend>
+                <table class="table table-bordered table-secondary">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width: 25%; vertical-align: middle;">&nbsp;</th>
+                        <th scope="col" class="prety-th">Broj krajnjih kupaca kojima se obračun potrošnje energije vrši na osnovu mjerenja potrošnje</th>
+                        <th scope="col" class="prety-th">Ukupan broj krajnjih kupaca</th>
+                        <th scope="col" class="prety-th">Broj korisnika sa sistemom daljinskog očitavanja</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Sektor domaćinstva</td>
+                        <td><input type="text" class="form-control" value="&nbsp;"></td>
+                        <td><input type="text" class="form-control" value="&nbsp;"></td>
+                        <td><input type="text" class="form-control" value="&nbsp;"></td>
+                    </tr>
+                    <tr>
+                        <td>Sektor industrije</td>
+                        <td><input type="text" class="form-control" value="&nbsp;"></td>
+                        <td><input type="text" class="form-control" value="&nbsp;"></td>
+                        <td><input type="text" class="form-control" value="&nbsp;"></td>
+                    </tr>
+                    <tr>
+                        <td>Ostali sektori</td>
+                        <td><input type="text" class="form-control" value="&nbsp;"></td>
+                        <td><input type="text" class="form-control" value="&nbsp;"></td>
+                        <td><input type="text" class="form-control" value="&nbsp;"></td>
+                    </tr>
+                    <tr>
+                        <td>Ukupno</td>
+                        <td><input type="text" class="form-control" value="&nbsp;"></td>
+                        <td><input type="text" class="form-control" value="&nbsp;"></td>
+                        <td><input type="text" class="form-control" value="&nbsp;"></td>
+                    </tr>
+                    </tbody>
+                </table>
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciPonudeEnergetskihUsluga.title"/></h5>
+            <g:textArea name="izvjestaj.podaciPonudeEnergetskihUsluga" rows="5" cols="100"/><br/>
+
+            <h5 style="text-align: center;color: #5777ad">${ponudeUgradnjaIndividualnihUredjaja}</h5>
+            <g:textArea name="izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja" rows="5" cols="100"/><br/>
+
+            <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciOstaloEnergetskaEfikasnost.title"/></h5>
+            <g:textArea name="izvjestaj.podaciOstaloEnergetskaEfikasnost" rows="5" cols="100"/><br/>
+        </fieldset>
+
     </form>
 
-    <button id="submitButton" class="some-class">Submit</button>
+    <fieldset class="buttons">
+        <button id="submitButton"><i class="fa fa-save"></i><g:message code="default.button.create.label"/></button>
+    </fieldset>
 
 </div>
 </body>

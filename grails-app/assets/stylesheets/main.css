@@ -576,7 +576,7 @@ img.grails-logo {
 
 .fieldset {
     border-radius: 25px;
-    border: 2px solid #ec9204;
+    border: 2px solid #778dad;
     margin: 20px;
     padding: 10px;
 }
@@ -656,7 +656,17 @@ textarea {
     position: absolute;
     top: 8px;
     right: 0;
+    margin-right: 3px;
 }
 .table-add:hover {
     color: #0b0;
+}
+
+.prety-th {
+    text-align: center;
+    vertical-align: middle !important;
+    white-space: pre-wrap;
+    color: #666666;
+    font-weight: bold !important;
+    font-size: 14px !important;
 }

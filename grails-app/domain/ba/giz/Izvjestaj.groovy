@@ -5,6 +5,7 @@ class Izvjestaj {
   Preduzece preduzece
   PodaciDozvolaObavljanjeDjelatnosti podaciDozvolaObavljanjeDjelatnosti
   PodaciPodnosenjeIzvjestaja podaciPodnosenjeIzvjestaja
+  List<ProcjenaStanjaEnergetskeEfikasnosti> procjenaStanjaEnergetskeEfikasnostiList
 
   String podaciPonudeEnergetskihUsluga
   String podaciPonudeUgradnjaIndividualnihUredjaja

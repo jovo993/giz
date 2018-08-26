@@ -628,6 +628,7 @@ textarea {
 
 .table-editable {
     position: relative;
+    background-color: #e5e5e5;
 }
 .table-editable .glyphicon {
     font-size: 20px;

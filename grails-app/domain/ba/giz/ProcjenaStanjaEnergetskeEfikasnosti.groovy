@@ -1,14 +1,24 @@
 package ba.giz
 
+import com.google.gson.Gson
+
 class ProcjenaStanjaEnergetskeEfikasnosti {
 
   String primjenjenaMjera
   String vrstaUstede
   String kolicinaUstede
 
-  static constraints = {
-    primjenjenaMjera nullable: false
-    vrstaUstede nullable: false
-    kolicinaUstede nullable: false
+  ProcjenaStanjaEnergetskeEfikasnosti() {
+
+  }
+
+  ProcjenaStanjaEnergetskeEfikasnosti(def procjenaStanjaEnergetskeEfikasnosti) {
+    this.primjenjenaMjera = procjenaStanjaEnergetskeEfikasnosti.primjenjenaMjera
+    this.vrstaUstede = procjenaStanjaEnergetskeEfikasnosti.vrstaUstede
+    this.kolicinaUstede = procjenaStanjaEnergetskeEfikasnosti.kolicinaUstede
+  }
+
+  ProcjenaStanjaEnergetskeEfikasnosti(String string) {
+    this(new Gson().fromJson(string, ProcjenaStanjaEnergetskeEfikasnosti.class))
   }
 }

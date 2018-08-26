@@ -11,11 +11,9 @@ import static org.springframework.http.HttpStatus.OK
 @Transactional(readOnly = true)
 class IzvjestajController {
 
-  static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
   def index(Integer max) {
     params.max = Math.min(max ?: 10, 100)
-    respond Izvjestaj.list(params), model:[izvjestajCount: Izvjestaj.count()]
+    respond Izvjestaj.list(params), model: [columns: ["tip", "status", "datumKreiranja"], izvjestajCount: Izvjestaj.count()]
   }
 
   def show(Izvjestaj izvjestaj) {
@@ -24,11 +22,17 @@ class IzvjestajController {
 
   def create() {
     Preduzece preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
-    respond new Izvjestaj(params), model:[preduzece: preduzece]
+    Izvjestaj izvjestaj = new Izvjestaj(params)
+    izvjestaj.preduzece = preduzece
+
+    respond izvjestaj, model:[preduzece: preduzece]
   }
 
   @Transactional
   def save(Izvjestaj izvjestaj) {
+
+    izvjestaj.preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
+
     if (izvjestaj == null) {
       transactionStatus.setRollbackOnly()
       notFound()
@@ -46,7 +50,7 @@ class IzvjestajController {
     request.withFormat {
       form multipartForm {
         flash.message = message(code: 'default.created.message', args: [message(code: 'izvjestaj.create.title', default: 'Izvjestaj'), izvjestaj.id])
-        redirect izvjestaj
+        redirect action : 'index'
       }
       '*' { respond izvjestaj, [status: CREATED] }
     }
@@ -73,7 +77,7 @@ class IzvjestajController {
         flash.message = message(code: 'default.updated.message', args: [message(code: 'izvjestaj.create.title', default: 'Izvjestaj'), izvjestaj.id])
         redirect izvjestaj
       }
-      '*'{ respond izvjestaj, [status: OK] }
+      redirect action: 'home'
     }
   }
 

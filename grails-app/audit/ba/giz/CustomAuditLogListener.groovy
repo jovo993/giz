@@ -61,7 +61,7 @@ class CustomAuditLogListener extends AuditLogListener {
    */
   Boolean verbose = true
   Boolean nonVerboseDelete = false
-  Boolean logIds = false
+  Boolean logIds = true
   Boolean transactional = false
   Boolean logFullClassName = false
   Integer truncateLength

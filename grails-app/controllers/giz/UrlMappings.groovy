@@ -10,8 +10,8 @@ class UrlMappings {
         }
 
         "/" {
-            controller = "homepage"
-            action = "homepage"
+            controller = "login"
+            action = "index"
         }
         "500"(view:'/error')
         "404"(view:'/notFound')

@@ -16,7 +16,9 @@ grails.plugin.springsecurity.authority.className = 'ba.giz.login.Role'
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/homepage/homepage"
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	[pattern: '/',               access: ['permitAll']],
+	// TODO: change this line. For now, allowed all urls, to everyone.
+	[pattern: '/**',             access: ['permitAll']],
+
 	[pattern: '/error',          access: ['permitAll']],
 	[pattern: '/index',          access: ['permitAll']],
 	[pattern: '/index.gsp',      access: ['permitAll']],

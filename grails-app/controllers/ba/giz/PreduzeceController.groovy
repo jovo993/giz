@@ -21,6 +21,14 @@ class PreduzeceController {
         respond new Preduzece(params)
     }
 
+    def edit(Preduzece preduzece) {
+        respond preduzece
+    }
+
+    def basicEdit(Preduzece preduzece) {
+        respond preduzece
+    }
+
     @Transactional
     def save(Preduzece preduzece) {
         if (preduzece == null) {
@@ -44,14 +52,6 @@ class PreduzeceController {
             }
             '*' { respond preduzece, [status: CREATED] }
         }
-    }
-
-    def edit(Preduzece preduzece) {
-        respond preduzece
-    }
-
-    def basicEdit(Preduzece preduzece) {
-        respond preduzece
     }
 
     @Transactional

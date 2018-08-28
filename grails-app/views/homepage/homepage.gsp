@@ -21,7 +21,7 @@
     </g:hasErrors>
     <form>
         <fieldset class="fieldset">
-            <legend><g:message code="homepage.preduzece.fieldset.title"/></legend>
+            <legend style="width: 28%"><g:message code="homepage.preduzece.fieldset.title"/></legend>
             <label for="naziv">
                 <g:message code="preduzece.naziv.title"/>
             </label>
@@ -83,7 +83,7 @@
             <g:textField name="ukupanGodisnjiPromet" required="false" value="${this.preduzece?.ukupanGodisnjiPromet}" readonly="readonly" style="width: 50%"/><br/>
         </fieldset>
         <fieldset class="fieldset">
-            <legend><g:message code="homepage.izvjestajList.fieldset.title"/></legend>
+            <legend style="width: 18%"><g:message code="homepage.izvjestajList.fieldset.title"/></legend>
             <table>
                 <thead>
                 <tr>

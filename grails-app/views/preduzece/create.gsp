@@ -30,7 +30,7 @@
     </g:hasErrors>
     <g:form action="save">
         <fieldset class="fieldset">
-            <legend><g:message code="preduzece.create.label"/></legend>
+            <legend style="width: 14%"><g:message code="preduzece.create.label"/></legend>
 
             <label for="naziv">
                 <g:message code="preduzece.naziv.label.colon"/>

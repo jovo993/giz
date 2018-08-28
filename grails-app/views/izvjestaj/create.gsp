@@ -27,7 +27,7 @@
     </g:hasErrors>
     <form id="createIzvjestajForm">
         <fieldset class="fieldset">
-            <legend><g:message code="homepage.preduzece.fieldset.title"/></legend>
+            <legend style="width: 28%"><g:message code="homepage.preduzece.fieldset.title"/></legend>
             <label for="naziv">
                 <g:message code="preduzece.naziv.title"/>
 
@@ -173,7 +173,7 @@
         </fieldset>
 
         <fieldset class="fieldset">
-            <legend style="width: 30%"><g:message code="podaciPodnosenjeIzvjestaja.fieldset.title"/></legend>
+            <legend style="width: 28%"><g:message code="podaciPodnosenjeIzvjestaja.fieldset.title"/></legend>
             <label for="godina">
                 <g:message code="podaciPodnosenjeIzvjestaja.godina.title"/>
 

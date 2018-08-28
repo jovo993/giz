@@ -31,7 +31,7 @@
     <g:form resource="${this.preduzece}" action="update">
         <g:hiddenField name="version" value="${this.preduzece?.version}"/>
         <fieldset class="fieldset">
-            <legend><g:message code="preduzece.edit.label"/></legend>
+            <legend style="width: 18%"><g:message code="preduzece.edit.label"/></legend>
 
             <label for="naziv">
                 <g:message code="preduzece.naziv.label.colon"/>
@@ -43,7 +43,7 @@
             </label>
             <g:select name="sektor" from="${Sektor.values()}" value="${preduzece?.sektor}" noSelection="${['': 'Odaberite jedan...']}" keys="${Sektor.values()*.name()}" style="width: 50%"/><br/>
 
-            <label>
+            <label style="vertical-align: middle;">
                 <g:message code="preduzece.uloga.title"/>
             </label>
 

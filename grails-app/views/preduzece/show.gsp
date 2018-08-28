@@ -19,7 +19,7 @@
             </g:if>
             <g:form resource="${this.preduzece}" method="DELETE">
                 <fieldset class="fieldset">
-                    <legend><g:message code="preduzece.show.label"/></legend>
+                    <legend style="width: 18%"><g:message code="preduzece.show.label"/></legend>
                     <label for="naziv">
                         <g:message code="preduzece.naziv.label.colon"/>
                     </label>

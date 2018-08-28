@@ -46,6 +46,7 @@
                 </li>
                 %{--TODO: change to preduzece of current user--}%
                 <li><g:link controller="preduzece" action="basicEdit" resource="${Preduzece.last() ? Preduzece.last() : new Preduzece()}"><g:message code="meni.obveznik.izmjena.title"/></g:link></li>
+                <li><g:link controller="izvjestaj" action="excelExport"><g:message code="meni.izvjestavanje.title"/></g:link></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.sifarnici.title"/><span
                             class="caret"></span></a>

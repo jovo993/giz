@@ -33,7 +33,7 @@ class Preduzece {
     fax phone: true, nullable: true
     email email: true, nullable: false, blank: false
     brojZaposlenih nullable: true
-    ukupanGodisnjiPromet nullable: true
+    ukupanGodisnjiPromet nullable: true, scale: 2
   }
 
   String toString() {

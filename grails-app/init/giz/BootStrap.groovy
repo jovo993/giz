@@ -35,7 +35,7 @@ class BootStrap {
 
   private createIzvjestajData() {
     PodaciPodnosenjeIzvjestaja podaciPodnosenjeIzvjestaja = new PodaciPodnosenjeIzvjestaja(godina: 2017, prezime: "Bjelica", ime: "Milko", pozicija: "Direktor").save(flush: true, failOnError: true)
-    Izvjestaj izvjestaj = new Izvjestaj(tip: IzvjestajTip.EE_DS, preduzece: Preduzece.findById(1), podaciPodnosenjeIzvjestaja: podaciPodnosenjeIzvjestaja,
+    Izvjestaj izvjestaj = new Izvjestaj(tip: IzvjestajTip.EE_DS, preduzece: Preduzece.last(), podaciPodnosenjeIzvjestaja: podaciPodnosenjeIzvjestaja,
       datumKreiranja: new Date().clearTime(), datumSlanja: new Date().clearTime(), status: IzvjestajStatus.KREIRAN).save(flush: true, failOnError: true)
   }
 

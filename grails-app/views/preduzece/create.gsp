@@ -105,12 +105,12 @@
             <label for="brojZaposlenih">
                 <g:message code="preduzece.brojzaposlenih.title"/>
             </label>
-            <g:textField name="brojZaposlenih" value="${preduzece?.brojZaposlenih}" style="width: 50%"/><br/>
+            <g:field name="brojZaposlenih" type="number" typevalue="${preduzece?.brojZaposlenih}" style="width: 50%"/><br/>
 
             <label for="ukupanGodisnjiPromet">
                 <g:message code="preduzece.promet.title"/>
             </label>
-            <g:textField name="ukupanGodisnjiPromet" value="${preduzece?.ukupanGodisnjiPromet}" style="width: 50%"/><br/>
+            <g:field name="ukupanGodisnjiPromet" type="number decimal" value="${preduzece?.ukupanGodisnjiPromet}" style="width: 50%"/><br/>
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" style="width: 10%"/>

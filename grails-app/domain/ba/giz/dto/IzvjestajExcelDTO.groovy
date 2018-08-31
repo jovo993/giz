@@ -13,4 +13,9 @@ class IzvjestajExcelDTO {
   Boolean poslan
   Boolean dorada
   Boolean verifikovan
+  Boolean zavrsen
+
+  static constraints = {
+    godina blank: true, nullable: true
+  }
 }

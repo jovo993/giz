@@ -87,7 +87,6 @@
                 </fieldset>
                 <fieldset class="buttons">
                     <g:actionSubmit class="edit" action="edit" resource="${this.preduzece}" value="${message(code: 'default.button.edit.label', default: 'Edit')}" style="width: 10%"/>
-                    <g:actionSubmit class="delete" type="submit" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" style="width: 10%"/>
                 </fieldset>
             </g:form>
         </div>

@@ -145,9 +145,28 @@ class IzvjestajController {
   }
 
   @Transactional
-  def generateQuantitativeExcel(IzvjestajExcelDTO izvjestajExcelDTO) {
-    //TODO: add this when the whole Izvjestaj process is implemented, ie when all the numeric values are present
-    null
+  def generateQuantitativeExcel(IzvjestajExcelDTO dto) {
+    if (dto.hasErrors()) {
+      transactionStatus.setRollbackOnly()
+      respond dto.errors, view: "excelExport"
+      return
+    }
+
+    List<Izvjestaj> results = searchForExcel(dto)
+
+    def headers = [
+      // TODO: add headers
+    ]
+    def withProperties = [
+      // TODO: add properties
+    ]
+
+    new WebXlsxExporter().with {
+      setResponseHeaders(response)
+      fillHeader(headers)
+      add(results, withProperties)
+      save(response.outputStream)
+    }
   }
 
   // TODO: Think of a better way to do this search

@@ -21,7 +21,7 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form resource="${this.izvjestajExcelDTO}" controller="izvjestaj">
+    <g:form controller="izvjestaj">
         <fieldset class="fieldset">
             <legend style="width: 50%"><g:message code="izvjestaj.excel.title"/></legend>
 
@@ -74,13 +74,20 @@
             </label>
 
             <g:checkBox name="verifikovan" value="${izvjestajExcelDTO?.verifikovan}" style="width: 2%; vertical-align: middle;"/>
-            <label for="verifikovan" style="width: 5%; vertical-align: middle;">
+            <label for="verifikovan" style="width: 6.7%; vertical-align: middle;">
                 <g:message code="izvjestaj.status.verifikovan.label"/>
+            </label>
+
+            <g:checkBox name="zavrsen" value="${izvjestajExcelDTO?.zavrsen}" style="width: 2%; vertical-align: middle;"/>
+            <label for="zavrsen" style="width: 4%; vertical-align: middle;">
+                <g:message code="izvjestaj.status.zavrsen.label"/>
             </label><br/>
         </fieldset>
         <fieldset class="buttons">
-            <input class="excel" type="submit" action="generateBasicExcel" value="${message(code: 'izvjestaj.excel.button.generate.basic.label', default: 'Generiši excel')}" style="width: 20%"/>
-            <input class="excel" type="submit" action="generateQuantitativeExcel" value="${message(code: 'izvjestaj.excel.button.generate.quantitativeExcel.label', default: 'Generiši kvantitativni excel')}" style="width: 28%"/>
+            <g:actionSubmit class="excel" resource="${this.izvjestajExcelDTO}" action="generateBasicExcel" value="${message(code: 'izvjestaj.excel.button.generate.basic.label', default: 'Generiši excel')}" style="width: 20%"/>
+            <g:actionSubmit class="excel" resource="${this.izvjestajExcelDTO}" action="generateQuantitativeExcel" value="${message(code: 'izvjestaj.excel.button.generate.quantitativeExcel.label', default: 'Generiši kvantitativni excel')}" style="width: 28%"/>
+            %{--<input class="excel" type="submit" action="generateBasicExcel" value="${message(code: 'izvjestaj.excel.button.generate.basic.label', default: 'Generiši excel')}" style="width: 20%"/>--}%
+            %{--<input class="excel" type="submit" action="generateQuantitativeExcel" value="${message(code: 'izvjestaj.excel.button.generate.quantitativeExcel.label', default: 'Generiši kvantitativni excel')}" style="width: 28%"/>--}%
         </fieldset>
     </g:form>
 </div>

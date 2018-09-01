@@ -12,8 +12,8 @@ class HomepageController {
   static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
   def homepage() {
-    //Find preduzece by current user
-    //Find Izvjestaj list by current user (or by  preduzece)
+    // TODO: Find preduzece by current user
+    // TODO: Find Izvjestaj list by current user preduzece
     //Mocked for now
     def preduzece = Preduzece.last() ? Preduzece.last() : new Preduzece()
     def izvjestajList = Izvjestaj.findAll()

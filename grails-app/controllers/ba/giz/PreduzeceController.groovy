@@ -6,11 +6,11 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class PreduzeceController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT"/*, basicUpdate: "PUT"*/, delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Preduzece.list(params), model: [columns: ["naziv", "sektor", "uloga", "status"], propertiespreduzeceCount: Preduzece.count()]
+        params.max = Math.min(max ?: 20, 100)
+        respond Preduzece.list(params), model: [columns: ["naziv", "sektor", "uloga", "status"], preduzeceCount: Preduzece.count()]
     }
 
     def show(Preduzece preduzece) {
@@ -19,6 +19,14 @@ class PreduzeceController {
 
     def create() {
         respond new Preduzece(params)
+    }
+
+    def edit(Preduzece preduzece) {
+        respond preduzece
+    }
+
+    def basicEdit(Preduzece preduzece) {
+        respond preduzece
     }
 
     @Transactional
@@ -31,11 +39,11 @@ class PreduzeceController {
 
         if (preduzece.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond preduzece.errors, view:'create'
+            respond preduzece.errors, view: 'create'
             return
         }
 
-        preduzece.save flush:true
+        preduzece.save flush: true
 
         request.withFormat {
             form multipartForm {
@@ -44,10 +52,6 @@ class PreduzeceController {
             }
             '*' { respond preduzece, [status: CREATED] }
         }
-    }
-
-    def edit(Preduzece preduzece) {
-        respond preduzece
     }
 
     @Transactional
@@ -60,11 +64,11 @@ class PreduzeceController {
 
         if (preduzece.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond preduzece.errors, view:'edit'
+            respond preduzece.errors, view: 'edit'
             return
         }
 
-        preduzece.save flush:true
+        preduzece.save flush: true
 
         request.withFormat {
             form multipartForm {
@@ -76,6 +80,26 @@ class PreduzeceController {
     }
 
     @Transactional
+    def basicUpdate(Preduzece preduzece) {
+        if (preduzece == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (preduzece.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond preduzece.errors, view: 'basicEdit'
+            return
+        }
+
+        preduzece.save flush: true
+
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'preduzece.label', default: 'Preduzece'), preduzece.naziv])
+        redirect action: "basicEdit", id: preduzece.id, status: OK
+    }
+
+    @Transactional
     def delete(Preduzece preduzece) {
 
         if (preduzece == null) {
@@ -84,12 +108,12 @@ class PreduzeceController {
             return
         }
 
-        preduzece.delete flush:true
+        preduzece.delete flush: true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'preduzece.label', default: 'Preduzece'), preduzece.naziv])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
             '*'{ render status: NO_CONTENT }
         }

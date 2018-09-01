@@ -8,9 +8,7 @@ class Uloga {
 
   static constraints = {
     operator nullable: true
-    distributer nullable: true, validator: {val, obj ->
-      if (!(obj.distributer || obj.snabdjevac || val)) return ['ulogaObavezna']
-    }
+    distributer nullable: true
     snabdjevac nullable: true
   }
 
@@ -18,7 +16,9 @@ class Uloga {
     String uloge = operator ? "OPERATOR, " : ""
     uloge += distributer ? "DISTRIBUTER, " : ""
     uloge += snabdjevac ? "SNABDJEVA\u010C, " : ""
-    uloge = uloge[0..-3]
+    if (!uloge.equals("")) {
+      uloge = uloge[0..-3]
+    }
 
     uloge
   }

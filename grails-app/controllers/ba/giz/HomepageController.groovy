@@ -1,10 +1,12 @@
 package ba.giz
 
 import grails.transaction.Transactional
+import org.springframework.security.access.annotation.Secured
 
 import static org.springframework.http.HttpStatus.NOT_FOUND
 
 @Transactional(readOnly = true)
+@Secured('permitAll')
 class HomepageController {
 
   static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

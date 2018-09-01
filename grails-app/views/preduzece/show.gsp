@@ -19,7 +19,7 @@
             </g:if>
             <g:form resource="${this.preduzece}" method="DELETE">
                 <fieldset class="fieldset">
-                    <legend><g:message code="preduzece.show.label"/></legend>
+                    <legend style="width: 18%"><g:message code="preduzece.show.label"/></legend>
                     <label for="naziv">
                         <g:message code="preduzece.naziv.label.colon"/>
                     </label>
@@ -86,8 +86,7 @@
                     <g:textField name="ukupanGodisnjiPromet" required="false" value="${this.preduzece?.ukupanGodisnjiPromet}" readonly="readonly" style="width: 50%"/><br/>
                 </fieldset>
                 <fieldset class="buttons">
-                    <g:actionSubmit class="edit" action="edit" resource="${this.preduzece}" value="${message(code: 'default.button.edit.label', default: 'Edit')}" />
-                    <g:actionSubmit class="delete" type="submit" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    <g:actionSubmit class="edit" action="edit" resource="${this.preduzece}" value="${message(code: 'default.button.edit.label', default: 'Edit')}" style="width: 10%"/>
                 </fieldset>
             </g:form>
         </div>

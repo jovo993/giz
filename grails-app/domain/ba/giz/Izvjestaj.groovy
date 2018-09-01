@@ -15,6 +15,7 @@ class Izvjestaj {
   Date datumSlanja
   IzvjestajStatus status
 
+  static auditable = true
 
   static constraints = {
     preduzece blank: true, nullable: true
@@ -28,5 +29,4 @@ class Izvjestaj {
     datumSlanja nullable: true
     status nullable: true
   }
-
 }

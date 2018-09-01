@@ -8,10 +8,14 @@ import ba.giz.Preduzece
 import ba.giz.PreduzeceStatus
 import ba.giz.Sektor
 import ba.giz.Uloga
+import ba.giz.login.Role
+import ba.giz.login.User
+import ba.giz.login.UserRole
 
 class BootStrap {
 
   def init = { servletContext ->
+    createUsersAndRoles()
     createRegistryData()
     createIzvjestajData()
   }
@@ -31,7 +35,46 @@ class BootStrap {
 
   private createIzvjestajData() {
     PodaciPodnosenjeIzvjestaja podaciPodnosenjeIzvjestaja = new PodaciPodnosenjeIzvjestaja(godina: 2017, prezime: "Bjelica", ime: "Milko", pozicija: "Direktor").save(flush: true, failOnError: true)
-    Izvjestaj izvjestaj = new Izvjestaj(tip: IzvjestajTip.EE_DS, preduzece: Preduzece.findById(1), podaciPodnosenjeIzvjestaja: podaciPodnosenjeIzvjestaja,
+    Izvjestaj izvjestaj = new Izvjestaj(tip: IzvjestajTip.EE_DS, preduzece: Preduzece.last(), podaciPodnosenjeIzvjestaja: podaciPodnosenjeIzvjestaja,
       datumKreiranja: new Date().clearTime(), datumSlanja: new Date().clearTime(), status: IzvjestajStatus.KREIRAN).save(flush: true, failOnError: true)
+  }
+
+  private static createUsersAndRoles() {
+    User.withTransaction { status ->
+
+      User adminUser = User.findByUsername('admin')
+      if (!adminUser) {
+        adminUser = new User(username: 'admin', firstName: 'AdminIme', lastName: 'AdminPrezime', enabled: true, password: 'admin').save(flush: true, failOnError: true)
+      }
+
+      Role adminRole = Role.findByAuthority('ROLE_ADMIN')
+      if (!adminRole) {
+        adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
+      }
+
+      User eeUser = User.findByUsername('eeuser')
+      if (!eeUser) {
+        eeUser = new User(username: 'eeuser', firstName: 'UserIme', lastName: 'UserPrezime', enabled: true, password: 'eeuser').save(flush: true)
+      }
+
+      Role eeUserRole = Role.findByAuthority('ROLE_EE_USER')
+      if (!eeUserRole) {
+        eeUserRole = new Role(authority: 'ROLE_EE_USER').save(flush: true)
+      }
+
+      if (!UserRole.get(adminUser.id, adminRole.id)) {
+        UserRole.create(adminUser, adminRole, true)
+      }
+
+      if (!UserRole.get(eeUser.id, eeUserRole.id)) {
+        UserRole.create(eeUser, eeUserRole, true)
+      }
+    }
+
+    User.withTransaction { status ->
+      assert User.count() == 2
+      assert Role.count() == 2
+      assert UserRole.count() == 2
+    }
   }
 }

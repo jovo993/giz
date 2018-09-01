@@ -166,11 +166,11 @@ img {
 }
 
 .nav a.list {
-    background-image: url(../images/skin/database_table.png);
+    background-image: url(../images/skin/table.png);
 }
 
 .nav a.create {
-    background-image: url(../images/skin/database_add.png);
+    background-image: url(../images/skin/add.png);
 }
 
 .nav li.dropdown.open ul.dropdown-menu {
@@ -337,6 +337,11 @@ fieldset.embedded legend {
 .message {
     background: transparent url(../images/skin/information.png) 0.5em 50% no-repeat;
     text-indent: 2.2em;
+}
+
+.info {
+    background: transparent url(../images/skin/info.png) 0.5em 50% no-repeat;
+    text-indent: 1.5em;
 }
 
 /* form fields with errors */
@@ -538,22 +543,26 @@ th:hover, tr:hover {
     text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save {
+.buttons .delete, .buttons .edit, .buttons .save, .buttons .excel {
     background-position: 0.7em center;
     background-repeat: no-repeat;
     text-indent: 25px;
 }
 
 .buttons .delete {
-    background-image: url(../images/skin/database_delete.png);
+    background-image: url(../images/skin/delete.png);
 }
 
 .buttons .edit {
-    background-image: url(../images/skin/database_edit.png);
+    background-image: url(../images/skin/edit.png);
 }
 
 .buttons .save {
-    background-image: url(../images/skin/database_save.png);
+    background-image: url(../images/skin/save.png);
+}
+
+.buttons .excel {
+    background-image: url(../images/skin/excel.png);
 }
 
 a.skip {

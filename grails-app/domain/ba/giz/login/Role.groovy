@@ -20,4 +20,15 @@ class Role implements Serializable {
 	static mapping = {
 		cache true
 	}
+
+	String toString() {
+		if (authority == "ROLE_ADMIN") {
+			return "admin"
+		}
+		if (authority.contains("USER")) {
+			return "korisnik"
+		}
+
+		authority
+	}
 }

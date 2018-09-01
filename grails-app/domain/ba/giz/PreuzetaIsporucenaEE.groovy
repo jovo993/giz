@@ -10,7 +10,5 @@ class PreuzetaIsporucenaEE {
   Double potrosnjaOstala
   Double potrisnjaDomacinstva
   Double potrosnjaJavnaRasvjeta
-  Double ukupnoIsporuceno
   Double gubici
-
 }

@@ -21,12 +21,39 @@ class IzvjestajController {
   }
 
   def create() {
-    Preduzece preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
+    Preduzece preduzece = Preduzece.findBySektor(Sektor.GAS)
+    if(preduzece.sektor.equals(Sektor.ELEKTRICNA_ENERGIJA)) {
+      redirect action: createEE(preduzece)
+    }
+    else if(preduzece.sektor.equals(Sektor.GAS)) {
+      redirect action: createG(preduzece)
+    }
+    else if(preduzece.sektor.equals(Sektor.TOPLOTNA_ENERGIJA)) {
+      redirect action: createTE(preduzece)
+    }
+  }
+
+  def createEE(Preduzece preduzece) {
     Izvjestaj izvjestaj = new Izvjestaj(params)
     izvjestaj.preduzece = preduzece
 
     respond izvjestaj, model:[preduzece: preduzece]
   }
+
+  def createG(Preduzece preduzece) {
+    Izvjestaj izvjestaj = new Izvjestaj(params)
+    izvjestaj.preduzece = preduzece
+
+    respond izvjestaj, model:[preduzece: preduzece]
+  }
+
+  def createTE(Preduzece preduzece) {
+    Izvjestaj izvjestaj = new Izvjestaj(params)
+    izvjestaj.preduzece = preduzece
+
+    respond izvjestaj, model:[preduzece: preduzece]
+  }
+
 
   @Transactional
   def save(Izvjestaj izvjestaj) {

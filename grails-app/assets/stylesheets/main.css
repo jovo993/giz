@@ -670,3 +670,10 @@ textarea {
     font-weight: bold !important;
     font-size: 14px !important;
 }
+
+.editable-td {
+    background-color: #FFFFFF !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    border: 1px solid #e5e5e5;
+}

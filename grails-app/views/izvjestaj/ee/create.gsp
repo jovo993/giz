@@ -3,10 +3,11 @@
 <html>
 <head>
     <asset:javascript src="application.js"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <g:set var="entityName" value="${message(code: 'izvjestaj.create.title', default: 'Izvjestaj')}"/>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <meta name="layout" content="main"/>
-    <title><g:message code="default.create.label" args="[entityName]"/></title>
+    <title><g:message code="izvjestaj.EE.title"/></title>
 </head>
 
 <body>
@@ -14,7 +15,7 @@
 <a href="#create-izvjestaj" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 
 <div id="create-izvjestaj" class="content scaffold-create" role="main">
-    <h1><g:message code="default.create.label" args="[entityName]"/></h1>
+    <h1><g:message code="izvjestaj.EE.title"/></h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -26,79 +27,51 @@
         </ul>
     </g:hasErrors>
     <form id="formIzvjestaj">
-        <fieldset class="fieldset">
+        <fieldset class="fieldset" disabled="true">
             <legend><g:message code="preduzece.fieldset.title"/></legend>
 
-            <label for="izvjestaj.preduzece.naziv">
-                <g:message code="preduzece.naziv.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.naziv"><g:message code="preduzece.naziv.title"/></label>
             <g:textField name="izvjestaj.preduzece.naziv" value="${preduzece?.naziv}"/><br/>
 
-            <label for="sektor">
-                <g:message code="preduzece.sektor.title"/>
-            </label>
+            <label for="sektor"><g:message code="preduzece.sektor.title"/></label>
             <g:select name="sektor" from="${ba.giz.Sektor.values()}" value="${izvjestaj?.preduzece?.sektor}"/><br/>
 
             <label><g:message code="preduzece.uloga.title"/></label>
 
-            <label for="izvjestaj.preduzece.operater" style="width: 10%">
-                <g:message code="preduzece.uloga.operater.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.operater" style="width: 10%"><g:message code="preduzece.uloga.operater.title"/></label>
             <g:checkBox name="izvjestaj.preduzece.operater" value="${preduzece?.uloga?.operater}" style="width: 5%"/>
 
-            <label for="izvjestaj.preduzece.distributer" style="width: 10%">
-                <g:message code="preduzece.uloga.distributer.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.distributer" style="width: 10%"><g:message code="preduzece.uloga.distributer.title"/></label>
             <g:checkBox name="izvjestaj.preduzece.distributer" value="${preduzece?.uloga?.distributer}" style="width: 5%"/>
 
-            <label for="izvjestaj.preduzece.snabdjevac" style="width: 10%">
-                <g:message code="preduzece.uloga.snabdjevac.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.snabdjevac" style="width: 10%"><g:message code="preduzece.uloga.snabdjevac.title"/></label>
             <g:checkBox name="izvjestaj.preduzece.snabdjevac" value="${preduzece?.uloga?.snabdjevac}" style="width: 5%"/>
 
-            <label for="izvjestaj.preduzece.adresa">
-                <g:message code="preduzece.adresa.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.adresa"><g:message code="preduzece.adresa.title"/></label>
             <g:textField name="izvjestaj.preduzece.adresa" value="${preduzece?.adresa}"/><br/>
 
-            <label for="izvjestaj.preduzece.maticniBrojJedinstvenogRegistra">
-                <g:message code="preduzece.maticni.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.maticniBrojJedinstvenogRegistra"><g:message code="preduzece.maticni.title"/></label>
             <g:textField name="izvjestaj.preduzece.maticniBrojJedinstvenogRegistra" value="${preduzece?.maticniBrojJedinstvenogRegistra}"/><br/>
 
-            <label for="izvjestaj.preduzece.jib">
-                <g:message code="preduzece.jib.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.jib"><g:message code="preduzece.jib.title"/></label>
             <g:textField name="izvjestaj.preduzece.jib" value="${preduzece?.jib}"/><br/>
 
-            <label for="izvjestaj.preduzece.pib">
-                <g:message code="preduzece.pib.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.pib"><g:message code="preduzece.pib.title"/></label>
             <g:textField name="izvjestaj.preduzece.pib" value="${preduzece?.pib}"/><br/>
 
-            <label for="izvjestaj.preduzece.telefon">
-                <g:message code="preduzece.telefon.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.telefon"><g:message code="preduzece.telefon.title"/></label>
             <g:textField name="izvjestaj.preduzece.telefon" value="${preduzece?.telefon}"/><br/>
 
-            <label for="izvjestaj.preduzece.fax">
-                <g:message code="preduzece.fax.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.fax"><g:message code="preduzece.fax.title"/></label>
             <g:textField name="izvjestaj.preduzece.fax" value="${preduzece?.fax}"/><br/>
 
-            <label for="izvjestaj.preduzece.email">
-                <g:message code="preduzece.email.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.email"><g:message code="preduzece.email.title"/></label>
             <g:textField name="izvjestaj.preduzece.email" value="${preduzece?.email}"/><br/>
 
-            <label for="izvjestaj.preduzece.brojZaposlenih">
-                <g:message code="preduzece.brojzaposlenih.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.brojZaposlenih"><g:message code="preduzece.brojzaposlenih.title"/></label>
             <g:textField name="izvjestaj.preduzece.brojZaposlenih" value="${preduzece?.brojZaposlenih}"/><br/>
 
-            <label for="izvjestaj.preduzece.ukupanGodisnjiPromet">
-                <g:message code="preduzece.promet.title"/>
-            </label>
+            <label for="izvjestaj.preduzece.ukupanGodisnjiPromet"><g:message code="preduzece.promet.title"/></label>
             <g:textField name="izvjestaj.preduzece.ukupanGodisnjiPromet" value="${preduzece?.ukupanGodisnjiPromet}"/><br/>
 
             <p><g:message code="izvjestaj.EE.fusnota"/></p>
@@ -147,55 +120,31 @@
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja.title"/>
             </label>
             <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja"/><br/>
-
         </fieldset>
 
         <fieldset class="fieldset">
             <legend style="width: 40%"><g:message code="podaciPodnosenjeIzvjestaja.fieldset.title"/></legend>
 
-            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.godina">
-                <g:message code="podaciPodnosenjeIzvjestaja.godina.title"/>
-            </label>
-            <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.godina"/><br/>
+            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.godina"><g:message code="podaciPodnosenjeIzvjestaja.godina.title"/></label>
+            <g:datePicker name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" precision="year" relativeYears="[-5..5]" style="width: 5%"/><br/><br/>
 
-            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezime">
-                <g:message code="podaciPodnosenjeIzvjestaja.prezime.title"/>
-            </label>
+            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"><g:message code="podaciPodnosenjeIzvjestaja.prezime.title"/></label>
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"/><br/>
 
-            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.telefon">
-                <g:message code="podaciPodnosenjeIzvjestaja.telefon.title"/>
-            </label>
+            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.telefon"><g:message code="podaciPodnosenjeIzvjestaja.telefon.title"/></label>
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.telefon"/><br/>
 
-            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.email">
-                <g:message code="podaciPodnosenjeIzvjestaja.email.title"/>
-            </label>
+            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.email"><g:message code="podaciPodnosenjeIzvjestaja.email.title"/></label>
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.email"/><br/>
         </fieldset>
 
         %{-- dodati dio koji odredjuje o kakvom izvjestaju se radi--}%
         <g:if test="${preduzece?.sektor == ba.giz.Sektor.ELEKTRICNA_ENERGIJA}">
             <g:set var="ponudeUgradnjaIndividualnihUredjaja" value="${message(code: 'izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.EE.title')}"/>
-            <g:set var="preuzetaIsporucenaEnergija" value="${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.EE.title')}"/>
             <g:set var="stepenMjerenja" value="${message(code: 'izvjestaj.podaciStepenMjerenja.EE.fieldset.title')}"/>
             <g:set var="stepenMjerenjath1" value="${message(code: 'tabela.stepenMjerenja.EE.th1')}"/>
             <g:set var="elektricnaEnergija" value="true"/>
         </g:if>
-        <g:elseif test="${preduzece?.sektor == Sektor.GAS}">
-            <g:set var="ponudeUgradnjaIndividualnihUredjaja" value="${message(code: 'izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.G.title')}"/>
-            <g:set var="preuzetaIsporucenaEnergija" value="${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.G.title')}"/>
-            <g:set var="stepenMjerenja" value="${message(code: 'izvjestaj.podaciStepenMjerenja.G.fieldset.title')}"/>
-            <g:set var="stepenMjerenjath1" value="${message(code: 'tabela.stepenMjerenja.G.th1')}"/>
-            <g:set var="gas" value="true"/>
-        </g:elseif>
-        <g:elseif test="${preduzece?.sektor == Sektor.TOPLOTNA_ENERGIJA}">
-            <g:set var="ponudeUgradnjaIndividualnihUredjaja" value="${message(code: 'izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.TE.title')}"/>
-            <g:set var="preuzetaIsporucenaEnergija" value="${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.TE.title')}"/>
-            <g:set var="stepenMjerenja" value="${message(code: 'izvjestaj.podaciStepenMjerenja.TE.fieldset.title')}"/>
-            <g:set var="stepenMjerenjath1" value="${message(code: 'tabela.stepenMjerenja.TE.th1')}"/>
-            <g:set var="toplotnaEnergija" value="true"/>
-        </g:elseif>
 
         %{-- funkcije koje rade dodavanje novog, brisanje i pomjeranje postojeceg reda za tabelu Preuzeta i isporucena... --}%
         <g:javascript library='jquery'>
@@ -231,131 +180,70 @@
         </g:javascript>
 
         <fieldset class="fieldset">
-            <legend style="width: 60%"><g:message code="${preuzetaIsporucenaEnergija}"/></legend>
+            <legend style="width: 60%">${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.EE.title')}</legend>
 
             <div id="preuzetaIsporucenaTable" class="table-editable">
-                <g:if test="${elektricnaEnergija.equals("true")}">
-                    <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
-                    <table id="table1" class="table">
-                        <tr>
-                            <th id="radnaJedinica" scope="col" style="width: 10%; vertical-align: middle;" rowspan="2">Radna jedinica</th>
-                            <th id="preuzetaElektricnaEnergija" scope="col" style="width: 10%; vertical-align: middle;" rowspan="2">PREUZETA EL. ENERGIJA (MWh)</th>
-                            <th scope="col" style="width: 10%; vertical-align: middle;" colspan="7">ISPORUČENA ELEKTRIČNA ENERGIJA (MWh)</th>
-                            <th id="gubici" scope="col" style="width: 10%; vertical-align: middle;" rowspan="2">GUBICI (%)</th>
-                        </tr>
-                        <tr>
-                            <th id="potrosnjaNa110kV" scope="col" style="width: 10%; vertical-align: middle;">potrošnja na 110 kV naponu</th>
-                            <th id="potrosnjaNa35kV" scope="col" style="width: 10%; vertical-align: middle;">potrošnja na 35 kV naponu</th>
-                            <th id="potrosnjaNa1Do35kV" scope="col" style="width: 10%; vertical-align: middle;">potrošnja na naponskom nivou od 1 kV do 35 kV</th>
-                            <th id="potrosnjaOstala" scope="col" style="width: 10%; vertical-align: middle;">ostala potrošnja na niskom naponu (0.4kV)</th>
-                            <th id="potrisnjaDomacinstva" scope="col" style="width: 10%; vertical-align: middle;">domaćinstva (0.4kV)</th>
-                            <th id="potrosnjaJavnaRasvjeta" scope="col" style="width: 10%; vertical-align: middle;">javna rasvjeta (0.4kV)</th>
-                            <th scope="col" style="width: 10%; vertical-align: middle;">UKUPNO ISPORUČENO</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr class="hide">
-                            <td class="contenteditable" contenteditable="true"></td>
-                            <td class="contenteditable" contenteditable="true"></td>
-                            <td class="contenteditable" contenteditable="true"></td>
-                            <td class="contenteditable" contenteditable="true"></td>
-                            <td class="contenteditable" contenteditable="true"></td>
-                            <td class="contenteditable" contenteditable="true"></td>
-                            <td class="contenteditable" contenteditable="true"></td>
-                            <td class="contenteditable" contenteditable="true"></td>
-                            <td></td>
-                            <td></td>
-                            <td style="text-align:center">
-                                <span id="preuzetaIsporucenaRemove" class="table-remove fa fa-trash fa-2x"></span>
-                            </td>
-                            <td style="text-align:center">
-                                <span id="preuzetaIsporucenaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
-                            </td>
-                            <td style="text-align:center">
-                                <span id="preuzetaIsporucenaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
-                            </td>
-                        </tr>
-                        <tfoot>
-                        <tr>
-                            <td style="vertical-align: middle; text-align: right;">UKUPNO:</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="9" style="vertical-align: middle; text-align: right;">Ukupno isporučena energija krajnjim kupcima u TJ:</td>
-                            <td colspan="5"><input type="text" class="form-control" value="&nbsp;"></td>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </g:if>
-                <g:elseif test="${gas.equals("true")}">
-                    <table id="table1" class="table">
-                        <tr>
-                            <th id="preuzetaKolicinaGas" scope="col" style="vertical-align: middle;" rowspan="2">PREUZETE KOLIČINE GASA (Sm3)</th>
-                            <th scope="col" style="vertical-align: middle;" colspan="5">ISPORUČENE KOLIČINE GASA (Sm3)</th>
-                            <th id="gubiciGas" scope="col" style="vertical-align: middle;" rowspan="2" colspan="2">GUBICI (%)</th>
-                        </tr>
-                        <tr>
-                            <th id="industrijskiPotrosaciGas" scope="col" style="vertical-align: middle;">Industrijski potrošači</th>
-                            <th id="sistemiDaljinskoGrijanjaGas" scope="col" style="vertical-align: middle;">Sistemi daljinskog grijanja</th>
-                            <th id="komercijalniKrajnjiKupciGas" scope="col" style="vertical-align: middle;">Komercijalni kajni kupci</th>
-                            <th id="domacinstvaGas" scope="col" style="vertical-align: middle;">Domaćinstva</th>
-                            <th id="ukupnoIsporucenoGas" scope="col" style="vertical-align: middle;">UKUPNO ISPORUČENO</th>
-                        </tr>
-                        <tr>
-                            <td contenteditable="true" class="editable-td"></td>
-                            <td contenteditable="true" class="editable-td"></td>
-                            <td contenteditable="true" class="editable-td"></td>
-                            <td contenteditable="true" class="editable-td"></td>
-                            <td contenteditable="true" class="editable-td"></td>
-                            <td contenteditable="true" class="editable-td"></td>
-                            <td contenteditable="true" class="editable-td"></td>
-                        </tr>
-                        <tfoot>
-                        <tr>
-                            <td colspan="6" style="vertical-align: middle; text-align: right;">Ukupno isporučena energija krajnjim kupcima u TJ</td>
-                            <td class="contenteditable" contenteditable="true" colspan="5"></td>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </g:elseif>
-                <g:elseif test="${toplotnaEnergija.equals("true")}">
-                    <table id="table1" class="table">
-                        <tr>
-                            <th scope="col" style="vertical-align: middle;" rowspan="2">ISPORUČENA KOLIČINA TOPLOTNE ENERGIJE (MWh)</th>
-                            <th id="gubiciToplotnaEnergija" scope="col" style="vertical-align: middle;" rowspan="2" colspan="2">GUBICI (%)</th>
-                        </tr>
-                        <tr>
-                            <th id="poslovniPotrosaciToplotnaEnergija" scope="col" style="vertical-align: middle;">Poslovni potrošači</th>
-                            <th id="stambeniPotrosaciMwhToplotnaEnergija" scope="col" style="vertical-align: middle;">Stambeni potrošači po MWh</th>
-                            <th id="stambeniPotrosaciM2ToplotnaEnergija" scope="col" style="vertical-align: middle;">Stambeni potrošači po m2</th>
-                            <th id="ukupnoIsporucenoToplotnaEnergija" scope="col" style="vertical-align: middle;">UKUPNO ISPORUČENO</th>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tfoot>
-                        <tr>
-                            <td colspan="6" style="vertical-align: middle; text-align: right;">Ukupno isporučena energija krajnjim kupcima u TJ:</td>
-                            <td class="contenteditable" contenteditable="true" colspan="5"></td>
-                        </tr>
-                        </tfoot>
-                    </table>
-
-
-                </g:elseif>
+                <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
+                <table id="table1" class="table">
+                    <tr>
+                        <th id="radnaJedinica" scope="col" style="width: 10%; vertical-align: middle;" rowspan="2">Radna jedinica</th>
+                        <th id="preuzetaElektricnaEnergija" scope="col" style="width: 10%; vertical-align: middle;" rowspan="2">PREUZETA EL. ENERGIJA (MWh)</th>
+                        <th scope="col" style="width: 10%; vertical-align: middle;" colspan="7">ISPORUČENA ELEKTRIČNA ENERGIJA (MWh)</th>
+                        <th id="gubici" scope="col" style="width: 10%; vertical-align: middle;" rowspan="2">GUBICI (%)</th>
+                    </tr>
+                    <tr>
+                        <th id="potrosnjaNa110kV" scope="col" style="width: 10%; vertical-align: middle;">potrošnja na 110 kV naponu</th>
+                        <th id="potrosnjaNa35kV" scope="col" style="width: 10%; vertical-align: middle;">potrošnja na 35 kV naponu</th>
+                        <th id="potrosnjaNa1Do35kV" scope="col" style="width: 10%; vertical-align: middle;">potrošnja na naponskom nivou od 1 kV do 35 kV</th>
+                        <th id="potrosnjaOstala" scope="col" style="width: 10%; vertical-align: middle;">ostala potrošnja na niskom naponu (0.4kV)</th>
+                        <th id="potrisnjaDomacinstva" scope="col" style="width: 10%; vertical-align: middle;">domaćinstva (0.4kV)</th>
+                        <th id="potrosnjaJavnaRasvjeta" scope="col" style="width: 10%; vertical-align: middle;">javna rasvjeta (0.4kV)</th>
+                        <th scope="col" style="width: 10%; vertical-align: middle;">UKUPNO ISPORUČENO</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr class="hide">
+                        <td class="contenteditable" contenteditable="true"></td>
+                        <td class="contenteditable" contenteditable="true"></td>
+                        <td class="contenteditable" contenteditable="true"></td>
+                        <td class="contenteditable" contenteditable="true"></td>
+                        <td class="contenteditable" contenteditable="true"></td>
+                        <td class="contenteditable" contenteditable="true"></td>
+                        <td class="contenteditable" contenteditable="true"></td>
+                        <td class="contenteditable" contenteditable="true"></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align:center">
+                            <span id="preuzetaIsporucenaRemove" class="table-remove fa fa-trash fa-2x"></span>
+                        </td>
+                        <td style="text-align:center">
+                            <span id="preuzetaIsporucenaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
+                        </td>
+                        <td style="text-align:center">
+                            <span id="preuzetaIsporucenaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
+                        </td>
+                    </tr>
+                    <tfoot>
+                    <tr>
+                        <td style="vertical-align: middle; text-align: right;">UKUPNO:</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="9" style="vertical-align: middle; text-align: right;">Ukupno isporučena energija krajnjim kupcima u TJ:</td>
+                        <td colspan="5"><input type="text" class="form-control" value="&nbsp;"></td>
+                    </tr>
+                    </tfoot>
+                </table>
             </div>
         </fieldset>
 

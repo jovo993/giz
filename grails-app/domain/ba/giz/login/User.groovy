@@ -1,5 +1,6 @@
 package ba.giz.login
 
+import ba.giz.Preduzece
 import grails.plugin.springsecurity.SpringSecurityService
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
@@ -21,6 +22,24 @@ class User implements Serializable {
 	boolean accountLocked
 	boolean passwordExpired
 
+	Preduzece preduzece
+	String prezime
+	String ime
+	String pozicija
+	String telefon
+	String email
+	String prezimeIme
+
+	Role rola
+
+	String getPrezimeIme() {
+		"${prezime ?: ""} ${ime ?: ""}".trim()
+	}
+
+	Role getRola() {
+		getAuthorities()[0]
+	}
+
 	Set<Role> getAuthorities() {
 		(UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
 	}
@@ -39,7 +58,7 @@ class User implements Serializable {
 		password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
 	}
 
-	static transients = ['springSecurityService']
+	static transients = ["springSecurityService", "prezimeIme", "rola"]
 
 	static constraints = {
 		password blank: false, password: true

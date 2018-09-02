@@ -53,7 +53,7 @@
                     <label for="enabled">
                         <g:message code="user.enabled.title"/>
                     </label>
-                    <g:textField name="enabled" required="false" value="${this.user?.enabled}" readonly="readonly" style="width: 50%"/><br/>
+                    <g:textField name="enabled" required="false" value="${this.user?.enabled ? "aktivan" : "neaktivan"}" readonly="readonly" style="width: 50%"/><br/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:actionSubmit class="edit" action="edit" resource="${this.user}" value="${message(code: 'default.button.edit.label', default: 'Edit')}" style="width: 10%"/>

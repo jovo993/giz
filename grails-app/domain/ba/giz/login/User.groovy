@@ -30,14 +30,14 @@ class User implements Serializable {
 	String email
 	String prezimeIme
 
-	Role rola
+	String rola
 
 	String getPrezimeIme() {
 		"${prezime ?: ""} ${ime ?: ""}".trim()
 	}
 
-	Role getRola() {
-		getAuthorities()[0]
+	String getRola() {
+		getAuthorities().toString()[1..-2]
 	}
 
 	Set<Role> getAuthorities() {

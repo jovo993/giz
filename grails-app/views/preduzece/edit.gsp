@@ -62,10 +62,10 @@
                 <g:message code="preduzece.uloga.snabdjevac.title"/>
             </label><br/>
 
-            <label for="status.aktivan">
+            <label for="status.aktivan" style="vertical-align: middle">
                 <g:message code="preduzece.aktivan.title"/>
             </label>
-            <g:checkBox name="status.aktivan" value="${preduzece?.status?.aktivan}" style="width: 2%"/><br/>
+            <g:checkBox name="status.aktivan" value="${preduzece?.status?.aktivan}" style="width: 2%; vertical-align: middle;"/><br/>
 
             <label for="adresa">
                 <g:message code="preduzece.adresa.title"/>

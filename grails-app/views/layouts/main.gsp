@@ -52,6 +52,8 @@
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><g:link controller="preduzece" action="index"><g:message code="meni.sifarnici.preduzece.title"/></g:link></li>
+                        <li><g:link controller="user" action="index"><g:message code="meni.sifarnici.user.title"/></g:link></li>
+                        %{--<li><g:link controller="userRole" action="index"><g:message code="meni.sifarnici.userRole.title"/></g:link></li>--}%
                     </ul>
                 </li>
                 <li><g:link controller="uputstvo" action="index"><g:message code="meni.uputstvo.title"/></g:link></li>

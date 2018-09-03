@@ -44,7 +44,7 @@ class BootStrap {
 
       User adminUser = User.findByUsername('admin')
       if (!adminUser) {
-        adminUser = new User(username: 'admin', firstName: 'AdminIme', lastName: 'AdminPrezime', enabled: true, password: 'admin').save(flush: true, failOnError: true)
+        adminUser = new User(username: 'admin', enabled: true, password: 'admin', preduzece: Preduzece.last(), prezime: "AdminPrezime", ime: "AdminIme", pozicija: "Šegrt", telefon: "225 883", email: "admin@admin.com").save(flush: true, failOnError: true)
       }
 
       Role adminRole = Role.findByAuthority('ROLE_ADMIN')
@@ -54,7 +54,7 @@ class BootStrap {
 
       User eeUser = User.findByUsername('eeuser')
       if (!eeUser) {
-        eeUser = new User(username: 'eeuser', firstName: 'UserIme', lastName: 'UserPrezime', enabled: true, password: 'eeuser').save(flush: true)
+        eeUser = new User(username: 'eeuser', enabled: true, password: 'eeuser', preduzece: Preduzece.last(), prezime: "KorisnikPrezime", ime: "KorisnikIme", pozicija: "Majstor", telefon: "226 883", email: "korisnik@korisnik.com").save(flush: true)
       }
 
       Role eeUserRole = Role.findByAuthority('ROLE_EE_USER')
@@ -69,12 +69,6 @@ class BootStrap {
       if (!UserRole.get(eeUser.id, eeUserRole.id)) {
         UserRole.create(eeUser, eeUserRole, true)
       }
-    }
-
-    User.withTransaction { status ->
-      assert User.count() == 2
-      assert Role.count() == 2
-      assert UserRole.count() == 2
     }
   }
 }

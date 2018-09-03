@@ -17,7 +17,7 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <g:form resource="${this.preduzece}" method="DELETE">
+            <g:form resource="${this.preduzece}">
                 <fieldset class="fieldset">
                     <legend style="width: 18%"><g:message code="preduzece.show.label"/></legend>
                     <label for="naziv">

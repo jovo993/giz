@@ -86,7 +86,7 @@
 <body>
 <div id='login'>
     <div class='inner'>
-        <div class='fheader'>Please update your password</div>
+        <div class='fheader'>Molimo ažurirajte Vašu lozinku</div>
         <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
         </g:if>
@@ -99,15 +99,15 @@
         </g:hasErrors>
         <g:form controller='login' method = 'post' class='cssform' autocomplete='off'>
             <p>
-                <label for='password'>Current Password</label>
+                <label for='password'>Stara lozinka:</label>
                 <g:passwordField name='password' class='text_' id='password' />
             </p>
             <p>
-                <label for='password'>New Password</label>
+                <label for='password'>Nova lozinka:</label>
                 <g:passwordField name='newPassword' class='text_' />
             </p>
             <p>
-                <label for='password'>New Password (again)</label>
+                <label for='password' >Nova lozinka (ponovite):</label>
                 <g:passwordField name='confirmNewPassword' class='text_' />
             </p>
                 <g:actionSubmit id='submit' resource="${this.changePasswordDTO}" action="updatePassword" value="${message(code: 'giz.changePassword.saveButton', default: 'Snimi')}" style="width: 20%"/>

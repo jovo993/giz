@@ -61,6 +61,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.options.title"/><span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li><g:link controller="login" action="changePassword"><g:message code="meni.login.changePassword"/></g:link></li>
                         <li><g:link controller="logout" action="index"><g:message code="meni.logout.title"/></g:link></li>
                     </ul>
                 </li>

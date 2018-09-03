@@ -1,7 +1,9 @@
 package ba.giz
 
+import ba.giz.login.User
 import grails.transaction.Transactional
 import org.springframework.security.access.annotation.Secured
+import org.springframework.security.core.context.SecurityContextHolder
 
 import static org.springframework.http.HttpStatus.NOT_FOUND
 
@@ -16,6 +18,7 @@ class HomepageController {
     // TODO: Find Izvjestaj list by current user preduzece
     //Mocked for now
     def preduzece = Preduzece.last() ? Preduzece.last() : new Preduzece()
+    def user = User.findByUsername(SecurityContextHolder.context?.authentication?.principal?.username)
     def izvjestajList = Izvjestaj.findAll()
     respond preduzece, model: [list: izvjestajList, properties: ["tip", "podaciPodnosenjeIzvjestaja.godina", "datumKreiranja",
                                                                  "datumSlanja", "podaciPodnosenjeIzvjestaja.displayName", "status"]]

@@ -33,6 +33,8 @@ class User implements Serializable {
   String rola
   List<Role> roles
 
+  static auditable = true
+
   static hasMany = [roles: Role]
 
   String getPrezimeIme() {

@@ -13,6 +13,8 @@ class Role implements Serializable {
 
 	String authority
 
+	static auditable = true
+
 	static constraints = {
 		authority blank: false, unique: true
 	}

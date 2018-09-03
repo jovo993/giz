@@ -10,6 +10,8 @@ class Clanak {
   User autor = Holders.applicationContext.getBean("springSecurityService").currentUser
   String sadrzaj
 
+  static auditable = true
+
   static constraints = {
     naslov nullable: false, blank: false
     sadrzaj nullable: false, blank: false

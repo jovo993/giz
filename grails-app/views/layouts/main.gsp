@@ -54,6 +54,7 @@
                         <li><g:link controller="user" action="index"><g:message code="meni.sifarnici.user.title"/></g:link></li>
                     </ul>
                 </li>
+                <li><g:link controller="clanak" action="index"><g:message code="meni.clanci.title"/></g:link></li>
                 <li><g:link controller="uputstvo" action="index"><g:message code="meni.uputstvo.title"/></g:link></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.options.title"/><span

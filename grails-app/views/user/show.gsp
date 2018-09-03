@@ -35,16 +35,6 @@
                     </label>
                     <g:textField name="username" required="false" value="${this.user?.username}" readonly="readonly" style="width: 50%"/><br/>
 
-                    <label for="preduzece.naziv">
-                        <g:message code="user.preduzece.naziv.title"/>
-                    </label>
-                    <g:textField name="preduzece.naziv" required="false" value="${this.user?.preduzece?.naziv}" readonly="readonly" style="width: 50%"/><br/>
-
-                    <label for="email">
-                        <g:message code="user.email.title"/>
-                    </label>
-                    <g:textField name="email" required="false" value="${this.user?.email}" readonly="readonly" style="width: 50%"/><br/>
-
                     <label for="rola">
                         <g:message code="user.rola.title"/>
                     </label>
@@ -54,6 +44,26 @@
                         <g:message code="user.enabled.title"/>
                     </label>
                     <g:textField name="enabled" required="false" value="${this.user?.enabled ? "aktivan" : "neaktivan"}" readonly="readonly" style="width: 50%"/><br/>
+
+                    <label for="preduzece.naziv">
+                        <g:message code="user.preduzece.naziv.title"/>
+                    </label>
+                    <g:textField name="preduzece.naziv" required="false" value="${this.user?.preduzece?.naziv}" readonly="readonly" style="width: 50%"/><br/>
+
+                    <label for="pozicija">
+                        <g:message code="user.pozicija.title"/>
+                    </label>
+                    <g:textField name="pozicija" required="false" value="${this.user?.pozicija}" readonly="readonly" style="width: 50%"/><br/>
+
+                    <label for="email">
+                        <g:message code="user.email.title"/>
+                    </label>
+                    <g:textField name="email" required="false" value="${this.user?.email}" readonly="readonly" style="width: 50%"/><br/>
+
+                    <label for="telefon">
+                        <g:message code="user.telefon.title"/>
+                    </label>
+                    <g:textField name="telefon" required="false" value="${this.user?.telefon}" readonly="readonly" style="width: 50%"/><br/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:actionSubmit class="edit" action="edit" resource="${this.user}" value="${message(code: 'default.button.edit.label', default: 'Edit')}" style="width: 10%"/>

@@ -37,7 +37,7 @@ class User implements Serializable {
 	}
 
 	String getRola() {
-		getAuthorities().toString()[1..-2]
+		getAuthorities().toString().replaceAll("\\[", "").replaceAll("]", "")
 	}
 
 	Set<Role> getAuthorities() {

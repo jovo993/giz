@@ -86,8 +86,6 @@
         <fieldset class="buttons">
             <g:actionSubmit class="excel" resource="${this.izvjestajExcelDTO}" action="generateBasicExcel" value="${message(code: 'izvjestaj.excel.button.generate.basic.label', default: 'Generiši excel')}" style="width: 20%"/>
             <g:actionSubmit class="excel" resource="${this.izvjestajExcelDTO}" action="generateQuantitativeExcel" value="${message(code: 'izvjestaj.excel.button.generate.quantitativeExcel.label', default: 'Generiši kvantitativni excel')}" style="width: 28%"/>
-            %{--<input class="excel" type="submit" action="generateBasicExcel" value="${message(code: 'izvjestaj.excel.button.generate.basic.label', default: 'Generiši excel')}" style="width: 20%"/>--}%
-            %{--<input class="excel" type="submit" action="generateQuantitativeExcel" value="${message(code: 'izvjestaj.excel.button.generate.quantitativeExcel.label', default: 'Generiši kvantitativni excel')}" style="width: 28%"/>--}%
         </fieldset>
     </g:form>
 </div>

@@ -70,11 +70,5 @@ class BootStrap {
         UserRole.create(eeUser, eeUserRole, true)
       }
     }
-
-    User.withTransaction { status ->
-      assert User.count() == 2
-      assert Role.count() == 2
-      assert UserRole.count() == 2
-    }
   }
 }

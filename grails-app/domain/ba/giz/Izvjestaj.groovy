@@ -5,7 +5,14 @@ class Izvjestaj {
   Preduzece preduzece
   PodaciDozvolaObavljanjeDjelatnosti podaciDozvolaObavljanjeDjelatnosti
   PodaciPodnosenjeIzvjestaja podaciPodnosenjeIzvjestaja
+
+  List<PreuzetaIsporucenaEE> preuzetaIsporucenaEEList
+  List<PreuzetIsporucenGas> preuzetIsporucenGasList
+  List<IsporucenaToplotnaEnergija> isporucenaToplotnaEnergijaList
+
   List<ProcjenaStanjaEnergetskeEfikasnosti> procjenaStanjaEnergetskeEfikasnostiList
+
+  StepenMjerenjeEnergijeStrukturaKupaca stepenMjerenjeEnergijeStrukturaKupaca
 
   String podaciPonudeEnergetskihUsluga
   String podaciPonudeUgradnjaIndividualnihUredjaja
@@ -24,6 +31,7 @@ class Izvjestaj {
     podaciPonudeEnergetskihUsluga widget: 'textarea', blank: true, nullable: true
     podaciPonudeUgradnjaIndividualnihUredjaja widget: 'textarea', blank: true, nullable: true
     podaciOstaloEnergetskaEfikasnost widget: 'textarea', blank: true, nullable: true
+    stepenMjerenjeEnergijeStrukturaKupaca nullable: true
     tip blank: true, nullable: true
     datumKreiranja nullable: true
     datumSlanja nullable: true

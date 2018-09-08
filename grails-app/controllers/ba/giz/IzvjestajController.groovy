@@ -24,7 +24,18 @@ class IzvjestajController {
 
   def create() {
     Preduzece preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
-    respond new Izvjestaj(params), model: [preduzece: preduzece]
+
+    if(preduzece.sektor == Sektor.ELEKTRICNA_ENERGIJA) {
+      render view: "/izvjestaj/ee/create", model: [preduzece: preduzece]
+    }
+
+    if(preduzece.sektor == Sektor.GAS) {
+      render view: "/izvjestaj/g/create", model: [preduzece: preduzece]
+    }
+
+    if(preduzece.sektor == Sektor.TOPLOTNA_ENERGIJA) {
+      render view: "/izvjestaj/te/create", model: [preduzece: preduzece]
+    }
   }
 
   def excelExport() {

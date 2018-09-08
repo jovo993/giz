@@ -36,14 +36,7 @@
         <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
             <ul class="nav navbar-nav navbar-right">
                 <li><g:link controller="homepage" action="homepage"><g:message code="meni.homepage.title"/></g:link></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.izvjestaj.title"/><span
-                            class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><g:link controller="izvjestaj" action="index"><g:message code="meni.izvjestaj.lista.title"/></g:link></li>
-                        <li><g:link controller="izvjestaj" action="create"><g:message code="meni.izvjestaj.novi.title"/></g:link></li>
-                    </ul>
-                </li>
+                <li><g:link controller="izvjestaj" action="create"><g:message code="meni.izvjestaj.novi.title"/></g:link></li>
                 %{--TODO: change to preduzece of current user--}%
                 <li><g:link controller="preduzece" action="basicEdit" resource="${Preduzece.last() ? Preduzece.last() : new Preduzece()}"><g:message code="meni.obveznik.izmjena.title"/></g:link></li>
                 <li><g:link controller="izvjestaj" action="excelExport"><g:message code="meni.izvjestavanje.title"/></g:link></li>

@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class PreduzeceController {
 
-    static allowedMethods = [save: "POST", update: "PUT"/*, basicUpdate: "PUT"*/, delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 20, 100)

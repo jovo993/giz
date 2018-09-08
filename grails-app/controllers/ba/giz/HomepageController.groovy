@@ -1,6 +1,7 @@
 package ba.giz
 
 import grails.transaction.Transactional
+import grails.util.Holders
 import org.springframework.security.access.annotation.Secured
 
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -12,11 +13,8 @@ class HomepageController {
   static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
   def homepage() {
-    //Find preduzece by current user
-    //Find Izvjestaj list by current user (or by  preduzece)
-    //Mocked for now
-    def preduzece = Preduzece.last() ? Preduzece.last() : new Preduzece()
-    def izvjestajList = Izvjestaj.findAll()
+    Preduzece preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
+    def izvjestajList = Izvjestaj.findByPreduzece(preduzece)
     respond preduzece, model: [list: izvjestajList, properties: ["tip", "podaciPodnosenjeIzvjestaja.godina", "datumKreiranja",
                                                                  "datumSlanja", "podaciPodnosenjeIzvjestaja.displayName", "status"]]
   }

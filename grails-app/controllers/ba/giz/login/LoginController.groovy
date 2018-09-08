@@ -1,5 +1,6 @@
 package ba.giz.login
 
+import ba.giz.dto.ChangePasswordDTO
 import grails.converters.JSON
 import grails.plugin.springsecurity.SpringSecurityUtils
 import org.springframework.context.MessageSource
@@ -114,6 +115,28 @@ class LoginController {
   /** The Ajax denied redirect url. */
   def ajaxDenied() {
 
+  }
+
+  def changePassword() {
+    respond new ChangePasswordDTO()
+  }
+
+  def updatePassword(ChangePasswordDTO cmd) {
+    if (cmd.hasErrors()) {
+      respond cmd.errors, view: 'changePassword'
+      return
+    } else {
+      preparePassword(cmd)
+
+      redirect controller: 'logout', action: 'index'
+    }
+  }
+
+  private preparePassword(ChangePasswordDTO cmd) {
+    User currentUser = User.findByUsername(SecurityContextHolder.context?.authentication?.principal?.username)
+    currentUser.password = cmd.newPassword
+
+    currentUser.save(flush: true, failOnError: true)
   }
 
   protected Authentication getAuthentication() {

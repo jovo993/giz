@@ -94,6 +94,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                %{--TODO: somehow remove ',' from godina...--}%
                 <g:each in="${list}" var="bean" status="i">
                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                         <g:each in="${properties}" var="p" status="j">

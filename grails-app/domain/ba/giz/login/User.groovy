@@ -1,52 +1,80 @@
 package ba.giz.login
 
+import ba.giz.Preduzece
 import grails.plugin.springsecurity.SpringSecurityService
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import grails.compiler.GrailsCompileStatic
 
 @GrailsCompileStatic
-@EqualsAndHashCode(includes='username')
-@ToString(includes='username', includeNames=true, includePackage=false)
+@EqualsAndHashCode(includes = 'username')
+@ToString(includes = 'username', includeNames = true, includePackage = false)
 class User implements Serializable {
 
-	private static final long serialVersionUID = 1
+  private static final long serialVersionUID = 1
 
-	SpringSecurityService springSecurityService
+  SpringSecurityService springSecurityService
 
-	String username
-	String password
-	boolean enabled = true
-	boolean accountExpired
-	boolean accountLocked
-	boolean passwordExpired
+  String username
+  String password
+  boolean enabled = true
+  boolean accountExpired
+  boolean accountLocked
+  boolean passwordExpired
 
-	Set<Role> getAuthorities() {
-		(UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
-	}
+  Preduzece preduzece
+  String prezime
+  String ime
+  String pozicija
+  String telefon
+  String email
+  String prezimeIme
 
-	def beforeInsert() {
-		encodePassword()
-	}
+  String rola
+  List<Role> roles
 
-	def beforeUpdate() {
-		if (isDirty('password')) {
-			encodePassword()
-		}
-	}
+  static auditable = true
 
-	protected void encodePassword() {
-		password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
-	}
+  static hasMany = [roles: Role]
 
-	static transients = ['springSecurityService']
+  String getPrezimeIme() {
+    "${prezime ?: ""} ${ime ?: ""}".trim()
+  }
 
-	static constraints = {
-		password blank: false, password: true
-		username blank: false, unique: true
-	}
+  String getRola() {
+    getAuthorities()?.toString().replaceAll("\\[", "").replaceAll("]", "")
+  }
 
-	static mapping = {
-		password column: '`password`'
-	}
+  Set<Role> getAuthorities() {
+    (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
+  }
+
+  def beforeInsert() {
+    encodePassword()
+  }
+
+  def beforeUpdate() {
+    if (isDirty('password')) {
+      encodePassword()
+    }
+  }
+
+  protected void encodePassword() {
+    password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
+  }
+
+  static transients = ["springSecurityService", "prezimeIme", "rola", "roles"]
+
+  static constraints = {
+    password blank: false, password: true
+    username blank: false, unique: true
+  }
+
+  static mapping = {
+    password column: '`password`'
+  }
+
+  String toString() {
+    username
+  }
 }

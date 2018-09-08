@@ -1,4 +1,4 @@
-<%@ page import="ba.giz.dto.IzvjestajExcelDTO; ba.giz.Preduzece" %>
+<%@ page import="grails.util.Holders; ba.giz.dto.IzvjestajExcelDTO; ba.giz.Preduzece" %>
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
@@ -38,20 +38,23 @@
                 <li><g:link controller="homepage" action="homepage"><g:message code="meni.homepage.title"/></g:link></li>
                 <li><g:link controller="izvjestaj" action="create"><g:message code="meni.izvjestaj.novi.title"/></g:link></li>
                 %{--TODO: change to preduzece of current user--}%
-                <li><g:link controller="preduzece" action="basicEdit" resource="${Preduzece.last() ? Preduzece.last() : new Preduzece()}"><g:message code="meni.obveznik.izmjena.title"/></g:link></li>
+                <li><g:link controller="preduzece" action="basicEdit" resource="${Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)}"><g:message code="meni.obveznik.izmjena.title"/></g:link></li>
                 <li><g:link controller="izvjestaj" action="excelExport"><g:message code="meni.izvjestavanje.title"/></g:link></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.sifarnici.title"/><span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><g:link controller="preduzece" action="index"><g:message code="meni.sifarnici.preduzece.title"/></g:link></li>
+                        <li><g:link controller="user" action="index"><g:message code="meni.sifarnici.user.title"/></g:link></li>
                     </ul>
                 </li>
+                <li><g:link controller="clanak" action="index"><g:message code="meni.clanci.title"/></g:link></li>
                 <li><g:link controller="uputstvo" action="index"><g:message code="meni.uputstvo.title"/></g:link></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.options.title"/><span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li><g:link controller="login" action="changePassword"><g:message code="meni.login.changePassword"/></g:link></li>
                         <li><g:link controller="logout" action="index"><g:message code="meni.logout.title"/></g:link></li>
                     </ul>
                 </li>

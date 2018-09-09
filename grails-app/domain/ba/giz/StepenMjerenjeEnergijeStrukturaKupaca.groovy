@@ -14,6 +14,10 @@ class StepenMjerenjeEnergijeStrukturaKupaca {
   Long ostaloUkupanBroj
   Long ostaloBrojDaljinskoOcitavanje
 
+  Long ukupnoBrojMjerenjePotrosnje
+  Long ukupnoBrojKrajnjihKupaca
+  Long ukupnoBrojDaljnskoOcitavanje
+
   static constraints = {
     domacinstvoBrojMjerenjePotrosnje nullable: true
     domacinstvoUkupanBroj nullable: true
@@ -26,6 +30,10 @@ class StepenMjerenjeEnergijeStrukturaKupaca {
     ostaloBrojMjerenjePotrosnje nullable: true
     ostaloUkupanBroj nullable: true
     ostaloBrojDaljinskoOcitavanje nullable: true
+
+    ukupnoBrojMjerenjePotrosnje nullable: true
+    ukupnoBrojKrajnjihKupaca nullable: true
+    ukupnoBrojDaljnskoOcitavanje nullable: true
 
   }
 }

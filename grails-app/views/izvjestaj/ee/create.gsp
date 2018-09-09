@@ -172,23 +172,19 @@
             <legend style="width: 60%">${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.EE.title')}</legend>
 
             <div id="preuzetaIsporucenaTable" class="table-editable">
-
+                <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
                 <table id="table1" class="table">
                     <tr>
                         <th id="radnaJedinica" class="prety-th" style="width: 10%" rowspan="2">Radna jedinica</th>
                         <th id="preuzetaElektricnaEnergija" class="prety-th" style="width: 10%" rowspan="2">PREUZETA ELEKTRIČNA ENERGIJA (MWh)</th>
-                        <th class="prety-th" style="width: 10%" colspan="7">ISPORUČENA ELEKTRIČNA ENERGIJA (MWh)</th>
-                        <th id="gubici" class="prety-th" style="width: 10%" rowspan="2">GUBICI (%)</th>
-                        <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
-                    </tr>
-                    <tr>
                         <th id="potrosnjaNa110kV" class="prety-th" style="width: 10%">potrošnja na 110 kV naponu</th>
                         <th id="potrosnjaNa35kV" class="prety-th" style="width: 10%" scope="col">potrošnja na 35 kV naponu</th>
                         <th id="potrosnjaNa1Do35kV" class="prety-th" style="width: 10%">potrošnja na naponskom nivou od 1 kV do 35 kV</th>
                         <th id="potrosnjaOstala" class="prety-th" style="width: 10%">ostala potrošnja na niskom naponu (0.4kV)</th>
                         <th id="potrosnjaDomacinstva" class="prety-th" style="width: 10%">domaćinstva (0.4kV)</th>
                         <th id="potrosnjaJavnaRasvjeta" class="prety-th" style="width: 10%">javna rasvjeta (0.4kV)</th>
-                        <th class="prety-th" style="width: 10%">UKUPNO ISPORUČENO</th>
+                        <th id="ukupnoIsporuceno " class="prety-th" style="width: 10%">UKUPNO ISPORUČENO</th>
+                        <th id="gubici" class="prety-th" style="width: 10%">GUBICI (%)</th>
                     </tr>
                     <tr class="hide">
                         <td class="editable-td" contenteditable="true"></td>
@@ -224,12 +220,10 @@
                         <td class="editable-td" contenteditable="true"></td>
                         <td class="editable-td" contenteditable="true"></td>
                     </tr>
-                    <tr>
-                        <td colspan="9" style="vertical-align: middle; text-align: right;">Ukupno isporučena energija krajnjim kupcima u TJ:</td>
-                        <td colspan="5"><input type="text" class="form-control" value="&nbsp;"></td>
-                    </tr>
                     </tfoot>
                 </table>
+
+                <div class="prety-th" style=" text-align: right">Ukupno isporučena energija krajnjim kupcima u TJ:  <input type="text"></div>
             </div>
         </fieldset>
 
@@ -313,26 +307,26 @@
                     <tbody>
                     <tr>
                         <td class="prety-th">Sektor domaćinstva</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojDaljinskoOcitavanje"></td>
                     </tr>
                     <tr>
                         <td class="prety-th">Sektor industrije</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojDaljinskoOcitavanje"></td>
                     </tr>
                     <tr>
                         <td class="prety-th">Ostali sektori</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje"></td>
                     <tr>
                         <td class="prety-th">Ukupno</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojDaljnskoOcitavanje"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -364,11 +358,9 @@
                     var dataJSON = $("#formIzvjestaj").serialize();
                     var $TABLE1 = $('#preuzetaIsporucenaTable');
                     var $TABLE2 = $('#procjenaStanjaTable');
-                    var $TABLE3 = $('#stepenMjerenjaTable');
 
                     dataJSON += createJSONData("izvjestaj.preuzetaIsporucenaEEList", $TABLE1);
                     dataJSON += createJSONData("izvjestaj.procjenaStanjaEnergetskeEfikasnostiList", $TABLE2);
-                    dataJSON += createJSONData("izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca", $TABLE3);
 
                     $.ajax({
                         url: 'save',
@@ -380,17 +372,14 @@
 
                 function createJSONData(argument, table) {
                     var headers = [];
-                    var data = [];
                     var $rows = table.find('tr:not(:hidden)');
                     var returnValue = "&" + argument + "=";
-
                     $([$rows].shift()).find('th:not(:empty)').each(function() {
                         if (this.id.length > 0) {
                             headers.push(this.id);
                         }
                     });
 
-                    debugger;
                     $rows.each(function() {
                         var $td = $(this).find('td');
                         var h = {};
@@ -411,8 +400,6 @@
                         if (append) {
                             returnValue += "},";
                         }
-
-                        data.push(h);
                     });
                     returnValue = returnValue.substr(0, returnValue.length - 1);
 

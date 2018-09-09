@@ -4,10 +4,7 @@ import ba.giz.dto.IzvjestajExcelDTO
 import grails.transaction.Transactional
 import pl.touk.excel.export.WebXlsxExporter
 
-import static org.springframework.http.HttpStatus.CREATED
-import static org.springframework.http.HttpStatus.NOT_FOUND
-import static org.springframework.http.HttpStatus.NO_CONTENT
-import static org.springframework.http.HttpStatus.OK
+import static org.springframework.http.HttpStatus.*
 import static pl.touk.excel.export.abilities.RowManipulationAbility.fillHeader
 
 @Transactional(readOnly = true)
@@ -25,15 +22,15 @@ class IzvjestajController {
   def create() {
     Preduzece preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
 
-    if(preduzece.sektor == Sektor.ELEKTRICNA_ENERGIJA) {
+    if (preduzece.sektor == Sektor.ELEKTRICNA_ENERGIJA) {
       render view: "/izvjestaj/ee/create", model: [preduzece: preduzece]
     }
 
-    if(preduzece.sektor == Sektor.GAS) {
+    if (preduzece.sektor == Sektor.GAS) {
       render view: "/izvjestaj/g/create", model: [preduzece: preduzece]
     }
 
-    if(preduzece.sektor == Sektor.TOPLOTNA_ENERGIJA) {
+    if (preduzece.sektor == Sektor.TOPLOTNA_ENERGIJA) {
       render view: "/izvjestaj/te/create", model: [preduzece: preduzece]
     }
   }
@@ -44,8 +41,6 @@ class IzvjestajController {
 
   @Transactional
   def save(Izvjestaj izvjestaj) {
-
-    izvjestaj.preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
 
     if (izvjestaj == null) {
       transactionStatus.setRollbackOnly()
@@ -59,12 +54,14 @@ class IzvjestajController {
       return
     }
 
+    izvjestaj.preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
+
     izvjestaj.save flush: true
 
     request.withFormat {
       form multipartForm {
         flash.message = message(code: "default.created.message", args: [message(code: "izvjestaj.create.title", default: "Izvjestaj"), izvjestaj.id])
-        redirect izvjestaj
+        redirect action: show
       }
       "*" { respond izvjestaj, [status: CREATED] }
     }
@@ -136,7 +133,7 @@ class IzvjestajController {
     List<Izvjestaj> results = searchForExcel(dto)
 
     def headers = [
-      "Za godinu", "Status", "Izvje\u0160taj sastavio", "Datum podno\u0160enja","Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
+      "Za godinu", "Status", "Izvje\u0160taj sastavio", "Datum podno\u0160enja", "Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
     ]
     def withProperties = [
       "podaciPodnosenjeIzvjestaja.godina", "status", "podaciPodnosenjeIzvjestaja.displayName", "datumSlanja", "preduzece.naziv", "preduzece.sektor", "preduzece.uloga", "preduzece.adresa"

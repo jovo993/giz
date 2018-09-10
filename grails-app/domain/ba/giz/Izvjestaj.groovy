@@ -10,9 +10,13 @@ class Izvjestaj {
   List<PreuzetIsporucenGas> preuzetIsporucenGasList
   List<IsporucenaToplotnaEnergija> isporucenaToplotnaEnergijaList
 
+  Double ukupnoIsporucenaEnergija
+
   List<ProcjenaStanjaEnergetskeEfikasnosti> procjenaStanjaEnergetskeEfikasnostiList
 
   StepenMjerenjeEnergijeStrukturaKupaca stepenMjerenjeEnergijeStrukturaKupaca
+
+  List<PodaciEnergenti> podaciEnergenti
 
   String podaciPonudeEnergetskihUsluga
   String podaciPonudeUgradnjaIndividualnihUredjaja
@@ -36,5 +40,6 @@ class Izvjestaj {
     datumKreiranja nullable: true
     datumSlanja nullable: true
     status nullable: true
+    ukupnoIsporucenaEnergija nullable: true
   }
 }

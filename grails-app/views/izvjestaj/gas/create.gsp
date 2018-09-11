@@ -2,17 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <asset:javascript src="application.js"/>
-    <g:set var="entityName" value="${message(code: 'izvjestaj.create.title', default: 'Izvjestaj')}"/>
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <meta name="layout" content="main"/>
     <title><g:message code="izvjestaj.title"/></title>
+    <meta name="layout" content="main"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <asset:javascript src="application.js"/>
 </head>
 
 <body>
-
-<a href="#create-izvjestaj" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 
 <div id="create-izvjestaj" class="content scaffold-create" role="main">
     <h1><g:message code="izvjestaj.title"/></h1>
@@ -93,7 +89,8 @@
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje.title"/>
             </label>
-            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
+            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" precision="day"
+                          relativeYears="[-10..10]" style="width: 5%"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja.title"/>
@@ -137,7 +134,6 @@
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.email"/><br/>
         </fieldset>
 
-        %{-- funkcije koje rade dodavanje novog, brisanje i pomjeranje postojeceg reda za tabelu Preuzet i isporucen gas --}%
         <g:javascript library='jquery'>
             (function($) {
                 $(document).ready(function() {
@@ -170,31 +166,56 @@
 
         <fieldset class="fieldset">
             <legend style="width: 60%">${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.G.title')}</legend>
-
             <div id="preuzetaIsporucenaTable" class="table-editable">
                 <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
                 <table id="table1" class="table">
                     <tr>
-                        <th id="preuzetaKolicinaGas" style="vertical-align: middle;">PREUZETE KOLIČINE GASA (Sm3)</th>
-                        <th id="gubiciGas" scope="col" style="vertical-align: middle;">GUBICI (%)</th>
-                        <th id="industrijskiPotrosaciGas" style="vertical-align: middle;">Industrijski potrošači</th>
-                        <th id="sistemiDaljinskoGrijanjaGas" style="vertical-align: middle;">Sistemi daljinskog grijanja</th>
-                        <th id="komercijalniKrajnjiKupciGas" style="vertical-align: middle;">Komercijalni kajni kupci</th>
-                        <th id="domacinstvaGas" style="vertical-align: middle;">Domaćinstva</th>
-                        <th id="ukupnoIsporucenoGas" style="vertical-align: middle;">UKUPNO ISPORUČENO</th>
+                        <th></th>
+                        <th id="preuzetaKolicinaGas" class="prety-th">PREUZETE KOLIČINE GASA (Sm3)</th>
+                        <th id="industrijskiPotrosaciGas" class="prety-th">Industrijski potrošači</th>
+                        <th id="sistemiDaljinskoGrijanjaGas" class="prety-th">Sistemi daljinskog grijanja</th>
+                        <th id="komercijalniKrajnjiKupciGas" class="prety-th">Komercijalni krajnji kupci</th>
+                        <th id="domacinstvaGas" class="prety-th">Domaćinstva</th>
+                        <th id="ukupnoIsporucenoGas" class="prety-th">UKUPNO ISPORUČENO</th>
+                        <th id="gubiciGas" scope="col" class="prety-th">GUBICI (%)</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
+                    <tr class="hide">
+                        <td></td>
+                        <td contenteditable="true" class="editable-td"></td>
+                        <td contenteditable="true" class="editable-td"></td>
+                        <td contenteditable="true" class="editable-td"></td>
+                        <td contenteditable="true" class="editable-td"></td>
+                        <td contenteditable="true" class="editable-td"></td>
+                        <td contenteditable="true" class="editable-td"></td>
+                        <td contenteditable="true" class="editable-td"></td>
+                        <td style="text-align:center">
+                            <span id="preuzetaIsporucenaRemove" class="table-remove fa fa-trash fa-2x"></span>
+                        </td>
+                        <td style="text-align:center">
+                            <span id="preuzetaIsporucenaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
+                        </td>
+                        <td style="text-align:center">
+                            <span id="preuzetaIsporucenaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
+                        </td>
+                    </tr>
+                    <tfoot>
                     <tr>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
+                        <td style="vertical-align: middle; text-align: right;">UKUPNO:</td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
                     </tr>
+                    </tfoot>
                 </table>
 
-                <div class="prety-th" style=" text-align: right">Ukupno isporučena energija krajnjim kupcima u TJ:  <input type="text"></div>
+                <div class="prety-th" style="text-align: right; padding: 5px">Ukupno isporučena energija krajnjim kupcima u TJ:  <input type="text"></div>
             </div>
         </fieldset>
 

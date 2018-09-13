@@ -23,6 +23,7 @@ class UserController {
   }
 
   def edit(User user) {
+    user.clearErrors()
     respond user
   }
 

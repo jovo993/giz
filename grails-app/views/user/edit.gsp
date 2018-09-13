@@ -65,7 +65,7 @@
             <label for="preduzece.id">
                 <g:message code="user.preduzece.naziv.title"/>
             </label>
-            <g:select name="preduzece.id" from="${ba.giz.ba.giz.Preduzece.list()}" value="${user?.preduzece?.id}" optionKey="id" noSelection="${['': 'Odaberite jednoga...']}" style="width: 40%"/><br/>
+            <g:select name="preduzece.id" from="${ba.giz.Preduzece.list()}" value="${user?.preduzece?.id}" optionKey="id" noSelection="${['': 'Odaberite jednoga...']}" style="width: 40%"/><br/>
 
             <label for="pozicija">
                 <g:message code="user.pozicija.title"/>

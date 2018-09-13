@@ -1,4 +1,3 @@
-<%@ page import="ba.giz.Sektor" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +40,7 @@
             <label for="sektor">
                 <g:message code="preduzece.sektor.title"/>
             </label>
-            <g:select name="sektor" from="${Sektor.values()}" value="${preduzece?.sektor}" noSelection="${['': 'Odaberite jedan...']}" keys="${Sektor.values()*.name()}" style="width: 40%"/><br/>
+            <g:select name="sektor" from="${ba.giz.Sektor.values()}" value="${preduzece?.sektor}" noSelection="${['': 'Odaberite jedan...']}" keys="${ba.giz.Sektor.values()*.name()}" style="width: 40%"/><br/>
 
             <label style="vertical-align: middle;">
                 <g:message code="preduzece.uloga.title"/>

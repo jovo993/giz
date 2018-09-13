@@ -1,4 +1,3 @@
-<%@ page import="ba.giz.Preduzece; ba.giz.login.Role" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +54,7 @@
             <label for="roles">
                 <g:message code="user.rola.title"/>
             </label>
-            <g:select multiple="true" name="roles" from="${Role.list()}" value="${user?.roles*.id}" optionKey="id" style="width: 30%"/>
+            <g:select multiple="true" name="roles" from="${ba.giz.login.Role.list()}" value="${user?.roles*.id}" optionKey="id" style="width: 30%"/>
 
             <label for="enabled" style="vertical-align: middle">
                 <g:message code="user.aktivan.title"/>
@@ -65,7 +64,7 @@
             <label for="preduzece.id">
                 <g:message code="user.preduzece.naziv.title"/>
             </label>
-            <g:select name="preduzece.id" from="${Preduzece.list()}" value="${user?.preduzece?.id}" optionKey="id" noSelection="${['': 'Odaberite jednoga...']}" style="width: 40%"/><br/>
+            <g:select name="preduzece.id" from="${ba.giz.Preduzece.list()}" value="${user?.preduzece?.id}" optionKey="id" noSelection="${['': 'Odaberite jednoga...']}" style="width: 40%"/><br/>
 
             <label for="pozicija">
                 <g:message code="user.pozicija.title"/>

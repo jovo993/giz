@@ -1,4 +1,3 @@
-<%@ page import="grails.util.Holders; ba.giz.dto.IzvjestajExcelDTO; ba.giz.Preduzece" %>
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
@@ -44,7 +43,7 @@
                         <li><g:link controller="izvjestaj" action="create"><g:message code="meni.izvjestaj.novi.title"/></g:link></li>
                     </ul>
                 </li>
-                <li><g:link controller="preduzece" action="basicEdit" resource="${Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)}"><g:message code="meni.obveznik.izmjena.title"/></g:link></li>
+                <li><g:link controller="preduzece" action="basicEdit" resource="${ba.giz.Preduzece.findById(grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)}"><g:message code="meni.obveznik.izmjena.title"/></g:link></li>
                 <li><g:link controller="izvjestaj" action="excelExport"><g:message code="meni.izvjestavanje.title"/></g:link></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.sifarnici.title"/><span

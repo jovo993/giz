@@ -1,4 +1,3 @@
-<%@ page import="ba.giz.Sektor" %>
 <!DOCTYPE html>
 <html>
 <head>

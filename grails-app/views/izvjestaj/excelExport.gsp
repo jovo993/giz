@@ -1,4 +1,3 @@
-<%@ page import="ba.giz.Sektor" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +32,7 @@
             <label for="sektori">
                 <g:message code="izvjestaj.excel.sektori.title"/>
             </label>
-            <g:select multiple="true" name="sektori" from="${Sektor.values()}" keys="${Sektor.values()*.name()}" value="${izvjestajExcelDTO?.sektori}" style="width: 30%"/><br/>
+            <g:select multiple="true" name="sektori" from="${ba.giz.Sektor.values()}" keys="${ba.giz.Sektor.values()*.name()}" value="${izvjestajExcelDTO?.sektori}" style="width: 30%"/><br/>
 
             <label style="vertical-align: middle;">
                 <g:message code="izvjestaj.excel.uloga.title"/>

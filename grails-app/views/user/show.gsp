@@ -17,7 +17,7 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <g:form resource="${this.user}" method="DELETE">
+            <g:form resource="${this.user}">
                 <fieldset class="fieldset">
                     <legend style="width: 17%"><g:message code="user.show.label"/></legend>
                     <label for="prezime">

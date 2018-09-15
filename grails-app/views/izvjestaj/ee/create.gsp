@@ -122,8 +122,8 @@
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.godina"><g:message code="podaciPodnosenjeIzvjestaja.godina.title"/></label>
             <g:datePicker name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" precision="year" relativeYears="[-5..5]" style="width: 5%"/><br/>
 
-            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"><g:message code="podaciPodnosenjeIzvjestaja.prezime.title"/></label>
-            <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"/><br/>
+            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija"><g:message code="podaciPodnosenjeIzvjestaja.prezimeImePozicija.title"/></label>
+            <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija"/><br/>
 
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.telefon"><g:message code="podaciPodnosenjeIzvjestaja.telefon.title"/></label>
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.telefon"/><br/>
@@ -170,8 +170,8 @@
                 <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
                 <table id="table1" class="table">
                     <tr>
-                        <th id="radnaJedinica" class="prety-th" style="width: 10%" rowspan="2">Radna jedinica</th>
-                        <th id="preuzetaElektricnaEnergija" class="prety-th" style="width: 10%" rowspan="2">PREUZETA ELEKTRIČNA ENERGIJA (MWh)</th>
+                        <th id="radnaJedinica" class="prety-th" style="width: 10%">Radna jedinica</th>
+                        <th id="preuzetaElektricnaEnergija" class="prety-th" style="width: 10%">PREUZETA ELEKTRIČNA ENERGIJA (MWh)</th>
                         <th id="potrosnjaNa110kV" class="prety-th" style="width: 10%">potrošnja na 110 kV naponu</th>
                         <th id="potrosnjaNa35kV" class="prety-th" style="width: 10%" scope="col">potrošnja na 35 kV naponu</th>
                         <th id="potrosnjaNa1Do35kV" class="prety-th" style="width: 10%">potrošnja na naponskom nivou od 1 kV do 35 kV</th>

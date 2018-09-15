@@ -2,6 +2,7 @@ package ba.giz
 
 import ba.giz.dto.IzvjestajExcelDTO
 import grails.transaction.Transactional
+import grails.util.Holders
 import pl.touk.excel.export.WebXlsxExporter
 
 import static org.springframework.http.HttpStatus.*
@@ -20,7 +21,10 @@ class IzvjestajController {
   }
 
   def create() {
-    Preduzece preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
+    Preduzece preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
+
+    if(!preduzece)
+      preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
 
     if (preduzece.sektor == Sektor.ELEKTRICNA_ENERGIJA) {
       render view: "/izvjestaj/ee/create", model: [preduzece: preduzece]
@@ -40,28 +44,27 @@ class IzvjestajController {
   }
 
   @Transactional
-  def save(Izvjestaj izvjestaj) {
+  def save(params) {
 
-    if (izvjestaj == null) {
-      transactionStatus.setRollbackOnly()
-      notFound()
-      return
-    }
+    Izvjestaj izvjestaj = new Izvjestaj()
+    Preduzece preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
 
-    if (izvjestaj.hasErrors()) {
-      transactionStatus.setRollbackOnly()
-      respond izvjestaj.errors, view: "create"
-      return
-    }
+    if(!preduzece)
+      preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
 
-    izvjestaj.preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
+    izvjestaj.preduzece = preduzece
+
+    CreateIzvjestajUtils.generateBasicData(params, izvjestaj)
+
+    CreateIzvjestajUtils.generateAdditionaData(params, izvjestaj)
+
 
     izvjestaj.save flush: true
 
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: "default.created.message", args: [message(code: "izvjestaj.create.title", default: "Izvjestaj"), izvjestaj.id])
-        redirect action: show
+        flash.message = message(code: "default.created.message", args: [message(code: "izvjestaj.novi.title"), izvjestaj.id])
+        redirect controller: 'homepage', action: 'homepage'
       }
       "*" { respond izvjestaj, [status: CREATED] }
     }
@@ -85,7 +88,7 @@ class IzvjestajController {
 
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.create.title", default: "Izvjestaj"), izvjestaj.id])
+        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id])
         redirect izvjestaj
       }
       "*" { respond izvjestaj, [status: OK] }
@@ -105,7 +108,7 @@ class IzvjestajController {
 
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: "default.deleted.message", args: [message(code: "izvjestaj.create.title", default: "Izvjestaj"), izvjestaj.id])
+        flash.message = message(code: "default.deleted.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id])
         redirect action: "index", method: "GET"
       }
       "*" { render status: NO_CONTENT }
@@ -115,7 +118,7 @@ class IzvjestajController {
   protected void notFound() {
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: "default.not.found.message", args: [message(code: "izvjestaj.create.title", default: "Izvjestaj"), params.id])
+        flash.message = message(code: "default.not.found.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), params.id])
         redirect action: "index", method: "GET"
       }
       "*" { render status: NOT_FOUND }

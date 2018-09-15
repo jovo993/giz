@@ -89,12 +89,12 @@ environments:
                 port: 27017
                 username: ""
                 password: ""
-                databaseName: "gizDB"
+                databaseName: "rodsDB"
     production:
         grails:
             mongodb:
-                host: "localhost"
+                host: "127.0.0.1"
                 port: 27017
                 username: ""
                 password: ""
-                databaseName: "gizDB"
+                databaseName: "rodsDB"

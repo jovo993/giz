@@ -1,4 +1,3 @@
-<%@ page import="grails.util.Holders; ba.giz.dto.IzvjestajExcelDTO; ba.giz.Preduzece" %>
 <!doctype html>
 <html lang="en" class="no-js">
 <head>

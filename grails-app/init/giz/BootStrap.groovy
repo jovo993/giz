@@ -15,8 +15,8 @@ import ba.giz.login.UserRole
 class BootStrap {
 
   def init = { servletContext ->
-    createUsersAndRoles()
     createRegistryData()
+    createUsersAndRoles()
     createIzvjestajData()
   }
   def destroy = {
@@ -38,6 +38,7 @@ class BootStrap {
     Izvjestaj izvjestaj = new Izvjestaj(tip: IzvjestajTip.EE_DS, preduzece: Preduzece.last(), podaciPodnosenjeIzvjestaja: podaciPodnosenjeIzvjestaja,
       datumKreiranja: new Date().clearTime(), datumSlanja: new Date().clearTime(), status: IzvjestajStatus.KREIRAN).save(flush: true, failOnError: true)
   }
+
 
   private static createUsersAndRoles() {
     User.withTransaction { status ->

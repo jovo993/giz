@@ -1,4 +1,3 @@
-<%@ page import="ba.giz.Preduzece; ba.giz.login.Role" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +55,7 @@
             <label for="roles">
                 <g:message code="user.rola.title"/>
             </label>
-            <g:select multiple="true" name="roles" from="${Role.list()}" value="${user?.roles*.id ?: user.getAuthorities()*.id}" optionKey="id" style="width: 30%"/>
+            <g:select multiple="true" name="roles" from="${ba.giz.login.Role.list()}" value="${user?.roles*.id ?: user.getAuthorities()*.id}" optionKey="id" style="width: 30%"/>
 
             <label for="enabled" style="vertical-align: middle">
                 <g:message code="user.aktivan.title"/>

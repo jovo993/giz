@@ -6,126 +6,127 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class PreduzeceController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+  static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 20, 100)
-        respond Preduzece.list(params), model: [columns: ["naziv", "sektor", "uloga", "status"], preduzeceCount: Preduzece.count()]
+  def index(Integer max) {
+    params.max = Math.min(max ?: 20, 100)
+    respond Preduzece.list(params), model: [columns: ["naziv", "sektor", "uloga", "status"], preduzeceCount: Preduzece.count()]
+  }
+
+  def show(Preduzece preduzece) {
+    respond preduzece
+  }
+
+  def create() {
+    respond new Preduzece(params)
+  }
+
+  def edit(Preduzece preduzece) {
+    preduzece.clearErrors()
+    respond preduzece
+  }
+
+  def basicEdit(Preduzece preduzece) {
+    respond preduzece
+  }
+
+  @Transactional
+  def save(Preduzece preduzece) {
+    if (preduzece == null) {
+      transactionStatus.setRollbackOnly()
+      notFound()
+      return
     }
 
-    def show(Preduzece preduzece) {
-        respond preduzece
+    if (preduzece.hasErrors()) {
+      transactionStatus.setRollbackOnly()
+      respond preduzece.errors, view: 'create'
+      return
     }
 
-    def create() {
-        respond new Preduzece(params)
+    preduzece.save flush: true
+
+    request.withFormat {
+      form multipartForm {
+        flash.message = message(code: 'default.created.message', args: [message(code: 'preduzece.label', default: 'Preduzece'), preduzece.naziv])
+        redirect preduzece
+      }
+      '*' { respond preduzece, [status: CREATED] }
+    }
+  }
+
+  @Transactional
+  def update(Preduzece preduzece) {
+    if (preduzece == null) {
+      transactionStatus.setRollbackOnly()
+      notFound()
+      return
     }
 
-    def edit(Preduzece preduzece) {
-        respond preduzece
+    if (preduzece.hasErrors()) {
+      transactionStatus.setRollbackOnly()
+      respond preduzece.errors, view: 'edit'
+      return
     }
 
-    def basicEdit(Preduzece preduzece) {
-        respond preduzece
-    }
+    preduzece.save flush: true
 
-    @Transactional
-    def save(Preduzece preduzece) {
-        if (preduzece == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        if (preduzece.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond preduzece.errors, view: 'create'
-            return
-        }
-
-        preduzece.save flush: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'preduzece.label', default: 'Preduzece'), preduzece.naziv])
-                redirect preduzece
-            }
-            '*' { respond preduzece, [status: CREATED] }
-        }
-    }
-
-    @Transactional
-    def update(Preduzece preduzece) {
-        if (preduzece == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        if (preduzece.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond preduzece.errors, view: 'edit'
-            return
-        }
-
-        preduzece.save flush: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'preduzece.label', default: 'Preduzece'), preduzece.naziv])
-                redirect preduzece
-            }
-            '*'{ respond preduzece, [status: OK] }
-        }
-    }
-
-    @Transactional
-    def basicUpdate(Preduzece preduzece) {
-        if (preduzece == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        if (preduzece.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond preduzece.errors, view: 'basicEdit'
-            return
-        }
-
-        preduzece.save flush: true
-
+    request.withFormat {
+      form multipartForm {
         flash.message = message(code: 'default.updated.message', args: [message(code: 'preduzece.label', default: 'Preduzece'), preduzece.naziv])
-        redirect action: "basicEdit", id: preduzece.id, status: OK
+        redirect preduzece
+      }
+      '*' { respond preduzece, [status: OK] }
+    }
+  }
+
+  @Transactional
+  def basicUpdate(Preduzece preduzece) {
+    if (preduzece == null) {
+      transactionStatus.setRollbackOnly()
+      notFound()
+      return
     }
 
-    @Transactional
-    def delete(Preduzece preduzece) {
-
-        if (preduzece == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        preduzece.delete flush: true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'preduzece.label', default: 'Preduzece'), preduzece.naziv])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
+    if (preduzece.hasErrors()) {
+      transactionStatus.setRollbackOnly()
+      respond preduzece.errors, view: 'basicEdit'
+      return
     }
 
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'preduzece.label', default: 'Preduzece'), params.naziv])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
-        }
+    preduzece.save flush: true
+
+    flash.message = message(code: 'default.updated.message', args: [message(code: 'preduzece.label', default: 'Preduzece'), preduzece.naziv])
+    redirect action: "basicEdit", id: preduzece.id, status: OK
+  }
+
+  @Transactional
+  def delete(Preduzece preduzece) {
+
+    if (preduzece == null) {
+      transactionStatus.setRollbackOnly()
+      notFound()
+      return
     }
+
+    preduzece.delete flush: true
+
+    request.withFormat {
+      form multipartForm {
+        flash.message = message(code: 'default.deleted.message', args: [message(code: 'preduzece.label', default: 'Preduzece'), preduzece.naziv])
+        redirect action: "index", method: "GET"
+      }
+      '*' { render status: NO_CONTENT }
+    }
+  }
+
+  protected void notFound() {
+    request.withFormat {
+      form multipartForm {
+        flash.message = message(code: 'default.not.found.message', args: [message(code: 'preduzece.label', default: 'Preduzece'), params.naziv])
+        redirect action: "index", method: "GET"
+      }
+      '*' { render status: NOT_FOUND }
+    }
+  }
 }

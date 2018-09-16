@@ -23,7 +23,7 @@ class IzvjestajController {
   def create() {
     Preduzece preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
 
-    if(!preduzece)
+    if (!preduzece)
       preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
 
     if (preduzece.sektor == Sektor.ELEKTRICNA_ENERGIJA) {
@@ -47,26 +47,21 @@ class IzvjestajController {
   def save(params) {
 
     Izvjestaj izvjestaj = new Izvjestaj()
+
     Preduzece preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
-
-    if(!preduzece)
-      preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
-
     izvjestaj.preduzece = preduzece
 
     CreateIzvjestajUtils.generateBasicData(params, izvjestaj)
+    CreateIzvjestajUtils.generateTableData(params, izvjestaj)
 
-    CreateIzvjestajUtils.generateAdditionaData(params, izvjestaj)
-
-
-    izvjestaj.save flush: true
+    izvjestaj.status = IzvjestajStatus.KREIRAN
+    izvjestaj.save flush: true, failOnError: true
 
     request.withFormat {
       form multipartForm {
         flash.message = message(code: "default.created.message", args: [message(code: "izvjestaj.novi.title"), izvjestaj.id])
         redirect controller: 'homepage', action: 'homepage'
       }
-      "*" { respond izvjestaj, [status: CREATED] }
     }
   }
 

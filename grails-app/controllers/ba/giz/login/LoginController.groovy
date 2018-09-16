@@ -1,5 +1,6 @@
 package ba.giz.login
 
+import ba.giz.Clanak
 import ba.giz.dto.ChangePasswordDTO
 import grails.converters.JSON
 import grails.plugin.springsecurity.SpringSecurityUtils
@@ -47,7 +48,9 @@ class LoginController {
                                  rememberMeParameter: conf.rememberMe.parameter,
                                  usernameParameter  : conf.apf.usernameParameter,
                                  passwordParameter  : conf.apf.passwordParameter,
-                                 gspLayout          : conf.gsp.layoutAuth]
+                                 gspLayout          : conf.gsp.layoutAuth,
+                                 clanci             : Clanak.findAll().reverse()
+    ]
 
   }
 

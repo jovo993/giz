@@ -6,8 +6,6 @@
 
 <body>
 
-<a href="#homepage" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-
 <div id="homepage" class="content scaffold-create" role="main">
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>

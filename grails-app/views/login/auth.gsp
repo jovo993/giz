@@ -9,7 +9,7 @@
     }
 
     body {
-        background-color: #F7F9FA;
+        background-color: #f6f5f3;
         padding: 40px 0;
         min-height: 100vh;
         color: #536171;
@@ -19,10 +19,10 @@
 
     .fieldset {
         margin: 20px;
-        background-color: #f1f1f1;
+        color: #9e9e9e;
         max-width: 100%;
         padding: 16px;
-        border: 2px solid green;
+        border: 1px solid #c0d9f7;
         -moz-border-radius: 8px;
         -webkit-border-radius: 8px;
         border-radius: 8px;
@@ -32,22 +32,25 @@
         height: 100%;
         width: 50%;
         position: fixed;
-        z-index: 1;
+        z-index: 10;
         top: 0;
         overflow-x: hidden;
         padding-top: 20px;
     }
 
     .left {
-        left: 0px;
+        background-color: #FFFF;
+        left: 200px;
     }
 
     .right {
-        right: 0px;
+        background-color: #FFFF;
+        right: 200px;
+        width: 25%;
     }
 
     .login-box {
-        width: 500px;
+        width: 300px;
         margin: 0 auto;
         background-color: white;
         border-radius: 3px;
@@ -152,6 +155,23 @@
         -webkit-transform: translateY(1px);
         transform: translateY(1px);
     }
+
+    .links {
+        border-radius: 3px;
+        display: inline-block;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        font-size: 16px;
+        width: 100%;
+        background: #2f5786;
+        background-size: 100% 200%;
+        border: none;
+        color: white;
+        font-weight: 400;
+        -webkit-appearance: button;
+    }
+
     </style>
 
 </head>
@@ -160,12 +180,13 @@
 <div style="width: 1200px; margin: auto;">
     <div class="split left">
         <table>
+            <th><h1 style="color: #3d3d3f">Novosti, informacije, obavještenja</h1></th>
             <tbody>
             <g:each in="${clanci}" var="bean" status="i">
                 <tr>
                     <td>
                         <fieldset class="fieldset">
-                            <legend style="width: 100%; text-align: center"><h3>${bean.naslov} - ${bean.autor} - <g:formatDate>${bean.datumObjave}</g:formatDate></h3></legend>
+                            <legend style="width: 69%; text-align: center; color: #3d3d3f"><h3>${bean.naslov} - ${bean.autor} - <g:formatDate>${bean.datumObjave}</g:formatDate></h3></legend>
                             ${bean.sadrzaj}
                         </fieldset>
                     </td>
@@ -176,7 +197,6 @@
     </div>
 
     <div class="split right">
-
         <div class="login-box">
             <div class="login-box-inner">
                 <span><asset:image src="logo_fond.ico" style="width: 64px"/></span>
@@ -205,18 +225,30 @@
                     </g:if>
                 </form>
             </div>
+        </div>
+        <div style="padding-top: 30px; width: 300px; margin: auto;">
+            <table class="login-box">
+                <th class="links">
+                    <h3>Linkovi</h3>
+                </th>
+                <tr>
+                    <td style="padding: 1em;"><a style="color: #3d3d3f" href="http://www.ekofondrs.org/" target="_blank">Fond za zaštitu životne sredine i energetsku efikasnost Republike Srpske</a></td>
+                </tr>
+                <tr>
+                    <td style="padding: 1em;"><a style="color: #3d3d3f" href="http://www.vladars.net/sr-SP-Cyrl/Vlada/Ministarstva/mgr/"
+                           target="_blank">Ministarstvo za prostorno uređenje,građevinarstvo i ekologiju Republike Srpske</a></td>
+                </tr>
+            </table>
+        </div>
+        <div style="padding-top: 30px; width: 300px; margin: auto;">
+            <a href="https://www.accuweat; her.com/sr/ba/banja-luka/35546/weather-forecast/35546" class="aw-widget-legal"></a>
 
-            <div style="padding-top: 30px">
-                <a href="https://www.accuweather.com/sr/ba/banja-luka/35546/weather-forecast/35546" class="aw-widget-legal"></a>
-
-                <div id="awcc1536874518036" class="aw-widget-current" data-locationkey="" data-unit="c" data-language="sr" data-useip="true" data-uid="awcc1536874518036"></div><script
-                    type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
-            </div>
+            <div id="awcc1536874518036" class="aw-widget-current" data-locationkey="" data-unit="c" data-language="sr" data-useip="true" data-uid="awcc1536874518036"></div><script
+                type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
         </div>
     </div>
 </div>
 <script>
-
   (function() {
     document.forms['loginForm'].elements['${usernameParameter ?: 'username'}'].focus();
   })();

@@ -39,6 +39,7 @@ class BootStrap {
       datumKreiranja: new Date().clearTime(), datumSlanja: new Date().clearTime(), status: IzvjestajStatus.KREIRAN).save(flush: true, failOnError: true)
   }
 
+
   private static createUsersAndRoles() {
     User.withTransaction { status ->
 

@@ -22,7 +22,7 @@ class HomepageController {
   protected void notFound() {
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: 'default.not.found.message', args: [message(code: 'izvjestaj.title', default: 'Izvjestaj'), params.id])
+        flash.message = message(code: 'default.not.found.message', args: [message(code: 'meni.izvjestaj.title', default: 'Izvjestaj'), params.id])
         redirect action: "index", method: "GET"
       }
       '*' { render status: NOT_FOUND }

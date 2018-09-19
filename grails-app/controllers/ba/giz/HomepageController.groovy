@@ -14,15 +14,15 @@ class HomepageController {
 
   def homepage() {
     Preduzece preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
-    def izvjestajList = Izvjestaj.findByPreduzece(preduzece)
+    def izvjestajList = Izvjestaj.findAllByPreduzece(preduzece)
     respond preduzece, model: [list: izvjestajList, properties: ["tip", "podaciPodnosenjeIzvjestaja.godina", "datumKreiranja",
-                                                                 "datumSlanja", "podaciPodnosenjeIzvjestaja.displayName", "status"]]
+                                                                 "datumSlanja", "podaciPodnosenjeIzvjestaja.prezimeImePozicija", "status"]]
   }
 
   protected void notFound() {
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: 'default.not.found.message', args: [message(code: 'izvjestaj.label', default: 'Book'), params.id])
+        flash.message = message(code: 'default.not.found.message', args: [message(code: 'meni.izvjestaj.title', default: 'Izvjestaj'), params.id])
         redirect action: "index", method: "GET"
       }
       '*' { render status: NOT_FOUND }

@@ -44,7 +44,7 @@ pre {
 
 }
 .navbar-default, .navbar-static-top {
-    background-color: #707d8a;
+    background-color: #2f5786;
     border: 0px;
 }
 a.navbar-brand {
@@ -801,6 +801,7 @@ ul.nav-sidebar li.active a {
 }
 
 .table {
+    background-color: #d6d8e5;
     margin: 20px 0
 }
 

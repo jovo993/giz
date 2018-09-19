@@ -2,18 +2,14 @@ package ba.giz
 
 import ba.giz.dto.IzvjestajExcelDTO
 import grails.transaction.Transactional
+import grails.util.Holders
 import pl.touk.excel.export.WebXlsxExporter
 
-import static org.springframework.http.HttpStatus.CREATED
-import static org.springframework.http.HttpStatus.NOT_FOUND
-import static org.springframework.http.HttpStatus.NO_CONTENT
-import static org.springframework.http.HttpStatus.OK
+import static org.springframework.http.HttpStatus.*
 import static pl.touk.excel.export.abilities.RowManipulationAbility.fillHeader
 
 @Transactional(readOnly = true)
 class IzvjestajController {
-
-  static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
   def index(Integer max) {
     params.max = Math.min(max ?: 10, 100)
@@ -25,8 +21,19 @@ class IzvjestajController {
   }
 
   def create() {
-    Preduzece preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
-    respond new Izvjestaj(params), model: [preduzece: preduzece]
+    Preduzece preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
+
+    if (preduzece.sektor == Sektor.ELEKTRICNA_ENERGIJA) {
+      render view: "/izvjestaj/ee/create", model: [preduzece: preduzece]
+    }
+
+    if (preduzece.sektor == Sektor.GAS) {
+      render view: "/izvjestaj/gas/create", model: [preduzece: preduzece]
+    }
+
+    if (preduzece.sektor == Sektor.TOPLOTNA_ENERGIJA) {
+      render view: "/izvjestaj/te/create", model: [preduzece: preduzece]
+    }
   }
 
   def excelExport() {
@@ -34,28 +41,23 @@ class IzvjestajController {
   }
 
   @Transactional
-  def save(Izvjestaj izvjestaj) {
-    if (izvjestaj == null) {
-      transactionStatus.setRollbackOnly()
-      notFound()
-      return
-    }
+  def save(params) {
 
-    if (izvjestaj.hasErrors()) {
-      transactionStatus.setRollbackOnly()
-      respond izvjestaj.errors, view: "create"
-      return
-    }
+    Izvjestaj izvjestaj = new Izvjestaj()
 
-    izvjestaj.save flush: true
+    CreateIzvjestajUtils.generateBasicData(params, izvjestaj)
+    CreateIzvjestajUtils.generateTypeDependentData(params, izvjestaj)
+
+    izvjestaj.save flush: true, failOnError: true
 
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: "default.created.message", args: [message(code: "izvjestaj.create.title", default: "Izvjestaj"), izvjestaj.id])
+        flash.message = message(code: "default.created.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id]) as Object
         redirect izvjestaj
       }
-      "*" { respond izvjestaj, [status: CREATED] }
+      "*" { respond izvjestaj, [created: OK] }
     }
+
   }
 
   @Transactional
@@ -76,7 +78,7 @@ class IzvjestajController {
 
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.create.title", default: "Izvjestaj"), izvjestaj.id])
+        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id]) as Object
         redirect izvjestaj
       }
       "*" { respond izvjestaj, [status: OK] }
@@ -96,7 +98,7 @@ class IzvjestajController {
 
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: "default.deleted.message", args: [message(code: "izvjestaj.create.title", default: "Izvjestaj"), izvjestaj.id])
+        flash.message = message(code: "default.deleted.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id])
         redirect action: "index", method: "GET"
       }
       "*" { render status: NO_CONTENT }
@@ -106,7 +108,7 @@ class IzvjestajController {
   protected void notFound() {
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: "default.not.found.message", args: [message(code: "izvjestaj.create.title", default: "Izvjestaj"), params.id])
+        flash.message = message(code: "default.not.found.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), params.id])
         redirect action: "index", method: "GET"
       }
       "*" { render status: NOT_FOUND }
@@ -124,7 +126,7 @@ class IzvjestajController {
     List<Izvjestaj> results = searchForExcel(dto)
 
     def headers = [
-      "Za godinu", "Status", "Izvje\u0160taj sastavio", "Datum podno\u0160enja","Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
+      "Za godinu", "Status", "Izvje\u0160taj sastavio", "Datum podno\u0160enja", "Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
     ]
     def withProperties = [
       "podaciPodnosenjeIzvjestaja.godina", "status", "podaciPodnosenjeIzvjestaja.displayName", "datumSlanja", "preduzece.naziv", "preduzece.sektor", "preduzece.uloga", "preduzece.adresa"

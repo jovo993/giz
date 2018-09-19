@@ -6,9 +6,4 @@ class ProcjenaStanjaEnergetskeEfikasnosti {
   String vrstaUstede
   String kolicinaUstede
 
-  static constraints = {
-    primjenjenaMjera nullable: false
-    vrstaUstede nullable: false
-    kolicinaUstede nullable: false
-  }
 }

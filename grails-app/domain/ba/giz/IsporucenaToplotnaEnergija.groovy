@@ -2,13 +2,10 @@ package ba.giz
 
 class IsporucenaToplotnaEnergija {
 
-  Double poslovniPotrosaci
-  Double stambeniPotrosaciMwh
-  Double stambeniPotrosaciM2
+  Double poslovniPotrosaciToplotnaEnergija
+  Double stambeniPotrosaciMwhToplotnaEnergija
+  Double stambeniPotrosaciM2ToplotnaEnergija
+  Double ukupnoIsporucenoToplotnaEnergija
+  Double gubiciToplotnaEnergija
 
-  static constraints = {
-    poslovniPotrosaci blank: false
-    stambeniPotrosaciMwh blank: false
-    stambeniPotrosaciM2 blank: false
-  }
 }

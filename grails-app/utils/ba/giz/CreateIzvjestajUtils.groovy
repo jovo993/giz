@@ -3,12 +3,18 @@ package ba.giz
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import grails.util.Holders
 
 import java.lang.reflect.Type
 
 class CreateIzvjestajUtils {
 
   static void generateBasicData(params, Izvjestaj izvjestaj) {
+
+    izvjestaj.datumKreiranja = Calendar.getInstance().getTime()
+    izvjestaj.status = IzvjestajStatus.KREIRAN
+    izvjestaj.preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
+
     PodaciDozvolaObavljanjeDjelatnosti podaciDozvolaObavljanjeDjelatnosti = new PodaciDozvolaObavljanjeDjelatnosti()
 
     def pdod = params.izvjestaj.podaciDozvolaObavljanjeDjelatnosti
@@ -41,11 +47,18 @@ class CreateIzvjestajUtils {
     izvjestaj.podaciOstaloEnergetskaEfikasnost = params.izvjestaj.podaciOstaloEnergetskaEfikasnost
   }
 
-  static void generateTableData(params, Izvjestaj izvjestaj) {
+  static void generateTypeDependentData(params, Izvjestaj izvjestaj) {
     def data = params.izvjestaj
+
+    izvjestaj.procjenaStanjaEnergetskeEfikasnostiList = null
+    List<ProcjenaStanjaEnergetskeEfikasnosti> efikasnostList = parseJsonArrayToListProcjenaStanja(data.procjenaStanjaEnergetskeEfikasnostiList)
+    if (efikasnostList.size() > 0) {
+      izvjestaj.procjenaStanjaEnergetskeEfikasnostiList = efikasnostList
+    }
 
     switch (izvjestaj.preduzece.sektor) {
       case Sektor.ELEKTRICNA_ENERGIJA:
+        izvjestaj.tip = IzvjestajTip.EE_DS
 
         izvjestaj.preuzetaIsporucenaEEList = null
         List<PreuzetaIsporucenaEE> preuzetaIsporucenaEE = parseJsonArrayToListPreuzetaIsporucenaEE(data.preuzetaIsporucenaEEList)
@@ -53,18 +66,22 @@ class CreateIzvjestajUtils {
           izvjestaj.preuzetaIsporucenaEEList = preuzetaIsporucenaEE
         }
 
-        izvjestaj.procjenaStanjaEnergetskeEfikasnostiList = null
-        List<ProcjenaStanjaEnergetskeEfikasnosti> efikasnostList = parseJsonArrayToListProcjenaStanja(data.procjenaStanjaEnergetskeEfikasnostiList)
-        if (efikasnostList.size() > 0) {
-          izvjestaj.procjenaStanjaEnergetskeEfikasnostiList = efikasnostList
-        }
-
         izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca = generateStepenMjerenjaEnergije(data.stepenMjerenjeEnergijeStrukturaKupaca, true)
 
         break
       case Sektor.GAS:
+        izvjestaj.tip = IzvjestajTip.G_DS
+        izvjestaj.preuzetIsporucenGasList = parseJsonArrayToListPreuzetIsporucenGas(data.preuzetIsporucenGasList)
+
+        izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca = generateStepenMjerenjaEnergije(data.stepenMjerenjeEnergijeStrukturaKupaca, false)
+
         break
       case Sektor.TOPLOTNA_ENERGIJA:
+        izvjestaj.tip = IzvjestajTip.T_DS
+        izvjestaj.isporucenaToplotnaEnergijaList = parseJsonArrayToListIsporucenaToplotnaEnergija(data.isporucenaToplotnaEnergijaList)
+
+        izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca = generateStepenMjerenjaEnergije(data.stepenMjerenjeEnergijeStrukturaKupaca, false)
+
         break
     }
   }
@@ -103,6 +120,18 @@ class CreateIzvjestajUtils {
   private static List<ProcjenaStanjaEnergetskeEfikasnosti> parseJsonArrayToListProcjenaStanja(text) {
     Type listType = new TypeToken<List<ProcjenaStanjaEnergetskeEfikasnosti>>() {}.getType()
     return new Gson().fromJson(text.toString(), listType)
+  }
+
+  private static List<PreuzetIsporucenGas> parseJsonArrayToListPreuzetIsporucenGas(text) {
+    Type listType = new TypeToken<List<PreuzetIsporucenGas>>() {}.getType()
+    Gson gson = new GsonBuilder().registerTypeAdapter(Double.class, new DoubleTypeAdapter()).create()
+    return gson.fromJson(text.toString(), listType)
+  }
+
+  private static List<IsporucenaToplotnaEnergija> parseJsonArrayToListIsporucenaToplotnaEnergija(text) {
+    Type listType = new TypeToken<List<IsporucenaToplotnaEnergija>>() {}.getType()
+    Gson gson = new GsonBuilder().registerTypeAdapter(Double.class, new DoubleTypeAdapter()).create()
+    return gson.fromJson(text.toString(), listType)
   }
 
   private static convertStringToLong(value) {

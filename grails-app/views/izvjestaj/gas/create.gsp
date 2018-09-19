@@ -11,7 +11,7 @@
 <body>
 
 <div id="create-izvjestaj" class="content scaffold-create" role="main">
-    <h1><g:message code="izvjestaj.title"/></h1>
+    <h1><g:message code="izvjestaj.novi.title"/></h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -346,7 +346,7 @@
                     var $TABLE1 = $('#preuzetaIsporucenaTable');
                     var $TABLE2 = $('#procjenaStanjaTable');
 
-                    dataJSON += createJSONData("izvjestaj.preuzetIsporucenGasList", $TABLE1);
+                    dataJSON += createJSONData("izvjestaj.preuzetaIsporucenaEEList", $TABLE1);
                     dataJSON += createJSONData("izvjestaj.procjenaStanjaEnergetskeEfikasnostiList", $TABLE2);
 
                     $.ajax({
@@ -358,9 +358,8 @@
                 });
 
                 function createJSONData(argument, table) {
-                    var headers = [];
+                    var headers = [], returnValue = '';
                     var $rows = table.find('tr:not(:hidden)');
-                    var returnValue = "&" + argument + "=";
                     $([$rows].shift()).find('th:not(:empty)').each(function() {
                         if (this.id.length > 0) {
                             headers.push(this.id);
@@ -385,12 +384,12 @@
 
                         returnValue = returnValue.substr(0, returnValue.length - 1);
                         if (append) {
-                            returnValue += "},";
+                            returnValue += '},';
                         }
                     });
                     returnValue = returnValue.substr(0, returnValue.length - 1);
 
-                    return returnValue;
+                    return '&' + argument + '=[' + returnValue + ']';
                 }
 
             });

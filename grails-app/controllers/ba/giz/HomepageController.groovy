@@ -14,7 +14,7 @@ class HomepageController {
 
   def homepage() {
     Preduzece preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
-    def izvjestajList = Izvjestaj.findByPreduzece(preduzece)
+    def izvjestajList = Izvjestaj.findAllByPreduzece(preduzece)
     respond preduzece, model: [list: izvjestajList, properties: ["tip", "podaciPodnosenjeIzvjestaja.godina", "datumKreiranja",
                                                                  "datumSlanja", "podaciPodnosenjeIzvjestaja.prezimeImePozicija", "status"]]
   }

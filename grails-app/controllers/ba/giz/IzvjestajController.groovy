@@ -23,15 +23,12 @@ class IzvjestajController {
   def create() {
     Preduzece preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
 
-    if (!preduzece)
-      preduzece = Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA)
-
     if (preduzece.sektor == Sektor.ELEKTRICNA_ENERGIJA) {
       render view: "/izvjestaj/ee/create", model: [preduzece: preduzece]
     }
 
     if (preduzece.sektor == Sektor.GAS) {
-      render view: "/izvjestaj/g/create", model: [preduzece: preduzece]
+      render view: "/izvjestaj/gas/create", model: [preduzece: preduzece]
     }
 
     if (preduzece.sektor == Sektor.TOPLOTNA_ENERGIJA) {
@@ -48,21 +45,19 @@ class IzvjestajController {
 
     Izvjestaj izvjestaj = new Izvjestaj()
 
-    Preduzece preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
-    izvjestaj.preduzece = preduzece
-
     CreateIzvjestajUtils.generateBasicData(params, izvjestaj)
-    CreateIzvjestajUtils.generateTableData(params, izvjestaj)
+    CreateIzvjestajUtils.generateTypeDependentData(params, izvjestaj)
 
-    izvjestaj.status = IzvjestajStatus.KREIRAN
     izvjestaj.save flush: true, failOnError: true
 
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: "default.created.message", args: [message(code: "izvjestaj.novi.title"), izvjestaj.id])
-        redirect controller: 'homepage', action: 'homepage'
+        flash.message = message(code: "default.created.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id]) as Object
+        redirect izvjestaj
       }
+      "*" { respond izvjestaj, [created: OK] }
     }
+
   }
 
   @Transactional
@@ -83,7 +78,7 @@ class IzvjestajController {
 
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id])
+        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id]) as Object
         redirect izvjestaj
       }
       "*" { respond izvjestaj, [status: OK] }

@@ -2,6 +2,13 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
+    <style>
+
+        td, th {
+            text-align: center
+        }
+
+    </style>
 </head>
 
 <body>
@@ -92,12 +99,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                %{--TODO: somehow remove ',' from godina...--}%
+
                 <g:each in="${list}" var="bean" status="i">
                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                        <g:each in="${properties}" var="p" status="j">
-                            <td><f:display bean="${bean}" property="${p}" displayStyle="${displayStyle ?: 'table'}"/></td>
-                        </g:each>
+                        <td>${bean.tip}</td>
+                        <td>${bean.podaciPodnosenjeIzvjestaja.godina}</td>
+                        <td><g:formatDate>${bean.datumKreiranja}</g:formatDate></td>
+                        <td><g:formatDate>${bean.datumSlanja}</g:formatDate></td>
+                        <td>${bean.podaciPodnosenjeIzvjestaja.prezimeImePozicija}</td>
+                        <td>${bean.status}</td>
                     </tr>
                 </g:each>
                 </tbody>

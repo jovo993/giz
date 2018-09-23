@@ -2,17 +2,13 @@
 <html>
 <head>
     <title><g:message code='giz.application.title'/></title>
+    <asset:link rel="icon" href="logo_fond.ico" type="image/x-ico"/>
     <style type="text/css" media="screen">
 
-    *, *::before, *::after {
-        box-sizing: border-box;
-    }
-
     body {
-        background-color: #f6f5f3;
-        padding: 40px 0;
+        background: url("/assets/bulb.jpg") repeat-y top;
+        background-size: 100%;
         min-height: 100vh;
-        color: #536171;
         font-family: sans-serif;
         -webkit-font-smoothing: subpixel-antialiased;
     }
@@ -28,29 +24,22 @@
         border-radius: 8px;
     }
 
-    .split {
+    .column {
+        float: left;
+        background-color: transparent;
         height: 100%;
-        width: 50%;
-        position: fixed;
-        z-index: 10;
-        top: 0;
-        overflow-x: hidden;
-        padding-top: 20px;
     }
 
     .left {
-        background-color: #FFFF;
-        left: 200px;
+        width: 80%;
     }
 
     .right {
-        background-color: #FFFF;
-        right: 200px;
-        width: 25%;
+        width: 20%;
     }
 
     .login-box {
-        width: 300px;
+        width: 100%;
         margin: 0 auto;
         background-color: white;
         border-radius: 3px;
@@ -61,7 +50,7 @@
     }
 
     .login-box-inner {
-        padding: 40px 40px 30px;
+        padding: 20px 40px 30px;
     }
 
     .login-message {
@@ -177,81 +166,92 @@
 </head>
 
 <body>
-<div style="width: 1200px; margin: auto;">
-    <div class="split left">
-        <table>
-            <th><h1 style="color: #3d3d3f">Novosti, informacije, obavještenja</h1></th>
-            <tbody>
-            <g:each in="${clanci}" var="bean" status="i">
-                <tr>
-                    <td>
-                        <fieldset class="fieldset">
-                            <legend style="width: 69%; text-align: center; color: #3d3d3f"><h3>${bean.naslov} - ${bean.autor} - <g:formatDate>${bean.datumObjave}</g:formatDate></h3></legend>
-                            ${bean.sadrzaj}
-                        </fieldset>
-                    </td>
-                </tr>
-            </g:each>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="split right">
-        <div class="login-box">
-            <div class="login-box-inner">
-                <span><asset:image src="logo_fond.ico" style="width: 64px"/></span>
-
-                <div class="login-subheadline"><g:message code='giz.application.title'/></div>
-
-                <form action="${postUrl ?: '/login/authenticate'}" method="POST" autocomplete="off">
-                    <div class="login-form-item">
-                        <label for="username" class="login-form-label"><g:message code='giz.login.usename.label'/>:</label>
-                        <input type="text" name="${usernameParameter ?: 'username'}" id="username" autofocus="autofocus" class="login-form-input"/>
-                    </div>
-
-                    <div class="login-form-item">
-                        <label for="password" class="login-form-label"><g:message code='giz.login.password.label'/>:</label>
-                        <input type="password" name="${passwordParameter ?: 'password'}" id="password" class="login-form-input"/>
-                    </div>
-
-                    <div class="login-form-item">
-                        <input type="checkbox" name="remember_me" id="remember_me"/>
-                        <label for="remember_me" class="login-form-label login-form-label--inline"><g:message code='giz.login.rememberme.label'/></label>
-                    </div>
-
-                    <button type="submit" name="login" id="submit" class="login-form-button"><g:message code='giz.login.submit.label'/></button>
-                    <g:if test="${flash.message}">
-                        <div class="login_message">${flash.message}</div>
-                    </g:if>
-                </form>
-            </div>
-        </div>
-        <div style="padding-top: 30px; width: 300px; margin: auto;">
-            <table class="login-box">
-                <th class="links">
-                    <h3>Linkovi</h3>
-                </th>
-                <tr>
-                    <td style="padding: 1em;"><a style="color: #3d3d3f" href="http://www.ekofondrs.org/" target="_blank">Fond za zaštitu životne sredine i energetsku efikasnost Republike Srpske</a></td>
-                </tr>
-                <tr>
-                    <td style="padding: 1em;"><a style="color: #3d3d3f" href="http://www.vladars.net/sr-SP-Cyrl/Vlada/Ministarstva/mgr/"
-                           target="_blank">Ministarstvo za prostorno uređenje,građevinarstvo i ekologiju Republike Srpske</a></td>
-                </tr>
+<div style="width: 1800px; margin: auto;">
+    <div class="row">
+        <div class="column left">
+            <h2 style="color: whitesmoke; text-align: center">Novosti, informacije, obavještenja</h2>
+            <table>
+                <tbody>
+                <g:each in="${clanci}" var="bean">
+                    <tr>
+                        <td>
+                            <fieldset class="fieldset" style="background-color: #ebf4f9; color: #3d3d3f; text-align: justify;">
+                                <legend style="padding-top: 20px; width: 69%; text-align: center; color: #3d3d3f"><h3>${bean.naslov} - ${bean.autor} - <g:formatDate>${bean.datumObjave}</g:formatDate></h3>
+                                </legend>
+                                <span style="color: black; font-family: Helvetica">${bean.sadrzaj}</span>
+                            </fieldset>
+                        </td>
+                    </tr>
+                </g:each>
+                </tbody>
             </table>
         </div>
-        <div style="padding-top: 30px; width: 300px; margin: auto;">
-            <a href="https://www.accuweat; her.com/sr/ba/banja-luka/35546/weather-forecast/35546" class="aw-widget-legal"></a>
 
-            <div id="awcc1536874518036" class="aw-widget-current" data-locationkey="" data-unit="c" data-language="sr" data-useip="true" data-uid="awcc1536874518036"></div><script
-                type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
+        <div class="column right">
+            <div style="padding-top: 30px; margin: auto;">
+                <div class="login-box">
+                    <div class="login-box-inner">
+                        <span style="text-align: center"><asset:image src="logo_fond.ico" style="width: 64px"/></span>
+
+                        <form action="${postUrl ?: '/login/authenticate'}" method="POST" autocomplete="off">
+                            <div class="login-form-item">
+                                <label for="username" class="login-form-label"><g:message code='giz.login.usename.label'/>:</label>
+                                <input type="text" name="${usernameParameter ?: 'username'}" id="username" autofocus="autofocus" class="login-form-input"/>
+                            </div>
+
+                            <div class="login-form-item">
+                                <label for="password" class="login-form-label"><g:message code='giz.login.password.label'/>:</label>
+                                <input type="password" name="${passwordParameter ?: 'password'}" id="password" class="login-form-input"/>
+                            </div>
+
+                            <div class="login-form-item">
+                                <input type="checkbox" name="remember_me" id="remember_me"/>
+                                <label for="remember_me" class="login-form-label login-form-label--inline"><g:message code='giz.login.rememberme.label'/></label>
+                            </div>
+
+                            <button type="submit" name="login" id="submit" class="login-form-button"><g:message code='giz.login.submit.label'/></button>
+                            <g:if test="${flash.message}">
+                                <div class="login_message">${flash.message}</div>
+                            </g:if>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div style="padding-top: 30px; margin: auto;">
+                <table class="login-box">
+                    <th class="links">
+                        <h3>O aplikaciji</h3>
+                    </th>
+                    <tr>
+                        <td style="padding: 1em;">Web aplikacija "rODS - Registar operatora, distributera i snabdjevača energijom" realizovana je uz pomoć Njemačke organizacije za međunarodnu saradnju GIZ.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1em;"><asset:image src="giz-saradnja.png" style="width: 100%"/></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div style="padding-top: 30px; margin: auto;">
+                <table class="login-box">
+                    <th class="links">
+                        <h3>Linkovi</h3>
+                    </th>
+                    <tr>
+                        <td style="padding: 1em;"><a style="color: #3d3d3f" href="http://www.ekofondrs.org/"
+                                                     target="_blank">Fond za zaštitu životne sredine i energetsku efikasnost Republike Srpske</a></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1em;"><a style="color: #3d3d3f" href="http://www.vladars.net/sr-SP-Cyrl/Vlada/Ministarstva/mgr/"
+                                                     target="_blank">Ministarstvo za prostorno uređenje,građevinarstvo i ekologiju Republike Srpske</a></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-    </div>
-</div>
-<script>
-  (function() {
-    document.forms['loginForm'].elements['${usernameParameter ?: 'username'}'].focus();
-  })();
-</script>
+        <script>
+          (function() {
+            document.forms['loginForm'].elements['${usernameParameter ?: 'username'}'].focus();
+          })();
+        </script>
 </body>
 </html>

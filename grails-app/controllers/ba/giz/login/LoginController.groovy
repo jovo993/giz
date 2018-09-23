@@ -49,7 +49,8 @@ class LoginController {
                                  usernameParameter  : conf.apf.usernameParameter,
                                  passwordParameter  : conf.apf.passwordParameter,
                                  gspLayout          : conf.gsp.layoutAuth,
-                                 clanci             : Clanak.findAll().reverse()
+                                 clanci             : Clanak.findAll().reverse(),
+                                 clanciCount        : Clanak.count()
     ]
 
   }

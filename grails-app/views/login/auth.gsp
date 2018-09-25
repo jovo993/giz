@@ -6,7 +6,7 @@
     <style type="text/css" media="screen">
 
     body {
-        background: url("/assets/bulb.jpg") repeat-y top;
+        background: url("/rods/assets/bulb.jpg") repeat-y top;
         background-size: 100%;
         min-height: 100vh;
         font-family: sans-serif;

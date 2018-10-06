@@ -124,7 +124,7 @@
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.godina"><g:message code="podaciPodnosenjeIzvjestaja.godina.title"/></label>
             <g:datePicker name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" precision="year" relativeYears="[-5..5]" style="width: 5%"/><br/>
 
-            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"><g:message code="podaciPodnosenjeIzvjestaja.prezime.title"/></label>
+            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"><g:message code="homepage.list.podaciPodnosenjeIzvjestaja.prezimeImePozicija.label"/></label>
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"/><br/>
 
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.telefon"><g:message code="podaciPodnosenjeIzvjestaja.telefon.title"/></label>

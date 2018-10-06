@@ -134,8 +134,8 @@ class CreateIzvjestajUtils {
     return gson.fromJson(text.toString(), listType)
   }
 
-  private static convertStringToLong(value) {
-    return Long.valueOf(value.toString())
+  private static convertStringToLong(String value) {
+    return value == "" ? 0 : Long.valueOf(value)
   }
 
 }

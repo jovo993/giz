@@ -33,7 +33,7 @@
             <label for="sektor">
                 <g:message code="preduzece.sektor.title"/>
             </label>
-            <g:select name="sektor" from="${ba.giz.Sektor.values()}" value="${preduzece?.sektor}" noSelection="${['': 'Odaberite jedan...']}" keys="${ba.giz.Sektor.values()*.name()}" style="width: 40%"/><br/>
+            <g:select name="sektor" from="${ba.giz.Sektor.values()}" value="${preduzece?.sektor}" keys="${ba.giz.Sektor.values()*.name()}" style="width: 40%"/><br/>
 
             <label style="vertical-align: middle;">
                 <g:message code="preduzece.uloga.title"/>
@@ -41,7 +41,7 @@
 
             <g:checkBox name="uloga.operator" value="${preduzece?.uloga?.operator}" style="width: 2%; vertical-align: middle;"/>
             <label for="uloga.operator" style="width: 6.6%; vertical-align: middle;">
-                <g:message code="preduzece.uloga.operator.title"/>
+                <g:message code="preduzece.uloga.operater.title"/>
             </label>
 
             <g:checkBox name="uloga.distributer" value="${preduzece?.uloga?.distributer}" style="width: 2%; vertical-align: middle;"/>

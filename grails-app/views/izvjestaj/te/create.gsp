@@ -440,9 +440,14 @@
                         url: 'save',
                         type: 'post',
                         dataType: 'json',
-                        data: dataJSON
+                        data: dataJSON,
+                        success: success()
                     });
                 });
+
+                function success() {
+                   window.location='<g:createLink controller="homepage" action="homepage"/>';
+                }
 
                 function createJSONData(argument, table) {
                     var headers = [], returnValue = '';

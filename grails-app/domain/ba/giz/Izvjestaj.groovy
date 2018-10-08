@@ -41,5 +41,10 @@ class Izvjestaj {
     datumSlanja nullable: true
     status nullable: true
     ukupnoIsporucenaEnergija nullable: true
+    preuzetaIsporucenaEEList nullable: true
+    podaciEnergenti nullable: true
+    preuzetIsporucenGasList nullable: true
+    isporucenaToplotnaEnergijaList nullable: true
+    stepenMjerenjeEnergijeStrukturaKupaca nullable: true
   }
 }

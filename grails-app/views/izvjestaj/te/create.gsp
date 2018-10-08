@@ -29,7 +29,7 @@
             <g:textField name="izvjestaj.preduzece.naziv" value="${preduzece?.naziv}"/><br/>
 
             <label for="sektor"><g:message code="preduzece.sektor.title"/></label>
-            <g:select name="sektor" from="${ba.giz.Sektor.values()}" value="${izvjestaj?.preduzece?.sektor}"/><br/>
+            <g:textField name="sektor" value="${preduzece?.sektor}"/><br/>
 
             <label><g:message code="preduzece.uloga.title"/></label>
 

@@ -1,21 +1,15 @@
-<%@ page import="ba.giz.Sektor" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <asset:javascript src="application.js"/>
-    <g:set var="entityName" value="${message(code: 'izvjestaj.izmjeni.title')}"/>
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <meta name="layout" content="main"/>
     <title><g:message code="izvjestaj.title"/></title>
+    <meta name="layout" content="main"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <asset:javascript src="application.js"/>
 </head>
 
 <body>
-
-<a href="#create-izvjestaj" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-
 <div id="create-izvjestaj" class="content scaffold-create" role="main">
-    <h1><g:message code="izvjestaj.title"/></h1>
+    <h1><g:message code="izvjestaj.izmjeni.title"/></h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -31,110 +25,111 @@
             <legend><g:message code="preduzece.fieldset.title"/></legend>
 
             <label for="izvjestaj.preduzece.naziv"><g:message code="preduzece.naziv.title"/></label>
-            <g:textField name="izvjestaj.preduzece.naziv" value="${preduzece?.naziv}"/><br/>
+            <g:textField name="izvjestaj.preduzece.naziv" value="${izvjestaj.preduzece.naziv}"/><br/>
 
-            <label for="sektor"><g:message code="preduzece.sektor.title"/></label>
-            <g:select name="sektor" from="${ba.giz.Sektor.values()}" value="${izvjestaj?.preduzece?.sektor}"/><br/>
+            <label for="izvjestaj.preduzece.sektor"><g:message code="preduzece.sektor.title"/></label>
+            <g:select name="izvjestaj.preduzece.sektor" from="${ba.giz.Sektor.values()}" value="${izvjestaj?.preduzece?.sektor}"/><br/>
 
             <label><g:message code="preduzece.uloga.title"/></label>
 
             <label for="izvjestaj.preduzece.operater" style="width: 10%"><g:message code="preduzece.uloga.operater.title"/></label>
-            <g:checkBox name="izvjestaj.preduzece.operater" value="${preduzece?.uloga?.operater}" style="width: 5%"/>
+            <g:checkBox name="izvjestaj.preduzece.operater" value="${izvjestaj.preduzece?.uloga?.operater}" style="width: 5%"/>
 
             <label for="izvjestaj.preduzece.distributer" style="width: 10%"><g:message code="preduzece.uloga.distributer.title"/></label>
-            <g:checkBox name="izvjestaj.preduzece.distributer" value="${preduzece?.uloga?.distributer}" style="width: 5%"/>
+            <g:checkBox name="izvjestaj.preduzece.distributer" value="${izvjestaj.preduzece?.uloga?.distributer}" style="width: 5%"/>
 
             <label for="izvjestaj.preduzece.snabdjevac" style="width: 10%"><g:message code="preduzece.uloga.snabdjevac.title"/></label>
-            <g:checkBox name="izvjestaj.preduzece.snabdjevac" value="${preduzece?.uloga?.snabdjevac}" style="width: 5%"/>
+            <g:checkBox name="izvjestaj.preduzece.snabdjevac" value="${izvjestaj.preduzece?.uloga?.snabdjevac}" style="width: 5%"/>
 
             <label for="izvjestaj.preduzece.adresa"><g:message code="preduzece.adresa.title"/></label>
-            <g:textField name="izvjestaj.preduzece.adresa" value="${preduzece?.adresa}"/><br/>
+            <g:textField name="izvjestaj.preduzece.adresa" value="${izvjestaj.preduzece?.adresa}"/><br/>
 
             <label for="izvjestaj.preduzece.maticniBrojJedinstvenogRegistra"><g:message code="preduzece.maticni.title"/></label>
-            <g:textField name="izvjestaj.preduzece.maticniBrojJedinstvenogRegistra" value="${preduzece?.maticniBrojJedinstvenogRegistra}"/><br/>
+            <g:textField name="izvjestaj.preduzece.maticniBrojJedinstvenogRegistra" value="${izvjestaj.preduzece?.maticniBrojJedinstvenogRegistra}"/><br/>
 
             <label for="izvjestaj.preduzece.jib"><g:message code="preduzece.jib.title"/></label>
-            <g:textField name="izvjestaj.preduzece.jib" value="${preduzece?.jib}"/><br/>
+            <g:textField name="izvjestaj.preduzece.jib" value="${izvjestaj.preduzece?.jib}"/><br/>
 
             <label for="izvjestaj.preduzece.pib"><g:message code="preduzece.pib.title"/></label>
-            <g:textField name="izvjestaj.preduzece.pib" value="${preduzece?.pib}"/><br/>
+            <g:textField name="izvjestaj.preduzece.pib" value="${izvjestaj.preduzece?.pib}"/><br/>
 
             <label for="izvjestaj.preduzece.telefon"><g:message code="preduzece.telefon.title"/></label>
-            <g:textField name="izvjestaj.preduzece.telefon" value="${preduzece?.telefon}"/><br/>
+            <g:textField name="izvjestaj.preduzece.telefon" value="${izvjestaj.preduzece?.telefon}"/><br/>
 
             <label for="izvjestaj.preduzece.fax"><g:message code="preduzece.fax.title"/></label>
-            <g:textField name="izvjestaj.preduzece.fax" value="${preduzece?.fax}"/><br/>
+            <g:textField name="izvjestaj.preduzece.fax" value="${izvjestaj.preduzece?.fax}"/><br/>
 
             <label for="izvjestaj.preduzece.email"><g:message code="preduzece.email.title"/></label>
-            <g:textField name="izvjestaj.preduzece.email" value="${preduzece?.email}"/><br/>
+            <g:textField name="izvjestaj.preduzece.email" value="${izvjestaj.preduzece?.email}"/><br/>
 
             <label for="izvjestaj.preduzece.brojZaposlenih"><g:message code="preduzece.brojzaposlenih.title"/></label>
-            <g:textField name="izvjestaj.preduzece.brojZaposlenih" value="${preduzece?.brojZaposlenih}"/><br/>
+            <g:textField name="izvjestaj.preduzece.brojZaposlenih" value="${izvjestaj.preduzece?.brojZaposlenih}"/><br/>
 
             <label for="izvjestaj.preduzece.ukupanGodisnjiPromet"><g:message code="preduzece.promet.title"/></label>
-            <g:textField name="izvjestaj.preduzece.ukupanGodisnjiPromet" value="${preduzece?.ukupanGodisnjiPromet}"/><br/>
+            <g:textField name="izvjestaj.preduzece.ukupanGodisnjiPromet" value="${izvjestaj.preduzece?.ukupanGodisnjiPromet}"/><br/>
 
             <p><g:message code="izvjestaj.fusnota"/></p>
         </fieldset>
 
         <fieldset class="fieldset">
+            <g:hiddenField name="izvjestaj.id" value="${id}"/>
             <legend style="width: 60%"><g:message code="podaciDozvolaObavljanjeDjelatnosti.fieldset.title"/></legend>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj" type="number"/><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaRegistarskiBroj}" type="number"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija"/><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaKomisija}"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje.title"/>
             </label>
-            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
+            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaDatumPocetkaVazenje}" precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja"/><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaPeriodVazenja}"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.EE.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj"/><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjeRegistarskiBroj}"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija"/><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjeKomisija}"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje.title"/>
             </label>
-            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
+            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjeDatumPocetkaVazenje}" precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja" type="number"/><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjePeriodVazenja}" type="number"/><br/>
         </fieldset>
 
         <fieldset class="fieldset">
             <legend style="width: 40%"><g:message code="podaciPodnosenjeIzvjestaja.fieldset.title"/></legend>
 
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.godina"><g:message code="podaciPodnosenjeIzvjestaja.godina.title"/></label>
-            <g:datePicker name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" precision="year" relativeYears="[-5..5]" style="width: 5%"/><br/>
+            <g:datePicker name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" value="${izvjestaj.podaciPodnosenjeIzvjestaja?.godina}" precision="year" relativeYears="[-5..5]" style="width: 5%"/><br/>
 
-            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"><g:message code="podaciPodnosenjeIzvjestaja.prezime.title"/></label>
-            <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"/><br/>
+            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija"><g:message code="podaciPodnosenjeIzvjestaja.prezimeImePozicija.title"/></label>
+            <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija" value="${izvjestaj.podaciPodnosenjeIzvjestaja?.prezimeImePozicija}"/><br/>
 
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.telefon"><g:message code="podaciPodnosenjeIzvjestaja.telefon.title"/></label>
-            <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.telefon"/><br/>
+            <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.telefon" value="${izvjestaj.podaciPodnosenjeIzvjestaja?.telefon}"/><br/>
 
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.email"><g:message code="podaciPodnosenjeIzvjestaja.email.title"/></label>
-            <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.email"/><br/>
+            <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.email" value="${izvjestaj.podaciPodnosenjeIzvjestaja?.email}"/><br/>
         </fieldset>
 
         %{-- funkcije koje rade dodavanje novog, brisanje i pomjeranje postojeceg reda za tabelu Preuzeta i isporucena EE --}%
@@ -175,8 +170,8 @@
                 <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
                 <table id="table1" class="table">
                     <tr>
-                        <th id="radnaJedinica" class="prety-th" style="width: 10%" rowspan="2">Radna jedinica</th>
-                        <th id="preuzetaElektricnaEnergija" class="prety-th" style="width: 10%" rowspan="2">PREUZETA ELEKTRIČNA ENERGIJA (MWh)</th>
+                        <th id="radnaJedinica" class="prety-th" style="width: 10%">Radna jedinica</th>
+                        <th id="preuzetaElektricnaEnergija" class="prety-th" style="width: 10%">PREUZETA ELEKTRIČNA ENERGIJA (MWh)</th>
                         <th id="potrosnjaNa110kV" class="prety-th" style="width: 10%">potrošnja na 110 kV naponu</th>
                         <th id="potrosnjaNa35kV" class="prety-th" style="width: 10%" scope="col">potrošnja na 35 kV naponu</th>
                         <th id="potrosnjaNa1Do35kV" class="prety-th" style="width: 10%">potrošnja na naponskom nivou od 1 kV do 35 kV</th>
@@ -186,17 +181,21 @@
                         <th id="ukupnoIsporuceno " class="prety-th" style="width: 10%">UKUPNO ISPORUČENO</th>
                         <th id="gubici" class="prety-th" style="width: 10%">GUBICI (%)</th>
                     </tr>
+                    <g:each in="${izvjestaj.preuzetaIsporucenaEEList}" var="bean" status="i">
+                        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                            <td class="editable-td" contenteditable="true">${bean.radnaJedinica}</td>
+                            <td class="editable-td" contenteditable="true">${bean.preuzetaElektricnaEnergija}</td>
+                            <td class="editable-td" contenteditable="true">${bean.potrosnjaNa110kV}</td>
+                            <td class="editable-td" contenteditable="true">${bean.potrosnjaNa35kV}</td>
+                            <td class="editable-td" contenteditable="true">${bean.potrosnjaNa1Do35kV}</td>
+                            <td class="editable-td" contenteditable="true">${bean.potrosnjaOstala}</td>
+                            <td class="editable-td" contenteditable="true">${bean.potrosnjaDomacinstva}</td>
+                            <td class="editable-td" contenteditable="true">${bean.potrosnjaJavnaRasvjeta}</td>
+                            <td class="editable-td" contenteditable="true">${bean.ukupnoIsporuceno}</td>
+                            <td class="editable-td" contenteditable="true">${bean.gubici}</td>
+                        </tr>
+                    </g:each>
                     <tr class="hide">
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
                         <td style="text-align:center">
                             <span id="preuzetaIsporucenaRemove" class="table-remove fa fa-trash fa-2x"></span>
                         </td>
@@ -207,27 +206,10 @@
                             <span id="preuzetaIsporucenaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
                         </td>
                     </tr>
-                    <tfoot>
-                    <tr>
-                        <td style="vertical-align: middle; text-align: right;">UKUPNO:</td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                    </tr>
-                    </tfoot>
                 </table>
-
                 <div class="prety-th" style=" text-align: right">Ukupno isporučena energija krajnjim kupcima u TJ:  <input type="text"></div>
             </div>
         </fieldset>
-
-
         <g:javascript library='jquery'>
             (function($) {
                 $(document).ready(function() {
@@ -273,24 +255,26 @@
                         <th></th>
                         <th></th>
                     </tr>
-                    <tr class="hide">
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td style="text-align:center">
-                            <span id="procjenaStanjaRemove" class="table-remove fa fa-trash fa-2x"></span>
-                        </td>
-                        <td style="text-align:center">
-                            <span id="procjenaStanjaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
-                        </td>
-                        <td style="text-align:center">
-                            <span id="procjenaStanjaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
-                        </td>
-                    </tr>
+                    <tr>
+                    <g:each in="${izvjestaj.procjenaStanjaEnergetskeEfikasnostiList}" var="bean" status="i">
+                        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                            <td class="editable-td" contenteditable="true">${bean.primjenjenaMjera}</td>
+                            <td class="editable-td" contenteditable="true">${bean.vrstaUstede}</td>
+                            <td class="editable-td" contenteditable="true">${bean.kolicinaUstede}</td>
+                            <td style="text-align:center">
+                                <span id="procjenaStanjaRemove" class="table-remove fa fa-trash fa-2x"></span>
+                            </td>
+                            <td style="text-align:center">
+                                <span id="procjenaStanjaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
+                            </td>
+                            <td style="text-align:center">
+                                <span id="procjenaStanjaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
+                            </td>
+                        </tr>
+                    </g:each>
                 </table>
             </div>
         </fieldset>
-
         <fieldset class="fieldset">
             <legend style="width: 80%"><g:message code="izvjestaj.podaciStepenMjerenja.EE.fieldset.title"/></legend>
 
@@ -307,26 +291,26 @@
                     <tbody>
                     <tr>
                         <td class="prety-th">Sektor domaćinstva</td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojDaljinskoOcitavanje"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoBrojMjerenjePotrosnje}"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoUkupanBroj}"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojDaljinskoOcitavanje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoBrojDaljinskoOcitavanje}"></td>
                     </tr>
                     <tr>
                         <td class="prety-th">Sektor industrije</td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojDaljinskoOcitavanje"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.industrijaBrojMjerenjePotrosnje}"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.industrijaUkupanBroj}"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojDaljinskoOcitavanje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojDaljinskoOcitavanje}"></td>
                     </tr>
                     <tr>
                         <td class="prety-th">Ostali sektori</td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ostaloBrojMjerenjePotrosnje}"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ostaloUkupanBroj}"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje}"></td>
                     <tr>
                         <td class="prety-th">Ukupno</td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojDaljnskoOcitavanje"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojMjerenjePotrosnje}"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojKrajnjihKupaca}"></td>
+                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojDaljinskoOcitavanje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojDaljinskoOcitavanje}"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -335,13 +319,13 @@
 
         <fieldset class="fieldset">
             <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciPonudeEnergetskihUsluga.title"/></h5>
-            <g:textArea name="izvjestaj.podaciPonudeEnergetskihUsluga" rows="5" cols="100"/><br/>
+            <g:textArea name="izvjestaj.podaciPonudeEnergetskihUsluga" value="${izvjestaj.podaciPonudeEnergetskihUsluga}" rows="5" cols="100"/><br/>
 
             <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.EE.title"/></h5>
-            <g:textArea name="izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja" rows="5" cols="100"/><br/>
+            <g:textArea name="izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja" value="${izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja}" rows="5" cols="100"/><br/>
 
             <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciOstaloEnergetskaEfikasnost.title"/></h5>
-            <g:textArea name="izvjestaj.podaciOstaloEnergetskaEfikasnost" rows="5" cols="100"/><br/>
+            <g:textArea name="izvjestaj.podaciOstaloEnergetskaEfikasnost" value="${izvjestaj.podaciOstaloEnergetskaEfikasnost}" rows="5" cols="100"/><br/>
         </fieldset>
 
     </form>
@@ -353,6 +337,7 @@
                 jQuery.fn.shift = [].shift;
 
                 var $BTN = $('#submitButton');
+                var $SENDBTN = $('#posaljiButton');
 
                 $BTN.click(function() {
                     var dataJSON = $("#formIzvjestaj").serialize();
@@ -361,9 +346,27 @@
 
                     dataJSON += createJSONData("izvjestaj.preuzetaIsporucenaEEList", $TABLE1);
                     dataJSON += createJSONData("izvjestaj.procjenaStanjaEnergetskeEfikasnostiList", $TABLE2);
+                    var url="${createLink(controller: 'izvjestaj', action: 'update')}";
 
                     $.ajax({
-                        url: 'save',
+                        url: url,
+                        type: 'post',
+                        dataType: 'json',
+                        data: dataJSON
+                    });
+                });
+
+                $SENDBTN.click(function() {
+                    var dataJSON = $("#formIzvjestaj").serialize();
+                    var $TABLE1 = $('#preuzetaIsporucenaTable');
+                    var $TABLE2 = $('#procjenaStanjaTable');
+
+                    dataJSON += createJSONData("izvjestaj.preuzetaIsporucenaEEList", $TABLE1);
+                    dataJSON += createJSONData("izvjestaj.procjenaStanjaEnergetskeEfikasnostiList", $TABLE2);
+                    var url="${createLink(controller: 'izvjestaj', action: 'send')}";
+
+                    $.ajax({
+                        url: url,
                         type: 'post',
                         dataType: 'json',
                         data: dataJSON
@@ -371,9 +374,8 @@
                 });
 
                 function createJSONData(argument, table) {
-                    var headers = [];
+                    var headers = [], returnValue = '';
                     var $rows = table.find('tr:not(:hidden)');
-                    var returnValue = "&" + argument + "=";
                     $([$rows].shift()).find('th:not(:empty)').each(function() {
                         if (this.id.length > 0) {
                             headers.push(this.id);
@@ -398,19 +400,20 @@
 
                         returnValue = returnValue.substr(0, returnValue.length - 1);
                         if (append) {
-                            returnValue += "},";
+                            returnValue += '},';
                         }
                     });
                     returnValue = returnValue.substr(0, returnValue.length - 1);
 
-                    return returnValue;
+                    return '&' + argument + '=[' + returnValue + ']';
                 }
 
             });
         })(jQuery);
     </g:javascript>
     <fieldset class="buttons">
-        <button id="submitButton"><i class="fa fa-save"></i>  <g:message code="default.button.create.label"/></button>
+        <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
+        <button id="posaljiButton"><i class="fa fa-edit"></i>  <g:message code="default.button.send.label"/></button>
     </fieldset>
 
 </div>

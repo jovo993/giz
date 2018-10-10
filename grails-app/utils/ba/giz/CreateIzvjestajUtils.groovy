@@ -30,15 +30,18 @@ class CreateIzvjestajUtils {
     podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje = new Date().parse("dd.mm.yyyy", datumSnabdijevanje)
     podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja = pdod.snabdijevanjePeriodVazenja.isInteger() ? pdod.snabdijevanjePeriodVazenja.toInteger() : null
 
+    podaciDozvolaObavljanjeDjelatnosti.save()
     izvjestaj.podaciDozvolaObavljanjeDjelatnosti = podaciDozvolaObavljanjeDjelatnosti
 
 
     PodaciPodnosenjeIzvjestaja podaciPodnosenjeIzvjestaja = new PodaciPodnosenjeIzvjestaja()
     def ppi = params.izvjestaj.podaciPodnosenjeIzvjestaja
-    podaciPodnosenjeIzvjestaja.godina = ppi.godina
+    podaciPodnosenjeIzvjestaja.godina = ppi.godina_year
     podaciPodnosenjeIzvjestaja.prezimeImePozicija = ppi.prezimeImePozicija
     podaciPodnosenjeIzvjestaja.telefon = ppi.telefon
     podaciPodnosenjeIzvjestaja.email = ppi.email
+
+    podaciPodnosenjeIzvjestaja.save()
     izvjestaj.podaciPodnosenjeIzvjestaja = podaciPodnosenjeIzvjestaja
 
 
@@ -52,9 +55,7 @@ class CreateIzvjestajUtils {
 
     izvjestaj.procjenaStanjaEnergetskeEfikasnostiList = null
     List<ProcjenaStanjaEnergetskeEfikasnosti> efikasnostList = parseJsonArrayToListProcjenaStanja(data.procjenaStanjaEnergetskeEfikasnostiList)
-    if (efikasnostList.size() > 0) {
-      izvjestaj.procjenaStanjaEnergetskeEfikasnostiList = efikasnostList
-    }
+    izvjestaj.procjenaStanjaEnergetskeEfikasnostiList = efikasnostList
 
     switch (izvjestaj.preduzece.sektor) {
       case Sektor.ELEKTRICNA_ENERGIJA:
@@ -62,9 +63,7 @@ class CreateIzvjestajUtils {
 
         izvjestaj.preuzetaIsporucenaEEList = null
         List<PreuzetaIsporucenaEE> preuzetaIsporucenaEE = parseJsonArrayToListPreuzetaIsporucenaEE(data.preuzetaIsporucenaEEList)
-        if (preuzetaIsporucenaEE.size() > 1) {
-          izvjestaj.preuzetaIsporucenaEEList = preuzetaIsporucenaEE
-        }
+        izvjestaj.preuzetaIsporucenaEEList = preuzetaIsporucenaEE
 
         izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca = generateStepenMjerenjaEnergije(data.stepenMjerenjeEnergijeStrukturaKupaca, true)
 
@@ -108,6 +107,7 @@ class CreateIzvjestajUtils {
       stepenMjerenja.ukupnoBrojDaljinskoOcitavanje = convertStringToLong(data.ukupnoBrojDaljinskoOcitavanje)
     }
 
+    stepenMjerenja.save()
     return stepenMjerenja
   }
 

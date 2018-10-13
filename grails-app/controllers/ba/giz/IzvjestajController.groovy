@@ -134,6 +134,10 @@ class IzvjestajController {
     }
   }
 
+  def generatePdf(Izvjestaj izvjestaj) {
+    // TODO: add code for generation of pdf
+  }
+
   @Transactional
   def generateBasicExcel(IzvjestajExcelDTO dto) {
     if (dto.hasErrors()) {

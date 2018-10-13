@@ -548,7 +548,7 @@ th:hover, tr:hover {
     text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save, .buttons .excel {
+.buttons .delete, .buttons .edit, .buttons .save, .buttons .excel, .buttons .pdf {
     background-position: 0.7em center;
     background-repeat: no-repeat;
     text-indent: 25px;
@@ -568,6 +568,10 @@ th:hover, tr:hover {
 
 .buttons .excel {
     background-image: url(../images/skin/excel.png);
+}
+
+.buttons .pdf {
+    background-image: url(../images/skin/pdf.png);
 }
 
 a.skip {

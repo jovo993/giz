@@ -195,7 +195,7 @@
 
                         <form action="${postUrl ?: '/login/authenticate'}" method="POST" autocomplete="off">
                             <div class="login-form-item">
-                                <label for="username" class="login-form-label"><g:message code='giz.login.usename.label'/>:</label>
+                                <label for="username" class="login-form-label"><g:message code='giz.login.username.label'/>:</label>
                                 <input type="text" name="${usernameParameter ?: 'username'}" id="username" autofocus="autofocus" class="login-form-input"/>
                             </div>
 

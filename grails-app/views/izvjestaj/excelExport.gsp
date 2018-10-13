@@ -40,17 +40,17 @@
 
             <g:checkBox name="uloga.operator" value="${izvjestajExcelDTO?.uloga?.operator}" style="width: 2%; vertical-align: middle;"/>
             <label for="uloga.operator" style="width: 6.6%; vertical-align: middle;">
-                <g:message code="preduzece.uloga.operator.title"/>
+                <g:message code="preduzece.uloga.operater.title.bigger"/>
             </label>
 
             <g:checkBox name="uloga.distributer" value="${izvjestajExcelDTO?.uloga?.distributer}" style="width: 2%; vertical-align: middle;"/>
             <label for="uloga.distributer" style="width: 8%; vertical-align: middle;">
-                <g:message code="preduzece.uloga.distributer.title"/>
+                <g:message code="preduzece.uloga.distributer.title.bigger"/>
             </label>
 
             <g:checkBox name="uloga.snabdjevac" value="${izvjestajExcelDTO?.uloga?.snabdjevac}" style="width: 2%; vertical-align: middle;"/>
             <label for="uloga.snabdjevac" style="width: 8%; vertical-align: middle;">
-                <g:message code="preduzece.uloga.snabdjevac.title"/>
+                <g:message code="preduzece.uloga.snabdjevac.title.bigger"/>
             </label><br/>
 
             <label style="vertical-align: middle;">

@@ -97,7 +97,7 @@
                         <g:set var="propTitle">homepage.list.${p}.label</g:set>
                         <g:sortableColumn property="${p}" title="${message(code: propTitle)}"/>
                     </g:each>
-                    <th>Prikazi</th>
+                    <th>Prikaži</th>
                 </tr>
                 </thead>
                 <tbody>

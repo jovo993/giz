@@ -89,22 +89,6 @@ class IzvjestajController {
   }
 
   @Transactional
-  def send(params) {
-    Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
-    izvjestaj.datumSlanja = new Date().clearTime()
-    izvjestaj.status = IzvjestajStatus.POSLAN
-    izvjestaj.save flush: true, failOnError: true
-
-    request.withFormat {
-      form multipartForm {
-        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id]) as Object
-        redirect izvjestaj
-      }
-      "*" { respond izvjestaj, [status: OK] }
-    }
-  }
-
-  @Transactional
   def delete(Izvjestaj izvjestaj) {
 
     if (izvjestaj == null) {
@@ -204,5 +188,58 @@ class IzvjestajController {
     }
 
     results
+  }
+
+  @Transactional
+  def send(params) {
+    Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
+    if(izvjestaj.status)
+    izvjestaj.datumSlanja = new Date().clearTime()
+    izvjestaj.status = IzvjestajStatus.POSLAN
+    izvjestaj.save flush: true, failOnError: true
+
+    request.withFormat {
+      form multipartForm {
+        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id]) as Object
+        redirect izvjestaj
+      }
+      "*" { respond izvjestaj, [status: OK] }
+    }
+  }
+
+  def vratiNaDoradu(Izvjestaj izvjestaj) {
+    if(izvjestaj.status == IzvjestajStatus.POSLAN) {
+      if(UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+        izvjestaj.status = IzvjestajStatus.DORADA
+
+        izvjestaj.save flush: true, failOnError: true
+
+        request.withFormat {
+          form multipartForm {
+            flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.dorada.title"), izvjestaj.id]) as Object
+            redirect izvjestaj
+          }
+          "*" { respond izvjestaj, [status: OK] }
+        }
+      }
+    }
+  }
+
+  def verifikuj(Izvjestaj izvjestaj) {
+    if(izvjestaj.status == IzvjestajStatus.POSLAN) {
+      if(UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+        izvjestaj.status = IzvjestajStatus.VERIFIKOVAN
+
+        izvjestaj.save flush: true, failOnError: true
+
+        request.withFormat {
+          form multipartForm {
+            flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.dorada.title"), izvjestaj.id]) as Object
+            redirect izvjestaj
+          }
+          "*" { respond izvjestaj, [status: OK] }
+        }
+      }
+    }
   }
 }

@@ -122,7 +122,7 @@
             <legend style="width: 40%"><g:message code="podaciPodnosenjeIzvjestaja.fieldset.title"/></legend>
 
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.godina"><g:message code="podaciPodnosenjeIzvjestaja.godina.title"/></label>
-            <g:datePicker name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" precision="year" relativeYears="[-5..5]" style="width: 5%"/><br/>
+            <g:select name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" from="${ba.giz.Godina.findAll()}" /><br/>
 
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"><g:message code="homepage.list.podaciPodnosenjeIzvjestaja.prezimeImePozicija.label"/></label>
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"/><br/>

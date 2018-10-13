@@ -1,4 +1,3 @@
-<%@ page import="ba.giz.IzvjestajStatus" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,7 +120,7 @@
             <legend style="width: 40%"><g:message code="podaciPodnosenjeIzvjestaja.fieldset.title"/></legend>
 
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.godina"><g:message code="podaciPodnosenjeIzvjestaja.godina.title"/></label>
-            <g:datePicker name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" value="${izvjestaj.podaciPodnosenjeIzvjestaja?.godina}" precision="year" relativeYears="[-5..5]" style="width: 5%"/><br/>
+            <g:select name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" from="${ba.giz.Godina.findAll()}" value="${izvjestaj.podaciPodnosenjeIzvjestaja?.godina}" style="width: 5%"/><br/>
 
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija"><g:message code="podaciPodnosenjeIzvjestaja.prezimeImePozicija.title"/></label>
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija" value="${izvjestaj.podaciPodnosenjeIzvjestaja?.prezimeImePozicija}"/><br/>
@@ -488,9 +487,13 @@
         })(jQuery);
     </g:javascript>
     <fieldset class="buttons">
+        <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}">
-            <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
             <button id="posaljiButton"><i class="fa fa-edit"></i>  <g:message code="default.button.send.label"/></button>
+        </g:if>
+        <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN)}">
+            <button id="vratiNaDoraduButton"><i class="fa fa-edit"></i>  <g:message code="default.button.dorada.label"/></button>
+            <button id="verifikujButton"><i class="fa fa-edit"></i>  <g:message code="default.button.verifikuj.label"/></button>
         </g:if>
     </fieldset>
 

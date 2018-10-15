@@ -3,7 +3,6 @@ package ba.giz
 import ba.giz.dto.IzvjestajExcelDTO
 import grails.transaction.Transactional
 import grails.util.Holders
-import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties
 import pl.touk.excel.export.WebXlsxExporter
 
 import static org.springframework.http.HttpStatus.*
@@ -132,10 +131,6 @@ class IzvjestajController {
       }
       "*" { render status: NOT_FOUND }
     }
-  }
-
-  def generatePdf(Izvjestaj izvjestaj) {
-    // TODO: add code for generation of pdf
   }
 
   @Transactional

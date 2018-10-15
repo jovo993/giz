@@ -38,6 +38,3 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**/favicon.ico', filters: 'none'],
 	[pattern: '/**',             filters: 'JOINED_FILTERS']
 ]
-
-//TODO: instalirati wkhtmltopdf binary, i svako sebi lokalno podesiti putanju, posebno podesiti za produkciju
-grails.plugin.wkhtmltopdf.binary = "C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe" // jovopath

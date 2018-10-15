@@ -407,8 +407,6 @@
     </g:javascript>
     <fieldset class="buttons">
         <button id="submitButton"><i class="fa fa-save"></i> <g:message code="default.button.create.label"/></button>
-        %{-- TODO: place this pdf button where it makes sense... put it on this create view only for testing purposes --}%
-        <g:link class="pdf" controller="izvjestaj" action="generatePdf" text-align="right"><g:message code="izvjestaj.pdf.button.generate.label"/></g:link>
     </fieldset>
 </div>
 </body>

@@ -45,6 +45,7 @@ class CreateIzvjestajUtils {
     izvjestaj.podaciPodnosenjeIzvjestaja = podaciPodnosenjeIzvjestaja
 
 
+    izvjestaj.ukupnoIsporucenaEnergija = convertStringToDouble(params.izvjestaj.ukupnoIsporucenaEnergija.toString())
     izvjestaj.podaciPonudeEnergetskihUsluga = params.izvjestaj.podaciPonudeEnergetskihUsluga
     izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja = params.izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja
     izvjestaj.podaciOstaloEnergetskaEfikasnost = params.izvjestaj.podaciOstaloEnergetskaEfikasnost
@@ -136,6 +137,10 @@ class CreateIzvjestajUtils {
 
   private static convertStringToLong(String value) {
     return value == "" ? 0 : Long.valueOf(value)
+  }
+
+  private static convertStringToDouble(String value) {
+    return value == "" ? 0 : Double.valueOf(value)
   }
 
 }

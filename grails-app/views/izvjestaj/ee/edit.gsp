@@ -78,7 +78,7 @@
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaRegistarskiBroj}" /><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaRegistarskiBroj}"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija.title"/>
@@ -88,7 +88,8 @@
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje.title"/>
             </label>
-            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaDatumPocetkaVazenje}" precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
+            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaDatumPocetkaVazenje}"
+                          precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja.title"/>
@@ -108,12 +109,13 @@
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje.title"/>
             </label>
-            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjeDatumPocetkaVazenje}" precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
+            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjeDatumPocetkaVazenje}"
+                          precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjePeriodVazenja}" /><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjePeriodVazenja}"/><br/>
         </fieldset>
 
         <fieldset class="fieldset">
@@ -151,7 +153,7 @@
                     $('table-up').click(function() {
                         var $row = $(this).parents('tr');
                         if ($row.index() === 1)
-                          return;
+                            return;
                         $row.prev().before($row.get(0));
                     });
 
@@ -161,7 +163,7 @@
                     });
 
                     // sumiranje
-                    for (var i=1; i<$('#table1').find('tr:eq(1) td').length; i++) {
+                    for (var i = 1; i < $('#table1').find('tr:eq(1) td').length; i++) {
                         var total = 0;
                         $('td.rowDataSd:eq(' + i + ')', 'tr').each(function() {
                             total += $(this).text() * 1;
@@ -250,7 +252,8 @@
                     </tfoot>
                 </table>
 
-                <div class="prety-th" style=" text-align: right">Ukupno isporučena energija krajnjim kupcima u TJ:  <input type="text"></div>
+                <div class="prety-th" style=" text-align: right">Ukupno isporučena energija krajnjim kupcima u TJ:  <input type="text" name="izvjestaj.ukupnoIsporucenaEnergija"
+                                                                                                                           value="${izvjestaj?.ukupnoIsporucenaEnergija}"></div>
             </div>
         </fieldset>
 
@@ -296,7 +299,7 @@
                         <th></th>
                         <th></th>
                     </tr>
-                    <tr>
+                <tr>
                     <g:each in="${izvjestaj.procjenaStanjaEnergetskeEfikasnostiList}" var="bean" status="i">
                         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                             <td class="editable-td" contenteditable="true">${bean.primjenjenaMjera}</td>
@@ -337,12 +340,20 @@
             (function($) {
                 $(document).ready(function() {
                     // sumiranje
-                    for (var i=1; i<3; i++) {
-                        var total = 0;
+                    for (var i = 1; i < 4; i++) {
                         $('.rowDataSdSmt' + i).each(function() {
+                            $(this).on('change', function() {
+                                calculateSumStepenMjerenja($(this).context.className);
+                            });
+                        });
+                    }
+
+                    function calculateSumStepenMjerenja(className) {
+                        var total = 0;
+                        $('.' + className).each(function() {
                             total += $(this).val() * 1;
                         });
-                        $('colSumSmt1' + i).text(total.toFixed(1));
+                        $('.colSumSmt' + className.substr(className.length - 1)).get(0).value = total;
                     }
                 });
             })(jQuery);
@@ -363,26 +374,38 @@
                     <tbody>
                     <tr>
                         <td class="prety-th">Sektor domaćinstva</td>
-                        <td><input class="rowDataSdSmt1" style="width: 100%"  name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoBrojMjerenjePotrosnje}"></td>
-                        <td><input class="rowDataSdSmt2" style="width: 100%"  name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoUkupanBroj}"></td>
-                        <td><input class="rowDataSdSmt3" style="width: 100%"  name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojDaljinskoOcitavanje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoBrojDaljinskoOcitavanje}"></td>
+                        <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoBrojMjerenjePotrosnje}"></td>
+                        <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoUkupanBroj}"></td>
+                        <td><input class="rowDataSdSmt3" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojDaljinskoOcitavanje"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoBrojDaljinskoOcitavanje}"></td>
                     </tr>
                     <tr>
                         <td class="prety-th">Sektor industrije</td>
-                        <td><input class="rowDataSdSmt1" style="width: 100%"  name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.industrijaBrojMjerenjePotrosnje}"></td>
-                        <td><input class="rowDataSdSmt2" style="width: 100%"  name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.industrijaUkupanBroj}"></td>
-                        <td><input class="rowDataSdSmt3" style="width: 100%"  name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojDaljinskoOcitavanje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojDaljinskoOcitavanje}"></td>
+                        <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.industrijaBrojMjerenjePotrosnje}"></td>
+                        <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.industrijaUkupanBroj}"></td>
+                        <td><input class="rowDataSdSmt3" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojDaljinskoOcitavanje"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojDaljinskoOcitavanje}"></td>
                     </tr>
                     <tr>
                         <td class="prety-th">Ostali sektori</td>
-                        <td><input class="rowDataSdSmt1" style="width: 100%"  name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ostaloBrojMjerenjePotrosnje}"></td>
-                        <td><input class="rowDataSdSmt2" style="width: 100%"  name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ostaloUkupanBroj}"></td>
-                        <td><input class="rowDataSdSmt3" style="width: 100%"  name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje}"></td>
+                        <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ostaloBrojMjerenjePotrosnje}"></td>
+                        <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ostaloUkupanBroj}"></td>
+                        <td><input class="rowDataSdSmt3" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje}"></td>
                     <tr>
                         <td class="prety-th">Ukupno</td>
-                        <td><input class="colSumSmt1" style="width: 100%"  name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojMjerenjePotrosnje}"></td>
-                        <td><input class="colSumSmt2" style="width: 100%"  name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojKrajnjihKupaca}"></td>
-                        <td><input class="colSumSmt3" style="width: 100%"  name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojDaljinskoOcitavanje" value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojDaljinskoOcitavanje}"></td>
+                        <td><input class="colSumSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojMjerenjePotrosnje}"></td>
+                        <td><input class="colSumSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojKrajnjihKupaca}"></td>
+                        <td><input class="colSumSmt3" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojDaljinskoOcitavanje"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojDaljinskoOcitavanje}"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -489,11 +512,11 @@
     <fieldset class="buttons">
         <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}">
-            <button id="posaljiButton"><i class="fa fa-edit"></i>  <g:message code="default.button.send.label"/></button>
+            <button id="posaljiButton"><i class="fa fa-share-square"></i>   <g:message code="default.button.send.label"/></button>
         </g:if>
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN)}">
-            <button id="vratiNaDoraduButton"><i class="fa fa-edit"></i>  <g:message code="default.button.dorada.label"/></button>
-            <button id="verifikujButton"><i class="fa fa-edit"></i>  <g:message code="default.button.verifikuj.label"/></button>
+            <button id="vratiNaDoraduButton"><i class="fa fa-arrow-alt-circle-left"></i>   <g:message code="default.button.dorada.label"/></button>
+            <button id="verifikujButton"><i class="fa fa-check-circle"></i>   <g:message code="default.button.verifikuj.label"/></button>
         </g:if>
     </fieldset>
 

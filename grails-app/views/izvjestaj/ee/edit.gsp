@@ -141,6 +141,8 @@
                     var preuzetaIsporucena = "preuzetaIsporucena";
                     var $TABLE = $('#' + preuzetaIsporucena + 'Table');
 
+                    calculateSumPreuzetaIsporucena();
+
                     $('#' + preuzetaIsporucena).click(function() {
                         var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
                         $TABLE.find('table').append($clone);
@@ -148,6 +150,7 @@
 
                     $('.table-remove').click(function() {
                         $(this).parents('tr').detach();
+                        calculateSumPreuzetaIsporucena();
                     });
 
                     $('table-up').click(function() {
@@ -164,11 +167,31 @@
 
                     // sumiranje
                     for (var i = 1; i < $('#table1').find('tr:eq(1) td').length; i++) {
-                        var total = 0;
                         $('td.rowDataSd:eq(' + i + ')', 'tr').each(function() {
-                            total += $(this).text() * 1;
+                            $(this).on('input', function() {
+                                calculateSumPreuzetaIsporucena($(this).context.cellIndex);
+                            });
                         });
-                        $('#table1').find('tr:last td').eq(i).text(total.toFixed(1));
+                    }
+
+                    function calculateSumPreuzetaIsporucena(index) {
+                        if (index) {
+                            var total = 0;
+                            $('td.rowDataSd:eq(' + index + ')', 'tr').each(function() {
+                                total += $(this).text() * 1;
+                            });
+                            $('#table1').find('tr:last td').eq(index).text(total.toFixed(3));
+                        }
+                        else {
+                            // sumiranje
+                            for (var i = 1; i < $('#table1').find('tr:eq(1) td').length; i++) {
+                                var total = 0;
+                                $('td.rowDataSd:eq(' + i + ')', 'tr').each(function() {
+                                    total += $(this).text() * 1;
+                                });
+                                $('#table1').find('tr:last td').eq(i).text(total.toFixed(3));
+                            }
+                        }
                     }
                 });
             })(jQuery);
@@ -400,11 +423,11 @@
                                    value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje}"></td>
                     <tr>
                         <td class="prety-th">Ukupno</td>
-                        <td><input class="colSumSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"
+                        <td><input class="colSumSmt1" disabled="" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"
                                    value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojMjerenjePotrosnje}"></td>
-                        <td><input class="colSumSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"
+                        <td><input class="colSumSmt2" disabled="" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"
                                    value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojKrajnjihKupaca}"></td>
-                        <td><input class="colSumSmt3" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojDaljinskoOcitavanje"
+                        <td><input class="colSumSmt3" disabled="" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojDaljinskoOcitavanje"
                                    value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojDaljinskoOcitavanje}"></td>
                     </tr>
                     </tbody>

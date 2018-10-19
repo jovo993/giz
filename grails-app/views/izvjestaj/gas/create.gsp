@@ -86,11 +86,10 @@
             </label>
             <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija"/><br/>
 
-            <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje">
+            <label>
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje.title"/>
             </label>
-            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" precision="day"
-                          relativeYears="[-10..10]" style="width: 5%"/><br/>
+            <input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" type="date" min="2010-01-01" max="2030-12-31"/></br>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja.title"/>
@@ -107,10 +106,10 @@
             </label>
             <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija"/><br/>
 
-            <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje">
+            <label>
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje.title"/>
             </label>
-            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
+            <input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" type="date" min="2010-01-01" max="2030-12-31"/></br>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja.title"/>
@@ -147,6 +146,7 @@
 
                     $('#' + preuzetaIsporucena + 'Remove').click(function() {
                         $(this).parents('tr').detach();
+                        calculateSumPreuzetaIsporucena();
                     });
 
                     $('#' + preuzetaIsporucena + 'Up').click(function() {
@@ -159,6 +159,35 @@
                         var $row = $(this).parents('tr');
                         $row.next().after($row.get(0));
                     });
+
+                    // sumiranje
+                    for (var i = 1; i < $('#table1').find('tr:eq(1) td').length; i++) {
+                        $('td.rowDataSd:eq(' + i + ')', 'tr').each(function() {
+                            $(this).on('input', function() {
+                                calculateSumPreuzetaIsporucena($(this).context.cellIndex);
+                            });
+                        });
+                    }
+
+                    function calculateSumPreuzetaIsporucena(index) {
+                        if (index) {
+                            var total = 0;
+                            $('td.rowDataSd:eq(' + index + ')', 'tr').each(function() {
+                                total += $(this).text() * 1;
+                            });
+                            $('#table1').find('tr:last td').eq(index).text(total.toFixed(3));
+                        }
+                        else {
+                            // sumiranje
+                            for (var i = 1; i < $('#table1').find('tr:eq(1) td').length; i++) {
+                                var total = 0;
+                                $('td.rowDataSd:eq(' + i + ')', 'tr').each(function() {
+                                    total += $(this).text() * 1;
+                                });
+                                $('#table1').find('tr:last td').eq(i).text(total.toFixed(3));
+                            }
+                        }
+                    }
 
                 });
             })(jQuery);
@@ -184,13 +213,13 @@
                     </tr>
                     <tr class="hide">
                         <td></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
+                        <td class="editable-td rowDataSd" contenteditable="true"></td>
+                        <td class="editable-td rowDataSd" contenteditable="true"></td>
+                        <td class="editable-td rowDataSd" contenteditable="true"></td>
+                        <td class="editable-td rowDataSd" contenteditable="true"></td>
+                        <td class="editable-td rowDataSd" contenteditable="true"></td>
+                        <td class="editable-td rowDataSd" contenteditable="true"></td>
+                        <td class="editable-td rowDataSd" contenteditable="true"></td>
                         <td style="text-align:center">
                             <span id="preuzetaIsporucenaRemove" class="table-remove fa fa-trash fa-2x"></span>
                         </td>
@@ -204,13 +233,13 @@
                     <tfoot>
                     <tr>
                         <td style="vertical-align: middle; text-align: right;">UKUPNO:</td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
+                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
+                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
+                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
+                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
+                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
+                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
+                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
                     </tr>
                     </tfoot>
                 </table>
@@ -244,10 +273,6 @@
                         var $row = $(this).parents('tr');
                         $row.next().after($row.get(0));
                     });
-
-                    jQuery.fn.pop = [].pop;
-                    jQuery.fn.shift = [].shift;
-
                 });
             })(jQuery);
         </g:javascript>
@@ -283,6 +308,28 @@
             </div>
         </fieldset>
 
+        <g:javascript library='jquery'>
+            (function($) {
+                $(document).ready(function() {
+                    // sumiranje
+                    for (var i = 1; i < 4; i++) {
+                        $('.rowDataSdSmt' + i).each(function() {
+                            $(this).on('change', function() {
+                                calculateSumStepenMjerenja($(this).context.className);
+                            });
+                        });
+                    }
+
+                    function calculateSumStepenMjerenja(className) {
+                        var total = 0;
+                        $('.' + className).each(function() {
+                            total += $(this).val() * 1;
+                        });
+                        $('.colSumSmt' + className.substr(className.length - 1)).get(0).value = total;
+                    }
+                });
+            })(jQuery);
+        </g:javascript>
         <fieldset class="fieldset">
             <legend style="width: 80%"><g:message code="izvjestaj.podaciStepenMjerenja.G.fieldset.title"/></legend>
 
@@ -298,22 +345,22 @@
                     <tbody>
                     <tr>
                         <td class="prety-th">Sektor domaćinstva</td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj"></td>
+                        <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje"></td>
+                        <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj"></td>
                     </tr>
                     <tr>
                         <td class="prety-th">Sektor industrije</td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj"></td>
+                        <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje"></td>
+                        <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj"></td>
                     </tr>
                     <tr>
                         <td class="prety-th">Ostali sektori</td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj"></td>
+                        <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje"></td>
+                        <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj"></td>
                     <tr>
                         <td class="prety-th">Ukupno</td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"></td>
+                        <td><input class="colSumSmt1" disabled="" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"></td>
+                        <td><input class="colSumSmt2" disabled="" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"></td>
                     </tr>
                     </tbody>
                 </table>

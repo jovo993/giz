@@ -85,10 +85,10 @@
             </label>
             <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija"/><br/>
 
-            <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje">
+            <label>
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje.title"/>
             </label>
-            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
+            <input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" type="date" min="2010-01-01" max="2030-12-31"/></br>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja.title"/>
@@ -96,7 +96,7 @@
             <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj">
-                <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.TE.title"/>
+                <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.G.title"/>
             </label>
             <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj"/><br/>
 
@@ -105,10 +105,10 @@
             </label>
             <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija"/><br/>
 
-            <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje">
+            <label>
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje.title"/>
             </label>
-            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
+            <input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" type="date" min="2010-01-01" max="2030-12-31"/></br>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja.title"/>
@@ -132,42 +132,10 @@
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.email"/><br/>
         </fieldset>
 
-        %{-- funkcije koje rade dodavanje novog, brisanje i pomjeranje postojeceg reda za tabelu Preuzet i isporucen gas --}%
-        <g:javascript library='jquery'>
-            (function($) {
-                $(document).ready(function() {
-                    var preuzetaIsporucena = "preuzetaIsporucena";
-                    var $TABLE = $('#' + preuzetaIsporucena + 'Table');
-
-                    $('#' + preuzetaIsporucena).click(function() {
-                        var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
-                        $TABLE.find('table').append($clone);
-                    });
-
-                    $('#' + preuzetaIsporucena + 'Remove').click(function() {
-                        $(this).parents('tr').detach();
-                    });
-
-                    $('#' + preuzetaIsporucena + 'Up').click(function() {
-                        var $row = $(this).parents('tr');
-                        if ($row.index() === 1) return; // Don't go above the header
-                        $row.prev().before($row.get(0));
-                    });
-
-                    $('#' + preuzetaIsporucena + 'Down').click(function() {
-                        var $row = $(this).parents('tr');
-                        $row.next().after($row.get(0));
-                    });
-
-                });
-            })(jQuery);
-        </g:javascript>
-
         <fieldset class="fieldset">
             <legend style="width: 60%">${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.TE.title')}</legend>
 
             <div id="preuzetaIsporucenaTable" class="table-editable">
-                <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
                 <table id="table1" class="table">
                     <tr>
                         <th id="poslovniPotrosaciToplotnaEnergija" class="prety-th">Poslovni potrošači</th>
@@ -175,25 +143,13 @@
                         <th id="stambeniPotrosaciM2ToplotnaEnergija" class="prety-th">Stambeni potrošači po m2</th>
                         <th id="ukupnoIsporucenoToplotnaEnergija" class="prety-th">UKUPNO ISPORUČENO</th>
                         <th id="gubiciToplotnaEnergija" class="prety-th">GUBICI (%)</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
                     </tr>
-                    <tr class="hide">
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td class="editable-td" contenteditable="true"></td>
-                        <td style="text-align:center">
-                            <span id="preuzetaIsporucenaRemove" class="table-remove fa fa-trash fa-2x"></span>
-                        </td>
-                        <td style="text-align:center">
-                            <span id="preuzetaIsporucenaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
-                        </td>
-                        <td style="text-align:center">
-                            <span id="preuzetaIsporucenaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
-                        </td>
+                    <tr>
+                        <td class="editable-td rowDataSd" contenteditable="true"></td>
+                        <td class="editable-td rowDataSd" contenteditable="true"></td>
+                        <td class="editable-td rowDataSd" contenteditable="true"></td>
+                        <td class="editable-td rowDataSd" contenteditable="true"></td>
+                        <td class="editable-td rowDataSd" contenteditable="true"></td>
                     </tr>
                 </table>
 
@@ -226,10 +182,6 @@
                         var $row = $(this).parents('tr');
                         $row.next().after($row.get(0));
                     });
-
-                    jQuery.fn.pop = [].pop;
-                    jQuery.fn.shift = [].shift;
-
                 });
             })(jQuery);
         </g:javascript>
@@ -240,9 +192,9 @@
                 <span id="energenti" class="table-add fa fa-plus fa-2x"></span>
                 <table id="table2" class="table">
                     <tr>
-                        <th class="prety-th">Energent</th>
-                        <th class="prety-th">Godišnja upotrijebljena količina</th>
-                        <th class="prety-th">Jedinica mjere</th>
+                        <th id="energent" class="prety-th">Energent</th>
+                        <th id="godisnjaUpotrebljenaKolicina" class="prety-th">Godišnja upotrijebljena količina</th>
+                        <th id="jednicaMjere" class="prety-th">Jedinica mjere</th>
                     </tr>
                     <tr>
                         <td>prirodni gas (uključujući i tečni prirodni gas)</td>
@@ -331,10 +283,6 @@
                         var $row = $(this).parents('tr');
                         $row.next().after($row.get(0));
                     });
-
-                    jQuery.fn.pop = [].pop;
-                    jQuery.fn.shift = [].shift;
-
                 });
             })(jQuery);
         </g:javascript>
@@ -370,37 +318,59 @@
             </div>
         </fieldset>
 
+        <g:javascript library='jquery'>
+            (function($) {
+                $(document).ready(function() {
+                    // sumiranje
+                    for (var i = 1; i < 4; i++) {
+                        $('.rowDataSdSmt' + i).each(function() {
+                            $(this).on('change', function() {
+                                calculateSumStepenMjerenja($(this).context.className);
+                            });
+                        });
+                    }
+
+                    function calculateSumStepenMjerenja(className) {
+                        var total = 0;
+                        $('.' + className).each(function() {
+                            total += $(this).val() * 1;
+                        });
+                        $('.colSumSmt' + className.substr(className.length - 1)).get(0).value = total;
+                    }
+                });
+            })(jQuery);
+        </g:javascript>
         <fieldset class="fieldset">
-            <legend style="width: 80%"><g:message code="izvjestaj.podaciStepenMjerenja.TE.fieldset.title"/></legend>
+            <legend style="width: 80%"><g:message code="izvjestaj.podaciStepenMjerenja.G.fieldset.title"/></legend>
 
             <div id="stepenMjerenjaTable" class="table-editable">
                 <table class="table table-bordered table-secondary">
                     <thead>
                     <tr>
                         <th scope="col" style="width: 25%; vertical-align: middle;">&nbsp;</th>
-                        <th scope="col" class="prety-th"><g:message code="tabela.stepenMjerenja.TE.th1"/></th>
+                        <th scope="col" class="prety-th"><g:message code="tabela.stepenMjerenja.G.th1"/></th>
                         <th scope="col" class="prety-th"><g:message code="tabela.stepenMjerenja.EE.th2"/></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td class="prety-th">Sektor domaćinstva</td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj"></td>
+                        <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje"></td>
+                        <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj"></td>
                     </tr>
                     <tr>
                         <td class="prety-th">Sektor industrije</td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj"></td>
+                        <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje"></td>
+                        <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj"></td>
                     </tr>
                     <tr>
                         <td class="prety-th">Ostali sektori</td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj"></td>
+                        <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje"></td>
+                        <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj"></td>
                     <tr>
                         <td class="prety-th">Ukupno</td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"></td>
-                        <td><input style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"></td>
+                        <td><input class="colSumSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"></td>
+                        <td><input class="colSumSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -432,9 +402,12 @@
                     var dataJSON = $("#formIzvjestaj").serialize();
                     var $TABLE1 = $('#preuzetaIsporucenaTable');
                     var $TABLE2 = $('#procjenaStanjaTable');
+                    var $TABLE3 = $('#energentiTable');
 
-                    dataJSON += createJSONData("izvjestaj.preuzetaIsporucenaEEList", $TABLE1);
+                    dataJSON += createJSONData("izvjestaj.isporucenaToplotnaEnergijaList", $TABLE1);
                     dataJSON += createJSONData("izvjestaj.procjenaStanjaEnergetskeEfikasnostiList", $TABLE2);
+                    dataJSON += createJSONData("izvjestaj.podaciEnergenti", $TABLE3);
+
 
                     $.ajax({
                         url: 'save',
@@ -446,13 +419,16 @@
                 });
 
                 function success() {
-                   window.location='<g:createLink controller="homepage" action="homepage"/>';
+                   window.location="<g:createLink controller="homepage" action="homepage"/>";
                 }
 
                 function createJSONData(argument, table) {
+                    debugger;
                     var headers = [], returnValue = '';
-                    var $rows = table.find('tr:not(:hidden)');
-                    $([$rows].shift()).find('th:not(:empty)').each(function() {
+                    var $header = table.find('tr:first');
+                    var $rows = table.find('tr:not(:hidden):not(:last)');
+
+                    $header.find('th:not(:empty)').each(function() {
                         if (this.id.length > 0) {
                             headers.push(this.id);
                         }

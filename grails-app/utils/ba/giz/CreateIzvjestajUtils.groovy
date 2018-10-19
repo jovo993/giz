@@ -20,14 +20,12 @@ class CreateIzvjestajUtils {
     def pdod = params.izvjestaj.podaciDozvolaObavljanjeDjelatnosti
     podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj = pdod.distribucijaRegistarskiBroj
     podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija = pdod.distribucijaKomisija
-    String datumDistribucija = pdod.distribucijaDatumPocetkaVazenje_day + "." + pdod.distribucijaDatumPocetkaVazenje_month + "." + pdod.distribucijaDatumPocetkaVazenje_year
-    podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje = new Date().parse("dd.mm.yyyy", datumDistribucija)
+    podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje = parseDate(pdod.distribucijaDatumPocetkaVazenje.toString())
     podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja = pdod.distribucijaPeriodVazenja.isInteger() ? pdod.distribucijaPeriodVazenja.toInteger() : null
 
     podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj = pdod.snabdijevanjeRegistarskiBroj
     podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija = pdod.snabdijevanjeKomisija
-    String datumSnabdijevanje = pdod.snabdijevanjeDatumPocetkaVazenje_day + "." + pdod.snabdijevanjeDatumPocetkaVazenje_month + "." + pdod.snabdijevanjeDatumPocetkaVazenje_year
-    podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje = new Date().parse("dd.mm.yyyy", datumSnabdijevanje)
+    podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje = parseDate(pdod.snabdijevanjeDatumPocetkaVazenje.toString())
     podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja = pdod.snabdijevanjePeriodVazenja.isInteger() ? pdod.snabdijevanjePeriodVazenja.toInteger() : null
 
     podaciDozvolaObavljanjeDjelatnosti.save()
@@ -79,6 +77,7 @@ class CreateIzvjestajUtils {
       case Sektor.TOPLOTNA_ENERGIJA:
         izvjestaj.tip = IzvjestajTip.T_DS
         izvjestaj.isporucenaToplotnaEnergijaList = parseJsonArrayToListIsporucenaToplotnaEnergija(data.isporucenaToplotnaEnergijaList)
+        izvjestaj.podaciEnergenti = parseJsonArrayToListPodaciEnergenti(data.podaciEnergenti)
 
         izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca = generateStepenMjerenjaEnergije(data.stepenMjerenjeEnergijeStrukturaKupaca, false)
 
@@ -135,12 +134,22 @@ class CreateIzvjestajUtils {
     return gson.fromJson(text.toString(), listType)
   }
 
+  private static List<PodaciEnergenti> parseJsonArrayToListPodaciEnergenti(text) {
+    Type listType = new TypeToken<List<PodaciEnergenti>>() {}.getType()
+    Gson gson = new GsonBuilder().registerTypeAdapter(Double.class, new DoubleTypeAdapter()).create()
+    return gson.fromJson(text.toString(), listType)
+  }
+
   private static convertStringToLong(String value) {
-    return value == "" ? 0 : Long.valueOf(value)
+    return value == "" ? 0 : value == null ? 0 : Long.valueOf(value)
   }
 
   private static convertStringToDouble(String value) {
-    return value == "" ? 0 : Double.valueOf(value)
+    return value == ""  ? 0 : value == "null" ? 0 : Double.valueOf(value)
+  }
+
+  private static parseDate(String date) {
+      return date == "" ? null : new Date().parse("yyyy-mm-dd", date)
   }
 
 }

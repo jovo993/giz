@@ -85,32 +85,30 @@
             </label>
             <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaKomisija}"/><br/>
 
-            <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje">
+            <label>
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje.title"/>
             </label>
-            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaDatumPocetkaVazenje}"
-                          precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
+            <input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" type="date" min="2010-01-01" max="2030-12-31"/></br>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaPeriodVazenja}"/><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.EE.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjeRegistarskiBroj}"/><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjeKomisija}"/><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija"/><br/>
 
-            <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje">
+            <label>
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje.title"/>
             </label>
-            <g:datePicker name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjeDatumPocetkaVazenje}"
-                          precision="day" relativeYears="[-10..10]" style="width: 5%"/><br/>
+            <input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" type="date" min="2010-01-01" max="2030-12-31"/></br>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja.title"/>
@@ -322,7 +320,6 @@
                         <th></th>
                         <th></th>
                     </tr>
-                <tr>
                     <g:each in="${izvjestaj.procjenaStanjaEnergetskeEfikasnostiList}" var="bean" status="i">
                         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                             <td class="editable-td" contenteditable="true">${bean.primjenjenaMjera}</td>

@@ -1,4 +1,3 @@
-<%@ page import="ba.giz.Sektor" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,7 +95,7 @@
             <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj">
-                <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.G.title"/>
+                <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.TE.title"/>
             </label>
             <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj"/><br/>
 
@@ -134,27 +133,25 @@
 
         <fieldset class="fieldset">
             <legend style="width: 60%">${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.TE.title')}</legend>
-
             <div id="preuzetaIsporucenaTable" class="table-editable">
                 <table id="table1" class="table">
                     <tr>
-                        <th id="poslovniPotrosaciToplotnaEnergija" class="prety-th">Poslovni potrošači</th>
-                        <th id="stambeniPotrosaciMwhToplotnaEnergija" class="prety-th">Stambeni potrošači po MWh</th>
-                        <th id="stambeniPotrosaciM2ToplotnaEnergija" class="prety-th">Stambeni potrošači po m2</th>
-                        <th id="ukupnoIsporucenoToplotnaEnergija" class="prety-th">UKUPNO ISPORUČENO</th>
-                        <th id="gubiciToplotnaEnergija" class="prety-th">GUBICI (%)</th>
+                        <th id="poslovniPotrosaciMwh" class="prety-th">Poslovni potrošači po MWh</th>
+                        <th id="stambeniPotrosaciMwh" class="prety-th">Stambeni potrošači po MWh</th>
+                        <th id="stambeniPotrosaciM2" class="prety-th">Stambeni potrošači po m3</th>
+                        <th id="ukupnoIsporuceno" class="prety-th">UKUPNO ISPORUČENO</th>
+                        <th id="gubici" scope="col" class="prety-th">GUBICI (%)</th>
                     </tr>
                     <tr>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
                     </tr>
+                    <tfoot><tr></tr></tfoot> %{--needed becuase of script--}%
                 </table>
-
-                <div class="prety-th" style=" text-align: right; margin: 1px">Ukupno isporučena energija krajnjim kupcima u TJ:  <input type="number" min="0" name="izvjestaj.ukupnoIsporucenaEnergija">
-                </div>
+                <div class="prety-th" style=" text-align: right; margin: 1px">Ukupno isporučena energija krajnjim kupcima u TJ:  <input name="izvjestaj.ukupnoIsporucenaEnergija"></div>
             </div>
         </fieldset>
 
@@ -197,52 +194,47 @@
                         <th id="jednicaMjere" class="prety-th">Jedinica mjere</th>
                     </tr>
                     <tr>
-                        <td>prirodni gas (uključujući i tečni prirodni gas)</td>
+                        <td class="prety-th">Pprirodni gas (uključujući i tečni prirodni gas)</td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
                     </tr>
                     <tr>
-                        <td>tečni naftni gas</td>
+                        <td class="prety-th">Tečni naftni gas</td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
                     </tr>
                     <tr>
-                        <td>goriva za grijanje i hlađenje</td>
+                        <td class="prety-th">Goriva za grijanje i hlađenje</td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
                     </tr>
                     <tr>
-                        <td>ugalj i lignit</td>
+                        <td class="prety-th">Ugalj i lignit</td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
                     </tr>
                     <tr>
-                        <td>treset</td>
+                        <td class="prety-th">Treset</td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
                     </tr>
                     <tr>
-                        <td>gorivo za pogon motornih vozila</td>
+                        <td class="prety-th">Gorivo za pogon motornih vozila</td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
                     </tr>
                     <tr>
-                        <td>prirodni gas (uključujući i tečni prirodni gas)</td>
+                        <td class="prety-th">Bio-masa</td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
                     </tr>
                     <tr>
-                        <td>prirodni gas (uključujući i tečni prirodni gas)</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                    </tr>
-                    <tr>
-                        <td>prirodni gas (uključujući i tečni prirodni gas)</td>
+                        <td class="prety-th">Obnovljivi izvor energije</td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
                     </tr>
                     <tr class="hide">
-                        <td contenteditable="true" class="editable-td">ostalo</td>
+                        <td contenteditable="true" class="editable-td">Ostalo</td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td style="text-align:center">
@@ -255,6 +247,7 @@
                             <span id="energentiIsporucenaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
                         </td>
                     </tr>
+                    <tfoot><tr></tr></tfoot> %{--needed becuase of script--}%
                 </table>
             </div>
         </fieldset>
@@ -314,6 +307,7 @@
                             <span id="procjenaStanjaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
                         </td>
                     </tr>
+                    <tfoot><tr></tr></tfoot> %{--needed because of script--}%
                 </table>
             </div>
         </fieldset>
@@ -341,14 +335,14 @@
             })(jQuery);
         </g:javascript>
         <fieldset class="fieldset">
-            <legend style="width: 80%"><g:message code="izvjestaj.podaciStepenMjerenja.G.fieldset.title"/></legend>
+            <legend style="width: 80%"><g:message code="izvjestaj.podaciStepenMjerenja.TE.fieldset.title"/></legend>
 
             <div id="stepenMjerenjaTable" class="table-editable">
                 <table class="table table-bordered table-secondary">
                     <thead>
                     <tr>
                         <th scope="col" style="width: 25%; vertical-align: middle;">&nbsp;</th>
-                        <th scope="col" class="prety-th"><g:message code="tabela.stepenMjerenja.G.th1"/></th>
+                        <th scope="col" class="prety-th"><g:message code="tabela.stepenMjerenja.TE.th1"/></th>
                         <th scope="col" class="prety-th"><g:message code="tabela.stepenMjerenja.EE.th2"/></th>
                     </tr>
                     </thead>
@@ -381,7 +375,7 @@
             <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciPonudeEnergetskihUsluga.title"/></h5>
             <g:textArea name="izvjestaj.podaciPonudeEnergetskihUsluga" rows="5" cols="100"/><br/>
 
-            <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.G.title"/></h5>
+            <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.TE.title"/></h5>
             <g:textArea name="izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja" rows="5" cols="100"/><br/>
 
             <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciOstaloEnergetskaEfikasnost.title"/></h5>
@@ -404,10 +398,9 @@
                     var $TABLE2 = $('#procjenaStanjaTable');
                     var $TABLE3 = $('#energentiTable');
 
-                    dataJSON += createJSONData("izvjestaj.isporucenaToplotnaEnergijaList", $TABLE1);
+                    dataJSON += createJSONData("izvjestaj.isporucenaToplotnaEnergija", $TABLE1);
                     dataJSON += createJSONData("izvjestaj.procjenaStanjaEnergetskeEfikasnostiList", $TABLE2);
                     dataJSON += createJSONData("izvjestaj.podaciEnergenti", $TABLE3);
-
 
                     $.ajax({
                         url: 'save',
@@ -423,7 +416,6 @@
                 }
 
                 function createJSONData(argument, table) {
-                    debugger;
                     var headers = [], returnValue = '';
                     var $header = table.find('tr:first');
                     var $rows = table.find('tr:not(:hidden):not(:last)');

@@ -96,7 +96,7 @@
             <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj">
-                <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.EE.title"/>
+                <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.G.title"/>
             </label>
             <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj"/><br/>
 
@@ -132,145 +132,34 @@
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.email" value="${izvjestaj.podaciPodnosenjeIzvjestaja?.email}"/><br/>
         </fieldset>
 
-        <g:javascript library='jquery'>
-            (function($) {
-                $(document).ready(function() {
-                    var preuzetaIsporucena = "preuzetaIsporucena";
-                    var $TABLE = $('#' + preuzetaIsporucena + 'Table');
-
-                    $('#' + preuzetaIsporucena).click(function() {
-                        var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
-                        $TABLE.find('table').append($clone);
-                    });
-
-                    $('#' + preuzetaIsporucena + 'Remove').click(function() {
-                        $(this).parents('tr').detach();
-                        calculateSumPreuzetaIsporucena();
-                    });
-
-                    $('#' + preuzetaIsporucena + 'Up').click(function() {
-                        var $row = $(this).parents('tr');
-                        if ($row.index() === 1) return; // Don't go above the header
-                        $row.prev().before($row.get(0));
-                    });
-
-                    $('#' + preuzetaIsporucena + 'Down').click(function() {
-                        var $row = $(this).parents('tr');
-                        $row.next().after($row.get(0));
-                    });
-
-                    // sumiranje
-                    for (var i = 1; i < $('#table1').find('tr:eq(1) td').length; i++) {
-                        $('td.rowDataSd:eq(' + i + ')', 'tr').each(function() {
-                            $(this).on('input', function() {
-                                calculateSumPreuzetaIsporucena($(this).context.cellIndex);
-                            });
-                        });
-                    }
-
-                    function calculateSumPreuzetaIsporucena(index) {
-                        if (index) {
-                            var total = 0;
-                            $('td.rowDataSd:eq(' + index + ')', 'tr').each(function() {
-                                total += $(this).text() * 1;
-                            });
-                            $('#table1').find('tr:last td').eq(index).text(total.toFixed(3));
-                        }
-                        else {
-                            // sumiranje
-                            for (var i = 1; i < $('#table1').find('tr:eq(1) td').length; i++) {
-                                var total = 0;
-                                $('td.rowDataSd:eq(' + i + ')', 'tr').each(function() {
-                                    total += $(this).text() * 1;
-                                });
-                                $('#table1').find('tr:last td').eq(i).text(total.toFixed(3));
-                            }
-                        }
-                    }
-
-                });
-            })(jQuery);
-        </g:javascript>
-
         <fieldset class="fieldset">
             <legend style="width: 60%">${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.G.title')}</legend>
 
             <div id="preuzetaIsporucenaTable" class="table-editable">
-                <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
                 <table id="table1" class="table">
                     <tr>
-                        <th></th>
-                        <th id="preuzetaKolicinaGas" class="prety-th">PREUZETE KOLIČINE GASA (Sm3)</th>
-                        <th id="industrijskiPotrosaciGas" class="prety-th">Industrijski potrošači</th>
-                        <th id="sistemiDaljinskoGrijanjaGas" class="prety-th">Sistemi daljinskog grijanja</th>
-                        <th id="komercijalniKrajnjiKupciGas" class="prety-th">Komercijalni krajnji kupci</th>
-                        <th id="domacinstvaGas" class="prety-th">Domaćinstva</th>
-                        <th id="ukupnoIsporucenoGas" class="prety-th">UKUPNO ISPORUČENO</th>
-                        <th id="gubiciGas" scope="col" class="prety-th">GUBICI (%)</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th id="preuzetaKolicina" class="prety-th">PREUZETE KOLIČINE GASA (Sm3)</th>
+                        <th id="industrijskiPotrosaci" class="prety-th">Industrijski potrošači</th>
+                        <th id="sistemiDaljinskoGrijanja" class="prety-th">Sistemi daljinskog grijanja</th>
+                        <th id="komercijalniKrajnjiKupci" class="prety-th">Komercijalni krajnji kupci</th>
+                        <th id="domacinstva" class="prety-th">Domaćinstva</th>
+                        <th id="ukupnoIsporuceno" class="prety-th">UKUPNO ISPORUČENO</th>
+                        <th id="gubici" class="prety-th">GUBICI (%)</th>
                     </tr>
-                    <g:each in="${izvjestaj.preuzetIsporucenGasList}" var="it">
-                        <tr>
-                            <td class="editable-td rowDataSd" contenteditable="true">${it.preuzetaKolicinaGas}</td>
-                            <td class="editable-td rowDataSd" contenteditable="true">${it.industrijskiPotrosaciGas}</td>
-                            <td class="editable-td rowDataSd" contenteditable="true">${it.sistemiDaljinskoGrijanjaGas}</td>
-                            <td class="editable-td rowDataSd" contenteditable="true">${it.komercijalniKrajnjiKupciGas}</td>
-                            <td class="editable-td rowDataSd" contenteditable="true">${it.domacinstvaGas}</td>
-                            <td class="editable-td rowDataSd" contenteditable="true">${it.ukupnoIsporucenoGas}</td>
-                            <td class="editable-td rowDataSd" contenteditable="true">${it.gubiciGas}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td style="text-align:center">
-                                <span class="table-remove fa fa-trash fa-2x"></span>
-                            </td>
-                            <td style="text-align:center">
-                                <span class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
-                            </td>
-                            <td style="text-align:center">
-                                <span class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
-                            </td>
-                        </tr>
-                    </g:each>
-                    <tr class="hide">
-                        <td></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td style="text-align:center">
-                            <span id="preuzetaIsporucenaRemove" class="table-remove fa fa-trash fa-2x"></span>
-                        </td>
-                        <td style="text-align:center">
-                            <span id="preuzetaIsporucenaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
-                        </td>
-                        <td style="text-align:center">
-                            <span id="preuzetaIsporucenaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
-                        </td>
-                    </tr>
-                    <tfoot>
                     <tr>
-                        <td style="vertical-align: middle; text-align: right;">UKUPNO:</td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
+                        <td class="editable-td" contenteditable="true">${izvjestaj.preuzetIsporucenGas?.preuzetaKolicina}</td>
+                        <td class="editable-td" contenteditable="true">${izvjestaj.preuzetIsporucenGas?.industrijskiPotrosaci}</td>
+                        <td class="editable-td" contenteditable="true">${izvjestaj.preuzetIsporucenGas?.sistemiDaljinskoGrijanja}</td>
+                        <td class="editable-td" contenteditable="true">${izvjestaj.preuzetIsporucenGas?.komercijalniKrajnjiKupci}</td>
+                        <td class="editable-td" contenteditable="true">${izvjestaj.preuzetIsporucenGas?.domacinstva}</td>
+                        <td class="editable-td" contenteditable="true">${izvjestaj.preuzetIsporucenGas?.ukupnoIsporuceno}</td>
+                        <td class="editable-td" contenteditable="true">${izvjestaj.preuzetIsporucenGas?.gubici}</td>
                     </tr>
-                    </tfoot>
+                    <tfoot><tr></tr></tfoot>
                 </table>
-
-                <div class="prety-th" style="text-align: right; padding: 5px">Ukupno isporučena energija krajnjim kupcima u TJ:  <input type="text"></div>
+                <div class="prety-th" style="text-align: right; padding: 5px">Ukupno isporučena energija krajnjim kupcima u TJ:  <input name="izvjestaj.ukupnoIsporucenaEnergija" value="${izvjestaj.ukupnoIsporucenaEnergija}"></div>
             </div>
         </fieldset>
-
 
         <g:javascript library='jquery'>
             (function($) {
@@ -282,23 +171,24 @@
                         $TABLE.find('table').append($clone);
                     });
 
-                    $('.pst-remove').click(function() {
+                    $('#procjenaStanjaRemove').click(function() {
                         $(this).parents('tr').detach();
                     });
 
-                    $('.pst-up').click(function() {
+                    $('#procjenaStanjaUp').click(function() {
                         var $row = $(this).parents('tr');
                         if ($row.index() === 1) return; // Don't go above the header
                         $row.prev().before($row.get(0));
                     });
 
-                    $('.pst-down').click(function() {
+                    $('#procjenaStanjaDown').click(function() {
                         var $row = $(this).parents('tr');
                         $row.next().after($row.get(0));
                     });
                 });
             })(jQuery);
         </g:javascript>
+
         <fieldset class="fieldset">
             <legend style="width: 50%"><g:message code="izvjestaj.procjenastanja.fieldset.title"/></legend>
 
@@ -344,16 +234,19 @@
                             <span class="pst-down table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
                         </td>
                     </tr>
+                    <tfoot><tr></tr></tfoot>
                 </table>
             </div>
         </fieldset>
 
-
         <g:javascript library='jquery'>
             (function($) {
                 $(document).ready(function() {
+                    calculateSumStepenMjerenja();
+
+                    calculateSumStepenMjerenja($(this).context.className);
                     // sumiranje
-                    for (var i = 1; i < 4; i++) {
+                    for (var i = 1; i < 3; i++) {
                         $('.rowDataSdSmt' + i).each(function() {
                             $(this).on('change', function() {
                                 calculateSumStepenMjerenja($(this).context.className);
@@ -362,17 +255,28 @@
                     }
 
                     function calculateSumStepenMjerenja(className) {
-                        var total = 0;
-                        $('.' + className).each(function() {
-                            total += $(this).val() * 1;
-                        });
-                        $('.colSumSmt' + className.substr(className.length - 1)).get(0).value = total;
+                        if (className) {
+                            var total = 0;
+                            $('.' + className).each(function() {
+                                total += $(this).val() * 1;
+                            });
+                            $('.colSumSmt' + className.substr(className.length - 1)).get(0).value = total;
+                        }
+                        else {
+                            for (var i = 1; i < 3; i++) {
+                                var total = 0;
+                                $('.rowDataSdSmt' + i).each(function() {
+                                    total += $(this).val() * 1;
+                                });
+                                $('.colSumSmt' + i).get(0).value = total;
+                            }
+                        }
                     }
                 });
             })(jQuery);
         </g:javascript>
         <fieldset class="fieldset">
-            <legend style="width: 80%"><g:message code="izvjestaj.podaciStepenMjerenja.EE.fieldset.title"/></legend>
+            <legend style="width: 80%"><g:message code="izvjestaj.podaciStepenMjerenja.G.fieldset.title"/></legend>
 
             <div id="stepenMjerenjaTable" class="table-editable">
                 <table class="table table-bordered table-secondary">
@@ -386,22 +290,30 @@
                     <tbody>
                     <tr>
                         <td class="prety-th">Sektor domaćinstva</td>
-                        <td><input class="rowDataSdSmt1" style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje"></td>
-                        <td><input class="rowDataSdSmt2" style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj"></td>
+                        <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoBrojMjerenjePotrosnje}"></td>
+                        <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoUkupanBroj}"></td>
                     </tr>
                     <tr>
                         <td class="prety-th">Sektor industrije</td>
-                        <td><input class="rowDataSdSmt1" style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje"></td>
-                        <td><input class="rowDataSdSmt2" style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj"></td>
+                        <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.industrijaBrojMjerenjePotrosnje}"></td>
+                        <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.industrijaUkupanBroj}"></td>
                     </tr>
                     <tr>
                         <td class="prety-th">Ostali sektori</td>
-                        <td><input class="rowDataSdSmt1" style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje"></td>
-                        <td><input class="rowDataSdSmt2" style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj"></td>
+                        <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ostaloBrojMjerenjePotrosnje}"></td>
+                        <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ostaloUkupanBroj}"></td>
                     <tr>
                         <td class="prety-th">Ukupno</td>
-                        <td><input class="colSumSmt1" style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"></td>
-                        <td><input class="colSumSmt2" style="width: 100%" type="number" min="0" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"></td>
+                        <td><input class="colSumSmt1" disabled="" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojMjerenjePotrosnje}"></td>
+                        <td><input class="colSumSmt2" disabled="" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"
+                                   value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojKrajnjihKupaca}"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -412,7 +324,7 @@
             <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciPonudeEnergetskihUsluga.title"/></h5>
             <g:textArea name="izvjestaj.podaciPonudeEnergetskihUsluga" value="${izvjestaj.podaciPonudeEnergetskihUsluga}" rows="5" cols="100"/><br/>
 
-            <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.EE.title"/></h5>
+            <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja.G.title"/></h5>
             <g:textArea name="izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja" value="${izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja}" rows="5" cols="100"/><br/>
 
             <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciOstaloEnergetskaEfikasnost.title"/></h5>
@@ -435,7 +347,7 @@
                     var $TABLE1 = $('#preuzetaIsporucenaTable');
                     var $TABLE2 = $('#procjenaStanjaTable');
 
-                    dataJSON += createJSONData("izvjestaj.preuzetaIsporucenaEEList", $TABLE1);
+                    dataJSON += createJSONData("izvjestaj.preuzetIsporucenGas", $TABLE1);
                     dataJSON += createJSONData("izvjestaj.procjenaStanjaEnergetskeEfikasnostiList", $TABLE2);
                     var url="${createLink(controller: 'izvjestaj', action: 'update')}";
 
@@ -452,7 +364,7 @@
                     var $TABLE1 = $('#preuzetaIsporucenaTable');
                     var $TABLE2 = $('#procjenaStanjaTable');
 
-                    dataJSON += createJSONData("izvjestaj.preuzetaIsporucenaEEList", $TABLE1);
+                    dataJSON += createJSONData("izvjestaj.preuzetIsporucenGas", $TABLE1);
                     dataJSON += createJSONData("izvjestaj.procjenaStanjaEnergetskeEfikasnostiList", $TABLE2);
                     var url="${createLink(controller: 'izvjestaj', action: 'send')}";
 
@@ -465,7 +377,6 @@
                 });
 
                 function createJSONData(argument, table) {
-                    debugger;
                     var headers = [], returnValue = '';
                     var $header = table.find('tr:first');
                     var $rows = table.find('tr:not(:hidden):not(:last)');

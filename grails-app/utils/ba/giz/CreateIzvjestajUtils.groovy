@@ -49,6 +49,7 @@ class CreateIzvjestajUtils {
     izvjestaj.podaciOstaloEnergetskaEfikasnost = params.izvjestaj.podaciOstaloEnergetskaEfikasnost
   }
 
+  // TODO: if its a update copy on top of already existing objects (copyData(new, old))
   static void generateTypeDependentData(params, Izvjestaj izvjestaj) {
     def data = params.izvjestaj
 
@@ -69,14 +70,15 @@ class CreateIzvjestajUtils {
         break
       case Sektor.GAS:
         izvjestaj.tip = IzvjestajTip.G_DS
-        izvjestaj.preuzetIsporucenGasList = parseJsonArrayToListPreuzetIsporucenGas(data.preuzetIsporucenGasList)
+        izvjestaj.preuzetIsporucenGas = parseJsonArrayToPreuzetIsporucenGas(data.preuzetIsporucenGas)
 
         izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca = generateStepenMjerenjaEnergije(data.stepenMjerenjeEnergijeStrukturaKupaca, false)
 
         break
       case Sektor.TOPLOTNA_ENERGIJA:
         izvjestaj.tip = IzvjestajTip.T_DS
-        izvjestaj.isporucenaToplotnaEnergijaList = parseJsonArrayToListIsporucenaToplotnaEnergija(data.isporucenaToplotnaEnergijaList)
+        izvjestaj.isporucenaToplotnaEnergija = parseJsonArrayToIsporucenaToplotnaEnergija(data.isporucenaToplotnaEnergija)
+        izvjestaj.isporucenaToplotnaEnergija.save()
         izvjestaj.podaciEnergenti = parseJsonArrayToListPodaciEnergenti(data.podaciEnergenti)
 
         izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca = generateStepenMjerenjaEnergije(data.stepenMjerenjeEnergijeStrukturaKupaca, false)
@@ -88,23 +90,23 @@ class CreateIzvjestajUtils {
   static StepenMjerenjeEnergijeStrukturaKupaca generateStepenMjerenjaEnergije(data, ee_sektor) {
     StepenMjerenjeEnergijeStrukturaKupaca stepenMjerenja = new StepenMjerenjeEnergijeStrukturaKupaca()
 
-    stepenMjerenja.domacinstvoBrojMjerenjePotrosnje = convertStringToLong(data.domacinstvoBrojMjerenjePotrosnje)
-    stepenMjerenja.domacinstvoUkupanBroj = convertStringToLong(data.domacinstvoUkupanBroj)
+    stepenMjerenja.domacinstvoBrojMjerenjePotrosnje = convertStringToLong(data.domacinstvoBrojMjerenjePotrosnje.toString())
+    stepenMjerenja.domacinstvoUkupanBroj = convertStringToLong(data.domacinstvoUkupanBroj.toString())
 
-    stepenMjerenja.industrijaUkupanBroj = convertStringToLong(data.industrijaUkupanBroj)
-    stepenMjerenja.industrijaBrojMjerenjePotrosnje = convertStringToLong(data.industrijaBrojMjerenjePotrosnje)
+    stepenMjerenja.industrijaUkupanBroj = convertStringToLong(data.industrijaUkupanBroj.toString())
+    stepenMjerenja.industrijaBrojMjerenjePotrosnje = convertStringToLong(data.industrijaBrojMjerenjePotrosnje.toString())
 
-    stepenMjerenja.ostaloBrojMjerenjePotrosnje = convertStringToLong(data.ostaloBrojMjerenjePotrosnje)
-    stepenMjerenja.ostaloUkupanBroj = convertStringToLong(data.ostaloUkupanBroj)
+    stepenMjerenja.ostaloBrojMjerenjePotrosnje = convertStringToLong(data.ostaloBrojMjerenjePotrosnje.toString())
+    stepenMjerenja.ostaloUkupanBroj = convertStringToLong(data.ostaloUkupanBroj.toString())
 
-    stepenMjerenja.ukupnoBrojMjerenjePotrosnje = convertStringToLong(data.ukupnoBrojMjerenjePotrosnje)
-    stepenMjerenja.ukupnoBrojKrajnjihKupaca = convertStringToLong(data.ukupnoBrojKrajnjihKupaca)
+    stepenMjerenja.ukupnoBrojMjerenjePotrosnje = convertStringToLong(data.ukupnoBrojMjerenjePotrosnje.toString())
+    stepenMjerenja.ukupnoBrojKrajnjihKupaca = convertStringToLong(data.ukupnoBrojKrajnjihKupaca.toString())
 
     if (ee_sektor) {
-      stepenMjerenja.industrijaBrojDaljinskoOcitavanje = convertStringToLong(data.industrijaBrojDaljinskoOcitavanje)
-      stepenMjerenja.domacinstvoBrojDaljinskoOcitavanje = convertStringToLong(data.domacinstvoBrojDaljinskoOcitavanje)
-      stepenMjerenja.ostaloBrojDaljinskoOcitavanje = convertStringToLong(data.ostaloBrojDaljinskoOcitavanje)
-      stepenMjerenja.ukupnoBrojDaljinskoOcitavanje = convertStringToLong(data.ukupnoBrojDaljinskoOcitavanje)
+      stepenMjerenja.industrijaBrojDaljinskoOcitavanje = convertStringToLong(data.industrijaBrojDaljinskoOcitavanje.toString())
+      stepenMjerenja.domacinstvoBrojDaljinskoOcitavanje = convertStringToLong(data.domacinstvoBrojDaljinskoOcitavanje.toString())
+      stepenMjerenja.ostaloBrojDaljinskoOcitavanje = convertStringToLong(data.ostaloBrojDaljinskoOcitavanje.toString())
+      stepenMjerenja.ukupnoBrojDaljinskoOcitavanje = convertStringToLong(data.ukupnoBrojDaljinskoOcitavanje.toString())
     }
 
     stepenMjerenja.save()
@@ -122,16 +124,18 @@ class CreateIzvjestajUtils {
     return new Gson().fromJson(text.toString(), listType)
   }
 
-  private static List<PreuzetIsporucenGas> parseJsonArrayToListPreuzetIsporucenGas(text) {
-    Type listType = new TypeToken<List<PreuzetIsporucenGas>>() {}.getType()
+  private static PreuzetIsporucenGas parseJsonArrayToPreuzetIsporucenGas(text) {
+    String value = text.toString()
+    Type type = new TypeToken<PreuzetIsporucenGas>() {}.getType()
     Gson gson = new GsonBuilder().registerTypeAdapter(Double.class, new DoubleTypeAdapter()).create()
-    return gson.fromJson(text.toString(), listType)
+    return gson.fromJson(value.substring(1, value.length() - 1), type)
   }
 
-  private static List<IsporucenaToplotnaEnergija> parseJsonArrayToListIsporucenaToplotnaEnergija(text) {
-    Type listType = new TypeToken<List<IsporucenaToplotnaEnergija>>() {}.getType()
+  private static IsporucenaToplotnaEnergija parseJsonArrayToIsporucenaToplotnaEnergija(text) {
+    String value = text.toString()
+    Type type = new TypeToken<IsporucenaToplotnaEnergija>() {}.getType()
     Gson gson = new GsonBuilder().registerTypeAdapter(Double.class, new DoubleTypeAdapter()).create()
-    return gson.fromJson(text.toString(), listType)
+    return gson.fromJson(value.substring(1, value.length() - 1), type)
   }
 
   private static List<PodaciEnergenti> parseJsonArrayToListPodaciEnergenti(text) {
@@ -141,7 +145,7 @@ class CreateIzvjestajUtils {
   }
 
   private static convertStringToLong(String value) {
-    return value == "" ? 0 : value == null ? 0 : Long.valueOf(value)
+    return value == "" ? 0 : value == "null" ? 0 : Long.valueOf(value)
   }
 
   private static convertStringToDouble(String value) {

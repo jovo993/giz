@@ -121,7 +121,7 @@
             <legend style="width: 40%"><g:message code="podaciPodnosenjeIzvjestaja.fieldset.title"/></legend>
 
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.godina"><g:message code="podaciPodnosenjeIzvjestaja.godina.title"/></label>
-            <g:select name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" from="${ba.giz.Godina.findAll()}" /><br/>
+            <g:select name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" from="${ba.giz.Godina.findAll()}"/><br/>
 
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"><g:message code="homepage.list.podaciPodnosenjeIzvjestaja.prezimeImePozicija.label"/></label>
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"/><br/>
@@ -133,115 +133,30 @@
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.email"/><br/>
         </fieldset>
 
-        <g:javascript library='jquery'>
-            (function($) {
-                $(document).ready(function() {
-                    var preuzetaIsporucena = "preuzetaIsporucena";
-                    var $TABLE = $('#' + preuzetaIsporucena + 'Table');
-
-                    $('#' + preuzetaIsporucena).click(function() {
-                        var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
-                        $TABLE.find('table').append($clone);
-                    });
-
-                    $('#' + preuzetaIsporucena + 'Remove').click(function() {
-                        $(this).parents('tr').detach();
-                        calculateSumPreuzetaIsporucena();
-                    });
-
-                    $('#' + preuzetaIsporucena + 'Up').click(function() {
-                        var $row = $(this).parents('tr');
-                        if ($row.index() === 1) return; // Don't go above the header
-                        $row.prev().before($row.get(0));
-                    });
-
-                    $('#' + preuzetaIsporucena + 'Down').click(function() {
-                        var $row = $(this).parents('tr');
-                        $row.next().after($row.get(0));
-                    });
-
-                    // sumiranje
-                    for (var i = 1; i < $('#table1').find('tr:eq(1) td').length; i++) {
-                        $('td.rowDataSd:eq(' + i + ')', 'tr').each(function() {
-                            $(this).on('input', function() {
-                                calculateSumPreuzetaIsporucena($(this).context.cellIndex);
-                            });
-                        });
-                    }
-
-                    function calculateSumPreuzetaIsporucena(index) {
-                        if (index) {
-                            var total = 0;
-                            $('td.rowDataSd:eq(' + index + ')', 'tr').each(function() {
-                                total += $(this).text() * 1;
-                            });
-                            $('#table1').find('tr:last td').eq(index).text(total.toFixed(3));
-                        }
-                        else {
-                            // sumiranje
-                            for (var i = 1; i < $('#table1').find('tr:eq(1) td').length; i++) {
-                                var total = 0;
-                                $('td.rowDataSd:eq(' + i + ')', 'tr').each(function() {
-                                    total += $(this).text() * 1;
-                                });
-                                $('#table1').find('tr:last td').eq(i).text(total.toFixed(3));
-                            }
-                        }
-                    }
-
-                });
-            })(jQuery);
-        </g:javascript>
-
         <fieldset class="fieldset">
             <legend style="width: 60%">${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.G.title')}</legend>
+
             <div id="preuzetaIsporucenaTable" class="table-editable">
-                <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
                 <table id="table1" class="table">
                     <tr>
-                        <th></th>
-                        <th id="preuzetaKolicinaGas" class="prety-th">PREUZETE KOLIČINE GASA (Sm3)</th>
-                        <th id="industrijskiPotrosaciGas" class="prety-th">Industrijski potrošači</th>
-                        <th id="sistemiDaljinskoGrijanjaGas" class="prety-th">Sistemi daljinskog grijanja</th>
-                        <th id="komercijalniKrajnjiKupciGas" class="prety-th">Komercijalni krajnji kupci</th>
-                        <th id="domacinstvaGas" class="prety-th">Domaćinstva</th>
-                        <th id="ukupnoIsporucenoGas" class="prety-th">UKUPNO ISPORUČENO</th>
-                        <th id="gubiciGas" scope="col" class="prety-th">GUBICI (%)</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th id="preuzetaKolicina" class="prety-th">PREUZETE KOLIČINE GASA (Sm3)</th>
+                        <th id="industrijskiPotrosaci" class="prety-th">Industrijski potrošači</th>
+                        <th id="sistemiDaljinskoGrijanja" class="prety-th">Sistemi daljinskog grijanja</th>
+                        <th id="komercijalniKrajnjiKupci" class="prety-th">Komercijalni krajnji kupci</th>
+                        <th id="domacinstva" class="prety-th">Domaćinstva</th>
+                        <th id="ukupnoIsporuceno" class="prety-th">UKUPNO ISPORUČENO</th>
+                        <th id="gubici" class="prety-th">GUBICI (%)</th>
                     </tr>
-                    <tr class="hide">
-                        <td></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td class="editable-td rowDataSd" contenteditable="true"></td>
-                        <td style="text-align:center">
-                            <span id="preuzetaIsporucenaRemove" class="table-remove fa fa-trash fa-2x"></span>
-                        </td>
-                        <td style="text-align:center">
-                            <span id="preuzetaIsporucenaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
-                        </td>
-                        <td style="text-align:center">
-                            <span id="preuzetaIsporucenaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
-                        </td>
-                    </tr>
-                    <tfoot>
                     <tr>
-                        <td style="vertical-align: middle; text-align: right;">UKUPNO:</td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
-                        <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
+                        <td class="editable-td" contenteditable="true"></td>
                     </tr>
-                    </tfoot>
+                    <tfoot><tr></tr></tfoot>
                 </table>
 
                 <div class="prety-th" style="text-align: right; padding: 5px">Ukupno isporučena energija krajnjim kupcima u TJ:  <input type="text"></div>
@@ -304,6 +219,7 @@
                             <span id="procjenaStanjaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
                         </td>
                     </tr>
+                    <tfoot><tr></tr></tfoot> %{--needed becuase of script--}%
                 </table>
             </div>
         </fieldset>
@@ -393,7 +309,7 @@
                     var $TABLE1 = $('#preuzetaIsporucenaTable');
                     var $TABLE2 = $('#procjenaStanjaTable');
 
-                    dataJSON += createJSONData("izvjestaj.preuzetaIsporucenaEEList", $TABLE1);
+                    dataJSON += createJSONData("izvjestaj.preuzetIsporucenGas", $TABLE1);
                     dataJSON += createJSONData("izvjestaj.procjenaStanjaEnergetskeEfikasnostiList", $TABLE2);
 
                     $.ajax({
@@ -411,8 +327,10 @@
 
                 function createJSONData(argument, table) {
                     var headers = [], returnValue = '';
-                    var $rows = table.find('tr:not(:hidden)');
-                    $([$rows].shift()).find('th:not(:empty)').each(function() {
+                    var $header = table.find('tr:first');
+                    var $rows = table.find('tr:not(:hidden):not(:last)');
+
+                    $header.find('th:not(:empty)').each(function() {
                         if (this.id.length > 0) {
                             headers.push(this.id);
                         }

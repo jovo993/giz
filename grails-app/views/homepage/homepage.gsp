@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <style>
 
         td, th {
@@ -96,6 +97,7 @@
                         <g:set var="propTitle">homepage.list.${p}.label</g:set>
                         <g:sortableColumn property="${p}" title="${message(code: propTitle)}"/>
                     </g:each>
+                    <th>Prikazi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -108,6 +110,7 @@
                         <td><g:formatDate>${bean.datumSlanja}</g:formatDate></td>
                         <td>${bean.podaciPodnosenjeIzvjestaja.prezimeImePozicija}</td>
                         <td>${bean.status}</td>
+                        <td style="text-align: center"><g:link controller="izvjestaj" action="resolveViewAndRedirect" resource="${bean}"><span class="fa fa-search" style="horiz-align: center;"></span></g:link></td>
                     </tr>
                 </g:each>
                 </tbody>

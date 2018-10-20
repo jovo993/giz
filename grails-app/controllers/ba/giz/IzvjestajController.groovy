@@ -3,6 +3,7 @@ package ba.giz
 import ba.giz.dto.IzvjestajExcelDTO
 import grails.transaction.Transactional
 import grails.util.Holders
+import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties
 import pl.touk.excel.export.WebXlsxExporter
 
 import static org.springframework.http.HttpStatus.*
@@ -16,8 +17,19 @@ class IzvjestajController {
     respond Izvjestaj.list(params), model: [izvjestajCount: Izvjestaj.count()]
   }
 
-  def show(Izvjestaj izvjestaj) {
-    respond izvjestaj
+  def resolveViewAndRedirect(Izvjestaj izvjestaj) {
+    Preduzece preduzece = Preduzece.findById(izvjestaj.preduzece.id)
+    if (preduzece.sektor == Sektor.ELEKTRICNA_ENERGIJA && (izvjestaj.status == IzvjestajStatus.KREIRAN || izvjestaj.status == IzvjestajStatus.DORADA)) {
+      render view: "/izvjestaj/ee/edit", model: [izvjestaj: izvjestaj, id: izvjestaj.id]
+    }
+
+    if (preduzece.sektor == Sektor.GAS && (izvjestaj.status == IzvjestajStatus.KREIRAN || izvjestaj.status == IzvjestajStatus.DORADA)) {
+      render view: "/izvjestaj/gas/edit", model: [izvjestaj: izvjestaj, id: izvjestaj.id]
+    }
+
+    if (preduzece.sektor == Sektor.TOPLOTNA_ENERGIJA && (izvjestaj.status == IzvjestajStatus.KREIRAN || izvjestaj.status == IzvjestajStatus.DORADA)) {
+      render view: "/izvjestaj/te/edit", model: [izvjestaj: izvjestaj, id: izvjestaj.id]
+    }
   }
 
   def create() {
@@ -61,20 +73,11 @@ class IzvjestajController {
   }
 
   @Transactional
-  def update(Izvjestaj izvjestaj) {
-    if (izvjestaj == null) {
-      transactionStatus.setRollbackOnly()
-      notFound()
-      return
-    }
-
-    if (izvjestaj.hasErrors()) {
-      transactionStatus.setRollbackOnly()
-      respond izvjestaj.errors, view: "edit"
-      return
-    }
-
-    izvjestaj.save flush: true
+  def update(params) {
+    Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
+    CreateIzvjestajUtils.generateBasicData(params, izvjestaj)
+    CreateIzvjestajUtils.generateTypeDependentData(params, izvjestaj)
+    izvjestaj.save flush: true, failOnError: true
 
     request.withFormat {
       form multipartForm {
@@ -185,5 +188,58 @@ class IzvjestajController {
     }
 
     results
+  }
+
+  @Transactional
+  def send(params) {
+    Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
+    if(izvjestaj.status)
+    izvjestaj.datumSlanja = new Date().clearTime()
+    izvjestaj.status = IzvjestajStatus.POSLAN
+    izvjestaj.save flush: true, failOnError: true
+
+    request.withFormat {
+      form multipartForm {
+        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id]) as Object
+        redirect izvjestaj
+      }
+      "*" { respond izvjestaj, [status: OK] }
+    }
+  }
+
+  def vratiNaDoradu(Izvjestaj izvjestaj) {
+    if(izvjestaj.status == IzvjestajStatus.POSLAN) {
+      if(UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+        izvjestaj.status = IzvjestajStatus.DORADA
+
+        izvjestaj.save flush: true, failOnError: true
+
+        request.withFormat {
+          form multipartForm {
+            flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.dorada.title"), izvjestaj.id]) as Object
+            redirect izvjestaj
+          }
+          "*" { respond izvjestaj, [status: OK] }
+        }
+      }
+    }
+  }
+
+  def verifikuj(Izvjestaj izvjestaj) {
+    if(izvjestaj.status == IzvjestajStatus.POSLAN) {
+      if(UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+        izvjestaj.status = IzvjestajStatus.VERIFIKOVAN
+
+        izvjestaj.save flush: true, failOnError: true
+
+        request.withFormat {
+          form multipartForm {
+            flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.dorada.title"), izvjestaj.id]) as Object
+            redirect izvjestaj
+          }
+          "*" { respond izvjestaj, [status: OK] }
+        }
+      }
+    }
   }
 }

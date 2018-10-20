@@ -7,8 +7,8 @@ class Izvjestaj {
   PodaciPodnosenjeIzvjestaja podaciPodnosenjeIzvjestaja
 
   List<PreuzetaIsporucenaEE> preuzetaIsporucenaEEList
-  List<PreuzetIsporucenGas> preuzetIsporucenGasList
-  List<IsporucenaToplotnaEnergija> isporucenaToplotnaEnergijaList
+  PreuzetIsporucenGas preuzetIsporucenGas
+  IsporucenaToplotnaEnergija isporucenaToplotnaEnergija
 
   Double ukupnoIsporucenaEnergija
 
@@ -41,5 +41,10 @@ class Izvjestaj {
     datumSlanja nullable: true
     status nullable: true
     ukupnoIsporucenaEnergija nullable: true
+    preuzetaIsporucenaEEList nullable: true
+    podaciEnergenti nullable: true
+    preuzetIsporucenGas nullable: true
+    isporucenaToplotnaEnergija nullable: true
+    stepenMjerenjeEnergijeStrukturaKupaca nullable: true
   }
 }

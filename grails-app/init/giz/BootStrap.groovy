@@ -35,13 +35,13 @@ class BootStrap {
 
   private createIzvjestajData() {
     PodaciPodnosenjeIzvjestaja podaciPodnosenjeIzvjestaja = new PodaciPodnosenjeIzvjestaja(godina: 2017, telefon: 065065065, email: 'email@gmail.com', prezimeImePozicija: "Bjelica, Milko / Direktor").save(flush: true, failOnError: true)
-    Izvjestaj izvjestajEE = new Izvjestaj(tip: IzvjestajTip.EE_DS, preduzece: Preduzece.last(), podaciPodnosenjeIzvjestaja: podaciPodnosenjeIzvjestaja,
+    Izvjestaj izvjestajEE = new Izvjestaj(tip: IzvjestajTip.EE_DS, preduzece: Preduzece.findBySektor(Sektor.ELEKTRICNA_ENERGIJA), podaciPodnosenjeIzvjestaja: podaciPodnosenjeIzvjestaja,
       datumKreiranja: new Date().clearTime(), datumSlanja: new Date().clearTime(), prezimeImePozicija: '', status: IzvjestajStatus.KREIRAN).save(flush: true, failOnError: true)
 
-    Izvjestaj izvjestajG = new Izvjestaj(tip: IzvjestajTip.G_DS, preduzece: Preduzece.last(), podaciPodnosenjeIzvjestaja: podaciPodnosenjeIzvjestaja,
+    Izvjestaj izvjestajG = new Izvjestaj(tip: IzvjestajTip.G_DS, preduzece: Preduzece.findBySektor(Sektor.GAS), podaciPodnosenjeIzvjestaja: podaciPodnosenjeIzvjestaja,
       datumKreiranja: new Date().clearTime(), datumSlanja: new Date().clearTime(), prezimeImePozicija: '', status: IzvjestajStatus.KREIRAN).save(flush: true, failOnError: true)
 
-    Izvjestaj izvjestajTE = new Izvjestaj(tip: IzvjestajTip.T_DS, preduzece: Preduzece.last(), podaciPodnosenjeIzvjestaja: podaciPodnosenjeIzvjestaja,
+    Izvjestaj izvjestajTE = new Izvjestaj(tip: IzvjestajTip.T_DS, preduzece: Preduzece.findBySektor(Sektor.TOPLOTNA_ENERGIJA), podaciPodnosenjeIzvjestaja: podaciPodnosenjeIzvjestaja,
       datumKreiranja: new Date().clearTime(), datumSlanja: new Date().clearTime(), prezimeImePozicija: '', status: IzvjestajStatus.KREIRAN).save(flush: true, failOnError: true)
   }
 

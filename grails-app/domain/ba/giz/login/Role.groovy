@@ -33,7 +33,7 @@ class Role implements Serializable {
 		if (authority == "ROLE_G_USER") {
 			return "korisnik (g)"
 		}
-		if (authority == "ROLE_T_USER") {
+		if (authority == "ROLE_TE_USER") {
 			return "korisnik (t)"
 		}
 

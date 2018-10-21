@@ -184,7 +184,7 @@ class IzvjestajController {
       results = results.findAll { dto.sektori.contains(it.preduzece.sektor) }
     }
 
-    if (dto.uloga.operator || dto.uloga.distributer || dto.uloga.snabdjevac) {
+    if (dto.uloga.operater || dto.uloga.distributer || dto.uloga.snabdjevac) {
       results = results.findAll { dto.uloga.toString().split(", ").collect().containsAll(it.preduzece.uloga.toString().split(", ").collect()) }
     }
 

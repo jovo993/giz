@@ -191,7 +191,7 @@
                         <h3>O aplikaciji</h3>
                     </th>
                     <tr>
-                        <td style="padding: 1em;">Web aplikacija "rODS - Registar operatora, distributera i snabdjevača energijom" realizovana je uz pomoć Njemačke organizacije za međunarodnu saradnju GIZ.</td>
+                        <td style="padding: 1em;">Web aplikacija "rODS - Registar operatera, distributera i snabdjevača energijom" realizovana je uz pomoć Njemačke organizacije za međunarodnu saradnju GIZ.</td>
                     </tr>
                     <tr>
                         <td style="padding: 1em;"><asset:image src="giz-saradnja.png" style="width: 100%"/></td>

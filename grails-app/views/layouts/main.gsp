@@ -28,7 +28,7 @@
             <a class="navbar-brand" href="/#">
                 <i class="fa grails-icon">
                     <asset:image src="logo_fond.png"/>
-                </i> rODS - Registar operatora, distributera i snabdjevača energijom
+                </i> rODS - Registar operatera, distributera i snabdjevača energijom
             </a>
         </div>
         <g:set var="user" value="${grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser}"/>

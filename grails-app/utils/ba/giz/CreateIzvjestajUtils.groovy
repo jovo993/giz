@@ -12,7 +12,8 @@ class CreateIzvjestajUtils {
   static void generateBasicData(params, Izvjestaj izvjestaj) {
 
     izvjestaj.datumKreiranja = Calendar.getInstance().getTime()
-    izvjestaj.status = IzvjestajStatus.KREIRAN
+    if(!izvjestaj.status)
+      izvjestaj.status = IzvjestajStatus.KREIRAN
     izvjestaj.preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
 
     PodaciDozvolaObavljanjeDjelatnosti podaciDozvolaObavljanjeDjelatnosti = new PodaciDozvolaObavljanjeDjelatnosti()
@@ -34,7 +35,7 @@ class CreateIzvjestajUtils {
 
     PodaciPodnosenjeIzvjestaja podaciPodnosenjeIzvjestaja = new PodaciPodnosenjeIzvjestaja()
     def ppi = params.izvjestaj.podaciPodnosenjeIzvjestaja
-    podaciPodnosenjeIzvjestaja.godina = ppi.godina_year
+    podaciPodnosenjeIzvjestaja.godina = ppi.godina
     podaciPodnosenjeIzvjestaja.prezimeImePozicija = ppi.prezimeImePozicija
     podaciPodnosenjeIzvjestaja.telefon = ppi.telefon
     podaciPodnosenjeIzvjestaja.email = ppi.email
@@ -78,7 +79,6 @@ class CreateIzvjestajUtils {
       case Sektor.TOPLOTNA_ENERGIJA:
         izvjestaj.tip = IzvjestajTip.T_DS
         izvjestaj.isporucenaToplotnaEnergija = parseJsonArrayToIsporucenaToplotnaEnergija(data.isporucenaToplotnaEnergija)
-        izvjestaj.isporucenaToplotnaEnergija.save()
         izvjestaj.podaciEnergenti = parseJsonArrayToListPodaciEnergenti(data.podaciEnergenti)
 
         izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca = generateStepenMjerenjaEnergije(data.stepenMjerenjeEnergijeStrukturaKupaca, false)

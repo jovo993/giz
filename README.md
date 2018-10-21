@@ -23,6 +23,6 @@ mongoDB version: 4.0.0
 | 4 | Datumska polja | ![#1589F0](https://placehold.it/15/1589F0/000000?text=+)|
 | 5 | Akcije na izvjestajima u tablici | ![#1589F0](https://placehold.it/15/1589F0/000000?text=+)|
 | 6 | Izvoz u PDF | ![#1589F0](https://placehold.it/15/1589F0/000000?text=+)|
-| 7 | Izvjestavanje | ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)|
+| 7 | Kvantitativni izvještaj | ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)|
 | 8 | Dashboard za admina i korisnika | ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)|
 | 9 | Edit izvjestaja | ![#1589F0](https://placehold.it/15/1589F0/000000?text=+)|

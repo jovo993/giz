@@ -72,6 +72,7 @@
         </fieldset>
 
         <fieldset class="fieldset">
+            <g:hiddenField name="izvjestaj.id" value="${id}"/>
             <legend style="width: 60%"><g:message code="podaciDozvolaObavljanjeDjelatnosti.fieldset.title"/></legend>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj">

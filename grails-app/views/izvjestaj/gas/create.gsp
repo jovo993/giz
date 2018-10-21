@@ -123,8 +123,8 @@
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.godina"><g:message code="podaciPodnosenjeIzvjestaja.godina.title"/></label>
             <g:select name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" from="${ba.giz.Godina.findAll()}"/><br/>
 
-            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"><g:message code="homepage.list.podaciPodnosenjeIzvjestaja.prezimeImePozicija.label"/></label>
-            <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.prezime"/><br/>
+            <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija"><g:message code="homepage.list.podaciPodnosenjeIzvjestaja.prezimeImePozicija.label"/></label>
+            <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija"/><br/>
 
             <label for="izvjestaj.podaciPodnosenjeIzvjestaja.telefon"><g:message code="podaciPodnosenjeIzvjestaja.telefon.title"/></label>
             <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.telefon"/><br/>

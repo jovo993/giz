@@ -51,7 +51,7 @@ class BootStrap {
 
       User adminUser = User.findByUsername('admin')
       if (!adminUser) {
-        adminUser = new User(username: 'admin', enabled: true, password: 'admin', preduzece: Preduzece.last(), prezime: "AdminPrezime", ime: "AdminIme", pozicija: "Šegrt", telefon: "225 883", email: "admin@admin.com").save(flush: true, failOnError: true)
+        adminUser = new User(username: 'admin', enabled: true, password: 'admin', preduzece: null, prezime: "AdminPrezime", ime: "AdminIme", pozicija: "Šegrt", telefon: "225 883", email: "admin@admin.com").save(flush: true, failOnError: true)
       }
 
       Role adminRole = Role.findByAuthority('ROLE_ADMIN')

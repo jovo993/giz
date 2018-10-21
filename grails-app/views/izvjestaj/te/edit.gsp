@@ -10,6 +10,7 @@
 <body>
 <div id="create-izvjestaj" class="content scaffold-create" role="main">
     <h1><g:message code="izvjestaj.izmjeni.title"/></h1>
+    <g:set var="isReadOnly" value="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}" />
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -21,6 +22,7 @@
         </ul>
     </g:hasErrors>
     <form id="formIzvjestaj">
+        <fieldset <g:if test="${!izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) && !izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}">disabled=""</g:if>>
         <fieldset class="fieldset" disabled="">
             <legend><g:message code="preduzece.fieldset.title"/></legend>
 
@@ -73,6 +75,7 @@
 
         <fieldset class="fieldset">
             <g:hiddenField name="izvjestaj.id" value="${id}"/>
+            <g:hiddenField id="status" name="izvjestaj.status" value="${izvjestaj.status}"/>
             <legend style="width: 60%"><g:message code="podaciDozvolaObavljanjeDjelatnosti.fieldset.title"/></legend>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj">
@@ -163,7 +166,7 @@
             (function($) {
                 $(document).ready(function() {
                     var $TABLE = $('#energentiTable');
-
+                    var status = $('#status')[0].value;
                     $('#energenti').click(function() {
                         var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
                         $TABLE.find('table').append($clone);
@@ -183,6 +186,13 @@
                         var $row = $(this).parents('tr');
                         $row.next().after($row.get(0));
                     });
+
+                    // remove contenteditable
+                    if (status != "KREIRAN" && status != "DORADA") {
+                        $('.editable-td').each(function() {
+                            this.contentEditable = "false";
+                        });
+                    }
                 });
             })(jQuery);
         </g:javascript>
@@ -190,7 +200,9 @@
             <legend style="width: 50%"><g:message code="izvjestaj.podaci.energenti.fieldset.title"/></legend>
 
             <div id="energentiTable" class="table-editable">
-                <span id="energenti" class="table-add fa fa-plus fa-2x"></span>
+                <g:if test="${isReadOnly}">
+                    <span id="energenti" class="table-add fa fa-plus fa-2x"></span>
+                </g:if>
                 <table id="table2" class="table">
                     <tr>
                         <th id="energent" class="prety-th">Energent</th>
@@ -241,15 +253,17 @@
                         <td contenteditable="true" class="editable-td prety-th">Ostalo</td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
-                        <td style="text-align:center">
-                            <span id="energentiRemove" class="table-remove fa fa-trash fa-2x"></span>
-                        </td>
-                        <td style="text-align:center">
-                            <span id="energentiIsporucenaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
-                        </td>
-                        <td style="text-align:center">
-                            <span id="energentiIsporucenaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
-                        </td>
+                        <g:if test="${isReadOnly}">
+                            <td style="text-align:center">
+                                <span id="energentiRemove" class="table-remove fa fa-trash fa-2x"></span>
+                            </td>
+                            <td style="text-align:center">
+                                <span id="energentiIsporucenaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
+                            </td>
+                            <td style="text-align:center">
+                                <span id="energentiIsporucenaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
+                            </td>
+                        </g:if>
                     </tr>
                     <tfoot><tr></tr></tfoot> %{--needed becuase of script--}%
                 </table>
@@ -287,7 +301,9 @@
             <legend style="width: 50%"><g:message code="izvjestaj.procjenastanja.fieldset.title"/></legend>
 
             <div id="procjenaStanjaTable" class="table-editable">
-                <span id="procjenaStanja" class="table-add fa fa-plus fa-2x"></span>
+                <g:if test="${isReadOnly}">
+                    <span id="procjenaStanja" class="table-add fa fa-plus fa-2x"></span>
+                </g:if>
                 <table class="table">
                     <tr>
                         <th id="primjenjenaMjera" scope="col" class="prety-th">Primjenjena mjera</th>
@@ -303,15 +319,17 @@
                             <td class="editable-td" contenteditable="true">${bean.primjenjenaMjera}</td>
                             <td class="editable-td" contenteditable="true">${bean.vrstaUstede}</td>
                             <td class="editable-td" contenteditable="true">${bean.kolicinaUstede}</td>
-                            <td style="text-align:center">
-                                <span class="pst-remove table-remove fa fa-trash fa-2x"></span>
-                            </td>
-                            <td style="text-align:center">
-                                <span class="pst-up table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
-                            </td>
-                            <td style="text-align:center">
-                                <span class="pst-down table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
-                            </td>
+                            <g:if test="${isReadOnly}">
+                                <td style="text-align:center">
+                                    <span class="pst-remove table-remove fa fa-trash fa-2x"></span>
+                                </td>
+                                <td style="text-align:center">
+                                    <span class="pst-up table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
+                                </td>
+                                <td style="text-align:center">
+                                    <span class="pst-down table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
+                                </td>
+                            </g:if>
                         </tr>
                     </g:each>
                     <tr class="hide">
@@ -424,7 +442,7 @@
             <h5 style="text-align: center;color: #5777ad"><g:message code="izvjestaj.podaciOstaloEnergetskaEfikasnost.title"/></h5>
             <g:textArea name="izvjestaj.podaciOstaloEnergetskaEfikasnost" value="${izvjestaj.podaciOstaloEnergetskaEfikasnost}" rows="5" cols="100"/><br/>
         </fieldset>
-
+        </fieldset>
     </form>
 
     <g:javascript library='jquery'>
@@ -517,8 +535,8 @@
         })(jQuery);
     </g:javascript>
     <fieldset class="buttons">
-        <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
-        <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}">
+        <g:if test="${isReadOnly}">
+            <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
             <button id="posaljiButton"><i class="fa fa-share-square"></i>   <g:message code="default.button.send.label"/></button>
         </g:if>
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN)}">

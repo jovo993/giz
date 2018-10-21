@@ -18,7 +18,7 @@ mongoDB version: 4.0.0
 | BR | PROBLEM | STATUS |
 | ------ | ------ | ------ |  
 | 1 | Dva nivoa pristupa (administrator i korisnici) | ![#1589F0](https://placehold.it/15/1589F0/000000?text=+)|
-| 2 | "YU slova" šđčćžŠĐČĆŽ se ne prikazuju | ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)|
+| 2 | "YU slova" šđčćžŠĐČĆŽ se ne prikazuju | ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)|
 | 3 | Izgled na razlicitim rezolucijama | ![#1589F0](https://placehold.it/15/1589F0/000000?text=+)|
 | 4 | Datumska polja | ![#1589F0](https://placehold.it/15/1589F0/000000?text=+)|
 | 5 | Akcije na izvjestajima u tablici | ![#1589F0](https://placehold.it/15/1589F0/000000?text=+)|

@@ -128,17 +128,19 @@ class IzvjestajController {
     List<Izvjestaj> results = searchForExcel(dto)
 
     def headers = [
-      "Za godinu", "Status", "Izvje\u0160taj sastavio", "Datum podno\u0160enja", "Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
+      "Za godinu", "Status", "Izvje\u0161taj sastavio", "Datum podno\u0161enja", "Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
     ]
     def withProperties = [
-      "podaciPodnosenjeIzvjestaja.godina", "status", "podaciPodnosenjeIzvjestaja.displayName", "datumSlanja", "preduzece.naziv", "preduzece.sektor", "preduzece.uloga", "preduzece.adresa"
+      "podaciPodnosenjeIzvjestaja.godina", "status", "podaciPodnosenjeIzvjestaja.prezimeImePozicija", "datumSlanja", "preduzece.naziv", "preduzece.sektor", "preduzece.uloga", "preduzece.adresa"
     ]
 
     new WebXlsxExporter().with {
       setResponseHeaders(response)
       fillHeader(headers)
       add(results, withProperties)
-      save(response.outputStream)
+      workbook.write(response.outputStream)
+      response.outputStream.flush()
+      finalize()
     }
   }
 

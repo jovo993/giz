@@ -37,7 +37,7 @@
             <label><g:message code="preduzece.uloga.title"/></label>
 
             <label for="izvjestaj.preduzece.operater" style="width: 10%"><g:message code="preduzece.uloga.operater.title"/></label>
-            <g:checkBox name="izvjestaj.preduzece.operater" value="${izvjestaj.preduzece?.uloga?.operator}" style="width: 5%"/>
+            <g:checkBox name="izvjestaj.preduzece.operater" value="${izvjestaj.preduzece?.uloga?.operater}" style="width: 5%"/>
 
             <label for="izvjestaj.preduzece.distributer" style="width: 10%"><g:message code="preduzece.uloga.distributer.title"/></label>
             <g:checkBox name="izvjestaj.preduzece.distributer" value="${izvjestaj.preduzece?.uloga?.distributer}" style="width: 5%"/>

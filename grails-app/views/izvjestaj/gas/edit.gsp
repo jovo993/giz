@@ -20,8 +20,12 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
+    <g:set var="editable" value="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}"/>
+    <g:set var="isAdmin" value="${ba.giz.UserUtils.isUserAdmin(grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser)}"/>
+    <g:hiddenField id="editable" name="editable" value="${editable}"/>
     <form id="formIzvjestaj">
-        <fieldset class="fieldset" disabled="">
+        <g:hiddenField name="izvjestaj.id" value="${izvjestaj.id}"/>
+        <fieldset class="fieldset" disabled>
             <legend><g:message code="preduzece.fieldset.title"/></legend>
 
             <label for="izvjestaj.preduzece.naziv"><g:message code="preduzece.naziv.title"/></label>
@@ -72,13 +76,12 @@
         </fieldset>
 
         <fieldset class="fieldset">
-            <g:hiddenField name="izvjestaj.id" value="${id}"/>
             <legend style="width: 60%"><g:message code="podaciDozvolaObavljanjeDjelatnosti.fieldset.title"/></legend>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj" /><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija.title"/>
@@ -88,7 +91,8 @@
             <label>
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje.title"/>
             </label>
-            <input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" type="date" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaDatumPocetkaVazenje?.format("yyyy-mm-dd")}"/><br/>
+            <input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" type="date"
+                   value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.distribucijaDatumPocetkaVazenje?.format("yyyy-mm-dd")}"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja.title"/>
@@ -108,12 +112,13 @@
             <label>
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje.title"/>
             </label>
-            <input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" type="date" value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjeDatumPocetkaVazenje?.format("yyyy-mm-dd")}"/><br/>
+            <input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" type="date"
+                   value="${izvjestaj.podaciDozvolaObavljanjeDjelatnosti?.snabdijevanjeDatumPocetkaVazenje?.format("yyyy-mm-dd")}"/><br/>
 
             <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja">
                 <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja.title"/>
             </label>
-            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja" /><br/>
+            <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja"/><br/>
         </fieldset>
 
         <fieldset class="fieldset">
@@ -157,7 +162,9 @@
                     </tr>
                     <tfoot><tr></tr></tfoot>
                 </table>
-                <div class="prety-th" style="text-align: right; padding: 5px">Ukupno isporučena energija krajnjim kupcima u TJ:  <input name="izvjestaj.ukupnoIsporucenaEnergija" value="${izvjestaj.ukupnoIsporucenaEnergija}"></div>
+
+                <div class="prety-th" style="text-align: right; padding: 5px">Ukupno isporučena energija krajnjim kupcima u TJ:  <input name="izvjestaj.ukupnoIsporucenaEnergija"
+                                                                                                                                        value="${izvjestaj.ukupnoIsporucenaEnergija}"></div>
             </div>
         </fieldset>
 
@@ -165,6 +172,11 @@
             (function($) {
                 $(document).ready(function() {
                     var $TABLE = $('#procjenaStanjaTable');
+                    var editable = $('#editable')[0].value;
+
+                    if (editable === 'false') {
+                        disableAndHideFields();
+                    }
 
                     $('#procjenaStanja').click(function() {
                         var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
@@ -185,6 +197,18 @@
                         var $row = $(this).parents('tr');
                         $row.next().after($row.get(0));
                     });
+
+                    function disableAndHideFields() {
+                        $('.editable-td').each(function() {
+                            $(this).prop('contentEditable', false);
+                        });
+                        $('.fieldset').each(function() {
+                            $(this).prop('disabled', true);
+                        });
+                        $('.table-add, .table-remove, .table-up, .table-down').each(function() {
+                            $(this).hide();
+                        });
+                    }
                 });
             })(jQuery);
         </g:javascript>
@@ -412,18 +436,21 @@
 
                     return '&' + argument + '=[' + returnValue + ']';
                 }
-
             });
         })(jQuery);
     </g:javascript>
     <fieldset class="buttons">
-        <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}">
+            <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
             <button id="posaljiButton"><i class="fa fa-share-square"></i>   <g:message code="default.button.send.label"/></button>
         </g:if>
-        <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN)}">
-            <button id="vratiNaDoraduButton"><i class="fa fa-arrow-alt-circle-left"></i>   <g:message code="default.button.dorada.label"/></button>
-            <button id="verifikujButton"><i class="fa fa-check-circle"></i>   <g:message code="default.button.verifikuj.label"/></button>
+        <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN) && this.isAdmin}">
+            <g:link controller="izvjestaj" action="vratiNaDoradu" params="[id: izvjestaj.id]">
+                <button id="vratiNaDoraduButton"><i class="fa fa-arrow-alt-circle-left"></i>   <g:message code="default.button.dorada.label"/></button>
+            </g:link>
+            <g:link controller="izvjestaj" action="verifikuj" params="[id: izvjestaj.id]">
+                <button id="verifikujButton"><i class="fa fa-check-circle"></i>   <g:message code="default.button.verifikuj.label"/></button>
+            </g:link>
         </g:if>
     </fieldset>
 

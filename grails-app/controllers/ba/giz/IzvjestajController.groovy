@@ -243,4 +243,13 @@ class IzvjestajController {
       }
     }
   }
+
+  @Transactional
+  def printPdf(params) {
+    Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
+
+    //TODO: map and print pdf
+
+    null
+  }
 }

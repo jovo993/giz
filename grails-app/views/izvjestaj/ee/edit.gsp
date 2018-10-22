@@ -453,6 +453,7 @@
 
                 var $BTN = $('#submitButton');
                 var $SENDBTN = $('#posaljiButton');
+                var $PDFBTN = $('#printPdfButton');
 
                 $BTN.click(function() {
                     var dataJSON = $("#formIzvjestaj").serialize();
@@ -479,6 +480,18 @@
                     dataJSON += createJSONData("izvjestaj.preuzetaIsporucenaEEList", $TABLE1);
                     dataJSON += createJSONData("izvjestaj.procjenaStanjaEnergetskeEfikasnostiList", $TABLE2);
                     var url="${createLink(controller: 'izvjestaj', action: 'send')}";
+
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        dataType: 'json',
+                        data: dataJSON
+                    });
+                });
+
+                $PDFBTN.click(function() {
+                    var dataJSON = $("#formIzvjestaj").serialize();
+                    var url="${createLink(controller: 'izvjestaj', action: 'printPdf')}";
 
                     $.ajax({
                         url: url,
@@ -533,6 +546,7 @@
         <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}">
             <button id="posaljiButton"><i class="fa fa-share-square"></i>   <g:message code="default.button.send.label"/></button>
+            <button id="printPdfButton"><i class="far fa-file-pdf"></i>   <g:message code="default.button.pdf.label"/></button>
         </g:if>
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN)}">
             <button id="vratiNaDoraduButton"><i class="fa fa-arrow-alt-circle-left"></i>   <g:message code="default.button.dorada.label"/></button>

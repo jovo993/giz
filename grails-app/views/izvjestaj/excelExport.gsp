@@ -38,8 +38,8 @@
                 <g:message code="izvjestaj.excel.uloga.title"/>
             </label>
 
-            <g:checkBox name="uloga.operator" value="${izvjestajExcelDTO?.uloga?.operator}" style="width: 2%; vertical-align: middle;"/>
-            <label for="uloga.operator" style="width: 6.6%; vertical-align: middle;">
+            <g:checkBox name="uloga.operater" value="${izvjestajExcelDTO?.uloga?.operater}" style="width: 2%; vertical-align: middle;"/>
+            <label for="uloga.operater" style="width: 6.6%; vertical-align: middle;">
                 <g:message code="preduzece.uloga.operater.title.bigger"/>
             </label>
 

@@ -18,15 +18,15 @@ class IzvjestajController {
 
   def resolveViewAndRedirect(Izvjestaj izvjestaj) {
     Preduzece preduzece = Preduzece.findById(izvjestaj.preduzece.id)
-    if (preduzece.sektor == Sektor.ELEKTRICNA_ENERGIJA && (izvjestaj.status == IzvjestajStatus.KREIRAN || izvjestaj.status == IzvjestajStatus.DORADA)) {
+    if (preduzece.sektor == Sektor.ELEKTRICNA_ENERGIJA) {
       render view: "/izvjestaj/ee/edit", model: [izvjestaj: izvjestaj, id: izvjestaj.id]
     }
 
-    if (preduzece.sektor == Sektor.GAS && (izvjestaj.status == IzvjestajStatus.KREIRAN || izvjestaj.status == IzvjestajStatus.DORADA)) {
+    if (preduzece.sektor == Sektor.GAS) {
       render view: "/izvjestaj/gas/edit", model: [izvjestaj: izvjestaj, id: izvjestaj.id]
     }
 
-    if (preduzece.sektor == Sektor.TOPLOTNA_ENERGIJA && (izvjestaj.status == IzvjestajStatus.KREIRAN || izvjestaj.status == IzvjestajStatus.DORADA)) {
+    if (preduzece.sektor == Sektor.TOPLOTNA_ENERGIJA) {
       render view: "/izvjestaj/te/edit", model: [izvjestaj: izvjestaj, id: izvjestaj.id]
     }
   }
@@ -128,17 +128,19 @@ class IzvjestajController {
     List<Izvjestaj> results = searchForExcel(dto)
 
     def headers = [
-      "Za godinu", "Status", "Izvje\u0160taj sastavio", "Datum podno\u0160enja", "Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
+      "Za godinu", "Status", "Izvje\u0161taj sastavio", "Datum podno\u0161enja", "Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
     ]
     def withProperties = [
-      "podaciPodnosenjeIzvjestaja.godina", "status", "podaciPodnosenjeIzvjestaja.displayName", "datumSlanja", "preduzece.naziv", "preduzece.sektor", "preduzece.uloga", "preduzece.adresa"
+      "podaciPodnosenjeIzvjestaja.godina", "status", "podaciPodnosenjeIzvjestaja.prezimeImePozicija", "datumSlanja", "preduzece.naziv", "preduzece.sektor", "preduzece.uloga", "preduzece.adresa"
     ]
 
     new WebXlsxExporter().with {
       setResponseHeaders(response)
       fillHeader(headers)
       add(results, withProperties)
-      save(response.outputStream)
+      workbook.write(response.outputStream)
+      response.outputStream.flush()
+      finalize()
     }
   }
 
@@ -182,7 +184,7 @@ class IzvjestajController {
       results = results.findAll { dto.sektori.contains(it.preduzece.sektor) }
     }
 
-    if (dto.uloga.operator || dto.uloga.distributer || dto.uloga.snabdjevac) {
+    if (dto.uloga.operater || dto.uloga.distributer || dto.uloga.snabdjevac) {
       results = results.findAll { dto.uloga.toString().split(", ").collect().containsAll(it.preduzece.uloga.toString().split(", ").collect()) }
     }
 
@@ -192,23 +194,24 @@ class IzvjestajController {
   @Transactional
   def send(params) {
     Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
-    if(izvjestaj.status)
-    izvjestaj.datumSlanja = new Date().clearTime()
+    if (izvjestaj.status)
+      izvjestaj.datumSlanja = new Date().clearTime()
+
     izvjestaj.status = IzvjestajStatus.POSLAN
     izvjestaj.save flush: true, failOnError: true
 
     request.withFormat {
       form multipartForm {
-        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id]) as Object
-        redirect izvjestaj
+        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.poslan.title",), izvjestaj.id]) as Object
+        resolveViewAndRedirect(izvjestaj)
       }
-      "*" { respond izvjestaj, [status: OK] }
     }
   }
 
-  def vratiNaDoradu(Izvjestaj izvjestaj) {
-    if(izvjestaj.status == IzvjestajStatus.POSLAN) {
-      if(UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+  def vratiNaDoradu(params) {
+    Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
+    if (izvjestaj.status == IzvjestajStatus.POSLAN) {
+      if (UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
         izvjestaj.status = IzvjestajStatus.DORADA
 
         izvjestaj.save flush: true, failOnError: true
@@ -216,29 +219,41 @@ class IzvjestajController {
         request.withFormat {
           form multipartForm {
             flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.dorada.title"), izvjestaj.id]) as Object
-            redirect izvjestaj
+            resolveViewAndRedirect(izvjestaj)
           }
-          "*" { respond izvjestaj, [status: OK] }
         }
+      } else {
+        flash.error = "Samo administrator moze promijeniti status izvjestaja"
+        resolveViewAndRedirect(izvjestaj)
       }
+    } else {
+      flash.error = "Izvjestaj mora biti u statusu POSLAN"
+      resolveViewAndRedirect(izvjestaj)
     }
   }
 
-  def verifikuj(Izvjestaj izvjestaj) {
-    if(izvjestaj.status == IzvjestajStatus.POSLAN) {
-      if(UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+  def verifikuj(params) {
+    Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
+    if (izvjestaj.status == IzvjestajStatus.POSLAN) {
+      if (UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
         izvjestaj.status = IzvjestajStatus.VERIFIKOVAN
 
         izvjestaj.save flush: true, failOnError: true
 
         request.withFormat {
           form multipartForm {
-            flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.dorada.title"), izvjestaj.id]) as Object
-            redirect izvjestaj
+            flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.verifikovan.title"), izvjestaj.id]) as Object
+            resolveViewAndRedirect(izvjestaj)
           }
-          "*" { respond izvjestaj, [status: OK] }
         }
+      } else {
+        flash.error = "Samo administrator moze promijeniti status izvjestaja"
+        return izvjestaj
       }
+    } else {
+      flash.error = "Izvjestaj mora biti u statusu POSLAN"
+      return izvjestaj
     }
   }
+
 }

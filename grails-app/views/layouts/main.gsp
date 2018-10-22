@@ -28,7 +28,7 @@
             <a class="navbar-brand" href="/#">
                 <i class="fa grails-icon">
                     <asset:image src="logo_fond.png"/>
-                </i> rODS - Registar operatora, distributera i snabdjevača energijom
+                </i> rODS - Registar operatera, distributera i snabdjevača energijom
             </a>
         </div>
         <g:set var="user" value="${grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser}"/>
@@ -38,8 +38,8 @@
                 <li><g:link controller="homepage" action="homepage"><g:message code="meni.homepage.title"/></g:link></li>
                 <li><g:link controller="izvjestaj" action="create"><g:message code="meni.izvjestaj.novi.title"/></g:link></li>
                 <li><g:link controller="preduzece" action="basicEdit" resource="${ba.giz.Preduzece.findById(user?.preduzece?.id)}"><g:message code="meni.obveznik.izmjena.title"/></g:link></li>
-                <li><g:link controller="izvjestaj" action="excelExport"><g:message code="meni.izvjestavanje.title"/></g:link></li>
                 <g:if test="${ba.giz.UserUtils.isUserAdmin(user)}">
+                    <li><g:link controller="izvjestaj" action="excelExport"><g:message code="meni.izvjestavanje.title"/></g:link></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.sifarnici.title"/><span
                                 class="caret"></span></a>

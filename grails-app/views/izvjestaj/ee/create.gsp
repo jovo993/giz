@@ -307,6 +307,7 @@
                             <span id="procjenaStanjaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
                         </td>
                     </tr>
+                    <tfoot><tr></tr></tfoot> %{--needed because of script--}%
                 </table>
             </div>
         </fieldset>

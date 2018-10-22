@@ -12,21 +12,22 @@ class CreateIzvjestajUtils {
   static void generateBasicData(params, Izvjestaj izvjestaj) {
 
     izvjestaj.datumKreiranja = Calendar.getInstance().getTime()
-    izvjestaj.status = IzvjestajStatus.KREIRAN
+    if(!izvjestaj.status)
+      izvjestaj.status = IzvjestajStatus.KREIRAN
     izvjestaj.preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
 
+    // TODO: if its a update copy on top of already existing objects (copyData(new, old))
     PodaciDozvolaObavljanjeDjelatnosti podaciDozvolaObavljanjeDjelatnosti = new PodaciDozvolaObavljanjeDjelatnosti()
-
     def pdod = params.izvjestaj.podaciDozvolaObavljanjeDjelatnosti
-    podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj = pdod.distribucijaRegistarskiBroj
-    podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija = pdod.distribucijaKomisija
-    podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje = parseDate(pdod.distribucijaDatumPocetkaVazenje.toString())
-    podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja = pdod.distribucijaPeriodVazenja.isInteger() ? pdod.distribucijaPeriodVazenja.toInteger() : null
+    podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj = pdod?.distribucijaRegistarskiBroj
+    podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija = pdod?.distribucijaKomisija
+    podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje = parseDate(pdod?.distribucijaDatumPocetkaVazenje?.toString())
+    podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja = pdod?.distribucijaPeriodVazenja?.isInteger() ? pdod?.distribucijaPeriodVazenja?.toInteger() : null
 
-    podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj = pdod.snabdijevanjeRegistarskiBroj
-    podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija = pdod.snabdijevanjeKomisija
-    podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje = parseDate(pdod.snabdijevanjeDatumPocetkaVazenje.toString())
-    podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja = pdod.snabdijevanjePeriodVazenja.isInteger() ? pdod.snabdijevanjePeriodVazenja.toInteger() : null
+    podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj = pdod?.snabdijevanjeRegistarskiBroj
+    podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija = pdod?.snabdijevanjeKomisija
+    podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje = parseDate(pdod?.snabdijevanjeDatumPocetkaVazenje?.toString())
+    podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja = pdod?.snabdijevanjePeriodVazenja?.isInteger() ? pdod?.snabdijevanjePeriodVazenja?.toInteger() : null
 
     podaciDozvolaObavljanjeDjelatnosti.save()
     izvjestaj.podaciDozvolaObavljanjeDjelatnosti = podaciDozvolaObavljanjeDjelatnosti
@@ -34,7 +35,7 @@ class CreateIzvjestajUtils {
 
     PodaciPodnosenjeIzvjestaja podaciPodnosenjeIzvjestaja = new PodaciPodnosenjeIzvjestaja()
     def ppi = params.izvjestaj.podaciPodnosenjeIzvjestaja
-    podaciPodnosenjeIzvjestaja.godina = ppi.godina_year
+    podaciPodnosenjeIzvjestaja.godina = ppi.godina
     podaciPodnosenjeIzvjestaja.prezimeImePozicija = ppi.prezimeImePozicija
     podaciPodnosenjeIzvjestaja.telefon = ppi.telefon
     podaciPodnosenjeIzvjestaja.email = ppi.email
@@ -78,7 +79,6 @@ class CreateIzvjestajUtils {
       case Sektor.TOPLOTNA_ENERGIJA:
         izvjestaj.tip = IzvjestajTip.T_DS
         izvjestaj.isporucenaToplotnaEnergija = parseJsonArrayToIsporucenaToplotnaEnergija(data.isporucenaToplotnaEnergija)
-        izvjestaj.isporucenaToplotnaEnergija.save()
         izvjestaj.podaciEnergenti = parseJsonArrayToListPodaciEnergenti(data.podaciEnergenti)
 
         izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca = generateStepenMjerenjaEnergije(data.stepenMjerenjeEnergijeStrukturaKupaca, false)
@@ -153,7 +153,7 @@ class CreateIzvjestajUtils {
   }
 
   private static parseDate(String date) {
-      return date == "" ? null : new Date().parse("yyyy-mm-dd", date)
+      return date == "" ? null :  date == null ? null : new Date().parse("yyyy-mm-dd", date)
   }
 
 }

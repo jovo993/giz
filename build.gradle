@@ -23,6 +23,7 @@ apply plugin: "asset-pipeline"
 repositories {
   mavenLocal()
   maven { url "https://repo.grails.org/grails/core" }
+  maven { url "http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts" }
   maven { url "https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports" }
 }
 

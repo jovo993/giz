@@ -33,7 +33,7 @@
             <label><g:message code="preduzece.uloga.title"/></label>
 
             <label for="izvjestaj.preduzece.operater" style="width: 10%"><g:message code="preduzece.uloga.operater.title"/></label>
-            <g:checkBox name="izvjestaj.preduzece.operater" value="${preduzece?.uloga?.operater}" style="width: 5%"/>
+            <g:checkBox name="izvjestaj.preduzece.operater" value="${preduzece?.uloga?.operator}" style="width: 5%"/>
 
             <label for="izvjestaj.preduzece.distributer" style="width: 10%"><g:message code="preduzece.uloga.distributer.title"/></label>
             <g:checkBox name="izvjestaj.preduzece.distributer" value="${preduzece?.uloga?.distributer}" style="width: 5%"/>
@@ -307,6 +307,7 @@
                             <span id="procjenaStanjaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
                         </td>
                     </tr>
+                    <tfoot><tr></tr></tfoot> %{--needed because of script--}%
                 </table>
             </div>
         </fieldset>

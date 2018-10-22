@@ -2,7 +2,7 @@ package ba.giz
 
 class PodaciPodnosenjeIzvjestaja {
 
-  Integer godina
+  String godina
   String prezimeImePozicija
   String telefon
   String email

@@ -6,7 +6,7 @@
     <title>
         <g:layoutTitle default="rODS"/>
     </title>
-    <asset:link rel="icon" href="logo_fond.ico" type="image/x-ico" />
+    <asset:link rel="icon" href="logo_fond.ico" type="image/x-ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <asset:stylesheet src="application.css"/>
@@ -28,26 +28,29 @@
             <a class="navbar-brand" href="/#">
                 <i class="fa grails-icon">
                     <asset:image src="logo_fond.png"/>
-                </i> rODS - Registar operatora, distributera i snabdjevača energijom
+                </i> rODS - Registar operatera, distributera i snabdjevača energijom
             </a>
         </div>
+        <g:set var="user" value="${grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser}"/>
 
         <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
             <ul class="nav navbar-nav navbar-right">
                 <li><g:link controller="homepage" action="homepage"><g:message code="meni.homepage.title"/></g:link></li>
                 <li><g:link controller="izvjestaj" action="create"><g:message code="meni.izvjestaj.novi.title"/></g:link></li>
-                %{--TODO: change to preduzece of current user--}%
-                <li><g:link controller="preduzece" action="basicEdit" resource="${ba.giz.Preduzece.findById(grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)}"><g:message code="meni.obveznik.izmjena.title"/></g:link></li>
-                <li><g:link controller="izvjestaj" action="excelExport"><g:message code="meni.izvjestavanje.title"/></g:link></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.sifarnici.title"/><span
-                            class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><g:link controller="preduzece" action="index"><g:message code="meni.sifarnici.preduzece.title"/></g:link></li>
-                        <li><g:link controller="user" action="index"><g:message code="meni.sifarnici.user.title"/></g:link></li>
-                    </ul>
-                </li>
-                <li><g:link controller="clanak" action="index"><g:message code="meni.clanci.title"/></g:link></li>
+                <li><g:link controller="preduzece" action="basicEdit" resource="${ba.giz.Preduzece.findById(user?.preduzece?.id)}"><g:message code="meni.obveznik.izmjena.title"/></g:link></li>
+                <g:if test="${ba.giz.UserUtils.isUserAdmin(user)}">
+                    <li><g:link controller="izvjestaj" action="excelExport"><g:message code="meni.izvjestavanje.title"/></g:link></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.sifarnici.title"/><span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><g:link controller="preduzece" action="index"><g:message code="meni.sifarnici.preduzece.title"/></g:link></li>
+                            <li><g:link controller="user" action="index"><g:message code="meni.sifarnici.user.title"/></g:link></li>
+                            <li><g:link controller="godina" action="index"><g:message code="meni.sifarnici.godina.title"/></g:link></li>
+                        </ul>
+                    </li>
+                    <li><g:link controller="clanak" action="index"><g:message code="meni.clanci.title"/></g:link></li>
+                </g:if>
                 <li><g:link controller="uputstvo" action="index"><g:message code="meni.uputstvo.title"/></g:link></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.options.title"/><span

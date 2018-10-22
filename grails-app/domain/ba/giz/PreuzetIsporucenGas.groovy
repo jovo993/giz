@@ -2,11 +2,12 @@ package ba.giz
 
 class PreuzetIsporucenGas {
 
-  Double preuzetaKolicinaGas
-  Double industrijskiPotrosaciGas
-  Double sistemiDaljinskoGrijanjaGas
-  Double komercijalniKrajnjiKupciGas
-  Double domacinstvaGas
-  Double ukupnoIsporucenoGas
-  Double gubiciGas
+  Double preuzetaKolicina
+  Double industrijskiPotrosaci
+  Double sistemiDaljinskoGrijanja
+  Double komercijalniKrajnjiKupci
+  Double domacinstva
+  Double ukupnoIsporuceno
+  Double gubici
+
 }

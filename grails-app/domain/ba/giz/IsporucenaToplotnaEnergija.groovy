@@ -2,10 +2,10 @@ package ba.giz
 
 class IsporucenaToplotnaEnergija {
 
-  Double poslovniPotrosaciToplotnaEnergija
-  Double stambeniPotrosaciMwhToplotnaEnergija
-  Double stambeniPotrosaciM2ToplotnaEnergija
-  Double ukupnoIsporucenoToplotnaEnergija
-  Double gubiciToplotnaEnergija
+  Double poslovniPotrosaciMwh
+  Double stambeniPotrosaciMwh
+  Double stambeniPotrosaciM2
+  Double ukupnoIsporuceno
+  Double gubici
 
 }

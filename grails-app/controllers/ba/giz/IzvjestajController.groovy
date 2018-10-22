@@ -88,22 +88,6 @@ class IzvjestajController {
   }
 
   @Transactional
-  def send(params) {
-    Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
-    izvjestaj.datumSlanja = new Date().clearTime()
-    izvjestaj.status = IzvjestajStatus.POSLAN
-    izvjestaj.save flush: true, failOnError: true
-
-    request.withFormat {
-      form multipartForm {
-        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id]) as Object
-        redirect izvjestaj
-      }
-      "*" { respond izvjestaj, [status: OK] }
-    }
-  }
-
-  @Transactional
   def delete(Izvjestaj izvjestaj) {
 
     if (izvjestaj == null) {
@@ -144,17 +128,19 @@ class IzvjestajController {
     List<Izvjestaj> results = searchForExcel(dto)
 
     def headers = [
-      "Za godinu", "Status", "Izvje\u0160taj sastavio", "Datum podno\u0160enja", "Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
+      "Za godinu", "Status", "Izvje\u0161taj sastavio", "Datum podno\u0161enja", "Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
     ]
     def withProperties = [
-      "podaciPodnosenjeIzvjestaja.godina", "status", "podaciPodnosenjeIzvjestaja.displayName", "datumSlanja", "preduzece.naziv", "preduzece.sektor", "preduzece.uloga", "preduzece.adresa"
+      "podaciPodnosenjeIzvjestaja.godina", "status", "podaciPodnosenjeIzvjestaja.prezimeImePozicija", "datumSlanja", "preduzece.naziv", "preduzece.sektor", "preduzece.uloga", "preduzece.adresa"
     ]
 
     new WebXlsxExporter().with {
       setResponseHeaders(response)
       fillHeader(headers)
       add(results, withProperties)
-      save(response.outputStream)
+      workbook.write(response.outputStream)
+      response.outputStream.flush()
+      finalize()
     }
   }
 
@@ -198,10 +184,63 @@ class IzvjestajController {
       results = results.findAll { dto.sektori.contains(it.preduzece.sektor) }
     }
 
-    if (dto.uloga.operator || dto.uloga.distributer || dto.uloga.snabdjevac) {
+    if (dto.uloga.operater || dto.uloga.distributer || dto.uloga.snabdjevac) {
       results = results.findAll { dto.uloga.toString().split(", ").collect().containsAll(it.preduzece.uloga.toString().split(", ").collect()) }
     }
 
     results
+  }
+
+  @Transactional
+  def send(params) {
+    Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
+    if(izvjestaj.status)
+    izvjestaj.datumSlanja = new Date().clearTime()
+    izvjestaj.status = IzvjestajStatus.POSLAN
+    izvjestaj.save flush: true, failOnError: true
+
+    request.withFormat {
+      form multipartForm {
+        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id]) as Object
+        redirect izvjestaj
+      }
+      "*" { respond izvjestaj, [status: OK] }
+    }
+  }
+
+  def vratiNaDoradu(Izvjestaj izvjestaj) {
+    if(izvjestaj.status == IzvjestajStatus.POSLAN) {
+      if(UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+        izvjestaj.status = IzvjestajStatus.DORADA
+
+        izvjestaj.save flush: true, failOnError: true
+
+        request.withFormat {
+          form multipartForm {
+            flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.dorada.title"), izvjestaj.id]) as Object
+            redirect izvjestaj
+          }
+          "*" { respond izvjestaj, [status: OK] }
+        }
+      }
+    }
+  }
+
+  def verifikuj(Izvjestaj izvjestaj) {
+    if(izvjestaj.status == IzvjestajStatus.POSLAN) {
+      if(UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+        izvjestaj.status = IzvjestajStatus.VERIFIKOVAN
+
+        izvjestaj.save flush: true, failOnError: true
+
+        request.withFormat {
+          form multipartForm {
+            flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.dorada.title"), izvjestaj.id]) as Object
+            redirect izvjestaj
+          }
+          "*" { respond izvjestaj, [status: OK] }
+        }
+      }
+    }
   }
 }

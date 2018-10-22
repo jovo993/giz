@@ -6,15 +6,14 @@
     <style type="text/css" media="screen">
 
     body {
-        background: url("/assets/bulb.jpg") repeat-y top;
-        background-size: 100%;
-        min-height: 100vh;
+        background: url("/assets/bulb.jpg");
+        background-size: cover;
         font-family: sans-serif;
         -webkit-font-smoothing: subpixel-antialiased;
     }
 
     .fieldset {
-        margin: 20px;
+        margin: 1%;
         color: #9e9e9e;
         max-width: 100%;
         padding: 16px;
@@ -25,13 +24,15 @@
     }
 
     .column {
+        position: relative;
         float: left;
         background-color: transparent;
         height: 100%;
     }
 
     .left {
-        width: 80%;
+        width: 95%;
+        position: absolute;
     }
 
     .right {
@@ -45,7 +46,6 @@
         border-radius: 3px;
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08), inset 0 0 0 1px #DBE3E7;
         color: #536171;
-        display: block;
         position: relative;
     }
 
@@ -53,42 +53,9 @@
         padding: 20px 40px 30px;
     }
 
-    .login-message {
-        background-color: #fef8c1;
-        border: 1px solid #f7e7b7;
-        border-radius: 3px;
-        color: #76674E;
-        display: block;
-        font-size: 14px;
-        line-height: 1.5;
-        padding: 8px 10px;
-        margin: 0 0 30px 0;
-    }
-
     .login-form-item {
         margin-bottom: 20px;
         position: relative;
-    }
-
-    .login-title {
-        text-align: center;
-        margin: 40px auto;
-    }
-
-    .login-headline {
-        font-size: 40px;
-        line-height: 1.2;
-        font-weight: 500;
-        color: #2A3039;
-        margin: 0;
-    }
-
-    .login-subheadline {
-        color: #8091A5;
-        font-weight: 500;
-        line-height: 1.4;
-        font-size: 20px;
-        margin-bottom: 30px;
     }
 
     .login-form-label {
@@ -169,8 +136,8 @@
 <div style="width: 1800px; margin: auto;">
     <div class="row">
         <div class="column left">
-            <h2 style="color: whitesmoke; text-align: center">Novosti, informacije, obavještenja</h2>
-            <table>
+            <h2 style="color: whitesmoke; text-align: center" >Novosti, informacije, obavještenja</h2>
+            <table style="margin-left: 30%">
                 <tbody>
                 <g:each in="${clanci}" var="bean">
                     <tr>
@@ -224,7 +191,7 @@
                         <h3>O aplikaciji</h3>
                     </th>
                     <tr>
-                        <td style="padding: 1em;">Web aplikacija "rODS - Registar operatora, distributera i snabdjevača energijom" realizovana je uz pomoć Njemačke organizacije za međunarodnu saradnju GIZ.</td>
+                        <td style="padding: 1em;">Web aplikacija "rODS - Registar operatera, distributera i snabdjevača energijom" realizovana je uz pomoć Njemačke organizacije za međunarodnu saradnju GIZ.</td>
                     </tr>
                     <tr>
                         <td style="padding: 1em;"><asset:image src="giz-saradnja.png" style="width: 100%"/></td>
@@ -253,5 +220,7 @@
             document.forms['loginForm'].elements['${usernameParameter ?: 'username'}'].focus();
           })();
         </script>
+    </div>
+</div>
 </body>
 </html>

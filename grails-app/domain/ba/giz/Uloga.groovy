@@ -13,7 +13,7 @@ class Uloga {
   }
 
   String toString() {
-    String uloge = operater ? "OPERATOR, " : ""
+    String uloge = operater ? "OPERATER, " : ""
     uloge += distributer ? "DISTRIBUTER, " : ""
     uloge += snabdjevac ? "SNABDJEVA\u010C, " : ""
     if (!uloge.equals("")) {

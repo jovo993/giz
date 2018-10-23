@@ -9,6 +9,16 @@
 		</queryString>
 	</subDataset>
 	<subDataset name="Empty Dataset1" uuid="4319d210-1c7d-4745-9f26-d9de94aec7ea"/>
+	<parameter name="preduzeceNaziv" class="java.lang.String"/>
+	<parameter name="preduzeceAdresa" class="java.lang.String"/>
+	<parameter name="preduzeceMaticniBroj" class="java.lang.String"/>
+	<parameter name="preduzeceJib" class="java.lang.String"/>
+	<parameter name="preduzecePib" class="java.lang.String"/>
+	<parameter name="preduzeceTelefon" class="java.lang.String"/>
+	<parameter name="preduzeceFax" class="java.lang.String"/>
+	<parameter name="preduzeceMail" class="java.lang.String"/>
+	<parameter name="preduzeceBrojZaposlenih" class="java.lang.Integer"/>
+	<parameter name="preduzeceGodisnjiPromet" class="java.lang.Double"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -179,6 +189,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA["$P{preduzeceNaziv}"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="210" y="41" width="320" height="18" uuid="edefa44b-2e41-41aa-ace3-c2a5e95c956e"/>
@@ -191,6 +202,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA["$P{preduzeceAdresa}"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="210" y="59" width="320" height="20" uuid="458be210-b105-48e5-8be9-e4e3673048ef"/>
@@ -203,6 +215,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA["$P{preduzeceMaticniBroj}"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="210" y="187" width="320" height="18" uuid="fc5744bd-7743-49c0-be8f-550e44da1e77"/>
@@ -215,6 +228,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA["$P{preduzeceGodisnjiPromet}"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="210" y="169" width="320" height="18" uuid="0abe4270-1eac-4021-9f5e-c5410fa1121a"/>
@@ -227,6 +241,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA["$P{preduzeceBrojZaposlenih}"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="210" y="151" width="320" height="18" uuid="20da558c-88be-4670-8099-d38443bed3c8"/>
@@ -239,6 +254,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA["$P{preduzeceMail}"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="210" y="133" width="320" height="18" uuid="933087de-a727-4a76-8134-65fd63ffcefa"/>
@@ -251,6 +267,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA["$P{preduzeceFax}"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="210" y="115" width="320" height="18" uuid="f2147325-4ce1-42c5-acb4-0db68de6d9b7"/>
@@ -263,6 +280,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA["$P{preduzeceTelefon}"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="210" y="97" width="320" height="18" uuid="4c9613b5-28fe-4e56-aed3-b89aceb56c58"/>
@@ -275,6 +293,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA["$P{preduzecePib}"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="210" y="79" width="320" height="18" uuid="46c62c2e-6404-470f-83c8-3e0c3caf3628"/>
@@ -287,6 +306,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA["$P{preduzeceJib}"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="30" y="210" width="290" height="21" uuid="fcb433ba-4bd0-49c4-8920-d78142ca6442"/>

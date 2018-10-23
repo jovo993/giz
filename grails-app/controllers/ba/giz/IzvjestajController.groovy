@@ -3,7 +3,15 @@ package ba.giz
 import ba.giz.dto.IzvjestajExcelDTO
 import grails.transaction.Transactional
 import grails.util.Holders
+import net.sf.jasperreports.engine.DefaultJasperReportsContext
+import net.sf.jasperreports.engine.JasperCompileManager
+import net.sf.jasperreports.engine.JasperExportManager
+import net.sf.jasperreports.engine.JasperFillManager
+import net.sf.jasperreports.engine.JasperPrint
+import net.sf.jasperreports.engine.JasperReport
+import org.apache.commons.io.FileUtils
 import pl.touk.excel.export.WebXlsxExporter
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource
 
 import static org.springframework.http.HttpStatus.*
 import static pl.touk.excel.export.abilities.RowManipulationAbility.fillHeader
@@ -246,10 +254,44 @@ class IzvjestajController {
 
   @Transactional
   def printPdf(params) {
+    DefaultJasperReportsContext.getInstance().setProperty("net.sf.jasperreports.default.font.name", "SansSerif")
+    DefaultJasperReportsContext.getInstance().setProperty("net.sf.jasperreports.default.pdf.encoding", "Cp1250")
+
+    String report = "grails-app/resources/jasper/izvjestaj_ee.jrxml"
+    JasperReport jreport = JasperCompileManager.compileReport(report)
+
     Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
+    def bean = []
+    bean = [
+      preduzeceNaziv: izvjestaj.preduzece.naziv ,
+      preduzeceAdresa: izvjestaj.preduzece.adresa,
+      preduzeceMaticniBroj: izvjestaj.preduzece.maticniBrojJedinstvenogRegistra,
+      preduzeceJib: izvjestaj.preduzece.jib,
+      preduzecePib: izvjestaj.preduzece.pib,
+      preduzeceTelefon: izvjestaj.preduzece.telefon,
+      preduzeceFax: izvjestaj.preduzece.fax,
+      preduzeceMail: izvjestaj.preduzece.email,
+      preduzeceBrojZaposlenih: izvjestaj.preduzece.brojZaposlenih,
+      preduzeceGodisnjiPromet: izvjestaj.preduzece.ukupanGodisnjiPromet
+    ]
 
-    //TODO: map and print pdf
+    bean.collect { it ?: "" }
 
-    null
+    JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource([])
+
+    JasperPrint jprint = JasperFillManager.fillReport(jreport, bean, ds)
+
+    byte[] byteArray = JasperExportManager.exportReportToPdf(jprint)
+
+      // neki divlji pokušaji
+//    def file = File.createTempFile("izvjestaj",".pdf")
+//    JasperExportManager.exportReportToPdfFile(jprint, file.absolutePath)
+//
+//    response.setContentType("application/pdf")
+//    response.setHeader("Content-disposition", "attachment;filename=${file.getName()}")
+//    response.outputStream << file.newInputStream()
+//    response.outputStream.flush()
+
+//    FileUtils.writeByteArrayToFile(new File("/Downloads/izvjestaj.pdf"), byteArray)
   }
 }

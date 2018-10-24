@@ -20,9 +20,8 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:set var="editable" value="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}"/>
     <g:set var="isAdmin" value="${ba.giz.UserUtils.isUserAdmin(grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser)}"/>
-    <g:hiddenField id="editable" name="editable" value="${editable}"/>
+    <g:hiddenField id="editable" name="editable" value="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}"/>
     <form id="formIzvjestaj">
         <fieldset class="fieldset" disabled>
             <legend><g:message code="preduzece.fieldset.title"/></legend>
@@ -169,7 +168,7 @@
                 $(document).ready(function() {
                     var $TABLE = $('#energentiTable');
 
-                    if (editable === 'false') {
+                    if (editable.value === 'false') {
                         disableAndHideFields();
                     }
 
@@ -474,7 +473,9 @@
                         url: url,
                         type: 'post',
                         dataType: 'json',
-                        data: dataJSON
+                        data: dataJSON,
+                        async: false,
+                        success: success()
                     });
                 });
 
@@ -495,12 +496,13 @@
                         type: 'post',
                         dataType: 'json',
                         data: dataJSON,
+                        async: false,
                         success: success()
                     });
                 });
 
                 function success() {
-                  window.location="<g:link controller="izvjestaj" action="resolveViewAndRedirect" resource="${this.izvjestaj}"/>";
+                  window.location="<g:createLink controller="izvjestaj" action="show" params="[id: this.izvjestaj.id]"/>";
                 }
 
                 function createJSONData(argument, table) {

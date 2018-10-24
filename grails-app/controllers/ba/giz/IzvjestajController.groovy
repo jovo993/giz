@@ -11,6 +11,10 @@ import static pl.touk.excel.export.abilities.RowManipulationAbility.fillHeader
 @Transactional(readOnly = true)
 class IzvjestajController {
 
+  def show(Long id) {
+    resolveViewAndRedirect(Izvjestaj.findById(id))
+  }
+
   def index(Integer max) {
     params.max = Math.min(max ?: 10, 100)
     respond Izvjestaj.list(params), model: [izvjestajCount: Izvjestaj.count()]

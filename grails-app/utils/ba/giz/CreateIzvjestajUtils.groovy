@@ -11,9 +11,6 @@ class CreateIzvjestajUtils {
 
   static void generateBasicData(params, Izvjestaj izvjestaj) {
 
-    izvjestaj.datumKreiranja = Calendar.getInstance().getTime()
-    if(!izvjestaj.status)
-      izvjestaj.status = IzvjestajStatus.KREIRAN
     izvjestaj.preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
 
     // TODO: if its a update copy on top of already existing objects (copyData(new, old))

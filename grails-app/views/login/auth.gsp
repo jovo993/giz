@@ -5,9 +5,19 @@
     <asset:link rel="icon" href="logo_fond.ico" type="image/x-ico"/>
     <style type="text/css" media="screen">
 
+    .header {
+        padding: 60px;
+        text-align: center;
+        background: #1abc9c;
+        color: white;
+        font-size: 30px;
+    }
+
     body {
         background: url("/assets/bulb.jpg");
         background-size: cover;
+        overflow: hidden;
+        display: inline-block;
         font-family: sans-serif;
         -webkit-font-smoothing: subpixel-antialiased;
     }
@@ -134,17 +144,18 @@
 
 <body>
 <div style="width: 1800px; margin: auto;">
+
+
     <div class="row">
         <div class="column left">
-            <h2 style="color: whitesmoke; text-align: center" >Novosti, informacije, obavještenja</h2>
+            <h2 style="color: whitesmoke; text-align: center">Novosti, informacije, obavještenja</h2>
             <table style="margin-left: 30%">
                 <tbody>
                 <g:each in="${clanci}" var="bean">
                     <tr>
                         <td>
                             <fieldset class="fieldset" style="background-color: #ebf4f9; color: #3d3d3f; text-align: justify;">
-                                <legend style="padding-top: 20px; width: 69%; text-align: center; color: #3d3d3f"><h3>${bean.naslov} - ${bean.autor} - <g:formatDate>${bean.datumObjave}</g:formatDate></h3>
-                                </legend>
+                                <legend style="padding-top: 20px; width: 69%; text-align: center; color: #3d3d3f"><h3>${bean.naslov} - <g:formatDate>${bean.datumObjave}</g:formatDate></h3></legend>
                                 <span style="color: black; font-family: Helvetica">${bean.sadrzaj}</span>
                             </fieldset>
                         </td>
@@ -158,20 +169,15 @@
             <div style="padding-top: 30px; margin: auto;">
                 <div class="login-box">
                     <div class="login-box-inner">
-                        <span style="text-align: center"><asset:image src="logo_fond.ico" style="width: 64px"/></span>
 
                         <form action="${postUrl ?: '/login/authenticate'}" method="POST" autocomplete="off">
                             <div class="login-form-item">
                                 <label for="username" class="login-form-label"><g:message code='giz.login.usename.label'/>:</label>
                                 <input type="text" name="${usernameParameter ?: 'username'}" id="username" autofocus="autofocus" class="login-form-input"/>
-                            </div>
 
-                            <div class="login-form-item">
                                 <label for="password" class="login-form-label"><g:message code='giz.login.password.label'/>:</label>
                                 <input type="password" name="${passwordParameter ?: 'password'}" id="password" class="login-form-input"/>
-                            </div>
 
-                            <div class="login-form-item">
                                 <input type="checkbox" name="remember_me" id="remember_me"/>
                                 <label for="remember_me" class="login-form-label login-form-label--inline"><g:message code='giz.login.rememberme.label'/></label>
                             </div>

@@ -1,11 +1,13 @@
 package ba.giz
 
 import ba.giz.dto.IzvjestajExcelDTO
+import grails.converters.JSON
 import grails.transaction.Transactional
 import grails.util.Holders
 import pl.touk.excel.export.WebXlsxExporter
 
-import static org.springframework.http.HttpStatus.*
+import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.http.HttpStatus.NO_CONTENT
 import static pl.touk.excel.export.abilities.RowManipulationAbility.fillHeader
 
 @Transactional(readOnly = true)
@@ -57,37 +59,41 @@ class IzvjestajController {
 
   @Transactional
   def save(params) {
+    try {
+      Izvjestaj izvjestaj = new Izvjestaj()
+      izvjestaj.status = IzvjestajStatus.KREIRAN
+      izvjestaj.datumKreiranja = Calendar.getInstance().getTime()
 
-    Izvjestaj izvjestaj = new Izvjestaj()
+      CreateIzvjestajUtils.generateBasicData(params, izvjestaj)
+      CreateIzvjestajUtils.generateTypeDependentData(params, izvjestaj)
 
-    CreateIzvjestajUtils.generateBasicData(params, izvjestaj)
-    CreateIzvjestajUtils.generateTypeDependentData(params, izvjestaj)
+      izvjestaj.save flush: true, failOnError: true
 
-    izvjestaj.save flush: true, failOnError: true
-
-    request.withFormat {
-      form multipartForm {
-        flash.message = message(code: "default.created.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id]) as Object
-        redirect izvjestaj
-      }
-      "*" { respond izvjestaj, [created: OK] }
+      response.status = 200
+      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je uspješno kreiran.'] as JSON)
     }
+    catch (Exception e) {
+      response.status = 500
+      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom kreiranja izvještaja.', error: e.getLocalizedMessage()] as JSON)
+    }
+
 
   }
 
   @Transactional
   def update(params) {
-    Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
-    CreateIzvjestajUtils.generateBasicData(params, izvjestaj)
-    CreateIzvjestajUtils.generateTypeDependentData(params, izvjestaj)
-    izvjestaj.save flush: true, failOnError: true
+    try {
+      Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
+      CreateIzvjestajUtils.generateBasicData(params, izvjestaj)
+      CreateIzvjestajUtils.generateTypeDependentData(params, izvjestaj)
+      izvjestaj.save flush: true, failOnError: true
 
-    request.withFormat {
-      form multipartForm {
-        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.novi.title", default: "Izvjestaj"), izvjestaj.id]) as Object
-        redirect izvjestaj
-      }
-      "*" { respond izvjestaj, [status: OK] }
+      response.status = 200
+      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je uspješno ažuriran.'] as JSON)
+    }
+    catch (Exception e) {
+      response.status = 500
+      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom ažuriranja izvještaja.', error: e.getLocalizedMessage()] as JSON)
     }
   }
 
@@ -194,19 +200,23 @@ class IzvjestajController {
   }
 
   @Transactional
-  def send(params) {
-    Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
-    if (izvjestaj.status)
+  def posalji(params) {
+    try {
+      Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
+      CreateIzvjestajUtils.generateBasicData(params, izvjestaj)
+      CreateIzvjestajUtils.generateTypeDependentData(params, izvjestaj)
+
       izvjestaj.datumSlanja = new Date().clearTime()
+      izvjestaj.status = IzvjestajStatus.POSLAN
 
-    izvjestaj.status = IzvjestajStatus.POSLAN
-    izvjestaj.save flush: true, failOnError: true
+      izvjestaj.save flush: true, failOnError: true
 
-    request.withFormat {
-      form multipartForm {
-        flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.poslan.title",), izvjestaj.id]) as Object
-        resolveViewAndRedirect(izvjestaj)
-      }
+      response.status = 200
+      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je uspješno poslan.'] as JSON)
+    }
+    catch (Exception e) {
+      response.status = 500
+      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom slanja izvještaja.', error: e.getLocalizedMessage()] as JSON)
     }
   }
 
@@ -218,19 +228,15 @@ class IzvjestajController {
 
         izvjestaj.save flush: true, failOnError: true
 
-        request.withFormat {
-          form multipartForm {
-            flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.dorada.title"), izvjestaj.id]) as Object
-            resolveViewAndRedirect(izvjestaj)
-          }
-        }
+        response.status = 200
+        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je vraćen na doradu.'] as JSON)
       } else {
-        flash.error = "Samo administrator moze promijeniti status izvjestaja"
-        resolveViewAndRedirect(izvjestaj)
+        response.status = 500
+        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Nemate potrebne privilegije.'] as JSON)
       }
     } else {
-      flash.error = "Izvjestaj mora biti u statusu POSLAN"
-      resolveViewAndRedirect(izvjestaj)
+      response.status = 500
+      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj nije u potrebnom statusu.'] as JSON)
     }
   }
 
@@ -242,19 +248,15 @@ class IzvjestajController {
 
         izvjestaj.save flush: true, failOnError: true
 
-        request.withFormat {
-          form multipartForm {
-            flash.message = message(code: "default.updated.message", args: [message(code: "izvjestaj.verifikovan.title"), izvjestaj.id]) as Object
-            resolveViewAndRedirect(izvjestaj)
-          }
-        }
+        response.status = 200
+        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je vraćen na doradu.'] as JSON)
       } else {
-        flash.error = "Samo administrator moze promijeniti status izvjestaja"
-        return izvjestaj
+        response.status = 500
+        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Nemate potrebne privilegije.'] as JSON)
       }
     } else {
-      flash.error = "Izvjestaj mora biti u statusu POSLAN"
-      return izvjestaj
+      response.status = 500
+      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj nije u potrebnom statusu.'] as JSON)
     }
   }
 

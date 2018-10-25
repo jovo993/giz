@@ -10,28 +10,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <asset:stylesheet src="application.css"/>
+    <asset:javascript src="/dist/notifications.js"/>
+    <asset:stylesheet src="/dist/notifications.css"/>
 
     <g:layoutHead/>
 </head>
 
 <body>
-
+<g:set var="user" value="${grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser}"/>
 <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" href="/#">
-                <i class="fa grails-icon">
-                    <asset:image src="logo_fond.png"/>
-                </i> rODS - Registar operatora, distributera i snabdjevača energijom
+                <i class="grails-icon"><asset:image src="logo_fond.png"/></i>
+                rODS - Registar operatora, distributera i snabdjevača energijom
             </a>
         </div>
-        <g:set var="user" value="${grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser}"/>
 
         <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
             <ul class="nav navbar-nav navbar-right">
@@ -76,6 +70,21 @@
 </div>
 
 <asset:javascript src="application.js"/>
+<g:javascript library='jquery'>
+    const errorNotification = window.createNotification({
+        positionClass: 'nfc-bottom-right',
+        theme: 'error'
+    });
+    const successNotification = window.createNotification({
+        positionClass: 'nfc-bottom-right',
+        theme: 'success'
+    });
+    const warningNotification = window.createNotification({
+        positionClass: 'nfc-bottom-right',
+        theme: 'warning'
+    });
+</g:javascript>
+
 
 </body>
 </html>

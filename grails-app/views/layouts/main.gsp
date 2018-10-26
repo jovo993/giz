@@ -15,7 +15,8 @@
 </head>
 
 <body>
-
+<g:set var="user" value="${grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser}"/>
+<div style="text-align: right; margin-right: 10px" >${user.prezimeIme} / ${user.preduzece.naziv}</div>
 <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -31,8 +32,6 @@
                 </i> rODS - Registar operatera, distributera i snabdjevača energijom
             </a>
         </div>
-        <g:set var="user" value="${grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser}"/>
-
         <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
             <ul class="nav navbar-nav navbar-right">
                 <li><g:link controller="homepage" action="homepage"><g:message code="meni.homepage.title"/></g:link></li>

@@ -546,6 +546,9 @@
         <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}">
             <button id="posaljiButton"><i class="fa fa-share-square"></i>   <g:message code="default.button.send.label"/></button>
+            %{--<g:link controller="izvjestaj" action="create"><g:message code="meni.izvjestaj.novi.title"/></g:link>--}%
+            %{--<input class="pdf" type="submit" value="${message(code: 'default.button.pdf.label', default: 'Generiši pdf')}" style="width: 10%"/>--}%
+            %{--<g:actionSubmit class="pdf" action="printPdf" resource="${this.izvjestaj}" value="${message(code: 'default.button.pdf.label', default: 'Generiši pdf')}" style="width: 10%"/>--}%
             <button id="printPdfButton"><i class="far fa-file-pdf"></i>   <g:message code="default.button.pdf.label"/></button>
         </g:if>
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN)}">

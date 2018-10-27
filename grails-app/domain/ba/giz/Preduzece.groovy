@@ -23,7 +23,7 @@ class Preduzece {
   static constraints = {
     naziv nullable: false, blank: false
     sektor nullable: false, blank: false
-    uloga nullable: false, blank: false, validator: { val -> if (!val || !(val.operator || val.distributer || val.snabdjevac)) return ['ulogaObavezna'] }
+    uloga nullable: false, blank: false, validator: { val -> if (!val || !(val.operater || val.distributer || val.snabdjevac)) return ['ulogaObavezna'] }
     status nullable: false, blank: false
     adresa nullable: false, blank: false
     maticniBrojJedinstvenogRegistra matches: "^\\d+\$", nullable: false, blank: false

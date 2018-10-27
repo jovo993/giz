@@ -138,27 +138,104 @@ class IzvjestajController {
     List<Izvjestaj> results = searchForExcel(dto)
 
     def headers = [
-      "Za godinu", "Status", "Izvje\u0160taj sastavio", "Datum podno\u0160enja", "Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
+      "Za godinu", "Status", "Izvje\u0161taj sastavio", "Datum podno\u0161enja", "Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
     ]
     def withProperties = [
-      "podaciPodnosenjeIzvjestaja.godina", "status", "podaciPodnosenjeIzvjestaja.displayName", "datumSlanja", "preduzece.naziv", "preduzece.sektor", "preduzece.uloga", "preduzece.adresa"
+      "podaciPodnosenjeIzvjestaja.godina", "status", "podaciPodnosenjeIzvjestaja.prezimeImePozicija", "datumSlanja", "preduzece.naziv", "preduzece.sektor", "preduzece.uloga", "preduzece.adresa"
     ]
 
     new WebXlsxExporter().with {
       setResponseHeaders(response)
       fillHeader(headers)
       add(results, withProperties)
-      save(response.outputStream)
+      workbook.write(response.outputStream)
+      response.outputStream.flush()
+      finalize()
     }
   }
 
   @Transactional
-  def generateQuantitativeExcel(IzvjestajExcelDTO izvjestajExcelDTO) {
-    //TODO: add this when the whole Izvjestaj process is implemented, ie when all the numeric values are present
-    null
+  def generateQuantitativeExcel(IzvjestajExcelDTO dto) {
+    if (dto.hasErrors()) {
+      transactionStatus.setRollbackOnly()
+      respond dto.errors, view: "excelExport"
+      return
+    }
+
+    List<Izvjestaj> results = searchForExcel(dto)
+
+    def headers = ["Za godinu", "Naziv preduze\u0107a", "Sektor"]
+
+    def withProperties = ["podaciPodnosenjeIzvjestaja.godina", "preduzece.naziv", "preduzece.sektor"]
+
+    if (!dto.sektori || dto.sektori.isEmpty() || dto.sektori.contains(Sektor.ELEKTRICNA_ENERGIJA)) {
+      //TODO: maybe add transient fields on "ee" Izvjestaj which correlate to numeric values in the "UKUPNO" row on "PREUZETA I ISPORUCENA EE, GUBICI" table
+    }
+
+    if (!dto.sektori || dto.sektori.isEmpty() || dto.sektori.contains(Sektor.GAS)) {
+      headers += [
+        "Preuzete koli\u010Dine gasa (Sm3)", "Isporu\u010Dene koli\u010Dine gasa u Sm3 (industrijski potro\u0161a\u010Di)", "Isporu\u010Dene koli\u010Dine gasa u Sm3 (sistemi daljinskog grijanja)",
+        "Isporu\u010Dene koli\u010Dine gasa u Sm3 (komercijalni krajnji kupci)", "Isporu\u010Dene koli\u010Dine gasa u Sm3 (doma\u0107instva)",
+        "Ukupno isporu\u010Deno", "Gubici"
+      ]
+
+      withProperties += [
+        "preuzetIsporucenGas.preuzetaKolicina", "preuzetIsporucenGas.industrijskiPotrosaci", "preuzetIsporucenGas.sistemiDaljinskoGrijanja",
+        "preuzetIsporucenGas.komercijalniKrajnjiKupci", "preuzetIsporucenGas.domacinstva",
+        "preuzetIsporucenGas.ukupnoIsporuceno", "preuzetIsporucenGas.gubici"
+      ]
+    }
+
+    if (!dto.sektori || dto.sektori.isEmpty() || dto.sektori.contains(Sektor.TOPLOTNA_ENERGIJA)) {
+      headers += [
+        "Isporu\u010Dene koli\u010Dine TE u MWh (poslovni potro\u0161a\u010Di)", "Isporu\u010Dene koli\u010Dine TE u MWh (stambeni potro\u0161a\u010Di)",
+        "Isporu\u010Dene koli\u010Dine TE po m2 (stambeni potro\u0161a\u010Di)", "Ukupno isporu\u010Deno", "Gubici"
+      ]
+
+      withProperties += [
+        "isporucenaToplotnaEnergija.poslovniPotrosaciMwh", "isporucenaToplotnaEnergija.stambeniPotrosaciMwh",
+        "isporucenaToplotnaEnergija.stambeniPotrosaciM2", "isporucenaToplotnaEnergija.ukupnoIsporuceno", "isporucenaToplotnaEnergija.gubici"
+      ]
+    }
+
+    headers << "Ukupno isporu\u010Dena energija krajnjim kupcima u TJ"
+
+    withProperties << "ukupnoIsporucenaEnergija"
+
+    headers += [
+      "Broj kupaca (doma\u0107instva- mjerenje potro\u0161nje)", "Broj kupaca (industrija- mjerenje potro\u0161nje)",
+      "Broj kupaca (ostali sektori- mjerenje potro\u0161nje)", "Broj kupaca (ukupno- mjerenje potro\u0161nje)",
+      "Ukupan broj kupaca (doma\u0107instva)", "Ukupan broj kupaca (industrija)", "Ukupan broj kupaca (ostali sektori)", "Ukupan broj kupaca (sveukupno)"
+    ]
+
+    withProperties += [
+      "stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje", "stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje",
+      "stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje", "stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje",
+      "stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj", "stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj", "stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj", "stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"
+    ]
+
+    if (!dto.sektori || dto.sektori.isEmpty() || dto.sektori.contains(Sektor.ELEKTRICNA_ENERGIJA)) {
+      headers += [
+        "Broj korisnika sa sistemom dalj. o\u010Ditavanja (doma\u0107instva)", "Broj korisnika sa sistemom dalj. o\u010Ditavanja (industrija)",
+        "Broj korisnika sa sistemom dalj. o\u010Ditavanja (ostali sektori)", "Broj korisnika sa sistemom dalj. o\u010Ditavanja (ukupno)"
+      ]
+
+      withProperties += [
+        "stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojDaljinskoOcitavanje", "stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojDaljinskoOcitavanje",
+        "stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje", "stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojDaljinskoOcitavanje"
+      ]
+    }
+
+    new WebXlsxExporter().with {
+      setResponseHeaders(response)
+      fillHeader(headers)
+      add(results, withProperties)
+      workbook.write(response.outputStream)
+      response.outputStream.flush()
+      finalize()
+    }
   }
 
-  // TODO: Think of a better way to do this search
   // MongoDB does not support join queries, so we can't use projections onto properties inside GORM closures
   // Workaround is to use criteria for flat filter properties on Izvjestaj, and then just filter the list of
   // Izvjestaj objects using plain groovy code for the other (nested) properties...
@@ -192,7 +269,7 @@ class IzvjestajController {
       results = results.findAll { dto.sektori.contains(it.preduzece.sektor) }
     }
 
-    if (dto.uloga.operator || dto.uloga.distributer || dto.uloga.snabdjevac) {
+    if (dto.uloga.operater || dto.uloga.distributer || dto.uloga.snabdjevac) {
       results = results.findAll { dto.uloga.toString().split(", ").collect().containsAll(it.preduzece.uloga.toString().split(", ").collect()) }
     }
 

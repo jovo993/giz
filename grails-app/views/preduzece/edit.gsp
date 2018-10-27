@@ -46,19 +46,19 @@
                 <g:message code="preduzece.uloga.title"/>
             </label>
 
-            <g:checkBox name="uloga.operator" value="${preduzece?.uloga?.operator}" style="width: 2%; vertical-align: middle;"/>
-            <label for="uloga.operator" style="width: 6.6%; vertical-align: middle;">
-                <g:message code="preduzece.uloga.operater.title"/>
+            <g:checkBox name="uloga.operater" value="${preduzece?.uloga?.operater}" style="width: 2%; vertical-align: middle;"/>
+            <label for="uloga.operater" style="width: 6.6%; vertical-align: middle;">
+                <g:message code="preduzece.uloga.operater.title.bigger"/>
             </label>
 
             <g:checkBox name="uloga.distributer" value="${preduzece?.uloga?.distributer}" style="width: 2%; vertical-align: middle;"/>
             <label for="uloga.distributer" style="width: 8%; vertical-align: middle;">
-                <g:message code="preduzece.uloga.distributer.title"/>
+                <g:message code="preduzece.uloga.distributer.title.bigger"/>
             </label>
 
             <g:checkBox name="uloga.snabdjevac" value="${preduzece?.uloga?.snabdjevac}" style="width: 2%; vertical-align: middle;"/>
             <label for="uloga.snabdjevac" style="width: 8%; vertical-align: middle;">
-                <g:message code="preduzece.uloga.snabdjevac.title"/>
+                <g:message code="preduzece.uloga.snabdjevac.title.bigger"/>
             </label><br/>
 
             <label for="status.aktivan" style="vertical-align: middle">

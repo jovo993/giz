@@ -25,7 +25,7 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <form>
+        <sec:ifAnyGranted roles="ROLE_EE_USER, ROLE_G_USER, ROLE_TE_USER">
         <fieldset class="fieldset">
             <legend style="width: 28%"><g:message code="homepage.preduzece.fieldset.title"/></legend>
             <label for="naziv">
@@ -88,6 +88,7 @@
             </label>
             <g:textField name="ukupanGodisnjiPromet" required="false" value="${this.preduzece?.ukupanGodisnjiPromet}" readonly="readonly" style="width: 50%"/><br/>
         </fieldset>
+            </sec:ifAnyGranted>
         <fieldset class="fieldset">
             <legend style="width: 18%"><g:message code="homepage.izvjestajList.fieldset.title"/></legend>
             <table>
@@ -97,7 +98,7 @@
                         <g:set var="propTitle">homepage.list.${p}.label</g:set>
                         <g:sortableColumn property="${p}" title="${message(code: propTitle)}"/>
                     </g:each>
-                    <th>Prikazi</th>
+                    <th>Prikaži</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -106,6 +107,9 @@
                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                         <td>${bean.tip}</td>
                         <td>${bean.podaciPodnosenjeIzvjestaja.godina}</td>
+                        <sec:ifAnyGranted roles="ROLE_ADMIN">
+                        <td>${bean.preduzece.naziv}</td>
+                        </sec:ifAnyGranted>
                         <td><g:formatDate>${bean.datumKreiranja}</g:formatDate></td>
                         <td><g:formatDate>${bean.datumSlanja}</g:formatDate></td>
                         <td>${bean.podaciPodnosenjeIzvjestaja.prezimeImePozicija}</td>

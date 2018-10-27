@@ -18,7 +18,7 @@
 
 <body>
 <g:set var="user" value="${grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser}"/>
-<div style="text-align: right; margin-right: 10px">${user.prezimeIme} / ${user.preduzece.naziv}</div>
+<div style="text-align: right; margin-right: 10px">${user?.prezimeIme} / ${user?.preduzece?.naziv}</div>
 
 <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
@@ -68,7 +68,7 @@
     <g:layoutBody/>
 </div>
 
-<div class="footer" role="contentinfo"></div>
+<div class="footer" role="contentinfo"> © 2018 Sva prava zadržana </div>
 
 <div id="spinner" class="spinner" style="display:none;">
     <g:message code="spinner.alt" default="Loading&hellip;"/>

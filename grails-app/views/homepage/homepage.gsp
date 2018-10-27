@@ -73,7 +73,6 @@
             </tbody>
         </table>
     </fieldset>
-</form>
 </div>
 </body>
 </html>

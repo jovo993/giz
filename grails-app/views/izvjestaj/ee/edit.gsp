@@ -358,21 +358,8 @@
             });
         })(jQuery);
     </g:javascript>
-    <fieldset class="buttons">
-        <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}">
-            <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
-            <button id="posaljiButton"><i class="fa fa-share-square"></i>   <g:message code="default.button.send.label"/></button>
-        </g:if>
-        <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN) && this.isAdmin}">
-            <g:link controller="izvjestaj" action="vratiNaDoradu" params="[id: izvjestaj.id]">
-                <button id="vratiNaDoraduButton"><i class="fa fa-arrow-alt-circle-left"></i>   <g:message code="default.button.dorada.label"/></button>
-            </g:link>
-            <g:link controller="izvjestaj" action="verifikuj" params="[id: izvjestaj.id]">
-                <button id="verifikujButton"><i class="fa fa-check-circle"></i>   <g:message code="default.button.verifikuj.label"/></button>
-            </g:link>
-        </g:if>
-    </fieldset>
 
+    <g:render template="actionsMenuBar" bean="izvjestaj" />
 </div>
 </body>
 </html>

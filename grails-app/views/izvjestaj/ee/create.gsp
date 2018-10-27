@@ -233,7 +233,6 @@
     <fieldset class="buttons">
         <button id="submitButton"><i class="fa fa-save"></i>  <g:message code="default.button.create.label"/></button>
     </fieldset>
-
 </div>
 </body>
 </html>

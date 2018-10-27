@@ -220,6 +220,7 @@ class IzvjestajController {
     }
   }
 
+  @Transactional
   def vratiNaDoradu(params) {
     Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
     if (izvjestaj.status == IzvjestajStatus.POSLAN) {
@@ -240,6 +241,7 @@ class IzvjestajController {
     }
   }
 
+  @Transactional
   def verifikuj(params) {
     Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
     if (izvjestaj.status == IzvjestajStatus.POSLAN) {
@@ -250,6 +252,27 @@ class IzvjestajController {
 
         response.status = 200
         render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je vraćen na doradu.'] as JSON)
+      } else {
+        response.status = 500
+        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Nemate potrebne privilegije.'] as JSON)
+      }
+    } else {
+      response.status = 500
+      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj nije u potrebnom statusu.'] as JSON)
+    }
+  }
+
+  @Transactional
+  def potvrdi(params) {
+    Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
+    if (izvjestaj.status == IzvjestajStatus.ZAVRSEN) {
+      if (UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+        izvjestaj.status = IzvjestajStatus.VERIFIKOVAN
+
+        izvjestaj.save flush: true, failOnError: true
+
+        response.status = 200
+        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je završen.'] as JSON)
       } else {
         response.status = 500
         render([id: izvjestaj.id, title: 'Izvještaj', message: 'Nemate potrebne privilegije.'] as JSON)

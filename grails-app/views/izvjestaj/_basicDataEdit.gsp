@@ -10,16 +10,10 @@
     <label for="izvjestaj.preduzece.sektor"><g:message code="preduzece.sektor.title"/></label>
     <g:select name="izvjestaj.preduzece.sektor" from="${ba.giz.Sektor.values()}" value="${izvjestaj?.preduzece?.sektor}"/><br/>
 
-    <label><g:message code="preduzece.uloga.title"/></label>
-
-    <label for="izvjestaj.preduzece.operater" style="width: 10%"><g:message code="preduzece.uloga.operater.title"/></label>
-    <g:checkBox name="izvjestaj.preduzece.operater" value="${izvjestaj?.preduzece?.uloga?.operator}" style="width: 5%"/>
-
-    <label for="izvjestaj.preduzece.distributer" style="width: 10%"><g:message code="preduzece.uloga.distributer.title"/></label>
-    <g:checkBox name="izvjestaj.preduzece.distributer" value="${izvjestaj?.preduzece?.uloga?.distributer}" style="width: 5%"/>
-
-    <label for="izvjestaj.preduzece.snabdjevac" style="width: 10%"><g:message code="preduzece.uloga.snabdjevac.title"/></label>
-    <g:checkBox name="izvjestaj.preduzece.snabdjevac" value="${izvjestaj?.preduzece?.uloga?.snabdjevac}" style="width: 5%"/>
+    <label>
+        <g:message code="preduzece.uloga.title"/>
+    </label>
+    <g:textField name="uloga" value="${izvjestaj?.preduzece?.uloga}"/><br/>
 
     <label for="izvjestaj.preduzece.adresa"><g:message code="preduzece.adresa.title"/></label>
     <g:textField name="izvjestaj.preduzece.adresa" value="${izvjestaj?.preduzece?.adresa}"/><br/>

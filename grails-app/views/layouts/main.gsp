@@ -35,7 +35,7 @@
                 <li><g:link controller="homepage" action="homepage"><g:message code="meni.homepage.title"/></g:link></li>
                 <sec:ifAnyGranted roles="ROLE_EE_USER, ROLE_G_USER, ROLE_TE_USER">
                     <li><g:link controller="izvjestaj" action="create"><g:message code="meni.izvjestaj.novi.title"/></g:link></li>
-                    <li><g:link controller="preduzece" action="basicEdit" resource="${user?.preduzece?.id}"><g:message code="meni.obveznik.izmjena.title"/></g:link></li>
+                    <li><g:link controller="preduzece" action="basicEdit" resource="${user?.preduzece}"><g:message code="meni.obveznik.izmjena.title"/></g:link></li>
                 </sec:ifAnyGranted>
                 <sec:ifAnyGranted roles="ROLE_ADMIN">
                     <li><g:link controller="izvjestaj" action="excelExport"><g:message code="meni.izvjestavanje.title"/></g:link></li>

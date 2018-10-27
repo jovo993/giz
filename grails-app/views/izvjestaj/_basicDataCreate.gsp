@@ -7,16 +7,10 @@
     <label for="sektor"><g:message code="preduzece.sektor.title"/></label>
     <g:textField name="sektor" value="${preduzece?.sektor}"/><br/>
 
-    <label><g:message code="preduzece.uloga.title"/></label>
-
-    <label for="izvjestaj.preduzece.operater" style="width: 10%"><g:message code="preduzece.uloga.operater.title"/></label>
-    <g:checkBox name="izvjestaj.preduzece.operater" value="${preduzece?.uloga?.operater}" style="width: 5%"/>
-
-    <label for="izvjestaj.preduzece.distributer" style="width: 10%"><g:message code="preduzece.uloga.distributer.title"/></label>
-    <g:checkBox name="izvjestaj.preduzece.distributer" value="${preduzece?.uloga?.distributer}" style="width: 5%"/>
-
-    <label for="izvjestaj.preduzece.snabdjevac" style="width: 10%"><g:message code="preduzece.uloga.snabdjevac.title"/></label>
-    <g:checkBox name="izvjestaj.preduzece.snabdjevac" value="${preduzece?.uloga?.snabdjevac}" style="width: 5%"/>
+    <label>
+        <g:message code="preduzece.uloga.title"/>
+    </label>
+    <g:textField name="uloga" value="${this.preduzece?.uloga}"/><br/>
 
     <label for="izvjestaj.preduzece.adresa"><g:message code="preduzece.adresa.title"/></label>
     <g:textField name="izvjestaj.preduzece.adresa" value="${preduzece?.adresa}"/><br/>

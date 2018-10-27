@@ -1,6 +1,3 @@
-<g:if test="${izvjestaj}">
-    <div class="message" role="status">${flash.message}</div>
-</g:if>
 <fieldset class="fieldset" disabled>
     <legend><g:message code="preduzece.fieldset.title"/></legend>
 

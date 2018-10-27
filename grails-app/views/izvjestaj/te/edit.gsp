@@ -8,19 +8,8 @@
 </head>
 
 <body>
-<div id="create-izvjestaj" class="content scaffold-create" role="main">
-    <h1><g:message code="izvjestaj.izmjeni.title"/></h1>
-    <g:if test="${flash.message}">
-        <div class="message" role="status">${flash.message}</div>
-    </g:if>
-    <g:hasErrors bean="${this.izvjestaj}">
-        <ul class="errors" role="alert">
-            <g:eachError bean="${this.izvjestaj}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-            </g:eachError>
-        </ul>
-    </g:hasErrors>
-    <g:set var="isAdmin" value="${ba.giz.UserUtils.isUserAdmin(grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser)}"/>
+<div id="create-izvjestaj" role="main">
+    <h1 style="padding-left: 15px"><g:message code="izvjestaj.izmjeni.title"/></h1>
     <g:hiddenField id="editable" name="editable" value="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}"/>
     <form id="formIzvjestaj">
         <g:hiddenField name="izvjestaj.id" value="${izvjestaj.id}"/>
@@ -48,7 +37,7 @@
                     </tr>
                 </table>
 
-                <div class="prety-th" style="text-align: right; padding: 5px">
+                <div style="text-align: right;">
                     Ukupno isporučena energija krajnjim kupcima u TJ:  <input name="izvjestaj.ukupnoIsporucenaEnergija" value="${izvjestaj.ukupnoIsporucenaEnergija}">
                 </div>
             </div>
@@ -68,17 +57,17 @@
                         $TABLE.find('table').append($clone);
                     });
 
-                    $('#energentiRemove').click(function() {
+                    $('.energentiRemove').click(function() {
                         $(this).parents('tr').detach();
                     });
 
-                    $('#energentiUp').click(function() {
+                    $('.energentiUp').click(function() {
                         var $row = $(this).parents('tr');
                         if ($row.index() === 1) return; // Don't go above the header
                         $row.prev().before($row.get(0));
                     });
 
-                    $('#energentiDown').click(function() {
+                    $('.energentiDown').click(function() {
                         var $row = $(this).parents('tr');
                         $row.next().after($row.get(0));
                     });
@@ -108,58 +97,36 @@
                         <th id="godisnjaUpotrebljenaKolicina" class="prety-th">Godišnja upotrijebljena količina</th>
                         <th id="jednicaMjere" class="prety-th">Jedinica mjere</th>
                     </tr>
-                    <tr>
-                        <td class="prety-th">Prirodni gas (uključujući i tečni prirodni gas)</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                    </tr>
-                    <tr>
-                        <td class="prety-th">Tečni naftni gas</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                    </tr>
-                    <tr>
-                        <td class="prety-th">Goriva za grijanje i hlađenje</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                    </tr>
-                    <tr>
-                        <td class="prety-th">Ugalj i lignit</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                    </tr>
-                    <tr>
-                        <td class="prety-th">Treset</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                    </tr>
-                    <tr>
-                        <td class="prety-th">Gorivo za pogon motornih vozila</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                    </tr>
-                    <tr>
-                        <td class="prety-th">Bio-masa</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                    </tr>
-                    <tr>
-                        <td class="prety-th">Obnovljivi izvor energije</td>
-                        <td contenteditable="true" class="editable-td"></td>
-                        <td contenteditable="true" class="editable-td"></td>
-                    </tr>
+                    <g:each in="${izvjestaj.podaciEnergenti}" var="it" status="i">
+                        <tr>
+                            <td class="prety-th">${it?.energent}</td>
+                            <td contenteditable="true" class="editable-td">${it?.godisnjaUpotrebljenaKolicina}</td>
+                            <td contenteditable="true" class="editable-td">${it?.jednicaMjere}</td>
+                            <g:if test="${i > 7}">
+                                <td style="text-align:center">
+                                    <span class="energentiRemove table-remove fa fa-trash fa-2x"></span>
+                                </td>
+                                <td style="text-align:center">
+                                    <span class="energentiIsporucenaUp table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
+                                </td>
+                                <td style="text-align:center">
+                                    <span class="energentiIsporucenaDown table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
+                                </td>
+                            </g:if>
+                        </tr>
+                    </g:each>
                     <tr class="hide">
-                        <td contenteditable="true" class="editable-td prety-th">Ostalo</td>
+                        <td contenteditable="true" class="editable-td prety-th"></td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td style="text-align:center">
-                            <span id="energentiRemove" class="table-remove fa fa-trash fa-2x"></span>
+                            <span class="energentiRemove table-remove fa fa-trash fa-2x"></span>
                         </td>
                         <td style="text-align:center">
-                            <span id="energentiIsporucenaUp" class="table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
+                            <span class="energentiIsporucenaUp table-up fa fa-angle-up fa-2x" style="horiz-align: center;"></span>
                         </td>
                         <td style="text-align:center">
-                            <span id="energentiIsporucenaDown" class="table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
+                            <span class="energentiIsporucenaDown table-down fa fa-angle-down fa-2x" style="horiz-align: center;"></span>
                         </td>
                     </tr>
                     <tfoot><tr></tr></tfoot> %{--needed becuase of script--}%

@@ -10,17 +10,6 @@
 <body>
 <div id="create-izvjestaj" class="content scaffold-create" role="main">
     <h1><g:message code="izvjestaj.izmjeni.title"/></h1>
-    <g:if test="${flash.message}">
-        <div class="message" role="status">${flash.message}</div>
-    </g:if>
-    <g:hasErrors bean="${this.izvjestaj}">
-        <ul class="errors" role="alert">
-            <g:eachError bean="${this.izvjestaj}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-            </g:eachError>
-        </ul>
-    </g:hasErrors>
-    <g:set var="isAdmin" value="${ba.giz.UserUtils.isUserAdmin(grails.util.Holders.applicationContext.getBean("springSecurityService").currentUser)}"/>
     <g:hiddenField id="editable" name="editable" value="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}"/>
     <form id="formIzvjestaj">
         <g:hiddenField name="izvjestaj.id" value="${izvjestaj.id}"/>

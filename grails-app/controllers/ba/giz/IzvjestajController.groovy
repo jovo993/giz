@@ -461,6 +461,20 @@ class IzvjestajController {
         ]
       }
 
+      if (izvjestaj.tip == IzvjestajTip.G_DS) {
+        report = "grails-app/resources/jasper/izvjestaj_g.jrxml"
+
+        bean += [
+          preuzetaKolicina        : izvjestaj.preuzetIsporucenGas?.preuzetaKolicina,
+          industrijskiPotrosaci   : izvjestaj.preuzetIsporucenGas?.industrijskiPotrosaci,
+          sistemiDaljinskoGrijanja: izvjestaj.preuzetIsporucenGas?.sistemiDaljinskoGrijanja,
+          komercijalniKrajnjiKupci: izvjestaj.preuzetIsporucenGas?.komercijalniKrajnjiKupci,
+          domacinstva             : izvjestaj.preuzetIsporucenGas?.domacinstva,
+          ukupnoIsporuceno        : izvjestaj.preuzetIsporucenGas?.ukupnoIsporuceno,
+          gubici                  : izvjestaj.preuzetIsporucenGas?.gubici
+        ]
+      }
+
       bean.collect { it ?: "" }
 
       JasperReport jreport = JasperCompileManager.compileReport(report)

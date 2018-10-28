@@ -2,13 +2,58 @@
 <!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="izvjestaj_ee" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4fe90646-07e7-4cba-92c7-868ee2c2baf8">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<subDataset name="Dataset1" uuid="e4dc4225-c95e-4a42-8a21-82d3a1a42aea">
+	<subDataset name="procjenaStanjaEnergetskeEfikasnostiDataset" uuid="e4dc4225-c95e-4a42-8a21-82d3a1a42aec">
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 		<queryString>
 			<![CDATA[]]>
 		</queryString>
+		<field name="primjenjenaMjera" class="java.lang.String"/>
+		<field name="vrstaUstede" class="java.lang.String"/>
+		<field name="kolicinaUstede" class="java.lang.String"/>
 	</subDataset>
 	<subDataset name="Empty Dataset1" uuid="4319d210-1c7d-4745-9f26-d9de94aec7ea"/>
+	<parameter name="preduzeceNaziv" class="java.lang.String"/>
+	<parameter name="preduzeceAdresa" class="java.lang.String"/>
+	<parameter name="preduzeceMaticniBroj" class="java.lang.String"/>
+	<parameter name="preduzeceJib" class="java.lang.String"/>
+	<parameter name="preduzecePib" class="java.lang.String"/>
+	<parameter name="preduzeceTelefon" class="java.lang.String"/>
+	<parameter name="preduzeceFax" class="java.lang.String"/>
+	<parameter name="preduzeceMail" class="java.lang.String"/>
+	<parameter name="preduzeceBrojZaposlenih" class="java.lang.Integer"/>
+	<parameter name="preduzeceGodisnjiPromet" class="java.lang.Double"/>
+	<parameter name="distribucijaRegistarskiBroj" class="java.lang.String"/>
+	<parameter name="distribucijaKomisija" class="java.lang.String"/>
+	<parameter name="distribucijaDatumPocetkaVazenje" class="java.lang.String"/>
+	<parameter name="distribucijaPeriodVazenja" class="java.lang.Integer"/>
+	<parameter name="snabdijevanjeRegistarskiBroj" class="java.lang.String"/>
+	<parameter name="snabdijevanjeKomisija" class="java.lang.String"/>
+	<parameter name="snabdijevanjeDatumPocetkaVazenje" class="java.lang.String"/>
+	<parameter name="snabdijevanjePeriodVazenja" class="java.lang.Integer"/>
+	<parameter name="godina" class="java.lang.String"/>
+	<parameter name="prezimeImePozicija" class="java.lang.String"/>
+	<parameter name="telefon" class="java.lang.String"/>
+	<parameter name="email" class="java.lang.String"/>
+	<parameter name="preuzetaKolicina" class="java.lang.Double"/>
+	<parameter name="industrijskiPotrosaci" class="java.lang.Double"/>
+	<parameter name="sistemiDaljinskoGrijanja" class="java.lang.Double"/>
+	<parameter name="komercijalniKrajnjiKupci" class="java.lang.Double"/>
+	<parameter name="domacinstva" class="java.lang.Double"/>
+	<parameter name="ukupnoIsporuceno" class="java.lang.Double"/>
+	<parameter name="gubici" class="java.lang.Double"/>
+	<parameter name="ukupnoIsporucenaEnergija" class="java.lang.Double"/>
+	<parameter name="procjenaStanjaEnergetskeEfikasnostiDataSource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="domacinstvoBrojMjerenjePotrosnje" class="java.lang.Long"/>
+	<parameter name="domacinstvoUkupanBroj" class="java.lang.Long"/>
+	<parameter name="industrijaBrojMjerenjePotrosnje" class="java.lang.Long"/>
+	<parameter name="industrijaUkupanBroj" class="java.lang.Long"/>
+	<parameter name="ostaloBrojMjerenjePotrosnje" class="java.lang.Long"/>
+	<parameter name="ostaloUkupanBroj" class="java.lang.Long"/>
+	<parameter name="ukupnoBrojMjerenjePotrosnje" class="java.lang.Long"/>
+	<parameter name="ukupnoBrojKrajnjihKupaca" class="java.lang.Long"/>
+	<parameter name="podaciPonudeEnergetskihUsluga" class="java.lang.String"/>
+	<parameter name="podaciPonudeUgradnjaIndividualnihUredjaja" class="java.lang.String"/>
+	<parameter name="podaciOstaloEnergetskaEfikasnost" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -181,6 +226,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceNaziv}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="28" width="320" height="18" uuid="edefa44b-2e41-41aa-ace3-c2a5e95c956e"/>
@@ -193,6 +239,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceAdresa}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="46" width="320" height="20" uuid="458be210-b105-48e5-8be9-e4e3673048ef"/>
@@ -205,6 +252,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceMaticniBroj}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="174" width="320" height="18" uuid="fc5744bd-7743-49c0-be8f-550e44da1e77"/>
@@ -217,6 +265,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceGodisnjiPromet}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="156" width="320" height="18" uuid="0abe4270-1eac-4021-9f5e-c5410fa1121a"/>
@@ -229,6 +278,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceBrojZaposlenih}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="138" width="320" height="18" uuid="20da558c-88be-4670-8099-d38443bed3c8"/>
@@ -241,6 +291,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceMail}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="120" width="320" height="18" uuid="933087de-a727-4a76-8134-65fd63ffcefa"/>
@@ -253,6 +304,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceFax}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="102" width="320" height="18" uuid="f2147325-4ce1-42c5-acb4-0db68de6d9b7"/>
@@ -265,6 +317,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceTelefon}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="84" width="320" height="18" uuid="4c9613b5-28fe-4e56-aed3-b89aceb56c58"/>
@@ -277,6 +330,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzecePib}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="66" width="320" height="18" uuid="46c62c2e-6404-470f-83c8-3e0c3caf3628"/>
@@ -289,6 +343,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceJib}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="30" y="200" width="290" height="21" uuid="fcb433ba-4bd0-49c4-8920-d78142ca6442"/>
@@ -360,6 +415,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{distribucijaRegistarskiBroj}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="270" width="320" height="20" uuid="a21df9cf-011e-4d3d-9802-6d7a1c503dc6"/>
@@ -372,6 +428,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{distribucijaKomisija}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="308" width="320" height="18" uuid="b1700de0-8d51-4a06-ae30-1b7981d87742"/>
@@ -384,6 +441,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{distribucijaPeriodVazenja}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="290" width="320" height="18" uuid="15854c94-605a-4d91-8378-023df107b9d5"/>
@@ -396,6 +454,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{distribucijaDatumPocetkaVazenje}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="40" y="192" width="338" height="10" uuid="a6d9c904-c101-49a2-8587-ffebd88e2163"/>
@@ -467,6 +526,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{snabdijevanjeRegistarskiBroj}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="389" width="320" height="20" uuid="f4887b40-9998-4c1f-8105-d0c7de406bb4"/>
@@ -479,6 +539,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{snabdijevanjeKomisija}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="427" width="320" height="18" uuid="607d71d0-ac90-4a77-a21f-368492b6af5c"/>
@@ -491,6 +552,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{snabdijevanjePeriodVazenja}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="409" width="320" height="18" uuid="064c210c-e1f3-46eb-8056-f308f4a2e2c4"/>
@@ -503,6 +565,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{snabdijevanjeDatumPocetkaVazenje}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="30" y="443" width="290" height="21" uuid="9202620b-abd5-4933-953d-e4d8b7f7ef12"/>
@@ -574,6 +637,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{godina}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="483" width="319" height="34" uuid="76a69ccd-0214-4443-ad66-47d86af49958"/>
@@ -586,6 +650,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{prezimeImePozicija}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="535" width="319" height="18" uuid="338af690-822e-4c74-9982-410f564eae0c"/>
@@ -598,6 +663,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{email}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="517" width="319" height="18" uuid="4d94fe79-378b-46ce-9b5e-dc94c46fc7aa"/>
@@ -610,6 +676,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{telefon}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="30" y="552" width="290" height="21" uuid="e5c44d36-9b49-4cdc-a320-1f16e9b84297"/>
@@ -714,7 +781,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["E (TJ)"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ukupnoIsporucenaEnergija}+ " E (TJ)"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="334" y="585" width="72" height="54" uuid="5c243ff1-4798-40d3-890b-89fb381a7b38">
@@ -796,8 +863,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font size="10" isBold="false" isUnderline="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{preuzetaKolicina}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="118" y="639" width="72" height="20" uuid="dffd9d26-b10c-4fc1-a6dc-19465ba490e5">
@@ -811,8 +879,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font size="10" isBold="false" isUnderline="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{industrijskiPotrosaci}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="190" y="639" width="72" height="20" uuid="3de1c966-f13c-417d-80c4-730f70915a9c">
@@ -826,8 +895,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font size="10" isBold="false" isUnderline="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{sistemiDaljinskoGrijanja}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="262" y="639" width="72" height="20" uuid="c1829ad1-266d-4b57-bc49-d177c29cb7d0">
@@ -841,8 +911,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font size="10" isBold="false" isUnderline="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{komercijalniKrajnjiKupci}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="334" y="639" width="72" height="20" uuid="08343ff6-ee4b-43b3-b951-dc4bb2690c5a">
@@ -856,8 +927,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font size="10" isBold="false" isUnderline="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{domacinstva}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="406" y="639" width="72" height="20" uuid="46dad23f-dc5e-4a35-87f4-e989ebe6d6c7">
@@ -871,8 +943,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font size="10" isBold="false" isUnderline="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{ukupnoIsporuceno}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="478" y="639" width="50" height="20" uuid="530c9773-7d9c-46a1-8e35-19b7fde2fe8b">
@@ -886,8 +959,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font size="10" isBold="false" isUnderline="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{gubici}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="71">
@@ -915,8 +989,8 @@
 					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Empty Dataset1" uuid="8a23f0a3-3113-4e32-aa04-49f98b946e75">
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<datasetRun subDataset="procjenaStanjaEnergetskeEfikasnostiDataset" uuid="f62e06f9-65d6-4618-a867-9f1e2b38d95d">
+						<dataSourceExpression><![CDATA[$P{procjenaStanjaEnergetskeEfikasnostiDataSource}.cloneDataSource()]]></dataSourceExpression>
 					</datasetRun>
 					<jr:column width="167" uuid="77377b09-c0e4-4ba2-95a7-8ab6f031bb22">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
@@ -933,7 +1007,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{primjenjenaMjera}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -952,7 +1026,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{vrstaUstede}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -971,7 +1045,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{kolicinaUstede}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1017,7 +1091,7 @@
 				<text><![CDATA[5 - PROCJENA STANJA ENERGETSKE EFIKASNOSTI]]></text>
 			</staticText>
 		</band>
-		<band height="325">
+		<band height="201">
 			<textField>
 				<reportElement x="30" y="15" width="112" height="50" uuid="30ce60ae-6339-41c0-8b25-0ef401038059">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -1103,6 +1177,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false" isUnderline="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{domacinstvoBrojMjerenjePotrosnje}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="348" y="65" width="182" height="20" uuid="568d98c6-8982-4187-a44b-dbbf03551180">
@@ -1118,7 +1193,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
 					<font size="11" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["K<sub>d</sub>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{domacinstvoUkupanBroj} + " K<sub>d</sub>"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="85" width="112" height="20" uuid="44fad82e-f433-4057-8c96-9addc3030a89">
@@ -1150,6 +1225,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false" isUnderline="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{industrijaBrojMjerenjePotrosnje}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="348" y="85" width="182" height="20" uuid="46ec9502-0223-47eb-af07-5ba8ac7a2e70">
@@ -1165,7 +1241,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
 					<font size="11" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["K<sub>i</sub>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{industrijaUkupanBroj} + " K<sub>i</sub>"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="105" width="112" height="20" uuid="ec16ea0e-c390-41ce-974b-46a2bdf15d44">
@@ -1197,6 +1273,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="false" isUnderline="false"/>
 				</textElement>
+				<textFieldExpression><![CDATA[$P{ostaloBrojMjerenjePotrosnje}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="348" y="105" width="182" height="20" uuid="761e5872-225b-4f89-b943-0f158fac3b0e">
@@ -1212,7 +1289,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
 					<font size="11" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["K<sub>o</sub>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ostaloUkupanBroj} + " K<sub>o</sub>"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="125" width="112" height="20" uuid="5f84a428-eaac-435b-9f37-5f6fb8007b4c">
@@ -1244,7 +1321,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
 					<font size="11" isBold="false" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["K<sub>m</sub>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ukupnoBrojMjerenjePotrosnje} + " K<sub>m</sub>"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="348" y="125" width="182" height="20" uuid="01a9da6c-2c9c-435a-b9a2-66a8a80ef59f">
@@ -1260,7 +1337,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
 					<font size="11" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["K<sub>u</sub>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ukupnoBrojKrajnjihKupaca} + " K<sub>u</sub>"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="30" y="146" width="380" height="21" uuid="286f2f66-e3fe-4f74-b715-f1055c92c892"/>
@@ -1284,17 +1361,19 @@
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font size="11" isBold="false" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{podaciPonudeEnergetskihUsluga}]]></textFieldExpression>
 			</textField>
+		</band>
+		<band height="49">
 			<staticText>
-				<reportElement x="30" y="193" width="500" height="21" uuid="3465b95b-f5a7-4622-b291-feb132f15568"/>
+				<reportElement x="30" y="-6" width="500" height="21" uuid="3465b95b-f5a7-4622-b291-feb132f15568"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[8 - PODACI O PONUDAMA ZA UGRADNJU INDIVIDUALNIH UREĐAJA ZA MJERENJE POTROŠNJE GASA]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="30" y="214" width="500" height="30" uuid="c88e1543-b370-40e1-b7a1-608846856026">
+				<reportElement x="30" y="15" width="500" height="30" uuid="c88e1543-b370-40e1-b7a1-608846856026">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1307,17 +1386,19 @@
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font size="11" isBold="false" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{podaciPonudeUgradnjaIndividualnihUredjaja}]]></textFieldExpression>
 			</textField>
+		</band>
+		<band height="55">
 			<staticText>
-				<reportElement x="30" y="240" width="380" height="21" uuid="c573e609-461f-4315-81ba-ad99c9143199"/>
+				<reportElement x="30" y="-5" width="380" height="21" uuid="c573e609-461f-4315-81ba-ad99c9143199"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="9" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[9 - OSTALI PODACI RELEVANTNI ZA ENERGETSKU EFIKASNOST]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="30" y="261" width="500" height="30" uuid="7a06af86-a8ba-4690-9cf9-80ba3d808b00">
+				<reportElement x="30" y="16" width="500" height="30" uuid="7a06af86-a8ba-4690-9cf9-80ba3d808b00">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1330,7 +1411,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font size="11" isBold="false" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{podaciOstaloEnergetskaEfikasnost}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -372,65 +372,106 @@ class IzvjestajController {
 
   @Transactional
   def printPdf(params) {
-    DefaultJasperReportsContext.getInstance().setProperty("net.sf.jasperreports.default.font.name", "SansSerif")
-    DefaultJasperReportsContext.getInstance().setProperty("net.sf.jasperreports.default.pdf.encoding", "Cp1250")
+    try {
+      DefaultJasperReportsContext.getInstance().setProperty("net.sf.jasperreports.default.font.name", "SansSerif")
+      DefaultJasperReportsContext.getInstance().setProperty("net.sf.jasperreports.default.pdf.encoding", "Cp1250")
 
-    String report = "grails-app/resources/jasper/izvjestaj_ee.jrxml"
-    JasperReport jreport = JasperCompileManager.compileReport(report)
+      String report = ""
 
-    Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
-    JRBeanCollectionDataSource preuzetaIsporucenaEEDataSource = new JRBeanCollectionDataSource(izvjestaj.preuzetaIsporucenaEEList)
-    JRBeanCollectionDataSource procjenaStanjaEnergetskeEfikasnostiDataSource = new JRBeanCollectionDataSource(izvjestaj.procjenaStanjaEnergetskeEfikasnostiList)
+      Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
+      JRBeanCollectionDataSource preuzetaIsporucenaEEDataSource = new JRBeanCollectionDataSource(izvjestaj.preuzetaIsporucenaEEList)
+      JRBeanCollectionDataSource procjenaStanjaEnergetskeEfikasnostiDataSource = new JRBeanCollectionDataSource(izvjestaj.procjenaStanjaEnergetskeEfikasnostiList)
+      JRBeanCollectionDataSource podaciEnergentiDataSource = new JRBeanCollectionDataSource(izvjestaj.podaciEnergenti)
 
-    def bean = []
-    bean = [
-      preduzeceNaziv: izvjestaj.preduzece.naziv,
-      preduzeceAdresa: izvjestaj.preduzece.adresa,
-      preduzeceMaticniBroj: izvjestaj.preduzece.maticniBrojJedinstvenogRegistra,
-      preduzeceJib: izvjestaj.preduzece.jib,
-      preduzecePib: izvjestaj.preduzece.pib,
-      preduzeceTelefon: izvjestaj.preduzece.telefon,
-      preduzeceFax: izvjestaj.preduzece.fax,
-      preduzeceMail: izvjestaj.preduzece.email,
-      preduzeceBrojZaposlenih: izvjestaj.preduzece.brojZaposlenih,
-      preduzeceGodisnjiPromet: izvjestaj.preduzece.ukupanGodisnjiPromet,
-      distribucijaRegistarskiBroj: izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj,
-      distribucijaKomisija: izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija,
-      distribucijaDatumPocetkaVazenje: izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje,
-      distribucijaPeriodVazenja: izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja,
-      snabdijevanjeRegistarskiBroj: izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj,
-      snabdijevanjeKomisija: izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija,
-      snabdijevanjeDatumPocetkaVazenje: izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje,
-      snabdijevanjePeriodVazenja: izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja,
-      godina: izvjestaj.podaciPodnosenjeIzvjestaja.godina,
-      prezimeImePozicija: izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija,
-      telefon: izvjestaj.podaciPodnosenjeIzvjestaja.telefon,
-      email: izvjestaj.podaciPodnosenjeIzvjestaja.email,
-      preuzetaIsporucenaEEDataSource: preuzetaIsporucenaEEDataSource,
-      procjenaStanjaEnergetskeEfikasnostiDataSource: procjenaStanjaEnergetskeEfikasnostiDataSource,
-      domacinstvoBrojMjerenjePotrosnje: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje,
-      domacinstvoUkupanBroj: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj,
-      domacinstvoBrojDaljinskoOcitavanje: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojDaljinskoOcitavanje,
-      industrijaBrojMjerenjePotrosnje: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje,
-      industrijaUkupanBroj: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj,
-      industrijaBrojDaljinskoOcitavanje: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojDaljinskoOcitavanje,
-      ostaloBrojMjerenjePotrosnje: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje,
-      ostaloUkupanBroj: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj,
-      ostaloBrojDaljinskoOcitavanje: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje,
-      ukupnoBrojMjerenjePotrosnje: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje,
-      ukupnoBrojKrajnjihKupaca: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca,
-      ukupnoBrojDaljinskoOcitavanje: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojDaljinskoOcitavanje,
-      podaciPonudeEnergetskihUsluga: izvjestaj.podaciPonudeEnergetskihUsluga,
-      podaciPonudeUgradnjaIndividualnihUredjaja: izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja,
-      podaciOstaloEnergetskaEfikasnost: izvjestaj.podaciOstaloEnergetskaEfikasnost
-    ]
+      def bean = []
+      bean = [
+        preduzeceNaziv                  : izvjestaj.preduzece.naziv,
+        preduzeceAdresa                 : izvjestaj.preduzece.adresa,
+        preduzeceMaticniBroj            : izvjestaj.preduzece.maticniBrojJedinstvenogRegistra,
+        preduzeceJib                    : izvjestaj.preduzece.jib,
+        preduzecePib                    : izvjestaj.preduzece.pib,
+        preduzeceTelefon                : izvjestaj.preduzece.telefon,
+        preduzeceFax                    : izvjestaj.preduzece.fax,
+        preduzeceMail                   : izvjestaj.preduzece.email,
+        preduzeceBrojZaposlenih         : izvjestaj.preduzece.brojZaposlenih,
+        preduzeceGodisnjiPromet         : izvjestaj.preduzece.ukupanGodisnjiPromet,
+        distribucijaRegistarskiBroj     : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj,
+        distribucijaKomisija            : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija,
+        distribucijaDatumPocetkaVazenje : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje,
+        distribucijaPeriodVazenja       : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja,
+        snabdijevanjeRegistarskiBroj    : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj,
+        snabdijevanjeKomisija           : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija,
+        snabdijevanjeDatumPocetkaVazenje: izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje,
+        snabdijevanjePeriodVazenja      : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja,
+        godina                          : izvjestaj.podaciPodnosenjeIzvjestaja.godina,
+        prezimeImePozicija              : izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija,
+        telefon                         : izvjestaj.podaciPodnosenjeIzvjestaja.telefon,
+        email                           : izvjestaj.podaciPodnosenjeIzvjestaja.email
+      ]
 
-    bean.collect { it ?: "" }
+      if (izvjestaj.tip == IzvjestajTip.EE_DS) {
+        report = "grails-app/resources/jasper/izvjestaj_ee.jrxml"
 
-    JasperPrint jprint = JasperFillManager.fillReport(jreport, bean, new JREmptyDataSource())
+        bean += [
+          preuzetaIsporucenaEEDataSource               : preuzetaIsporucenaEEDataSource,
+          procjenaStanjaEnergetskeEfikasnostiDataSource: procjenaStanjaEnergetskeEfikasnostiDataSource,
+          domacinstvoBrojMjerenjePotrosnje             : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje,
+          domacinstvoUkupanBroj                        : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj,
+          domacinstvoBrojDaljinskoOcitavanje           : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojDaljinskoOcitavanje,
+          industrijaBrojMjerenjePotrosnje              : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje,
+          industrijaUkupanBroj                         : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj,
+          industrijaBrojDaljinskoOcitavanje            : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojDaljinskoOcitavanje,
+          ostaloBrojMjerenjePotrosnje                  : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje,
+          ostaloUkupanBroj                             : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj,
+          ostaloBrojDaljinskoOcitavanje                : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje,
+          ukupnoBrojMjerenjePotrosnje                  : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje,
+          ukupnoBrojKrajnjihKupaca                     : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca,
+          ukupnoBrojDaljinskoOcitavanje                : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojDaljinskoOcitavanje,
+          podaciPonudeEnergetskihUsluga                : izvjestaj.podaciPonudeEnergetskihUsluga,
+          podaciPonudeUgradnjaIndividualnihUredjaja    : izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja,
+          podaciOstaloEnergetskaEfikasnost             : izvjestaj.podaciOstaloEnergetskaEfikasnost
+        ]
+      }
 
-    byte[] byteArray = JasperExportManager.exportReportToPdf(jprint)
-    //TODO: return file to front-end, this is for development purposes only
-    FileUtils.writeByteArrayToFile(new File("C:\\Users\\OSD-jsajlovic\\Desktop\\izvjestaj.pdf"), byteArray)
+      if (izvjestaj.tip == IzvjestajTip.T_DS) {
+        report = "grails-app/resources/jasper/izvjestaj_te.jrxml"
+
+        bean += [
+          poslovniPotrosaciMwh                         : izvjestaj.isporucenaToplotnaEnergija?.poslovniPotrosaciMwh,
+          stambeniPotrosaciMwh                         : izvjestaj.isporucenaToplotnaEnergija?.stambeniPotrosaciMwh,
+          stambeniPotrosaciM2                          : izvjestaj.isporucenaToplotnaEnergija?.stambeniPotrosaciM2,
+          ukupnoIsporuceno                             : izvjestaj.isporucenaToplotnaEnergija?.ukupnoIsporuceno,
+          gubici                                       : izvjestaj.isporucenaToplotnaEnergija?.gubici,
+          podaciEnergentiDataSource                    : podaciEnergentiDataSource,
+          procjenaStanjaEnergetskeEfikasnostiDataSource: procjenaStanjaEnergetskeEfikasnostiDataSource,
+          ukupnoIsporucenaEnergija                     : izvjestaj.ukupnoIsporucenaEnergija,
+          podaciPonudeEnergetskihUsluga                : izvjestaj.podaciPonudeEnergetskihUsluga,
+          podaciPonudeUgradnjaIndividualnihUredjaja    : izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja,
+          podaciOstaloEnergetskaEfikasnost             : izvjestaj.podaciOstaloEnergetskaEfikasnost,
+          domacinstvoBrojMjerenjePotrosnje             : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje.toInteger(),
+          domacinstvoUkupanBroj                        : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj.toInteger(),
+          industrijaBrojMjerenjePotrosnje              : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje.toInteger(),
+          industrijaUkupanBroj                         : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj.toInteger(),
+          ostaloBrojMjerenjePotrosnje                  : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje.toInteger(),
+          ostaloUkupanBroj                             : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj.toInteger(),
+          ukupnoBrojMjerenjePotrosnje                  : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje.toInteger(),
+          ukupnoBrojKrajnjihKupaca                     : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca.toInteger()
+        ]
+      }
+
+      bean.collect { it ?: "" }
+
+      JasperReport jreport = JasperCompileManager.compileReport(report)
+
+      JasperPrint jprint = JasperFillManager.fillReport(jreport, bean, new JREmptyDataSource())
+
+      byte[] byteArray = JasperExportManager.exportReportToPdf(jprint)
+      String encoded = Base64.getEncoder().encodeToString(byteArray);
+      response.status = 200
+      render([pdfByteArray: encoded] as JSON)
+    } catch (Exception e) {
+      response.status = 500
+      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom generisanja izvještaja.', error: e.getLocalizedMessage()] as JSON)
+    }
   }
 }

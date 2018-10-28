@@ -19,6 +19,10 @@
 
                 });
 
+                $('#printPdfButton').click(function() {
+                    downloadPdf("${createLink(controller: 'izvjestaj', action: 'printPdf')}");
+                });
+
                 function handleButtonClick(url) {
                   $.ajax({
                     url: url,
@@ -41,6 +45,24 @@
                     }
                   });
                 }
+
+                function downloadPdf(url) {
+                  $.ajax({
+                    url: url,
+                    type: 'post',
+                    dataType: 'json',
+                    async: false,
+                    data: {id : ${this.izvjestaj.id}},
+                    success: function handleSuccess(response) {
+                      var a = document.createElement("a");
+                      a.href = "data:application/pdf;base64," + response.pdfByteArray;
+                      a.download = response.name || "Izvjestaj";
+                      document.body.appendChild(a);
+                      a.click();
+                      document.body.removeChild(a)
+                    }
+                  });
+                }
          });
 
         })(jQuery);
@@ -49,6 +71,7 @@
     <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}">
         <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
         <button id="posaljiButton"><i class="fa fa-share-square"></i>   <g:message code="default.button.send.label"/></button>
+        <button id="printPdfButton"><i class="fa fa-file-pdf"></i>   <g:message code="default.button.pdf.label"/></button>
     </g:if>
     <sec:ifAnyGranted roles="ROLE_ADMIN">
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN)}">

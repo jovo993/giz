@@ -269,7 +269,6 @@
                 $('#submitButton').click(function() {
                     handleButtonClick("${createLink(controller: 'izvjestaj', action: 'update')}", 'ažuriran');
                 });
-                var $PDFBTN = $('#printPdfButton');
 
                 $('#posaljiButton').click(function() {
                     handleButtonClick("${createLink(controller: 'izvjestaj', action: 'posalji')}", 'poslan');
@@ -307,18 +306,6 @@
                         }
                     });
                 }
-
-                $PDFBTN.click(function() {
-                    var dataJSON = $("#formIzvjestaj").serialize();
-                    var url="${createLink(controller: 'izvjestaj', action: 'printPdf')}";
-
-                    $.ajax({
-                        url: url,
-                        type: 'post',
-                        dataType: 'json',
-                        data: dataJSON
-                    });
-                });
 
                 function createJSONData(argument, table) {
                     var headers = [], returnValue = '';

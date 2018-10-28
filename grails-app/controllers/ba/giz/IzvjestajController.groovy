@@ -11,7 +11,6 @@ import net.sf.jasperreports.engine.JasperExportManager
 import net.sf.jasperreports.engine.JasperFillManager
 import net.sf.jasperreports.engine.JasperPrint
 import net.sf.jasperreports.engine.JasperReport
-import org.apache.commons.io.FileUtils
 import pl.touk.excel.export.WebXlsxExporter
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource
 
@@ -392,7 +391,8 @@ class IzvjestajController {
         preduzecePib                                 : izvjestaj.preduzece.pib,
         preduzeceTelefon                             : izvjestaj.preduzece.telefon,
         preduzeceFax                                 : izvjestaj.preduzece.fax,
-        preduzeceMail                                : izvjestaj.preduzece.brojZaposlenih,
+        preduzeceMail                                : izvjestaj.preduzece.email,
+        preduzeceBrojZaposlenih                      : izvjestaj.preduzece.brojZaposlenih,
         preduzeceGodisnjiPromet                      : izvjestaj.preduzece.ukupanGodisnjiPromet,
         distribucijaRegistarskiBroj                  : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj,
         distribucijaKomisija                         : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija,

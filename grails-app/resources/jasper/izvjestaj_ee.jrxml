@@ -1095,7 +1095,7 @@
 				<text><![CDATA[1 - PODACI O PREDUZEĆU]]></text>
 			</staticText>
 		</band>
-		<band height="11">
+		<band height="68">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
 				<reportElement x="30" y="0" width="400" height="11" uuid="b8ff30e4-0d39-4646-a00e-4c501ecb8bf2">

@@ -104,7 +104,7 @@
                 function createJSONData(argument, table) {
                     var headers = [], returnValue = '';
                     var $header = table.find('tr:first');
-                    var $rows = table.find('tr:not(:hidden):not(:last)');
+                    var $rows = table.find('tr:not(:hidden):not(:first)');
 
                     $header.find('th:not(:empty)').each(function() {
                         if (this.id.length > 0) {

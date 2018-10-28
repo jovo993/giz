@@ -198,13 +198,11 @@
 
                     $rows.each(function() {
                         var $td = $(this).find('td');
-                        var h = {};
 
                         var append = true;
                         returnValue += "{";
                         headers.forEach(function(header, i) {
                             if ($td.text() !== "") {
-                                h[header] = $td.eq(i).text();
                                 returnValue += '"' + header + '"' + ":" + '"' + $td.eq(i).text() + '"' + ",";
                             }
                             else {

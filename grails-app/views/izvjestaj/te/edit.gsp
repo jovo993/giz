@@ -37,7 +37,7 @@
                     </tr>
                 </table>
 
-                <g:render template="ukupnoIsporucenaEnergija" bean="izvjestaj" />
+                <g:render template="ukupnoIsporucenaEnergija" bean="izvjestaj"/>
             </div>
         </fieldset>
 
@@ -192,7 +192,7 @@
                 function createJSONData(argument, table) {
                     var headers = [], returnValue = '';
                     var $header = table.find('tr:first');
-                    var $rows = table.find('tr:not(:hidden):not(:last)');
+                    var $rows = table.find('tr:not(:hidden):not(:first)');
 
                     $header.find('th:not(:empty)').each(function() {
                         if (this.id.length > 0) {
@@ -202,18 +202,16 @@
 
                     $rows.each(function() {
                         var $td = $(this).find('td');
-                        var h = {};
 
                         var append = true;
                         returnValue += "{";
                         headers.forEach(function(header, i) {
-                            if ($td.text() !== "") {
-                                h[header] = $td.eq(i).text();
-                                returnValue += '"' + header + '"' + ":" + '"' + $td.eq(i).text() + '"' + ",";
-                            }
-                            else {
-                                append = false;
-                            }
+                          if ($td.text() !== "") {
+                            returnValue += '"' + header + '"' + ":" + '"' + $td.eq(i).text() + '"' + ",";
+                          }
+                          else {
+                            append = false;
+                          }
                         });
 
                         returnValue = returnValue.substr(0, returnValue.length - 1);
@@ -230,7 +228,7 @@
         })(jQuery);
     </g:javascript>
 
-    <g:render template="actionsMenuBar" bean="izvjestaj" />
+    <g:render template="actionsMenuBar" bean="izvjestaj"/>
 
 </div>
 </body>

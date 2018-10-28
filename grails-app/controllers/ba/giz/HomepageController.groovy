@@ -1,9 +1,7 @@
 package ba.giz
 
-import ba.giz.login.Role
 import ba.giz.login.User
 import grails.transaction.Transactional
-import grails.util.Holders
 import org.springframework.security.access.annotation.Secured
 import org.springframework.security.core.context.SecurityContextHolder
 
@@ -35,14 +33,15 @@ class HomepageController {
     def izvjestajList = []
     def preduzece = new Preduzece()
     def properties = ["tip", "podaciPodnosenjeIzvjestaja.godina"]
-    List currentUserAuthorities = User.findByUsername(SecurityContextHolder.context?.authentication?.principal?.username)?.getAuthorities()?.authority
-    if(currentUserAuthorities.contains("ROLE_ADMIN")){
+    User currentUser = User.findByUsername(SecurityContextHolder.context?.authentication?.principal?.username)
+    List currentUserAuthorities = currentUser?.getAuthorities()?.authority
+    if (currentUserAuthorities.contains("ROLE_ADMIN")) {
       izvjestajList = Izvjestaj.findAllByStatusInList([IzvjestajStatus.POSLAN, IzvjestajStatus.VERIFIKOVAN, IzvjestajStatus.ZAVRSEN])
       properties += ["preduzece.naziv"]
     }
 
-    if(currentUserAuthorities.contains("ROLE_EE_USER") || currentUserAuthorities.contains("ROLE_G_USER") || currentUserAuthorities.contains("ROLE_TE_USER")){
-      preduzece = Preduzece.findById(Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id)
+    if (currentUserAuthorities.contains("ROLE_EE_USER") || currentUserAuthorities.contains("ROLE_G_USER") || currentUserAuthorities.contains("ROLE_TE_USER")) {
+      preduzece = Preduzece.findById(currentUser?.preduzece?.id)
       izvjestajList = Izvjestaj.findAllByPreduzeceAndStatusInList(preduzece, [IzvjestajStatus.KREIRAN, IzvjestajStatus.DORADA])
     }
 

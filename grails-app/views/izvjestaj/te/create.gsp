@@ -194,7 +194,7 @@
                         <th id="jednicaMjere" class="prety-th">Jedinica mjere</th>
                     </tr>
                     <tr>
-                        <td class="prety-th">Pprirodni gas (uključujući i tečni prirodni gas)</td>
+                        <td class="prety-th">Prirodni gas (uključujući i tečni prirodni gas)</td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
                     </tr>
@@ -229,7 +229,7 @@
                         <td contenteditable="true" class="editable-td"></td>
                     </tr>
                     <tr>
-                        <td class="prety-th">Obnovljivi izvor energije</td>
+                        <td class="prety-th">Obnovljivi izvori energije</td>
                         <td contenteditable="true" class="editable-td"></td>
                         <td contenteditable="true" class="editable-td"></td>
                     </tr>

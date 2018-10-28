@@ -262,7 +262,17 @@ class IzvjestajController {
     JasperReport jreport = JasperCompileManager.compileReport(report)
 
     Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
-    JRBeanCollectionDataSource preuzetaIsporucenaEEDataSource = new JRBeanCollectionDataSource(izvjestaj.preuzetaIsporucenaEEList)
+    List<PreuzetaIsporucenaEE> preuzetaIsporucenaEEList = izvjestaj.preuzetaIsporucenaEEList
+    preuzetaIsporucenaEEList.add(
+      new PreuzetaIsporucenaEE(
+        radnaJedinica: "UKUPNO", preuzetaElektricnaEnergija: preuzetaIsporucenaEEList.preuzetaElektricnaEnergija.sum(),
+        potrosnjaNa110kV: preuzetaIsporucenaEEList.potrosnjaNa110kV.sum(), potrosnjaNa35kV: preuzetaIsporucenaEEList.potrosnjaNa35kV.sum(),
+        potrosnjaNa1Do35kV: preuzetaIsporucenaEEList.potrosnjaNa1Do35kV.sum(), potrosnjaOstala: preuzetaIsporucenaEEList.potrosnjaOstala.sum(),
+        potrosnjaDomacinstva: preuzetaIsporucenaEEList.potrosnjaDomacinstva.sum(), potrosnjaJavnaRasvjeta: preuzetaIsporucenaEEList.potrosnjaJavnaRasvjeta.sum(),
+        ukupnoIsporuceno: preuzetaIsporucenaEEList.ukupnoIsporuceno.sum(), gubici: preuzetaIsporucenaEEList.gubici.sum()
+      )
+    )
+    JRBeanCollectionDataSource preuzetaIsporucenaEEDataSource = new JRBeanCollectionDataSource(preuzetaIsporucenaEEList)
     JRBeanCollectionDataSource procjenaStanjaEnergetskeEfikasnostiDataSource = new JRBeanCollectionDataSource(izvjestaj.procjenaStanjaEnergetskeEfikasnostiList)
 
     def bean = []
@@ -290,6 +300,7 @@ class IzvjestajController {
       telefon: izvjestaj.podaciPodnosenjeIzvjestaja.telefon,
       email: izvjestaj.podaciPodnosenjeIzvjestaja.email,
       preuzetaIsporucenaEEDataSource: preuzetaIsporucenaEEDataSource,
+      ukupnoIsporucenaEnergija: izvjestaj.ukupnoIsporucenaEnergija,
       procjenaStanjaEnergetskeEfikasnostiDataSource: procjenaStanjaEnergetskeEfikasnostiDataSource,
       domacinstvoBrojMjerenjePotrosnje: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje,
       domacinstvoUkupanBroj: izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj,

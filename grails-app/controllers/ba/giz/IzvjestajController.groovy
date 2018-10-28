@@ -87,7 +87,6 @@ class IzvjestajController {
       render([title: 'Izvještaj', message: 'Došlo je do greške prilikom kreiranja izvještaja.', error: e.getLocalizedMessage()] as JSON)
     }
 
-
   }
 
   @Transactional

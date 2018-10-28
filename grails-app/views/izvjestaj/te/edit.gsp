@@ -37,9 +37,7 @@
                     </tr>
                 </table>
 
-                <div style="text-align: right;">
-                    Ukupno isporučena energija krajnjim kupcima u TJ:  <input name="izvjestaj.ukupnoIsporucenaEnergija" value="${izvjestaj.ukupnoIsporucenaEnergija}">
-                </div>
+                <g:render template="ukupnoIsporucenaEnergija" bean="izvjestaj"/>
             </div>
         </fieldset>
 
@@ -136,7 +134,7 @@
 
         <g:render template="procjenaStanjaTable" bean="izvjestaj"/>
 
-        <g:render template="stepenMjerenjaTableEdit" bean="izvjestaj"/>
+        <g:render template="stepenMjerenjaTable" bean="izvjestaj"/>
 
         <g:render template="ostaliPodaci" bean="izvjestaj"/>
 
@@ -194,7 +192,7 @@
                 function createJSONData(argument, table) {
                     var headers = [], returnValue = '';
                     var $header = table.find('tr:first');
-                    var $rows = table.find('tr:not(:hidden):not(:last)');
+                    var $rows = table.find('tr:not(:hidden):not(:first)');
 
                     $header.find('th:not(:empty)').each(function() {
                         if (this.id.length > 0) {
@@ -204,18 +202,16 @@
 
                     $rows.each(function() {
                         var $td = $(this).find('td');
-                        var h = {};
 
                         var append = true;
                         returnValue += "{";
                         headers.forEach(function(header, i) {
-                            if ($td.text() !== "") {
-                                h[header] = $td.eq(i).text();
-                                returnValue += '"' + header + '"' + ":" + '"' + $td.eq(i).text() + '"' + ",";
-                            }
-                            else {
-                                append = false;
-                            }
+                          if ($td.text() !== "") {
+                            returnValue += '"' + header + '"' + ":" + '"' + $td.eq(i).text() + '"' + ",";
+                          }
+                          else {
+                            append = false;
+                          }
                         });
 
                         returnValue = returnValue.substr(0, returnValue.length - 1);
@@ -232,7 +228,7 @@
         })(jQuery);
     </g:javascript>
 
-    <g:render template="actionsMenuBar" bean="izvjestaj" />
+    <g:render template="actionsMenuBar" bean="izvjestaj"/>
 
 </div>
 </body>

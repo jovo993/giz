@@ -69,6 +69,7 @@ class CreateIzvjestajUtils {
       case Sektor.GAS:
         izvjestaj.tip = IzvjestajTip.G_DS
         izvjestaj.preuzetIsporucenGas = parseJsonArrayToPreuzetIsporucenGas(data.preuzetIsporucenGas)
+        izvjestaj.preuzetIsporucenGas.save()
 
         izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca = generateStepenMjerenjaEnergije(data.stepenMjerenjeEnergijeStrukturaKupaca, false)
 
@@ -76,6 +77,8 @@ class CreateIzvjestajUtils {
       case Sektor.TOPLOTNA_ENERGIJA:
         izvjestaj.tip = IzvjestajTip.T_DS
         izvjestaj.isporucenaToplotnaEnergija = parseJsonArrayToIsporucenaToplotnaEnergija(data.isporucenaToplotnaEnergija)
+        izvjestaj.isporucenaToplotnaEnergija.save()
+
         izvjestaj.podaciEnergenti = parseJsonArrayToListPodaciEnergenti(data.podaciEnergenti)
 
         izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca = generateStepenMjerenjaEnergije(data.stepenMjerenjeEnergijeStrukturaKupaca, false)

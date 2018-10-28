@@ -42,13 +42,13 @@
                     <tfoot><tr></tr></tfoot>
                 </table>
 
-                <div class="prety-th" style="text-align: right; padding: 5px">Ukupno isporučena energija krajnjim kupcima u TJ:  <input type="text"></div>
+                <g:render template="ukupnoIsporucenaEnergija" bean="izvjestaj" />
             </div>
         </fieldset>
 
         <g:render template="procjenaStanjaTable" bean="izvjestaj"/>
 
-        <g:render template="stepenMjerenjaTableEdit" bean="izvjestaj"/>
+        <g:render template="stepenMjerenjaTable" bean="izvjestaj"/>
 
         <g:render template="ostaliPodaci" bean="izvjestaj"/>
 
@@ -105,13 +105,11 @@
 
                     $rows.each(function() {
                         var $td = $(this).find('td');
-                        var h = {};
 
                         var append = true;
                         returnValue += "{";
                         headers.forEach(function(header, i) {
                             if ($td.text() !== "") {
-                                h[header] = $td.eq(i).text();
                                 returnValue += '"' + header + '"' + ":" + '"' + $td.eq(i).text() + '"' + ",";
                             }
                             else {

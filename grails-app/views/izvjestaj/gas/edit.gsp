@@ -42,14 +42,13 @@
                     <tfoot><tr></tr></tfoot>
                 </table>
 
-                <div class="prety-th" style="text-align: right; padding: 5px">Ukupno isporučena energija krajnjim kupcima u TJ:  <input name="izvjestaj.ukupnoIsporucenaEnergija"
-                                                                                                                                        value="${izvjestaj.ukupnoIsporucenaEnergija}"></div>
-            </div>
+                <g:render template="ukupnoIsporucenaEnergija" bean="izvjestaj" />
+                </div>
         </fieldset>
 
         <g:render template="procjenaStanjaTable" bean="izvjestaj"/>
 
-        <g:render template="stepenMjerenjaTableEdit" bean="izvjestaj"/>
+        <g:render template="stepenMjerenjaTable" bean="izvjestaj"/>
 
         <g:render template="ostaliPodaci" bean="izvjestaj"/>
 
@@ -105,7 +104,7 @@
                 function createJSONData(argument, table) {
                     var headers = [], returnValue = '';
                     var $header = table.find('tr:first');
-                    var $rows = table.find('tr:not(:hidden):not(:last)');
+                    var $rows = table.find('tr:not(:hidden):not(:first)');
 
                     $header.find('th:not(:empty)').each(function() {
                         if (this.id.length > 0) {

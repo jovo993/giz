@@ -37,10 +37,12 @@
     }
 
     .pagination {
+        float: right;
+        background-color: whitesmoke;
         text-align: right;
         margin-top: 5px;
         padding: 5px;
-        color: whitesmoke;
+        color: brown;
     }
 
     .pagination a {

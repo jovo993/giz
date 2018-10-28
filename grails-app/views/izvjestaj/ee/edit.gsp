@@ -172,8 +172,7 @@
                     </tfoot>
                 </table>
 
-                <div class="prety-th" style=" text-align: right">Ukupno isporučena energija krajnjim kupcima u TJ:  <input type="text" name="izvjestaj.ukupnoIsporucenaEnergija"
-                                                                                                                           value="${izvjestaj?.ukupnoIsporucenaEnergija}"></div>
+                <g:render template="ukupnoIsporucenaEnergija" bean="izvjestaj" />
             </div>
         </fieldset>
 
@@ -183,6 +182,8 @@
         <g:javascript library='jquery'>
             (function($) {
                 $(document).ready(function() {
+                    calculateSumStepenMjerenja();
+
                     // sumiranje
                     for (var i = 1; i < 4; i++) {
                         $('.rowDataSdSmt' + i).each(function() {
@@ -193,11 +194,22 @@
                     }
 
                     function calculateSumStepenMjerenja(className) {
-                        var total = 0;
-                        $('.' + className).each(function() {
-                            total += $(this).val() * 1;
-                        });
-                        $('.colSumSmt' + className.substr(className.length - 1)).get(0).value = total;
+                        if (className) {
+                            var total = 0;
+                            $('.' + className).each(function() {
+                                total += $(this).val() * 1;
+                            });
+                            $('.colSumSmt' + className.substr(className.length - 1)).get(0).value = total;
+                        }
+                        else {
+                            for (var i = 1; i < 4; i++) {
+                                var total = 0;
+                                $('.rowDataSdSmt' + i).each(function() {
+                                    total += $(this).val() * 1;
+                                });
+                                $('.colSumSmt' + i).get(0).value = total;
+                            }
+                        }
                     }
                 });
             })(jQuery);
@@ -289,7 +301,7 @@
                         dataType: 'json',
                         async: false,
                         data: dataJSON,
-                        success: function handleSuccess() {
+                        success: function handleSuccess(data) {
                             successNotification({
                               title: data.title,
                               message: data.message
@@ -298,7 +310,7 @@
                               setTimeout(function() {window.location.href="/izvjestaj/show/" + ${this.izvjestaj.id} ;}, 2000);
                             }
                          },
-                        error: function handleError() {
+                        error: function handleError(data) {
                             errorNotification({
                               title: data.title,
                               message: data.message
@@ -348,7 +360,7 @@
         })(jQuery);
     </g:javascript>
 
-    <g:render template="actionsMenuBar" bean="izvjestaj" />
+    <g:render template="actionsMenuBar" bean="izvjestaj"/>
 </div>
 </body>
 </html>

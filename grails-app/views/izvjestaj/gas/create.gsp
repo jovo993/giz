@@ -42,13 +42,13 @@
                     <tfoot><tr></tr></tfoot>
                 </table>
 
-                <div class="prety-th" style="text-align: right; padding: 5px">Ukupno isporučena energija krajnjim kupcima u TJ:  <input type="text"></div>
+                <g:render template="ukupnoIsporucenaEnergija" bean="izvjestaj" />
             </div>
         </fieldset>
 
         <g:render template="procjenaStanjaTable" bean="izvjestaj"/>
 
-        <g:render template="stepenMjerenjaTableEdit" bean="izvjestaj"/>
+        <g:render template="stepenMjerenjaTable" bean="izvjestaj"/>
 
         <g:render template="ostaliPodaci" bean="izvjestaj"/>
 

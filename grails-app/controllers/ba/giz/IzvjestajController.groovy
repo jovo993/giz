@@ -14,6 +14,8 @@ import net.sf.jasperreports.engine.JasperReport
 import pl.touk.excel.export.WebXlsxExporter
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource
 
+import java.text.SimpleDateFormat
+
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.NO_CONTENT
 import static pl.touk.excel.export.abilities.RowManipulationAbility.fillHeader
@@ -396,11 +398,11 @@ class IzvjestajController {
         preduzeceGodisnjiPromet                      : izvjestaj.preduzece.ukupanGodisnjiPromet,
         distribucijaRegistarskiBroj                  : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj,
         distribucijaKomisija                         : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija,
-        distribucijaDatumPocetkaVazenje              : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje,
+        distribucijaDatumPocetkaVazenje              : new SimpleDateFormat("dd.mm.yyyy.").format(izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje),
         distribucijaPeriodVazenja                    : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja,
         snabdijevanjeRegistarskiBroj                 : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj,
         snabdijevanjeKomisija                        : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija,
-        snabdijevanjeDatumPocetkaVazenje             : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje,
+        snabdijevanjeDatumPocetkaVazenje             : new SimpleDateFormat("dd.mm.yyyy.").format(izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje),
         snabdijevanjePeriodVazenja                   : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja,
         godina                                       : izvjestaj.podaciPodnosenjeIzvjestaja.godina,
         prezimeImePozicija                           : izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija,

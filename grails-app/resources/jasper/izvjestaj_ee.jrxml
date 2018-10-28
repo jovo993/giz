@@ -40,11 +40,11 @@
 	<parameter name="preduzeceGodisnjiPromet" class="java.lang.Double"/>
 	<parameter name="distribucijaRegistarskiBroj" class="java.lang.String"/>
 	<parameter name="distribucijaKomisija" class="java.lang.String"/>
-	<parameter name="distribucijaDatumPocetkaVazenje" class="java.util.Date"/>
+	<parameter name="distribucijaDatumPocetkaVazenje" class="java.lang.String"/>
 	<parameter name="distribucijaPeriodVazenja" class="java.lang.Integer"/>
 	<parameter name="snabdijevanjeRegistarskiBroj" class="java.lang.String"/>
 	<parameter name="snabdijevanjeKomisija" class="java.lang.String"/>
-	<parameter name="snabdijevanjeDatumPocetkaVazenje" class="java.util.Date"/>
+	<parameter name="snabdijevanjeDatumPocetkaVazenje" class="java.lang.String"/>
 	<parameter name="snabdijevanjePeriodVazenja" class="java.lang.Integer"/>
 	<parameter name="godina" class="java.lang.String"/>
 	<parameter name="prezimeImePozicija" class="java.lang.String"/>
@@ -1095,7 +1095,7 @@
 				<text><![CDATA[1 - PODACI O PREDUZEĆU]]></text>
 			</staticText>
 		</band>
-		<band height="68">
+		<band height="48">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
 				<reportElement x="30" y="0" width="400" height="11" uuid="b8ff30e4-0d39-4646-a00e-4c501ecb8bf2">

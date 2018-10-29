@@ -33,11 +33,11 @@
 	<parameter name="preduzeceGodisnjiPromet" class="java.lang.Double"/>
 	<parameter name="distribucijaRegistarskiBroj" class="java.lang.String"/>
 	<parameter name="distribucijaKomisija" class="java.lang.String"/>
-	<parameter name="distribucijaDatumPocetkaVazenje" class="java.util.Date"/>
+	<parameter name="distribucijaDatumPocetkaVazenje" class="java.lang.String"/>
 	<parameter name="distribucijaPeriodVazenja" class="java.lang.Integer"/>
 	<parameter name="snabdijevanjeRegistarskiBroj" class="java.lang.String"/>
 	<parameter name="snabdijevanjeKomisija" class="java.lang.String"/>
-	<parameter name="snabdijevanjeDatumPocetkaVazenje" class="java.util.Date"/>
+	<parameter name="snabdijevanjeDatumPocetkaVazenje" class="java.lang.String"/>
 	<parameter name="snabdijevanjePeriodVazenja" class="java.lang.Integer"/>
 	<parameter name="godina" class="java.lang.String"/>
 	<parameter name="prezimeImePozicija" class="java.lang.String"/>
@@ -54,14 +54,14 @@
 	<parameter name="podaciPonudeEnergetskihUsluga" class="java.lang.String"/>
 	<parameter name="podaciPonudeUgradnjaIndividualnihUredjaja" class="java.lang.String"/>
 	<parameter name="podaciOstaloEnergetskaEfikasnost" class="java.lang.String"/>
-	<parameter name="domacinstvoBrojMjerenjePotrosnje" class="java.lang.Integer"/>
-	<parameter name="domacinstvoUkupanBroj" class="java.lang.Integer"/>
-	<parameter name="industrijaBrojMjerenjePotrosnje" class="java.lang.Integer"/>
-	<parameter name="industrijaUkupanBroj" class="java.lang.Integer"/>
-	<parameter name="ostaloBrojMjerenjePotrosnje" class="java.lang.Integer"/>
-	<parameter name="ostaloUkupanBroj" class="java.lang.Integer"/>
-	<parameter name="ukupnoBrojMjerenjePotrosnje" class="java.lang.Integer"/>
-	<parameter name="ukupnoBrojKrajnjihKupaca" class="java.lang.Integer"/>
+	<parameter name="domacinstvoBrojMjerenjePotrosnje" class="java.lang.Long"/>
+	<parameter name="domacinstvoUkupanBroj" class="java.lang.Long"/>
+	<parameter name="industrijaBrojMjerenjePotrosnje" class="java.lang.Long"/>
+	<parameter name="industrijaUkupanBroj" class="java.lang.Long"/>
+	<parameter name="ostaloBrojMjerenjePotrosnje" class="java.lang.Long"/>
+	<parameter name="ostaloUkupanBroj" class="java.lang.Long"/>
+	<parameter name="ukupnoBrojMjerenjePotrosnje" class="java.lang.Long"/>
+	<parameter name="ukupnoBrojKrajnjihKupaca" class="java.lang.Long"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>

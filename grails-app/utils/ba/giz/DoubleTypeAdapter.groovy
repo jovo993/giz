@@ -13,7 +13,11 @@ class DoubleTypeAdapter extends TypeAdapter<Double> {
       reader.nextNull()
       return null
     }
+
     String stringValue = reader.nextString()
+    if(stringValue == "") {
+      return 0.0
+    }
     try {
       Double value = Double.valueOf(stringValue)
       return value

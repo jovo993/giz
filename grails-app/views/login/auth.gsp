@@ -17,12 +17,14 @@
         display: inline-block;
         font-family: sans-serif;
         -webkit-font-smoothing: subpixel-antialiased;
+        width: 98%;
+        margin-left: 20px;
     }
 
     fieldset {
         background-color: whitesmoke;
         text-align: justify;
-        border: 1px double black;
+        border: 1px double gray;
         -moz-border-radius: 8px;
         -webkit-border-radius: 8px;
         border-radius: 8px;
@@ -30,10 +32,16 @@
 
     legend {
         padding: 1%;
-        border: 1px double black;
+        border: 1px double lightgray;
         -moz-border-radius: 8px;
         -webkit-border-radius: 8px;
         border-radius: 8px;
+        height: 15px;
+    }
+
+    legend h4 {
+        margin-block-start: 0px;
+        margin-block-end: 0em;
     }
 
     .pagination {
@@ -142,13 +150,19 @@
         text-align: center;
         white-space: nowrap;
         font-size: 16px;
-        width: 100%;
         background: #2f5786;
         background-size: 100% 200%;
         border: none;
         color: white;
         font-weight: 400;
         -webkit-appearance: button;
+
+        width: 98%;
+        padding-left: 1px;
+        border-left-width: 10px;
+        margin-left: 3px;
+        margin-top: 3px;
+        margin-right: 3px;
     }
 
     </style>
@@ -156,8 +170,10 @@
 </head>
 
 <body>
-<div style="width: 1800px; margin: auto;">
-    <h1 class="header">Registar operatera, distributera i snabdjevača energijom</h1>
+<div style="width: 100%; margin: auto;">
+    <h1 class="header">Registar operatera, distributera i snabdjevača energijom
+    </br>Republike Srpske
+    </h1>
 
     <div class="row">
         <div class="column left">
@@ -165,7 +181,9 @@
             <h2 style="color: whitesmoke; text-align: center">Novosti, informacije, obavještenja</h2>
             <g:each in="${clanci}" var="bean">
                 <fieldset class=fieldset" style="margin-top: 15px;">
-                    <legend class="legend" style="background-color: whitesmoke;"><h3>${bean.naslov} - <g:formatDate>${bean.datumObjave}</g:formatDate></h3></legend>
+
+                    <legend class="legend" style="background-color: whitesmoke;"><h4>${bean.naslov} - <g:formatDate>${bean.datumObjave}</g:formatDate></h4></legend>
+
                     <div style="background-color: whitesmoke; color: #3d3d3f; padding: 1%">${raw(bean.sadrzaj)}</div>
                 </fieldset>
             </g:each>
@@ -204,7 +222,7 @@
                         <h3>O aplikaciji</h3>
                     </th>
                     <tr>
-                        <td style="padding: 1em;">Web aplikacija "rODS - Registar operatera, distributera i snabdjevača energijom" realizovana je uz pomoć Njemačke organizacije za međunarodnu saradnju GIZ.</td>
+                       <td style="padding: 1em; text-align: justify;">Web aplikacija "rODS - Registar operatera, distributera i snabdjevača energijom Republike Srpske" realizovana je uz pomoć Njemačke organizacije za međunarodnu saradnju GIZ.</td>
                     </tr>
                     <tr>
                         <td style="padding: 1em;"><asset:image src="giz-saradnja.png" style="width: 100%"/></td>
@@ -218,12 +236,9 @@
                     <tr><th class="links"><h3>Linkovi</h3></th></tr>
                     <tr style="text-align: center;">
                         <td style="padding: 1em;">
-                            <a href="http://www.ekofondrs.org/" target="_blank" title="Fond za zaštitu životne sredine i energetsku efikasnost Republike Srpske">
-                                <asset:image src="fond-logo.png" style="height: 92px;"/>
-                            </a>&nbsp;&nbsp;&nbsp;
-                            <a href="http://www.vladars.net/sr-SP-Cyrl/Vlada/Ministarstva/mgr/" target="_blank" title="Ministarstvo za prostorno uređenje,građevinarstvo i ekologiju Republike Srpske">
-                                <asset:image src="ministarstvo-logo.png" style="height: 92px;"/>
-                            </a>
+                            <a href="http://www.ekofondrs.org/" target="_blank" title="Fond za zaštitu životne sredine i energetsku efikasnost Republike Srpske"><asset:image src="fond-logo.png" style="height: 92px;"/></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://www.vladars.net/sr-SP-Cyrl/Vlada/Ministarstva/mgr/" target="_blank" title="Ministarstvo za prostorno uređenje,građevinarstvo i ekologiju Republike Srpske"><asset:image src="ministarstvo-logo.png" style="height: 92px;"/></a>
                         </td>
                     </tr>
                     </tbody>

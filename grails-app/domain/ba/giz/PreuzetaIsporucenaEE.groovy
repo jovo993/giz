@@ -3,15 +3,15 @@ package ba.giz
 class PreuzetaIsporucenaEE {
 
   String radnaJedinica
-  Double preuzetaElektricnaEnergija
-  Double potrosnjaNa110kV
-  Double potrosnjaNa35kV
-  Double potrosnjaNa1Do35kV
-  Double potrosnjaOstala
-  Double potrosnjaDomacinstva
-  Double potrosnjaJavnaRasvjeta
-  Double ukupnoIsporuceno
-  Double gubici
+  Double preuzetaElektricnaEnergija = 0
+  Double potrosnjaNa110kV = 0
+  Double potrosnjaNa35kV = 0
+  Double potrosnjaNa1Do35kV = 0
+  Double potrosnjaOstala = 0
+  Double potrosnjaDomacinstva = 0
+  Double potrosnjaJavnaRasvjeta = 0
+  Double ukupnoIsporuceno = 0
+  Double gubici = 0
 
   static constraints = {
     radnaJedinica nullable: true

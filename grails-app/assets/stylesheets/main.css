@@ -90,7 +90,7 @@ img {
 
 .footer {
     background: #2f5786;
-    color: #707d8a;
+    color: whitesmoke;
     clear: both;
     font-size: 0.8em;
     margin-top: 1.5em;
@@ -548,7 +548,7 @@ th:hover, tr:hover {
     text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save, .buttons .excel {
+.buttons .delete, .buttons .edit, .buttons .save, .buttons .excel, .buttons .pdf {
     background-position: 0.7em center;
     background-repeat: no-repeat;
     text-indent: 25px;
@@ -570,6 +570,10 @@ th:hover, tr:hover {
     background-image: url(../images/skin/excel.png);
 }
 
+.buttons .pdf {
+    background-image: url(../images/skin/pdf.png);
+}
+
 a.skip {
     position: absolute;
     left: -9999px;
@@ -589,7 +593,7 @@ img.grails-logo {
 }
 
 .fieldset {
-    margin: 10px 0 10px auto;
+    margin: 10px auto 10px auto;
     width: 95%;
     border-radius: 25px;
     border: 2px solid #778dad;
@@ -691,4 +695,34 @@ textarea {
     text-align: center !important;
     vertical-align: middle !important;
     border: 1px solid #e5e5e5;
+}
+
+#notification {
+    position:fixed;
+    top:0px;
+    width:100%;
+    z-index:105;
+    text-align:center;
+    font-weight:normal;
+    font-size:14px;
+    font-weight:bold;
+    color:white;
+    background-color:#FF7800;
+    padding:5px;
+}
+#notification span.dismiss {
+    border:2px solid #FFF;
+    padding:0 5px;
+    cursor:pointer;
+    float:right;
+    margin-right:10px;
+}
+#notification a {
+    color:white;
+    text-decoration:none;
+    font-weight:bold
+}
+
+.fa {
+    color: #2f5786;
 }

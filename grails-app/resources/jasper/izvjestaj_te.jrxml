@@ -1,0 +1,1477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.3.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="izvjestaj_ee" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4fe90646-07e7-4cba-92c7-868ee2c2baf8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<subDataset name="Dataset1" uuid="e626ccb8-297d-49df-9d0b-4474153871a0">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="energent" class="java.lang.String"/>
+		<field name="godisnjaUpotrebljenaKolicina" class="java.lang.Double"/>
+		<field name="jednicaMjere" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="Dataset2" uuid="e626ccb8-297d-49df-9d0b-4474153871a1">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="primjenjenaMjera" class="java.lang.String"/>
+		<field name="vrstaUstede" class="java.lang.String"/>
+		<field name="kolicinaUstede" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="Empty Dataset1" uuid="4319d210-1c7d-4745-9f26-d9de94aec7ea"/>
+	<parameter name="preduzeceNaziv" class="java.lang.String"/>
+	<parameter name="preduzeceAdresa" class="java.lang.String"/>
+	<parameter name="preduzeceMaticniBroj" class="java.lang.String"/>
+	<parameter name="preduzeceJib" class="java.lang.String"/>
+	<parameter name="preduzecePib" class="java.lang.String"/>
+	<parameter name="preduzeceTelefon" class="java.lang.String"/>
+	<parameter name="preduzeceFax" class="java.lang.String"/>
+	<parameter name="preduzeceMail" class="java.lang.String"/>
+	<parameter name="preduzeceBrojZaposlenih" class="java.lang.Integer"/>
+	<parameter name="preduzeceGodisnjiPromet" class="java.lang.Double"/>
+	<parameter name="distribucijaRegistarskiBroj" class="java.lang.String"/>
+	<parameter name="distribucijaKomisija" class="java.lang.String"/>
+	<parameter name="distribucijaDatumPocetkaVazenje" class="java.util.Date"/>
+	<parameter name="distribucijaPeriodVazenja" class="java.lang.Integer"/>
+	<parameter name="snabdijevanjeRegistarskiBroj" class="java.lang.String"/>
+	<parameter name="snabdijevanjeKomisija" class="java.lang.String"/>
+	<parameter name="snabdijevanjeDatumPocetkaVazenje" class="java.util.Date"/>
+	<parameter name="snabdijevanjePeriodVazenja" class="java.lang.Integer"/>
+	<parameter name="godina" class="java.lang.String"/>
+	<parameter name="prezimeImePozicija" class="java.lang.String"/>
+	<parameter name="telefon" class="java.lang.String"/>
+	<parameter name="email" class="java.lang.String"/>
+	<parameter name="poslovniPotrosaciMwh" class="java.lang.Double"/>
+	<parameter name="stambeniPotrosaciMwh" class="java.lang.Double"/>
+	<parameter name="stambeniPotrosaciM2" class="java.lang.Double"/>
+	<parameter name="ukupnoIsporuceno" class="java.lang.Double"/>
+	<parameter name="gubici" class="java.lang.Double"/>
+	<parameter name="ukupnoIsporucenaEnergija" class="java.lang.Double"/>
+	<parameter name="podaciEnergentiDataSource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="procjenaStanjaEnergetskeEfikasnostiDataSource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="podaciPonudeEnergetskihUsluga" class="java.lang.String"/>
+	<parameter name="podaciPonudeUgradnjaIndividualnihUredjaja" class="java.lang.String"/>
+	<parameter name="podaciOstaloEnergetskaEfikasnost" class="java.lang.String"/>
+	<parameter name="domacinstvoBrojMjerenjePotrosnje" class="java.lang.Integer"/>
+	<parameter name="domacinstvoUkupanBroj" class="java.lang.Integer"/>
+	<parameter name="industrijaBrojMjerenjePotrosnje" class="java.lang.Integer"/>
+	<parameter name="industrijaUkupanBroj" class="java.lang.Integer"/>
+	<parameter name="ostaloBrojMjerenjePotrosnje" class="java.lang.Integer"/>
+	<parameter name="ostaloUkupanBroj" class="java.lang.Integer"/>
+	<parameter name="ukupnoBrojMjerenjePotrosnje" class="java.lang.Integer"/>
+	<parameter name="ukupnoBrojKrajnjihKupaca" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="77" y="24" width="401" height="21" uuid="282c29fa-5d64-42fe-9f1f-fac27cd7b8cc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[GODIŠNJI IZVJEŠTAJ DISTRIBUTERA / SNABDJEVAČA TOPLOTNOM ENERGIJOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="91" height="21" uuid="b9b28ece-a8ac-4cb0-a462-15e6b5dba4e5"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[Obrazac T-DS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="751" splitType="Stretch">
+			<textField>
+				<reportElement x="30" y="28" width="180" height="18" uuid="b4362ce8-d9a3-452a-b42a-36fa82a9ea64"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Adresa:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="46" width="180" height="20" uuid="bea180fa-fb94-44b3-850e-66d77dff013a"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Matični broj jedinstvenog registra:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="66" width="180" height="18" uuid="a36b2d96-08f7-4c67-bc4d-4969c35bf5e2"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["JIB:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="174" width="180" height="18" uuid="343ad572-f2d2-4da2-9647-42b174ad192e"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ukupan godišnji promet (KM)*:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="156" width="180" height="18" uuid="a9d9cc6c-974a-4b00-a968-2f81f2dc0549"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Broj zaposlenih*:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="138" width="180" height="18" uuid="73d9b902-c437-4cb0-ae5b-4f2053b8dca0"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Mail adresa:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="120" width="180" height="18" uuid="9243eed5-179a-4ecd-8be3-bf3d4d2a1a2e"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Fax:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="102" width="180" height="18" uuid="14a16d97-d9b2-424c-8dd2-71c6eeeccfdd"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Telefon:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="84" width="180" height="18" uuid="5fe84c18-1b39-4861-81d2-fa6f55007d0f"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PIB:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="10" width="320" height="18" uuid="cf01cb63-7fb4-4486-a74b-e4b8e61abf7d"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceNaziv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="28" width="320" height="18" uuid="edefa44b-2e41-41aa-ace3-c2a5e95c956e"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceAdresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="46" width="320" height="20" uuid="458be210-b105-48e5-8be9-e4e3673048ef"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceMaticniBroj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="174" width="320" height="18" uuid="fc5744bd-7743-49c0-be8f-550e44da1e77"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceGodisnjiPromet}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="156" width="320" height="18" uuid="0abe4270-1eac-4021-9f5e-c5410fa1121a"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceBrojZaposlenih}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="138" width="320" height="18" uuid="20da558c-88be-4670-8099-d38443bed3c8"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceMail}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="120" width="320" height="18" uuid="933087de-a727-4a76-8134-65fd63ffcefa"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceFax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="102" width="320" height="18" uuid="f2147325-4ce1-42c5-acb4-0db68de6d9b7"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceTelefon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="84" width="320" height="18" uuid="4c9613b5-28fe-4e56-aed3-b89aceb56c58"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzecePib}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="66" width="320" height="18" uuid="46c62c2e-6404-470f-83c8-3e0c3caf3628"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{preduzeceJib}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="199" width="290" height="21" uuid="fcb433ba-4bd0-49c4-8920-d78142ca6442"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[2 - PODACI O DOZVOLAMA ZA OBAVLJANJE DJELATNOSTI]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="30" y="220" width="180" height="49" uuid="a79e2952-b591-4006-9389-ffeb5cf36bc5"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Registarski broj dozvole za\nobavljanje djelatnosti distribucije\ntoplotne energije:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="269" width="180" height="20" uuid="381a0929-54d4-44b6-aaf3-40c4b51d8ad3"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Komisija (agencija) izdavač dozvole:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="289" width="180" height="18" uuid="d398de50-69cf-46d1-a6d1-60315222742a"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Datum početka važenja dozvole:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="307" width="180" height="18" uuid="0a99845f-e032-4b7c-b476-e577aabefef0"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Period važenja dozvole:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="220" width="320" height="49" uuid="fb476ae0-1aef-40e0-9dd8-8594ac67a134"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{distribucijaRegistarskiBroj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="269" width="320" height="20" uuid="a21df9cf-011e-4d3d-9802-6d7a1c503dc6"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{distribucijaKomisija}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="307" width="320" height="18" uuid="b1700de0-8d51-4a06-ae30-1b7981d87742"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{distribucijaPeriodVazenja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="289" width="320" height="18" uuid="15854c94-605a-4d91-8378-023df107b9d5"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{distribucijaDatumPocetkaVazenje}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="192" width="338" height="10" uuid="a6d9c904-c101-49a2-8587-ffebd88e2163"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[*- podaci neophodni u skladu sa članom 19 Zakona o energetskoj efikasnosti Republike Srpske]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="30" y="333" width="180" height="60" uuid="5b2cae64-6c05-4790-93bb-334fc4190c42"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Registarski broj dozvole za\nobavljanje djelatnosti\nsnabdijevanja kupaca toplotnom\nenergijom:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="393" width="180" height="20" uuid="10eca27b-84e7-4978-bfe5-41f028c2a9e7"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Komisija (agencija) izdavač dozvole:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="413" width="180" height="18" uuid="18941f38-2178-4d3b-a9db-18a87774141f"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Datum početka važenja dozvole:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="431" width="180" height="18" uuid="e1bbf652-7986-4c6c-a6a9-dfd2d8d2e0b7"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Period važenja dozvole:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="333" width="320" height="60" uuid="c12cf8ff-2dc6-434e-a8b7-f4b2f9f3618e"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{snabdijevanjeRegistarskiBroj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="393" width="320" height="20" uuid="f4887b40-9998-4c1f-8105-d0c7de406bb4"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{snabdijevanjeKomisija}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="431" width="320" height="18" uuid="607d71d0-ac90-4a77-a21f-368492b6af5c"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{snabdijevanjePeriodVazenja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="413" width="320" height="18" uuid="064c210c-e1f3-46eb-8056-f308f4a2e2c4"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{snabdijevanjeDatumPocetkaVazenje}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="447" width="290" height="21" uuid="9202620b-abd5-4933-953d-e4d8b7f7ef12"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[3 - PODACI O PODNOŠENJU IZVJEŠTAJA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="29" y="468" width="181" height="19" uuid="23671768-6168-461f-80ff-07ed11ba84ff"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Izvještaj za godinu:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="487" width="181" height="34" uuid="8d1393b2-56fa-4c37-83cb-edcb3365ca70"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Prezime i ime osobe\nkoja je sastavila izvještaj / pozicija:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="521" width="181" height="18" uuid="816fc32a-e5aa-4180-89a3-1ba8e1d61a6f"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Kontakt telefon:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="539" width="181" height="18" uuid="e1525f60-3306-4975-ae93-3996c3dcbb6f"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Mail adresa:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="468" width="319" height="19" uuid="2d0f969e-05e9-44d3-9c72-d1fe4256b776"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{godina}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="487" width="319" height="34" uuid="76a69ccd-0214-4443-ad66-47d86af49958"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{prezimeImePozicija}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="539" width="319" height="18" uuid="338af690-822e-4c74-9982-410f564eae0c"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="521" width="319" height="18" uuid="4d94fe79-378b-46ce-9b5e-dc94c46fc7aa"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{telefon}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="554" width="290" height="21" uuid="e5c44d36-9b49-4cdc-a320-1f16e9b84297"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[4 - ISPORUČENE KOLIČINE TOPLOTNE ENERGIJE, GUBICI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="-11" width="151" height="21" uuid="6548a656-f8d8-4a2b-bae2-f543272be5e6"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="2"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[1 - PODACI O PREDUZEĆU]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="365" y="593" width="114" height="26" uuid="ff248a15-da57-4a63-bec2-4713ffd9f210">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["UKUPNO\nISPORUČENO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="575" width="50" height="44" uuid="92573181-6514-4770-8b7d-bb57af462fc7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["GUBICI (%)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="575" width="450" height="18" uuid="584479c6-79da-4833-93b0-a0108fdf7ffe"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ISPORUČENE KOLIČINE TOPLOTNE ENERGIJE (MWh)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="639" width="336" height="16" uuid="2afd8254-ec07-4768-a431-9f44bd617868">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ukupno isporučena energija krajnjim kupcima u TJ"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="639" width="164" height="16" uuid="2016aeb1-0374-453f-813a-b7179ae8f35c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ukupnoIsporucenaEnergija}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="253" y="593" width="112" height="26" uuid="130e057b-e9fc-4a83-bcca-40e13cdf1646">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="styled">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["stambeni potrošači po\nm<sup>2</sup>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="593" width="112" height="26" uuid="e066a51b-9297-4d6a-99de-1f1c3f7470bb">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["stambeni potrošači po MWh"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="593" width="112" height="26" uuid="edcf55b7-8f47-45f1-9f1e-e1c42432c2af">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["poslovni potrošači po MWh"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="619" width="112" height="20" uuid="b4a05a05-4608-48e3-abf7-48ee4792340f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{poslovniPotrosaciMwh}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="619" width="112" height="20" uuid="d0281f5b-b8cd-4758-a54d-bfbaec8a699c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{stambeniPotrosaciMwh}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="253" y="619" width="112" height="20" uuid="4c36300f-22f9-43ee-89e4-426be5103ae2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{stambeniPotrosaciM2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="619" width="114" height="20" uuid="70ed9ae9-af12-4259-a34e-3cee75fee663">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ukupnoIsporuceno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="619" width="50" height="20" uuid="997b2bf0-0ad8-4d4b-8adf-3d6c27e68088">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{gubici}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="655" width="410" height="21" uuid="7b5388b9-2e0c-4702-8dab-852e98219c04"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[5 - PODACI O ENERGENTIMA KOJI SE KORISTE ZA PROIZVODNJU TOPLOTNE ENERGIJE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="30" y="10" width="180" height="18" uuid="3f4d2442-e4ab-4673-a670-2ebe62bef0ed">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Naziv preduzeća:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="676" width="167" height="30" uuid="f0b9f505-89c8-430d-8448-ff452b096063">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Energent"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="196" y="676" width="166" height="30" uuid="b528da4c-a831-4eae-81ad-fb67f31d8315">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Godišnja upotrijebljena količina"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="362" y="676" width="167" height="30" uuid="22461b16-0798-42d7-be34-75514406e543">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Jedinica mjere"]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="29" y="706" width="500" height="13" forecolor="#000000" uuid="1fef263b-6cb4-49ed-bb77-8d420638c075">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset1" uuid="382bb470-78fd-463a-9056-3d08e736c766">
+						<dataSourceExpression><![CDATA[$P{podaciEnergentiDataSource}.cloneDataSource()]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="167" uuid="7225c91b-08d7-42b8-ac54-ed0e093e3d8f">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell height="18">
+							<box>
+								<pen lineWidth="1.25"/>
+								<topPen lineWidth="1.25" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.25" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.25" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="167" height="18" uuid="7e288872-9d6d-40bc-bdd5-ccdfbf5d3e2f"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{energent}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="166" uuid="bd77ccc3-9358-491a-b2bc-d9443fb6e236">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell height="18">
+							<box>
+								<pen lineWidth="1.25" lineStyle="Solid"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="166" height="18" uuid="f3cc9d6b-86a5-43a0-a13f-86f37ef9cb77"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{godisnjaUpotrebljenaKolicina}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="167" uuid="ea36f4e5-b6f4-40f8-8475-95ffd0ce6ab6">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell height="18">
+							<box>
+								<pen lineWidth="1.25" lineStyle="Solid"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="167" height="18" uuid="e545e98a-c29d-4b53-8d94-cdfc7b1fa5ca"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{jednicaMjere}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="751" splitType="Stretch">
+			<textField>
+				<reportElement x="30" y="20" width="167" height="30" uuid="a9faebb9-b78a-4017-af32-353251895c01">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Primijenjena mjera"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="20" width="166" height="30" uuid="3ca922e2-cf31-432d-9ad5-f067dcaa5504">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Vrsta uštede"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="363" y="20" width="167" height="30" uuid="756344cb-ec08-4c17-bc40-fc7eff24f515">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Količina uštede\n(smanjenje gubitaka)"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="0" width="290" height="21" uuid="e86af435-cf6a-463c-8359-ada116c198dd"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[6 - PROCJENA STANJA ENERGETSKE EFIKASNOSTI]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="30" y="84" width="140" height="60" uuid="30ce60ae-6339-41c0-8b25-0ef401038059">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="30" y="70" width="500" height="14" uuid="d9be4de2-5d5c-49a2-ac4a-f433a0f8ff82"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[7 - PODACI O STEPENU MJERENJA ISPORUČENE TOPLOTNE ENERGIJE PREMA STRUKTURI KRAJNJIH KUPACA]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="170" y="84" width="208" height="60" uuid="bd2ece8f-5e41-47e7-a987-4760e75bbcd0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Broj krajnjih kupaca kojima se\nobračun potrošnje toplotne\nenergije vrši na osnovu\nmjerenja potrošnje"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="30" y="144" width="140" height="20" uuid="6a1aea51-a464-4729-a879-25435e6aad0c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Sektor domaćinstva"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="170" y="144" width="208" height="20" uuid="487f3d01-846b-438a-a503-74bc29b1fc6d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{domacinstvoBrojMjerenjePotrosnje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="30" y="164" width="140" height="20" uuid="44fad82e-f433-4057-8c96-9addc3030a89">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Sektor industrije"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="170" y="164" width="208" height="20" uuid="0bc97bea-fef1-49cd-a986-29e6dfc23956">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{industrijaBrojMjerenjePotrosnje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="30" y="184" width="140" height="20" uuid="ec16ea0e-c390-41ce-974b-46a2bdf15d44">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ostali sektori"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="170" y="184" width="208" height="20" uuid="39edcb20-d9b8-4b16-a586-f495afbf5652">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ostaloBrojMjerenjePotrosnje}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="30" y="204" width="140" height="20" uuid="5f84a428-eaac-435b-9f37-5f6fb8007b4c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["UKUPNO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="170" y="204" width="208" height="20" uuid="923d9d8f-dcd5-405c-b2e9-b9f6d183d3f9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="11" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ukupnoBrojMjerenjePotrosnje}+"K<sub>m</sub>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="31" y="220" width="380" height="21" uuid="286f2f66-e3fe-4f74-b715-f1055c92c892"/>
+				<box rightPadding="0"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[8 - PODACI O PONUDAMA ENERGETSKIH USLUGA KRAJNJIM KUPCIMA]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="30" y="243" width="500" height="96" uuid="55711f09-d35e-4736-b586-b72a82e75532">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="11" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{podaciPonudeEnergetskihUsluga}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="30" y="333" width="500" height="21" uuid="3465b95b-f5a7-4622-b291-feb132f15568"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[9 - PODACI O PONUDAMA ZA UGRADNJU INDIVIDUALNIH UREĐAJA ZA MJERENJE POTROŠNJE ENERGIJE]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="30" y="354" width="500" height="96" uuid="c88e1543-b370-40e1-b7a1-608846856026">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="11" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{podaciPonudeUgradnjaIndividualnihUredjaja}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="30" y="445" width="380" height="21" uuid="c573e609-461f-4315-81ba-ad99c9143199"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[10 - OSTALI PODACI RELEVANTNI ZA ENERGETSKU EFIKASNOST]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="30" y="466" width="500" height="96" uuid="7a06af86-a8ba-4690-9cf9-80ba3d808b00">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="11" isBold="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{podaciOstaloEnergetskaEfikasnost}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="378" y="84" width="152" height="60" uuid="b91b3e74-5b92-4f8e-9d2b-ca3ef994249c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ukupan broj\nkrajnjih kupaca"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="378" y="144" width="152" height="20" uuid="6099ff27-d342-4e3d-a3a3-b536e9e05223">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{domacinstvoUkupanBroj}+"K<sub>d</sub>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="378" y="164" width="152" height="20" uuid="751c7126-5bb8-4622-bff1-b1840297c066">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{industrijaUkupanBroj}+"K<sub>i</sub>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="378" y="184" width="152" height="20" uuid="408acc4c-a3b6-4c71-be4b-d220a7622597">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ostaloUkupanBroj}+"K<sub>o</sub>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="378" y="204" width="152" height="20" uuid="885d084d-6556-4305-a924-ab71b3dd8c7d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ukupnoBrojKrajnjihKupaca}+"K<sub>u</sub>"]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="30" y="50" width="500" height="13" forecolor="#000000" uuid="0d04d88e-49ec-49ad-b30a-daf077266868">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset2" uuid="79e88f28-e308-4819-9164-bdaa5ce7a73e">
+						<dataSourceExpression><![CDATA[$P{procjenaStanjaEnergetskeEfikasnostiDataSource}.cloneDataSource()]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="167" uuid="286bdeee-e88c-4f2a-b99a-8c7164382d6c">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell height="18">
+							<box>
+								<pen lineWidth="1.25"/>
+								<topPen lineWidth="1.25" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.25" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.25" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.25" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="167" height="18" uuid="969d5c42-e926-4e4c-860d-c043a4f1f839"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{primjenjenaMjera}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="166" uuid="76dda41a-db19-4746-bf42-f6c0da2872a3">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell height="18">
+							<box>
+								<pen lineWidth="1.25" lineStyle="Solid"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="166" height="18" uuid="bb6220be-80af-4bbf-bd0c-a7d8f1a283a1"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{vrstaUstede}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="167" uuid="12746b82-9302-4896-b792-faf76e345235">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader height="0" rowSpan="1"/>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell height="18">
+							<box>
+								<pen lineWidth="1.25" lineStyle="Solid"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="167" height="18" uuid="dd6b7a3e-eb60-45c7-9859-f299df6abdf2"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{kolicinaUstede}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

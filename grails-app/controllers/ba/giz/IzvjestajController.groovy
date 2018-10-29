@@ -378,6 +378,8 @@ class IzvjestajController {
       DefaultJasperReportsContext.getInstance().setProperty("net.sf.jasperreports.default.font.name", "SansSerif")
       DefaultJasperReportsContext.getInstance().setProperty("net.sf.jasperreports.default.pdf.encoding", "Cp1250")
 
+      def sc = session.getServletContext()
+      def reportsPath = sc.getRealPath("/")
       String report = ""
 
       Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
@@ -423,7 +425,7 @@ class IzvjestajController {
       ]
 
       if (izvjestaj.tip == IzvjestajTip.EE_DS) {
-        report = "grails-app/resources/jasper/izvjestaj_ee.jrxml"
+        report = reportsPath + "jasper/izvjestaj_ee.jrxml"
 
         List<PreuzetaIsporucenaEE> preuzetaIsporucenaEEList = izvjestaj.preuzetaIsporucenaEEList
         preuzetaIsporucenaEEList.add(
@@ -447,7 +449,7 @@ class IzvjestajController {
       }
 
       if (izvjestaj.tip == IzvjestajTip.T_DS) {
-        report = "grails-app/resources/jasper/izvjestaj_te.jrxml"
+        report = reportsPath + "jasper/izvjestaj_te.jrxml"
 
         JRBeanCollectionDataSource podaciEnergentiDataSource = new JRBeanCollectionDataSource(izvjestaj.podaciEnergenti)
 
@@ -462,7 +464,7 @@ class IzvjestajController {
       }
 
       if (izvjestaj.tip == IzvjestajTip.G_DS) {
-        report = "grails-app/resources/jasper/izvjestaj_g.jrxml"
+        report = reportsPath + "jasper/izvjestaj_g.jrxml"
 
         bean += [
           preuzetaKolicina        : izvjestaj.preuzetIsporucenGas?.preuzetaKolicina,
@@ -487,7 +489,7 @@ class IzvjestajController {
       render([pdfByteArray: encoded] as JSON)
     } catch (Exception e) {
       response.status = 500
-      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom generisanja izvještaja.', error: e.getLocalizedMessage()] as JSON)
+      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom generisanja izvještaja.', error: e.getStackTrace()] as JSON)
     }
   }
 }

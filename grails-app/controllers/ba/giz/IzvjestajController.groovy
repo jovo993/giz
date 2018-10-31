@@ -353,9 +353,9 @@ class IzvjestajController {
   @Transactional
   def potvrdi(params) {
     Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
-    if (izvjestaj.status == IzvjestajStatus.ZAVRSEN) {
+    if (izvjestaj.status == IzvjestajStatus.VERIFIKOVAN) {
       if (UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
-        izvjestaj.status = IzvjestajStatus.VERIFIKOVAN
+        izvjestaj.status = IzvjestajStatus.ZAVRSEN
 
         izvjestaj.save flush: true, failOnError: true
 
@@ -365,6 +365,23 @@ class IzvjestajController {
         response.status = 500
         render([id: izvjestaj.id, title: 'Izvještaj', message: 'Nemate potrebne privilegije.'] as JSON)
       }
+    } else {
+      response.status = 500
+      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj nije u potrebnom statusu.'] as JSON)
+    }
+  }
+
+  @Transactional
+  def invalidate(params) {
+    Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
+    if (izvjestaj.status == IzvjestajStatus.KREIRAN || izvjestaj.status == IzvjestajStatus.DORADA) {
+      izvjestaj.status = IzvjestajStatus.STORNIRAN
+
+      izvjestaj.save flush: true, failOnError: true
+
+      response.status = 200
+      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je storniran.'] as JSON)
+
     } else {
       response.status = 500
       render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj nije u potrebnom statusu.'] as JSON)

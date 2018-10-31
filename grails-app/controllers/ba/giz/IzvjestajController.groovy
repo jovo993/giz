@@ -271,7 +271,7 @@ class IzvjestajController {
     }
 
     if (dto.godina) {
-      results = results.findAll { it.podaciPodnosenjeIzvjestaja.godina == dto.godina }
+      results = results.findAll { it.podaciPodnosenjeIzvjestaja.godina == dto.godina.toString() }
     }
 
     if (dto.sektori) {

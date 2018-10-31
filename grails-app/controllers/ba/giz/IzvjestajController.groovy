@@ -278,7 +278,7 @@ class IzvjestajController {
   @Transactional
   def posalji(params) {
     try {
-      Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
+      Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
       CreateIzvjestajUtils.generateBasicData(params, izvjestaj)
       CreateIzvjestajUtils.generateTypeDependentData(params, izvjestaj)
 
@@ -319,7 +319,7 @@ class IzvjestajController {
 
   @Transactional
   def verifikuj(params) {
-    Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
+    Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
     if (izvjestaj.status == IzvjestajStatus.POSLAN) {
       if (UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
         izvjestaj.status = IzvjestajStatus.VERIFIKOVAN

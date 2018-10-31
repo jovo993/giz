@@ -10,7 +10,8 @@
 <body>
 <div id="create-izvjestaj" class="content scaffold-create" role="main">
     <h1><g:message code="izvjestaj.novi.title"/></h1>
-     <form id="formIzvjestaj">
+
+    <form id="formIzvjestaj">
 
         <g:render template="basicDataCreate" model="[preduzece: preduzece]"/>
 
@@ -130,7 +131,7 @@
                     </tfoot>
                 </table>
 
-                <g:render template="ukupnoIsporucenaEnergija" bean="izvjestaj" />
+                <g:render template="ukupnoIsporucenaEnergija" bean="izvjestaj"/>
             </div>
         </fieldset>
 
@@ -168,8 +169,13 @@
                                 message: data.message
                             });
                             setTimeout(function() {
-                              debugger;
-                                window.location.href = window.location.pathname + '/' + data.id;
+                                var path = window.location.pathname.split('/')[1];
+                                if (path === 'izvjestaj') {
+                                    window.location.href = '/izvjestaj/show/' + data.id;
+                                }
+                                else {
+                                    window.location.href = '/' + path + '/izvjestaj/show/' + data.id;
+                                }
                             }, 2000);
                         },
                         error: function handleError(data) {

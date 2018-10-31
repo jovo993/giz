@@ -35,7 +35,12 @@
     })(jQuery);
 </g:javascript>
 <fieldset class="fieldset">
-    <legend style="width: 80%"><g:message code="izvjestaj.podaciStepenMjerenja.TE.fieldset.title"/></legend>
+    <g:if test="${preduzece?.sektor == ba.giz.Sektor.TOPLOTNA_ENERGIJA || izvjestaj?.preduzece?.sektor == ba.giz.Sektor.TOPLOTNA_ENERGIJA}">
+        <legend style="width: 60%"><g:message code="izvjestaj.podaciStepenMjerenja.TE.fieldset.title"/></legend>
+    </g:if>
+    <g:else>
+        <legend style="width: 50%"><g:message code="izvjestaj.podaciStepenMjerenja.G.fieldset.title"/></legend>
+    </g:else>
 
     <div id="stepenMjerenjaTable" class="table-editable">
         <table class="table table-bordered table-secondary">

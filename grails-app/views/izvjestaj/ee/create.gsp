@@ -134,7 +134,7 @@
             </div>
         </fieldset>
 
-        <g:render template="procjenaStanjaTable" bean="izvjestaj"/>
+        <g:render template="procjenaStanjaTable" bean="preduzece"/>
 
         <g:render template="stepenMjerenjaTableEE" bean="izvjestaj"/>
 
@@ -168,7 +168,8 @@
                                 message: data.message
                             });
                             setTimeout(function() {
-                                window.location.href = "/izvjestaj/show/" + data.id;
+                              debugger;
+                                window.location.href = window.location.pathname + '/' + data.id;
                             }, 2000);
                         },
                         error: function handleError(data) {

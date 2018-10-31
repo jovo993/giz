@@ -173,7 +173,7 @@
                                 message: data.message
                             });
                             setTimeout(function() {
-                                window.location.href = "/izvjestaj/show/" + data.id;
+                                window.location.href = window.location.pathname + '/' + data.id;
                             }, 2000);
                         },
                         error: function handleError(data) {

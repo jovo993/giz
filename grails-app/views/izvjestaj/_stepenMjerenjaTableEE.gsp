@@ -1,3 +1,39 @@
+<g:javascript library='jquery'>
+    (function($) {
+        $(document).ready(function() {
+            calculateSumStepenMjerenja();
+
+            calculateSumStepenMjerenja($(this).context.className);
+            // sumiranje
+            for (var i = 1; i < 4; i++) {
+                $('.rowDataSdSmt' + i).each(function() {
+                    $(this).on('change', function() {
+                        calculateSumStepenMjerenja($(this).context.className);
+                    });
+                });
+            }
+
+            function calculateSumStepenMjerenja(className) {
+                if (className) {
+                    var total = 0;
+                    $('.' + className).each(function() {
+                        total += $(this).val() * 1;
+                    });
+                    $('.colSumSmt' + className.substr(className.length - 1)).get(0).value = total;
+                }
+                else {
+                    for (var i = 1; i < 4; i++) {
+                        var total = 0;
+                        $('.rowDataSdSmt' + i).each(function() {
+                            total += $(this).val() * 1;
+                        });
+                        $('.colSumSmt' + i).get(0).value = total;
+                    }
+                }
+            }
+        });
+    })(jQuery);
+</g:javascript>
 <fieldset class="fieldset">
     <legend style="width: 80%"><g:message code="izvjestaj.podaciStepenMjerenja.EE.fieldset.title"/></legend>
 

@@ -68,6 +68,7 @@
 	<parameter name="podaciPonudeEnergetskihUsluga" class="java.lang.String"/>
 	<parameter name="podaciPonudeUgradnjaIndividualnihUredjaja" class="java.lang.String"/>
 	<parameter name="podaciOstaloEnergetskaEfikasnost" class="java.lang.String"/>
+	<parameter name="datumKreiranja" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -1660,6 +1661,41 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{podaciOstaloEnergetskaEfikasnost}]]></textFieldExpression>
 			</textField>
+		</band>
+		<band height="82">
+			<staticText>
+				<reportElement x="271" y="40" width="28" height="20" uuid="2101972f-edb3-45e9-b93a-361f9a712e89"/>
+				<text><![CDATA[M.P.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="7" width="80" height="20" uuid="af44e49b-8cdd-4190-9766-12af66935512"/>
+				<text><![CDATA[Datum kreiranja:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="7" width="100" height="20" uuid="7a5a7669-6bcb-4cdb-a828-4535b628e378"/>
+				<textFieldExpression><![CDATA[$P{datumKreiranja}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="30" width="80" height="20" uuid="63faf051-48d4-4b77-852d-9f4c3443185b"/>
+				<text><![CDATA[Izvještaj sastavio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="30" width="70" height="20" uuid="3e4d73c3-ef64-4669-890e-ffb8d1730035">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<text><![CDATA[Odgovorno lice]]></text>
+			</staticText>
+			<line>
+				<reportElement x="30" y="75" width="180" height="1" uuid="977e8b79-2667-420d-ba8e-6912a06609e5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="350" y="75" width="180" height="1" uuid="78dfd971-d5fd-4091-80eb-82f06085a4de">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
 		</band>
 	</detail>
 </jasperReport>

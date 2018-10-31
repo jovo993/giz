@@ -421,7 +421,8 @@ class IzvjestajController {
         ukupnoBrojKrajnjihKupaca                     : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca,
         podaciPonudeEnergetskihUsluga                : izvjestaj.podaciPonudeEnergetskihUsluga,
         podaciPonudeUgradnjaIndividualnihUredjaja    : izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja,
-        podaciOstaloEnergetskaEfikasnost             : izvjestaj.podaciOstaloEnergetskaEfikasnost
+        podaciOstaloEnergetskaEfikasnost             : izvjestaj.podaciOstaloEnergetskaEfikasnost,
+        datumKreiranja                               : new SimpleDateFormat("dd.MM.yyyy.").format(izvjestaj.datumKreiranja)
       ]
 
       if (izvjestaj.tip == IzvjestajTip.EE_DS) {

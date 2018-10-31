@@ -27,7 +27,12 @@
     })(jQuery);
 </g:javascript>
 <fieldset class="fieldset">
-    <legend style="width: 50%"><g:message code="izvjestaj.procjenastanja.fieldset.TE.title"/></legend>
+    <g:if test="${preduzece?.sektor == ba.giz.Sektor.TOPLOTNA_ENERGIJA || izvjestaj?.preduzece?.sektor == ba.giz.Sektor.TOPLOTNA_ENERGIJA}">
+        <legend style="width: 50%"><g:message code="izvjestaj.procjenastanja.fieldset.TE.title"/></legend>
+    </g:if>
+    <g:else>
+        <legend style="width: 50%"><g:message code="izvjestaj.procjenastanja.fieldset.title"/></legend>
+    </g:else>
 
     <div id="procjenaStanjaTable" class="table-editable">
         <span id="procjenaStanja" class="table-add fa fa-plus fa-2x"></span>

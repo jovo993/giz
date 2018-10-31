@@ -222,13 +222,13 @@
             <g:each in="${clanci}" var="bean">
                 <fieldset class=fieldset" style="margin-top: 15px;">
 
-                    <legend class="legend" style="background-color: whitesmoke;"><h4>${bean.naslov} - <g:formatDate>${bean.datumObjave}</g:formatDate></h4></legend>
+                    <legend class="legend" style="background-color: whitesmoke;"><h4>${bean.naslov} - <g:formatDate date="${bean.datumObjave}"/></h4></legend>
 
                     <div style="background-color: oldlace; color: #3d3d3f; padding: 1%">${raw(bean.sadrzaj)}</div>
                 </fieldset>
             </g:each>
             <div class="pagination">
-                <g:paginate total="${count?: 100}" max="2"/>
+                <g:paginate total="${count}" max="5"/>
             </div>
         </div>
 

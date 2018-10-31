@@ -45,13 +45,15 @@ class LoginController {
       return
     }
 
+    List<Clanak> lista = Clanak.findAll(max: params.max, offset: params.offset, sort: 'datumObjave', order: 'desc')
+
     String postUrl = request.contextPath + conf.apf.filterProcessesUrl
     render view: "auth", model: [postUrl            : postUrl,
                                  rememberMeParameter: conf.rememberMe.parameter,
                                  usernameParameter  : conf.apf.usernameParameter,
                                  passwordParameter  : conf.apf.passwordParameter,
                                  gspLayout          : conf.gsp.layoutAuth,
-                                 clanci             : Clanak.list(params),
+                                 clanci             : lista,
                                  count              : Clanak.count()
     ]
 

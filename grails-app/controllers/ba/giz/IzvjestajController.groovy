@@ -84,7 +84,7 @@ class IzvjestajController {
     }
     catch (Exception e) {
       response.status = 500
-      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom kreiranja izvještaja.', error: e.getLocalizedMessage()] as JSON)
+      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom kreiranja izvještaja.', error: e.getStackTrace()] as JSON)
     }
 
   }
@@ -102,7 +102,7 @@ class IzvjestajController {
     }
     catch (Exception e) {
       response.status = 500
-      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom ažuriranja izvještaja.', error: e.getLocalizedMessage()] as JSON)
+      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom ažuriranja izvještaja.', error: e.getStackTrace()] as JSON)
     }
   }
 
@@ -304,7 +304,7 @@ class IzvjestajController {
     }
     catch (Exception e) {
       response.status = 500
-      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom slanja izvještaja.', error: e.getLocalizedMessage()] as JSON)
+      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom slanja izvještaja.', error: e.getStackTrace()] as JSON)
     }
   }
 

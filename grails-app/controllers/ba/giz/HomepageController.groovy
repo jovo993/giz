@@ -36,13 +36,13 @@ class HomepageController {
     User currentUser = User.findByUsername(SecurityContextHolder.context?.authentication?.principal?.username)
     List currentUserAuthorities = currentUser?.getAuthorities()?.authority
     if (currentUserAuthorities.contains("ROLE_ADMIN")) {
-      izvjestajList = Izvjestaj.findAllByStatusInList([IzvjestajStatus.POSLAN, IzvjestajStatus.VERIFIKOVAN, IzvjestajStatus.ZAVRSEN])
+      izvjestajList = Izvjestaj.findAll()
       properties += ["preduzece.naziv"]
     }
 
     if (currentUserAuthorities.contains("ROLE_EE_USER") || currentUserAuthorities.contains("ROLE_G_USER") || currentUserAuthorities.contains("ROLE_TE_USER")) {
       preduzece = Preduzece.findById(currentUser?.preduzece?.id)
-      izvjestajList = Izvjestaj.findAllByPreduzeceAndStatusInList(preduzece, [IzvjestajStatus.KREIRAN, IzvjestajStatus.DORADA])
+      izvjestajList = Izvjestaj.findAllByPreduzece(preduzece)
     }
 
     properties += ["datumKreiranja", "datumSlanja", "podaciPodnosenjeIzvjestaja.prezimeImePozicija", "status"]

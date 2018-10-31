@@ -92,7 +92,7 @@ class IzvjestajController {
   @Transactional
   def update(params) {
     try {
-      Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
+      Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
       CreateIzvjestajUtils.generateBasicData(params, izvjestaj)
       CreateIzvjestajUtils.generateTypeDependentData(params, izvjestaj)
       izvjestaj.save flush: true, failOnError: true

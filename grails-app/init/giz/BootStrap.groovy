@@ -8,9 +8,9 @@ import ba.giz.login.UserRole
 class BootStrap {
 
   def init = { servletContext ->
-    createRegistryData()
-    createUsersAndRoles()
-    createIzvjestajData()
+//    createRegistryData()
+//    createUsersAndRoles()
+//    createIzvjestajData()
   }
   def destroy = {
   }

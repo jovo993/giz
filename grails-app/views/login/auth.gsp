@@ -9,6 +9,12 @@
         text-align: center;
         color: white;
         font-size: 30px;
+
+        text-shadow: 2px 2px #2f5786;
+    }
+
+    h2 {
+        text-shadow: 2px 2px #2f5786;
     }
 
     body {
@@ -22,7 +28,7 @@
     }
 
     fieldset {
-        background-color: whitesmoke;
+        background-color: oldlace;
         text-align: justify;
         border: 1px double gray;
         -moz-border-radius: 8px;
@@ -45,16 +51,50 @@
     }
 
     .pagination {
-        float: right;
-        background-color: whitesmoke;
-        text-align: right;
-        margin-top: 5px;
+        display: inline-block;
+        text-align: center;
+        margin-top: 15px;
         padding: 5px;
-        color: brown;
     }
 
     .pagination a {
+        background-color: whitesmoke;
         color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        border: 1px solid #ddd;
+    }
+
+    .pagination span {
+        background-color: #2f5786;
+        color: white;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        border: 1px solid #2f5786;
+    }
+
+    .pagination a.currentstep {
+        background-color: #4CAF50;
+        color: white;
+        border: 1px solid #4CAF50;
+    }
+
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+
+    .pagination a:first-child {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .pagination a:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .column, .left {
+        text-align: center;
     }
 
     .column {
@@ -182,13 +222,13 @@
             <g:each in="${clanci}" var="bean">
                 <fieldset class=fieldset" style="margin-top: 15px;">
 
-                    <legend class="legend" style="background-color: whitesmoke;"><h4>${bean.naslov} - <g:formatDate>${bean.datumObjave}</g:formatDate></h4></legend>
+                    <legend class="legend" style="background-color: whitesmoke;"><h4>${bean.naslov} - <g:formatDate date="${bean.datumObjave}"/></h4></legend>
 
-                    <div style="background-color: whitesmoke; color: #3d3d3f; padding: 1%">${raw(bean.sadrzaj)}</div>
+                    <div style="background-color: oldlace; color: #3d3d3f; padding: 1%">${raw(bean.sadrzaj)}</div>
                 </fieldset>
             </g:each>
             <div class="pagination">
-                <g:paginate total="${count?: 100}" max="2"/>
+                <g:paginate total="${count}" max="5"/>
             </div>
         </div>
 
@@ -222,7 +262,7 @@
                         <h3>O aplikaciji</h3>
                     </th>
                     <tr>
-                       <td style="padding: 1em; text-align: justify;">Web aplikacija "rODS - Registar operatera, distributera i snabdjevača energijom Republike Srpske" realizovana je uz pomoć Njemačke organizacije za međunarodnu saradnju GIZ.</td>
+                        <td style="padding: 1em; text-align: justify;">Web aplikacija "rODS - Registar operatera, distributera i snabdjevača energijom Republike Srpske" realizovana je uz pomoć Njemačke organizacije za međunarodnu saradnju GIZ.</td>
                     </tr>
                     <tr>
                         <td style="padding: 1em;"><asset:image src="giz-saradnja.png" style="width: 100%"/></td>

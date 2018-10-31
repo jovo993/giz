@@ -1,3 +1,15 @@
+<g:if test="${preduzece?.sektor == ba.giz.Sektor.TOPLOTNA_ENERGIJA || izvjestaj?.preduzece?.sektor == ba.giz.Sektor.TOPLOTNA_ENERGIJA}">
+    <g:set var="title1" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.TE.title')}"/>
+    <g:set var="title2" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.TE.title')}"/>
+</g:if>
+<g:elseif test="${preduzece?.sektor == ba.giz.Sektor.GAS || izvjestaj?.preduzece?.sektor == ba.giz.Sektor.GAS}">
+    <g:set var="title1" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.G.title')}"/>
+    <g:set var="title2" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.G.title')}"/>
+</g:elseif>
+<g:else>
+    <g:set var="title1" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.EE.title')}"/>
+    <g:set var="title2" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.EE.title')}"/>
+</g:else>
 <fieldset class="fieldset" disabled="">
     <legend><g:message code="preduzece.fieldset.title"/></legend>
 
@@ -10,7 +22,7 @@
     <label>
         <g:message code="preduzece.uloga.title"/>
     </label>
-    <g:textField name="uloga" value="${this.preduzece?.uloga}"/><br/>
+    <g:textField name="uloga" value="${preduzece?.uloga}"/><br/>
 
     <label for="izvjestaj.preduzece.adresa"><g:message code="preduzece.adresa.title"/></label>
     <g:textField name="izvjestaj.preduzece.adresa" value="${preduzece?.adresa}"/><br/>
@@ -46,7 +58,7 @@
     <legend style="width: 60%"><g:message code="podaciDozvolaObavljanjeDjelatnosti.fieldset.title"/></legend>
 
 <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj">
-    <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.title"/>
+    ${title1}
 </label>
 <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj" type="number"/><br/>
 
@@ -58,7 +70,7 @@
 <label>
     <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje.title"/>
 </label>
-<input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" type="date" min="2010-01-01" max="2030-12-31"/></br>
+<input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" type="date" value=<g:formatDate date="${Calendar.getInstance()}" format="yyyy-MM-dd"/>></br>
 
 <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja">
     <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja.title"/>
@@ -66,7 +78,7 @@
 <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja"/><br/>
 
 <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj">
-    <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.TE.title"/>
+    ${title2}
 </label>
 <g:textField name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj"/><br/>
 
@@ -78,7 +90,7 @@
 <label>
     <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje.title"/>
 </label>
-<input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" type="date" min="2010-01-01" max="2030-12-31"/></br>
+<input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" type="date" value=<g:formatDate date="${Calendar.getInstance()}" format="yyyy-MM-dd"/>></br>
 
 <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja">
     <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja.title"/>

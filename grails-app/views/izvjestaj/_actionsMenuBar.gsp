@@ -23,6 +23,10 @@
                     downloadPdf("${createLink(controller: 'izvjestaj', action: 'printPdf')}");
                 });
 
+                $('#invalidateButton').click(function() {
+                    handleButtonClick("${createLink(controller: 'izvjestaj', action: 'invalidate')}");
+                });
+
                 function handleButtonClick(url) {
                   $.ajax({
                     url: url,
@@ -37,7 +41,7 @@
                       });
                       setTimeout(function() {window.location.href="/izvjestaj/show/" + ${this.izvjestaj.id} ;}, 2000);
                     },
-                    error: function handleError() {
+                    error: function handleError(data) {
                       errorNotification({
                           title: data.title,
                           message: data.message
@@ -68,15 +72,22 @@
         })(jQuery);
 </g:javascript>
 <fieldset class="buttons">
+<sec:ifAnyGranted roles="ROLE_EE_USER, ROLE_G_USER, ROLE_TE_USER">
     <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}">
         <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
         <button id="posaljiButton"><i class="fa fa-share-square"></i>   <g:message code="default.button.send.label"/></button>
+        <button id="invalidateButton"><i class="fa fa-ban"></i>   <g:message code="default.button.invalidate.label"/></button>
+    </g:if>
+    <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.VERIFIKOVAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.ZAVRSEN)}">
         <button id="printPdfButton"><i class="fa fa-file-pdf"></i>   <g:message code="default.button.pdf.label"/></button>
     </g:if>
+</sec:ifAnyGranted>
     <sec:ifAnyGranted roles="ROLE_ADMIN">
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN)}">
             <button id="vratiNaDoraduButton"><i class="fa fa-arrow-alt-circle-left"></i>   <g:message code="default.button.dorada.label"/></button>
             <button id="verifikujButton"><i class="fa fa-check-circle"></i>   <g:message code="default.button.verifikuj.label"/></button>
+        </g:if>
+        <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.VERIFIKOVAN)}">
             <button id="potvrdiButton"><i class="fa fa-inbox"></i>   <g:message code="default.button.potvrdi.label"/></button>
         </g:if>
     </sec:ifAnyGranted>

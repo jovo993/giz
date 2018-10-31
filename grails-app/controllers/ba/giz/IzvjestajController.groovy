@@ -84,7 +84,7 @@ class IzvjestajController {
     }
     catch (Exception e) {
       response.status = 500
-      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom kreiranja izvještaja.', error: e.getLocalizedMessage()] as JSON)
+      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom kreiranja izvještaja.', error: e.getStackTrace()] as JSON)
     }
 
   }
@@ -102,7 +102,7 @@ class IzvjestajController {
     }
     catch (Exception e) {
       response.status = 500
-      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom ažuriranja izvještaja.', error: e.getLocalizedMessage()] as JSON)
+      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom ažuriranja izvještaja.', error: e.getStackTrace()] as JSON)
     }
   }
 
@@ -271,7 +271,7 @@ class IzvjestajController {
     }
 
     if (dto.godina) {
-      results = results.findAll { it.podaciPodnosenjeIzvjestaja.godina == dto.godina }
+      results = results.findAll { it.podaciPodnosenjeIzvjestaja.godina == dto.godina.toString() }
     }
 
     if (dto.sektori) {
@@ -304,7 +304,7 @@ class IzvjestajController {
     }
     catch (Exception e) {
       response.status = 500
-      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom slanja izvještaja.', error: e.getLocalizedMessage()] as JSON)
+      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom slanja izvještaja.', error: e.getStackTrace()] as JSON)
     }
   }
 
@@ -339,7 +339,7 @@ class IzvjestajController {
         izvjestaj.save flush: true, failOnError: true
 
         response.status = 200
-        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je vraćen na doradu.'] as JSON)
+        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je verifikovan.'] as JSON)
       } else {
         response.status = 500
         render([id: izvjestaj.id, title: 'Izvještaj', message: 'Nemate potrebne privilegije.'] as JSON)
@@ -353,9 +353,9 @@ class IzvjestajController {
   @Transactional
   def potvrdi(params) {
     Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
-    if (izvjestaj.status == IzvjestajStatus.ZAVRSEN) {
+    if (izvjestaj.status == IzvjestajStatus.VERIFIKOVAN) {
       if (UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
-        izvjestaj.status = IzvjestajStatus.VERIFIKOVAN
+        izvjestaj.status = IzvjestajStatus.ZAVRSEN
 
         izvjestaj.save flush: true, failOnError: true
 
@@ -365,6 +365,23 @@ class IzvjestajController {
         response.status = 500
         render([id: izvjestaj.id, title: 'Izvještaj', message: 'Nemate potrebne privilegije.'] as JSON)
       }
+    } else {
+      response.status = 500
+      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj nije u potrebnom statusu.'] as JSON)
+    }
+  }
+
+  @Transactional
+  def invalidate(params) {
+    Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
+    if (izvjestaj.status == IzvjestajStatus.KREIRAN || izvjestaj.status == IzvjestajStatus.DORADA) {
+      izvjestaj.status = IzvjestajStatus.STORNIRAN
+
+      izvjestaj.save flush: true, failOnError: true
+
+      response.status = 200
+      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je storniran.'] as JSON)
+
     } else {
       response.status = 500
       render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj nije u potrebnom statusu.'] as JSON)
@@ -421,7 +438,8 @@ class IzvjestajController {
         ukupnoBrojKrajnjihKupaca                     : izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca,
         podaciPonudeEnergetskihUsluga                : izvjestaj.podaciPonudeEnergetskihUsluga,
         podaciPonudeUgradnjaIndividualnihUredjaja    : izvjestaj.podaciPonudeUgradnjaIndividualnihUredjaja,
-        podaciOstaloEnergetskaEfikasnost             : izvjestaj.podaciOstaloEnergetskaEfikasnost
+        podaciOstaloEnergetskaEfikasnost             : izvjestaj.podaciOstaloEnergetskaEfikasnost,
+        datumKreiranja                               : new SimpleDateFormat("dd.MM.yyyy.").format(izvjestaj.datumKreiranja)
       ]
 
       if (izvjestaj.tip == IzvjestajTip.EE_DS) {

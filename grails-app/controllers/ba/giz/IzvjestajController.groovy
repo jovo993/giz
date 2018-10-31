@@ -331,7 +331,7 @@ class IzvjestajController {
 
   @Transactional
   def verifikuj(params) {
-    Izvjestaj izvjestaj = Izvjestaj.findById(params.izvjestaj.id)
+    Izvjestaj izvjestaj = Izvjestaj.findById(params.id)
     if (izvjestaj.status == IzvjestajStatus.POSLAN) {
       if (UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
         izvjestaj.status = IzvjestajStatus.VERIFIKOVAN
@@ -339,7 +339,7 @@ class IzvjestajController {
         izvjestaj.save flush: true, failOnError: true
 
         response.status = 200
-        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je vraćen na doradu.'] as JSON)
+        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je verifikovan.'] as JSON)
       } else {
         response.status = 500
         render([id: izvjestaj.id, title: 'Izvještaj', message: 'Nemate potrebne privilegije.'] as JSON)

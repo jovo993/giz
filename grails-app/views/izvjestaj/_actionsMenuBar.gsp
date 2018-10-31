@@ -37,7 +37,7 @@
                       });
                       setTimeout(function() {window.location.href="/izvjestaj/show/" + ${this.izvjestaj.id} ;}, 2000);
                     },
-                    error: function handleError() {
+                    error: function handleError(data) {
                       errorNotification({
                           title: data.title,
                           message: data.message

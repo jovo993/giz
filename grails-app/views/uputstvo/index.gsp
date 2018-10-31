@@ -8,7 +8,7 @@
 <body>
 <div>
     <main role="main" class="container" style="top: 80px;">
-        <h1 class="mt-5">TO DO: @Bogdan dostaviti tekst uputstva. (2 odvojena?)</h1>
+        <h1 class="mt-5"></h1>
     </main>
 </div>
 </body>

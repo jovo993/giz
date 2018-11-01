@@ -89,7 +89,15 @@
                             message: data.message
                           });
                             if(message === 'poslan') {
-                              setTimeout(function() {window.location.href="/izvjestaj/show/" + ${this.izvjestaj.id} ;}, 2000);
+                              setTimeout(function() {
+                                var path = window.location.pathname.split('/')[1];
+                                if (path === 'izvjestaj') {
+                                    window.location.href = '/izvjestaj/show/' + ${this.izvjestaj.id};
+                                }
+                                else {
+                                    window.location.href = '/' + path + '/izvjestaj/show/' + ${this.izvjestaj.id};
+                                }
+                              }, 2000);
                             }
                          },
                         error: function handleError(data) {

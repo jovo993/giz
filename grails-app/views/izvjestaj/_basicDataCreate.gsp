@@ -1,14 +1,14 @@
 <g:if test="${preduzece?.sektor == ba.giz.Sektor.TOPLOTNA_ENERGIJA || izvjestaj?.preduzece?.sektor == ba.giz.Sektor.TOPLOTNA_ENERGIJA}">
-    <g:set var="title1" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.TE.title')}"/>
-    <g:set var="title2" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.TE.title')}"/>
+    <g:set var="title1" value="${message(code: 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.TE.title')}"/>
+    <g:set var="title2" value="${message(code: 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.TE.title')}"/>
 </g:if>
 <g:elseif test="${preduzece?.sektor == ba.giz.Sektor.GAS || izvjestaj?.preduzece?.sektor == ba.giz.Sektor.GAS}">
-    <g:set var="title1" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.G.title')}"/>
-    <g:set var="title2" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.G.title')}"/>
+    <g:set var="title1" value="${message(code: 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.G.title')}"/>
+    <g:set var="title2" value="${message(code: 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.G.title')}"/>
 </g:elseif>
 <g:else>
-    <g:set var="title1" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.EE.title')}"/>
-    <g:set var="title2" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.EE.title')}"/>
+    <g:set var="title1" value="${message(code: 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.EE.title')}"/>
+    <g:set var="title2" value="${message(code: 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.EE.title')}"/>
 </g:else>
 <fieldset class="fieldset" disabled="">
     <legend><g:message code="preduzece.fieldset.title"/></legend>
@@ -70,7 +70,7 @@
 <label>
     <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje.title"/>
 </label>
-<input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" type="date" value=<g:formatDate date="${Calendar.getInstance()}" format="yyyy-MM-dd"/>></br>
+<input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje" type="date" value= <g:formatDate date="${Calendar.getInstance()}" format="yyyy-MM-dd"/>></br>
 
 <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja">
     <g:message code="podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja.title"/>
@@ -90,7 +90,7 @@
 <label>
     <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje.title"/>
 </label>
-<input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" type="date" value=<g:formatDate date="${Calendar.getInstance()}" format="yyyy-MM-dd"/>></br>
+<input name="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje" type="date" value= <g:formatDate date="${Calendar.getInstance()}" format="yyyy-MM-dd"/>></br>
 
 <label for="izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja">
     <g:message code="podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja.title"/>
@@ -102,7 +102,7 @@
     <legend style="width: 40%"><g:message code="podaciPodnosenjeIzvjestaja.fieldset.title"/></legend>
 
     <label for="izvjestaj.podaciPodnosenjeIzvjestaja.godina"><g:message code="podaciPodnosenjeIzvjestaja.godina.title"/></label>
-    <g:select name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" from="${ba.giz.Godina.findAll()}" /><br/>
+    <g:select name="izvjestaj.podaciPodnosenjeIzvjestaja.godina" from="${ba.giz.Godina.findAll()}"/><br/>
 
     <label for="izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija"><g:message code="podaciPodnosenjeIzvjestaja.prezimeImePozicija.title"/></label>
     <g:textField name="izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija"/><br/>

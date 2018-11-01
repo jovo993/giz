@@ -1,14 +1,14 @@
 <g:if test="${preduzece?.sektor == ba.giz.Sektor.TOPLOTNA_ENERGIJA || izvjestaj?.preduzece?.sektor == ba.giz.Sektor.TOPLOTNA_ENERGIJA}">
-    <g:set var="title1" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.TE.title')}"/>
-    <g:set var="title2" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.TE.title')}"/>
+    <g:set var="title1" value="${message(code: 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.TE.title')}"/>
+    <g:set var="title2" value="${message(code: 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.TE.title')}"/>
 </g:if>
 <g:elseif test="${preduzece?.sektor == ba.giz.Sektor.GAS || izvjestaj?.preduzece?.sektor == ba.giz.Sektor.GAS}">
-    <g:set var="title1" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.G.title')}"/>
-    <g:set var="title2" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.G.title')}"/>
+    <g:set var="title1" value="${message(code: 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.G.title')}"/>
+    <g:set var="title2" value="${message(code: 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.G.title')}"/>
 </g:elseif>
 <g:else>
-    <g:set var="title1" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.EE.title')}"/>
-    <g:set var="title2" value="${message(code : 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.EE.title')}"/>
+    <g:set var="title1" value="${message(code: 'podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj.EE.title')}"/>
+    <g:set var="title2" value="${message(code: 'podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj.EE.title')}"/>
 </g:else>
 <fieldset class="fieldset" disabled>
     <legend><g:message code="preduzece.fieldset.title"/></legend>

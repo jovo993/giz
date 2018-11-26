@@ -19,9 +19,11 @@
             </g:if>
             <f:table collection="${clanakList}" />
 
-            <div class="pagination">
-                <g:paginate total="${clanakCount ?: 0}" />
-            </div>
+            <g:if test="${clanakCount.toInteger() > params.max.toInteger()}">
+                <div class="pagination">
+                    <g:paginate total="${clanakCount.toInteger() ?: 0}" />
+                </div>
+            </g:if>
         </div>
     </body>
 </html>

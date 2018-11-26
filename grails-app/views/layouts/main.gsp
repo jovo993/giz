@@ -26,7 +26,7 @@
             <a class="navbar-brand" href="/#">
                 <i class="fa grails-icon">
                     <asset:image src="logo_fond.png"/>
-                </i> rODS - Registar operatera, distributera i snabdjevača energijom
+                </i> <g:message code="giz.application.title"/>
             </a>
         </div>
 
@@ -50,7 +50,15 @@
                     </li>
                     <li><g:link controller="clanak" action="index"><g:message code="meni.clanci.title"/></g:link></li>
                 </sec:ifAnyGranted>
-                <li><g:link controller="uputstvo" action="index"><g:message code="meni.uputstvo.title"/></g:link></li>
+                <li>
+                    <!-- <g:link controller="uputstvo" action="index"><g:message code="meni.uputstvo.title"/></g:link> -->
+                    <sec:ifAnyGranted roles="ROLE_EE_USER, ROLE_G_USER, ROLE_TE_USER">
+                        <a href="/assets/Uputstvo_korisnik.pdf" target="_blank"><g:message code="meni.uputstvo.title"/></a>
+                    </sec:ifAnyGranted>
+                    <sec:ifAnyGranted roles="ROLE_ADMIN">
+                        <a href="/assets/Uputstvo_administrator.pdf" target="_blank"><g:message code="meni.uputstvo.title"/></a>
+                    </sec:ifAnyGranted>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="meni.options.title"/><span
                             class="caret"></span></a>
@@ -68,7 +76,7 @@
     <g:layoutBody/>
 </div>
 
-<div class="footer" role="contentinfo"> © 2018 Sva prava zadržana </div>
+<div class="footer" role="contentinfo" style="text-align: center;"><g:message code="giz.application.footer"/></div>
 
 <div id="spinner" class="spinner" style="display:none;">
     <g:message code="spinner.alt" default="Loading&hellip;"/>
@@ -77,18 +85,28 @@
 <asset:javascript src="application.js"/>
 <g:javascript library='jquery'>
     const errorNotification = window.createNotification({
+        closeOnClick: true,
+        displayCloseButton: false,
+        showDuration: 3000,
         positionClass: 'nfc-bottom-right',
         theme: 'error'
     });
     const successNotification = window.createNotification({
+        closeOnClick: true,
+        displayCloseButton: false,
+        showDuration: 3000,
         positionClass: 'nfc-bottom-right',
         theme: 'success'
     });
     const warningNotification = window.createNotification({
+        closeOnClick: true,
+        displayCloseButton: false,
+        showDuration: 3000,
         positionClass: 'nfc-bottom-right',
         theme: 'warning'
     });
 </g:javascript>
+
 
 </body>
 </html>

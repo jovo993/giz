@@ -28,19 +28,19 @@
 </g:javascript>
 <fieldset class="fieldset">
     <g:if test="${preduzece?.sektor == ba.giz.Sektor.TOPLOTNA_ENERGIJA || izvjestaj?.preduzece?.sektor == ba.giz.Sektor.TOPLOTNA_ENERGIJA}">
-        <legend style="width: 50%"><g:message code="izvjestaj.procjenastanja.fieldset.TE.title"/></legend>
+        <legend style="width: 55%"><g:message code="izvjestaj.procjenastanja.fieldset.TE.title"/></legend>
     </g:if>
     <g:else>
-        <legend style="width: 50%"><g:message code="izvjestaj.procjenastanja.fieldset.title"/></legend>
+        <legend style="width: 55%"><g:message code="izvjestaj.procjenastanja.fieldset.title"/></legend>
     </g:else>
 
     <div id="procjenaStanjaTable" class="table-editable">
         <span id="procjenaStanja" class="table-add fa fa-plus fa-2x"></span>
         <table class="table">
             <tr>
-                <th id="primjenjenaMjera" scope="col" class="prety-th">Primjenjena mjera</th>
-                <th id="vrstaUstede" scope="col" class="prety-th">Vrsta uštede</th>
-                <th id="kolicinaUstede" class="prety-th">Količina uštede (smanjenje gubitaka)</th>
+                <th id="primjenjenaMjera" scope="col" class="prety-th"><g:message code="izvjestaj.ee.t3.col01"/></th>
+                <th id="vrstaUstede" scope="col" class="prety-th"><g:message code="izvjestaj.ee.t3.col02"/></th>
+                <th id="kolicinaUstede" class="prety-th"><g:message code="izvjestaj.ee.t3.col03"/></th>
                 <th></th>
                 <th></th>
                 <th></th>

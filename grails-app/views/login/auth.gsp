@@ -3,6 +3,7 @@
 <head>
     <title><g:message code='giz.application.title'/></title>
     <asset:link rel="icon" href="logo_fond.ico" type="image/x-ico"/>
+    <asset:stylesheet src="pagination.css"/>
     <style type="text/css" media="screen">
 
     .header {
@@ -48,49 +49,6 @@
     legend h4 {
         margin-block-start: 0px;
         margin-block-end: 0em;
-    }
-
-    .pagination {
-        display: inline-block;
-        text-align: center;
-        margin-top: 15px;
-        padding: 5px;
-    }
-
-    .pagination a {
-        background-color: whitesmoke;
-        color: black;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: none;
-        border: 1px solid #ddd;
-    }
-
-    .pagination span {
-        background-color: #2f5786;
-        color: white;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: none;
-        border: 1px solid #2f5786;
-    }
-
-    .pagination a.currentstep {
-        background-color: #4CAF50;
-        color: white;
-        border: 1px solid #4CAF50;
-    }
-
-    .pagination a:hover:not(.active) {background-color: #ddd;}
-
-    .pagination a:first-child {
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-    }
-
-    .pagination a:last-child {
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
     }
 
     .column, .left {
@@ -211,14 +169,12 @@
 
 <body>
 <div style="width: 100%; margin: auto;">
-    <h1 class="header">Registar operatera, distributera i snabdjevača energijom
-    </br>Republike Srpske
-    </h1>
+    <h1 class="header"><g:message code='giz.login.naslov'/></h1>
 
     <div class="row">
         <div class="column left">
             <br/>
-            <h2 style="color: whitesmoke; text-align: center">Novosti, informacije, obavještenja</h2>
+            <h2 style="color: whitesmoke; text-align: center"><g:message code='giz.login.nio'/></h2>
             <g:each in="${clanci}" var="bean">
                 <fieldset class=fieldset" style="margin-top: 15px;">
 
@@ -227,9 +183,11 @@
                     <div style="background-color: oldlace; color: #3d3d3f; padding: 1%">${raw(bean.sadrzaj)}</div>
                 </fieldset>
             </g:each>
-            <div class="pagination">
-                <g:paginate total="${count}" max="5"/>
-            </div>
+            <g:if test="${clanakCount.toInteger() > params.max.toInteger()}">
+                <div class="pagination">
+                    <g:paginate total="${clanakCount.toInteger() ?: 0}"/>
+                </div>
+            </g:if>
         </div>
 
         <div class="column right">
@@ -259,10 +217,10 @@
             <div style="padding-top: 30px; margin: auto;">
                 <table class="login-box">
                     <th class="links">
-                        <h3>O aplikaciji</h3>
+                        <h3><g:message code='giz.login.oaplikaciji'/></h3>
                     </th>
                     <tr>
-                        <td style="padding: 1em; text-align: justify;">Web aplikacija "rODS - Registar operatera, distributera i snabdjevača energijom Republike Srpske" realizovana je uz pomoć Njemačke organizacije za međunarodnu saradnju GIZ.</td>
+                        <td style="padding: 1em; text-align: justify;"><g:message code='giz.login.oaplikaciji_tekst'/></td>
                     </tr>
                     <tr>
                         <td style="padding: 1em;"><asset:image src="giz-saradnja.png" style="width: 100%"/></td>
@@ -273,12 +231,12 @@
             <div style="padding-top: 30px; margin: auto;">
                 <table class="login-box">
                     <tbody>
-                    <tr><th class="links"><h3>Linkovi</h3></th></tr>
+                    <tr><th class="links"><h3><g:message code='giz.login.linkovi'/></h3></th></tr>
                     <tr style="text-align: center;">
                         <td style="padding: 1em;">
-                            <a href="http://www.ekofondrs.org/" target="_blank" title="Fond za zaštitu životne sredine i energetsku efikasnost Republike Srpske"><asset:image src="fond-logo.png" style="height: 92px;"/></a>
+                            <a href="http://www.ekofondrs.org/" target="_blank" title="<g:message code='giz.application.fond'/>"><asset:image src="fond-logo.png" style="height: 92px;"/></a>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="http://www.vladars.net/sr-SP-Cyrl/Vlada/Ministarstva/mgr/" target="_blank" title="Ministarstvo za prostorno uređenje,građevinarstvo i ekologiju Republike Srpske"><asset:image src="ministarstvo-logo.png" style="height: 92px;"/></a>
+                            <a href="http://www.vladars.net/sr-SP-Cyrl/Vlada/Ministarstva/mgr/" target="_blank" title="<g:message code='giz.application.mpuge'/>"><asset:image src="ministarstvo-logo.png" style="height: 92px;"/></a>
                         </td>
                     </tr>
                     </tbody>

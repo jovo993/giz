@@ -12,9 +12,13 @@
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
             <f:table collection="${izvjestajList}" />
-            <div class="pagination">
-                <g:paginate total="${izvjestajCount ?: 0}" />
-            </div>
+
+            <g:if test="${izvjestajCount.toInteger() > params.max.toInteger()}">
+                <div class="pagination">
+                    <g:paginate total="${izvjestajCount.toInteger() ?: 0}"/>
+                </div>
+            </g:if>
+
         </div>
     </body>
 </html>

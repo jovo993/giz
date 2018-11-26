@@ -35,10 +35,14 @@
                     </label>
                     <g:textField name="naslov" required="false" value="${this.clanak?.naslov}" readonly="readonly" style="width: 94%"/><br/>
 
-                    <g:textArea name="sadrzaj" required="false" value="${this.clanak?.sadrzaj}" readonly="readonly" style="width: 100%; height: 400px"/><br/>
+                    
+                    <label for="sadrzaj" style="width: 5.3%">
+                        <g:message code="clanak.sadrzaj.title"/>
+                    </label>
+                    <g:textArea name="sadrzaj" required="false" value="${this.clanak?.sadrzaj}" readonly="readonly" style="width: 100%; height: 300px"/><br/>
                 </fieldset>
                 <fieldset class="buttons">
-                    <g:actionSubmit class="edit" action="edit" resource="${this.clanak}" value="${message(code: 'default.button.edit.label', default: 'Edit')}" style="width: 10%"/>
+                    <g:actionSubmit class="edit" action="edit" resource="${this.clanak}" value="${message(code: 'default.button.edit.label', default: 'Edit')}" style="width: 110px"/>
                 </fieldset>
             </g:form>
         </div>

@@ -7,7 +7,6 @@
     <body>
         <div class="nav" role="navigation">
             <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                 <li><g:link class="list" action="index"><g:message code="godina.list.label" /></g:link></li>
                 <li><g:link class="create" action="create"><g:message code="godina.create.label" /></g:link></li>
             </ul>
@@ -20,8 +19,8 @@
             <f:display bean="godina" />
             <g:form resource="${this.godina}" method="DELETE">
                 <fieldset class="buttons">
-                    <g:link class="edit" action="edit" resource="${this.godina}"><g:message code="godina.edit.label" /></g:link>
-                    <input class="delete" type="submit" value="${message(code: 'default.button.delete.label')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    <g:link class="edit" action="edit" resource="${this.godina}" style="width: 160px"><g:message code="godina.edit.label" /></g:link>
+                    <input class="delete" type="submit" value="${message(code: 'default.button.delete.label')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" style="width: 110px" />
                 </fieldset>
             </g:form>
         </div>

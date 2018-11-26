@@ -31,6 +31,14 @@
         <fieldset class="fieldset">
             <legend style="width: 12%"><g:message code="clanak.create.label"/></legend>
 
+            <label for="datumObjave" style="width: 9%">
+                <g:message code="clanak.datumObjave.title"/>
+            </label>
+
+            <input name="datumObjave" type="date" value="${clanak?.datumObjave?.format("yyyy-MM-dd")}" style="width: 15%"/>
+
+            <br/>
+
             <label for="naslov" style="width: 5%">
                 <g:message code="clanak.naslov.title"/>
             </label>
@@ -39,10 +47,10 @@
             <label for="sadrzaj" style="width: 5.3%">
                 <g:message code="clanak.sadrzaj.title"/>
             </label>
-            <g:textArea name="sadrzaj" value="${clanak?.sadrzaj}" style="width: 100%; height: 500px"/><br/>
+            <g:textArea name="sadrzaj" value="${clanak?.sadrzaj}" style="width: 100%; height: 300px"/><br/>
         </fieldset>
         <fieldset class="buttons">
-            <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" style="width: 10%"/>
+            <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" style="width: 160px"/>
         </fieldset>
     </g:form>
 </div>

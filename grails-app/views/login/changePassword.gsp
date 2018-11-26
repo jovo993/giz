@@ -86,7 +86,7 @@
 <body>
 <div id='login'>
     <div class='inner'>
-        <div class='fheader'>Molimo ažurirajte Vašu lozinku</div>
+        <div class='fheader'><g:message code='changepassword.naslov'/></div>
         <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
         </g:if>
@@ -99,18 +99,18 @@
         </g:hasErrors>
         <g:form controller='login' method = 'post' class='cssform' autocomplete='off'>
             <p>
-                <label for='password'>Stara lozinka:</label>
+                <label for='password'><g:message code='changepassword.staralozinka'/></label>
                 <g:passwordField name='password' class='text_' id='password' />
             </p>
             <p>
-                <label for='password'>Nova lozinka:</label>
+                <label for='password'><g:message code='changepassword.novalozinka'/></label>
                 <g:passwordField name='newPassword' class='text_' />
             </p>
             <p>
-                <label for='password' >Nova lozinka (ponovite):</label>
+                <label for='password' ><g:message code='changepassword.ponovo'/></label>
                 <g:passwordField name='confirmNewPassword' class='text_' />
             </p>
-                <g:actionSubmit id='submit' resource="${this.changePasswordDTO}" action="updatePassword" value="${message(code: 'giz.changePassword.saveButton', default: 'Snimi')}" style="width: 20%"/>
+                <g:actionSubmit id='submit' resource="${this.changePasswordDTO}" action="updatePassword" value="${message(code: 'giz.changePassword.saveButton', default: 'Save')}" style="width: 20%"/>
         </g:form>
     </div>
 </div>

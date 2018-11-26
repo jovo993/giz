@@ -1,6 +1,7 @@
 package ba.giz
 
 import grails.transaction.Transactional
+import grails.util.Holders
 
 import static org.springframework.http.HttpStatus.*
 
@@ -8,20 +9,42 @@ class GodinaController {
 
   static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-  def index(Integer max) {
-    params.max = Math.min(max ?: 20, 100)
+  def index(Integer max, Integer offset) {
+    if (!UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+	   redirect(controller: "homepage", action: "homepage")
+	   return
+	}
+
+    params.max = (max ?: 10)
+    params.offset = (offset ?: 0)
+
     respond Godina.list(params), model: [columns: ["godina"], godinaCount: Godina.count()]
   }
 
   def show(Godina godina) {
+    if (!UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+	   redirect(controller: "homepage", action: "homepage")
+	   return
+	}
+
     respond godina
   }
 
   def create() {
+    if (!UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+	   redirect(controller: "homepage", action: "homepage")
+	   return
+	}
+
     respond new Godina(params)
   }
 
   def edit(Godina godina) {
+    if (!UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+	   redirect(controller: "homepage", action: "homepage")
+	   return
+	}
+
     respond godina
   }
 

@@ -23,7 +23,7 @@
     <g:form resource="${this.preduzece}" action="basicUpdate">
         <g:hiddenField name="version" value="${this.preduzece?.version}"/>
         <fieldset class="fieldset">
-            <legend style="width: 38%"><g:message code="preduzece.basicEdit.label"/></legend>
+            <legend style="width: 45%"><g:message code="preduzece.basicEdit.label"/></legend>
 
             <label for="naziv">
                 <g:message code="preduzece.naziv.label.colon"/>
@@ -40,18 +40,18 @@
             </label>
 
             <g:checkBox name="uloga.operater" value="${preduzece?.uloga?.operater}" style="width: 2%; vertical-align: middle;"/>
-            <label for="uloga.operater" style="width: 6.6%; vertical-align: middle;">
-                <g:message code="preduzece.uloga.operater.title.bigger"/>
+            <label for="uloga.operater" style="width: 70px; vertical-align: middle;">
+                <g:message code="ba.giz.Uloga.OPERATER"/>
             </label>
 
             <g:checkBox name="uloga.distributer" value="${preduzece?.uloga?.distributer}" style="width: 2%; vertical-align: middle;"/>
-            <label for="uloga.distributer" style="width: 8%; vertical-align: middle;">
-                <g:message code="preduzece.uloga.distributer.title.bigger"/>
+            <label for="uloga.distributer" style="width: 100px; vertical-align: middle;">
+                <g:message code="ba.giz.Uloga.DISTRIBUTER"/>
             </label>
 
             <g:checkBox name="uloga.snabdjevac" value="${preduzece?.uloga?.snabdjevac}" style="width: 2%; vertical-align: middle;"/>
-            <label for="uloga.snabdjevac" style="width: 8%; vertical-align: middle;">
-                <g:message code="preduzece.uloga.snabdjevac.title.bigger"/>
+            <label for="uloga.snabdjevac" style="width: 80px; vertical-align: middle;">
+                <g:message code="ba.giz.Uloga.SNABDJEVAC"/>
             </label><br/>
 
             <label for="adresa">
@@ -100,7 +100,7 @@
             <g:field name="ukupanGodisnjiPromet" type="number decimal" value="${preduzece?.ukupanGodisnjiPromet}" style="width: 40%"/><br/>
         </fieldset>
         <fieldset class="buttons">
-            <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" style="width: 10%"/>
+            <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" style="width: 160px"/>
         </fieldset>
     </g:form>
 </div>

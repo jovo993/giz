@@ -1,5 +1,5 @@
 <fieldset class="fieldset" disabled>
-    <legend style="width: 28%"><g:message code="homepage.preduzece.fieldset.title"/></legend>
+    <legend style="width: 38%"><g:message code="homepage.preduzece.fieldset.title"/></legend>
     <label for="naziv">
         <g:message code="preduzece.naziv.title"/>
     </label>
@@ -8,7 +8,8 @@
     <label for="sektor">
         <g:message code="preduzece.sektor.title"/>
     </label>
-    <g:textField name="sektor" value="${preduzece?.sektor}" style="width: 50%"/><br/>
+    <!-- <g:textField name="sektor" value="${preduzece?.sektor}" style="width: 50%"/><br/> -->
+    <g:select name="sektor" from="${ba.giz.Sektor.values()}" value="${preduzece?.sektor}" style="width: 50%"/><br/>
 
     <label>
         <g:message code="preduzece.uloga.title"/>

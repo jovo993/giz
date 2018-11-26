@@ -47,4 +47,5 @@ class Izvjestaj {
     isporucenaToplotnaEnergija nullable: true
     stepenMjerenjeEnergijeStrukturaKupaca nullable: true
   }
+
 }

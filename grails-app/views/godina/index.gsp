@@ -7,7 +7,6 @@
     <body>
         <div class="nav" role="navigation">
             <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                 <li><g:link class="create" action="create"><g:message code="godina.create.label"/></g:link></li>
             </ul>
         </div>
@@ -18,9 +17,11 @@
             </g:if>
             <f:table collection="${godinaList}" />
 
-            <div class="pagination">
-                <g:paginate total="${godinaCount ?: 0}" />
-            </div>
+            <g:if test="${godinaCount.toInteger() > params.max.toInteger()}">
+                <div class="pagination">
+                    <g:paginate total="${godinaCount.toInteger() ?: 0}" />
+                </div>
+            </g:if>
         </div>
     </body>
 </html>

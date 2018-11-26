@@ -9,10 +9,21 @@
 
 <body>
 <div id="create-izvjestaj" class="content scaffold-create" role="main">
-    <h1><g:message code="izvjestaj.izmjeni.title"/></h1>
-    <g:hiddenField id="editable" name="editable" value="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}"/>
+    <h1><g:message code="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) && !isUserAdmin ? 'izvjestaj.izmjeni.title' : 
+                           izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA) && !isUserAdmin ? 'izvjestaj.izmjeni.title' : 
+                           izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN) && !isUserAdmin ? 'izvjestaj.pregled.title' : 
+                           izvjestaj.status.equals(ba.giz.IzvjestajStatus.VERIFIKOVAN) && !isUserAdmin ? 'izvjestaj.pregled.title' : 
+                           izvjestaj.status.equals(ba.giz.IzvjestajStatus.ZAVRSEN) && !isUserAdmin ? 'izvjestaj.pregled.title' : 
+                           izvjestaj.status.equals(ba.giz.IzvjestajStatus.STORNIRAN) && !isUserAdmin ? 'izvjestaj.pregled.title' : 
+                           'izvjestaj.pregled.title'}"/>&nbsp;</br>
+   </h1><h5 style="font-size: 0.8em;">
+                           (<g:message code="${'izvjestaj.trenutnistatus.title'}"/>&nbsp;
+                           <g:message code="ba.giz.IzvjestajStatus.${izvjestaj.status}"/>)
+    </h5>
+    <g:hiddenField id="editable" name="editable" value="${!isUserAdmin && (izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA))}"/>
     <form id="formIzvjestaj">
         <g:hiddenField name="izvjestaj.id" value="${izvjestaj.id}"/>
+
         <g:render template="basicDataEdit" model="[izvjestaj: izvjestaj]"/>
 
         %{-- funkcije koje rade dodavanje novog, brisanje i pomjeranje postojeceg reda za tabelu Preuzeta i isporucena EE --}%
@@ -95,22 +106,22 @@
         </g:javascript>
 
         <fieldset class="fieldset">
-            <legend style="width: 60%">${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.EE.title')}</legend>
+            <legend style="width: 65%">${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.EE.title')}</legend>
 
             <div id="preuzetaIsporucenaTable" class="table-editable">
                 <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
                 <table id="table1" class="table">
                     <tr>
-                        <th id="radnaJedinica" class="prety-th" style="width: 10%">Radna jedinica</th>
-                        <th id="preuzetaElektricnaEnergija" class="prety-th" style="width: 10%">PREUZETA ELEKTRIČNA ENERGIJA (MWh)</th>
-                        <th id="potrosnjaNa110kV" class="prety-th" style="width: 10%">potrošnja na 110 kV naponu</th>
-                        <th id="potrosnjaNa35kV" class="prety-th" style="width: 10%">potrošnja na 35 kV naponu</th>
-                        <th id="potrosnjaNa1Do35kV" class="prety-th" style="width: 10%">potrošnja na naponskom nivou od 1 kV do 35 kV</th>
-                        <th id="potrosnjaOstala" class="prety-th" style="width: 10%">ostala potrošnja na niskom naponu (0.4kV)</th>
-                        <th id="potrosnjaDomacinstva" class="prety-th" style="width: 10%">domaćinstva (0.4kV)</th>
-                        <th id="potrosnjaJavnaRasvjeta" class="prety-th" style="width: 10%">javna rasvjeta (0.4kV)</th>
-                        <th id="ukupnoIsporuceno" class="prety-th" style="width: 10%">UKUPNO ISPORUČENO</th>
-                        <th id="gubici" class="prety-th" style="width: 10%">GUBICI (%)</th>
+                        <th id="radnaJedinica" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col01"/></th>
+                        <th id="preuzetaElektricnaEnergija" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col02"/></th>
+                        <th id="potrosnjaNa110kV" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col03"/></th>
+                        <th id="potrosnjaNa35kV" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col04"/></th>
+                        <th id="potrosnjaNa1Do35kV" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col05"/></th>
+                        <th id="potrosnjaOstala" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col06"/></th>
+                        <th id="potrosnjaDomacinstva" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col07"/></th>
+                        <th id="potrosnjaJavnaRasvjeta" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col08"/></th>
+                        <th id="ukupnoIsporuceno" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col09"/></th>
+                        <th id="gubici" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col10"/></th>
                     </tr>
                     <g:each in="${izvjestaj.preuzetaIsporucenaEEList}" var="it">
                         <tr>
@@ -158,7 +169,7 @@
                     </tr>
                     <tfoot>
                     <tr>
-                        <td style="vertical-align: middle; text-align: center;">UKUPNO</td>
+                        <td style="vertical-align: middle; text-align: center;"><g:message code="izvjestaj.ee.t1.ukupno"/></td>
                         <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
                         <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
                         <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
@@ -215,7 +226,7 @@
             })(jQuery);
         </g:javascript>
         <fieldset class="fieldset">
-            <legend style="width: 80%"><g:message code="izvjestaj.podaciStepenMjerenja.EE.fieldset.title"/></legend>
+            <legend style="width: 85%"><g:message code="izvjestaj.podaciStepenMjerenja.EE.fieldset.title"/></legend>
 
             <div id="stepenMjerenjaTable" class="table-editable">
                 <table id="smt" class="table table-bordered table-secondary">
@@ -229,7 +240,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="prety-th">Sektor domaćinstva</td>
+                        <td class="prety-th"><g:message code="tabela.stepenMjerenja.EE.row1"/></td>
                         <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje"
                                    value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoBrojMjerenjePotrosnje}"></td>
                         <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj"
@@ -238,7 +249,7 @@
                                    value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoBrojDaljinskoOcitavanje}"></td>
                     </tr>
                     <tr>
-                        <td class="prety-th">Sektor industrije</td>
+                        <td class="prety-th"><g:message code="tabela.stepenMjerenja.EE.row2"/></td>
                         <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje"
                                    value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.industrijaBrojMjerenjePotrosnje}"></td>
                         <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj"
@@ -247,7 +258,7 @@
                                    value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.industrijaBrojDaljinskoOcitavanje}"></td>
                     </tr>
                     <tr>
-                        <td class="prety-th">Ostali sektori</td>
+                        <td class="prety-th"><g:message code="tabela.stepenMjerenja.EE.row3"/></td>
                         <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje"
                                    value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ostaloBrojMjerenjePotrosnje}"></td>
                         <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj"
@@ -255,7 +266,7 @@
                         <td><input class="rowDataSdSmt3" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojDaljinskoOcitavanje"
                                    value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ostaloBrojDaljinskoOcitavanje}"></td>
                     <tr>
-                        <td class="prety-th">Ukupno</td>
+                        <td class="prety-th"><g:message code="tabela.stepenMjerenja.EE.row4"/></td>
                         <td><input class="colSumSmt1" disabled="" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"
                                    value="${izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojMjerenjePotrosnje}"></td>
                         <td><input class="colSumSmt2" disabled="" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"
@@ -302,10 +313,9 @@
                         async: false,
                         data: dataJSON,
                         success: function handleSuccess(data) {
-                            successNotification({
-                              title: data.title,
-                              message: data.message
-                           });
+                            if (data.theme === 'warning') { warningNotification({ title: data.title, message: data.message }); }
+                            else if (data.theme === 'error') { errorNotification({ title: data.title, message: data.message }); }
+                            else { successNotification({ title: data.title, message: data.message }); }
                             if(message === 'poslan') {
                               setTimeout(function() {
                                 var path = window.location.pathname.split('/')[1];
@@ -319,10 +329,9 @@
                             }
                          },
                         error: function handleError(data) {
-                            errorNotification({
-                              title: data.title,
-                              message: data.message
-                          });
+                            if (data.theme === 'warning') { warningNotification({ title: data.title, message: data.message }); }
+                            else if (data.theme === 'error') { errorNotification({ title: data.title, message: data.message }); }
+                            else { successNotification({ title: data.title, message: data.message }); }
                         }
                     });
                 }

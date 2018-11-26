@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="izvjestaj_ee" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4fe90646-07e7-4cba-92c7-868ee2c2baf8">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="ireport.zoom" value="1.331000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<subDataset name="preuzetaIsporucenaEEDataset" uuid="e4dc4225-c95e-4a42-8a21-82d3a1a42aea">
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 		<queryString>
@@ -80,18 +82,18 @@
 	<title>
 		<band height="50" splitType="Stretch">
 			<staticText>
-				<reportElement x="77" y="24" width="401" height="21" uuid="282c29fa-5d64-42fe-9f1f-fac27cd7b8cc"/>
+				<reportElement x="31" y="24" width="499" height="21" uuid="282c29fa-5d64-42fe-9f1f-fac27cd7b8cc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif"/>
+					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
-				<text><![CDATA[GODIŠNJI IZVJEŠTAJ DISTRIBUTERA / SNABDJEVAČA ELEKTRIČNOM ENERGIJOM]]></text>
+				<text><![CDATA[ГОДИШЊИ ИЗВЈЕШТАЈ ДИСТРИБУТЕРА / СНАБДЈЕВАЧА ЕЛЕКТРИЧНОМ ЕНЕРГИЈОМ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="460" y="0" width="91" height="21" uuid="b9b28ece-a8ac-4cb0-a462-15e6b5dba4e5"/>
-				<textElement>
-					<font fontName="SansSerif"/>
+				<reportElement x="439" y="0" width="91" height="21" uuid="b9b28ece-a8ac-4cb0-a462-15e6b5dba4e5"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
-				<text><![CDATA[Obrazac EE-DS]]></text>
+				<text><![CDATA[Образац ЕЕ-ДС]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -102,6 +104,45 @@
 		<band height="689" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
+				<reportElement x="30" y="59" width="180" height="38" uuid="bea180fa-fb94-44b3-850e-66d77dff013a"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Матични број јединственог\nрегистра:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="280" width="180" height="38" uuid="381a0929-54d4-44b6-aaf3-40c4b51d8ad3"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Комисија (агенција) која је \nиздала дозволу:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="404" width="180" height="38" uuid="10eca27b-84e7-4978-bfe5-41f028c2a9e7"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Комисија (агенција) која је \nиздала дозволу:"]]></textFieldExpression>
+			</textField>
+			<textField>
 				<reportElement x="30" y="10" width="180" height="31" uuid="962a44a8-4d98-473e-89c0-709c71bd71fe"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -110,9 +151,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Naziv preduzeća \n(i zavisnog preduzeća):"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Назив предузећа \n(и зависног предузећа):"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="41" width="180" height="18" uuid="b4362ce8-d9a3-452a-b42a-36fa82a9ea64"/>
@@ -123,22 +164,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Adresa:"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="30" y="59" width="180" height="20" uuid="bea180fa-fb94-44b3-850e-66d77dff013a"/>
-				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Matični broj jedinstvenog registra:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Адреса:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="79" width="180" height="18" uuid="a36b2d96-08f7-4c67-bc4d-4969c35bf5e2"/>
@@ -149,9 +177,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["JIB:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["ЈИБ:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="187" width="180" height="18" uuid="343ad572-f2d2-4da2-9647-42b174ad192e"/>
@@ -162,9 +190,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Ukupan godišnji promet (KM)*:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Укупан годишњи промет (КМ)*:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="169" width="180" height="18" uuid="a9d9cc6c-974a-4b00-a968-2f81f2dc0549"/>
@@ -175,9 +203,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Broj zaposlenih*:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Број запослених*:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="151" width="180" height="18" uuid="73d9b902-c437-4cb0-ae5b-4f2053b8dca0"/>
@@ -188,9 +216,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Mail adresa:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["E-mail адреса:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="133" width="180" height="18" uuid="9243eed5-179a-4ecd-8be3-bf3d4d2a1a2e"/>
@@ -201,9 +229,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Fax:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Факс:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="115" width="180" height="18" uuid="14a16d97-d9b2-424c-8dd2-71c6eeeccfdd"/>
@@ -214,9 +242,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Telefon:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Телефон:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="97" width="180" height="18" uuid="5fe84c18-1b39-4861-81d2-fa6f55007d0f"/>
@@ -227,9 +255,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["PIB:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["ПИБ:"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="10" width="320" height="31" uuid="cf01cb63-7fb4-4486-a74b-e4b8e61abf7d"/>
@@ -240,7 +268,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{preduzeceNaziv}]]></textFieldExpression>
 			</textField>
@@ -253,7 +281,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{preduzeceAdresa}]]></textFieldExpression>
 			</textField>
@@ -266,7 +294,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{preduzeceMaticniBroj}]]></textFieldExpression>
 			</textField>
@@ -279,7 +307,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{preduzeceGodisnjiPromet}]]></textFieldExpression>
 			</textField>
@@ -292,7 +320,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{preduzeceBrojZaposlenih}]]></textFieldExpression>
 			</textField>
@@ -305,7 +333,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{preduzeceMail}]]></textFieldExpression>
 			</textField>
@@ -318,7 +346,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{preduzeceFax}]]></textFieldExpression>
 			</textField>
@@ -331,7 +359,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{preduzeceTelefon}]]></textFieldExpression>
 			</textField>
@@ -344,7 +372,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{preduzecePib}]]></textFieldExpression>
 			</textField>
@@ -357,16 +385,16 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{preduzeceJib}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="30" y="210" width="290" height="21" uuid="fcb433ba-4bd0-49c4-8920-d78142ca6442"/>
+				<reportElement x="30" y="215" width="500" height="16" uuid="fcb433ba-4bd0-49c4-8920-d78142ca6442"/>
 				<textElement verticalAlignment="Bottom">
-					<font size="9" isItalic="true"/>
+					<font fontName="DejaVu Sans" size="9" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[2 - PODACI O DOZVOLAMA ZA OBAVLJANJE DJELATNOSTI]]></text>
+				<text><![CDATA[2 - ПОДАЦИ О ДОЗВОЛАМА ЗА ОБАВЉАЊЕ ДЈЕЛАТНОСТИ]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="30" y="231" width="180" height="49" uuid="a79e2952-b591-4006-9389-ffeb5cf36bc5"/>
@@ -377,22 +405,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Registarski broj dozvole za\nobavljanje djelatnosti distribucije\nelektrične energije:"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="30" y="280" width="180" height="20" uuid="381a0929-54d4-44b6-aaf3-40c4b51d8ad3"/>
-				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Komisija (agencija) izdavač dozvole:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Регистарски број дозволе за\nобављање дјелатности дистрибуције\nелектричне енергије:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="300" width="180" height="18" uuid="d398de50-69cf-46d1-a6d1-60315222742a"/>
@@ -403,9 +418,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Datum početka važenja dozvole:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Датум почетка важења дозволе:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="318" width="180" height="18" uuid="0a99845f-e032-4b7c-b476-e577aabefef0"/>
@@ -416,9 +431,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Period važenja dozvole:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Период важења дозволе:"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="231" width="320" height="49" uuid="fb476ae0-1aef-40e0-9dd8-8594ac67a134"/>
@@ -429,7 +444,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{distribucijaRegistarskiBroj}]]></textFieldExpression>
 			</textField>
@@ -442,7 +457,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{distribucijaKomisija}]]></textFieldExpression>
 			</textField>
@@ -455,7 +470,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{distribucijaPeriodVazenja}]]></textFieldExpression>
 			</textField>
@@ -468,16 +483,16 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{distribucijaDatumPocetkaVazenje}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="40" y="205" width="338" height="10" uuid="a6d9c904-c101-49a2-8587-ffebd88e2163"/>
-				<textElement verticalAlignment="Middle">
-					<font size="7"/>
+				<reportElement x="31" y="205" width="499" height="10" uuid="a6d9c904-c101-49a2-8587-ffebd88e2163"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
-				<text><![CDATA[*- podaci neophodni u skladu sa članom 19 Zakona o energetskoj efikasnosti Republike Srpske]]></text>
+				<text><![CDATA[*- подаци неопходни у складу са чланом 19 Закона о енергетској ефикасности Републике Српске]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="30" y="344" width="180" height="60" uuid="5b2cae64-6c05-4790-93bb-334fc4190c42"/>
@@ -488,22 +503,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Registarski broj dozvole za\nobavljanje djelatnosti\nsnabdijevanja kupaca električnom\nenergijom:"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="30" y="404" width="180" height="20" uuid="10eca27b-84e7-4978-bfe5-41f028c2a9e7"/>
-				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="3">
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Komisija (agencija) izdavač dozvole:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Регистарски број дозволе за\nобављање дјелатности\nснабдијевања купаца електричном\nенергијом:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="424" width="180" height="18" uuid="18941f38-2178-4d3b-a9db-18a87774141f"/>
@@ -514,9 +516,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Datum početka važenja dozvole:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Датум почетка важења дозволе:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="442" width="180" height="18" uuid="e1bbf652-7986-4c6c-a6a9-dfd2d8d2e0b7"/>
@@ -527,9 +529,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Period važenja dozvole:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Период важења дозволе:"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="210" y="344" width="320" height="60" uuid="c12cf8ff-2dc6-434e-a8b7-f4b2f9f3618e"/>
@@ -540,7 +542,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{snabdijevanjeRegistarskiBroj}]]></textFieldExpression>
 			</textField>
@@ -553,7 +555,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{snabdijevanjeKomisija}]]></textFieldExpression>
 			</textField>
@@ -566,7 +568,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{snabdijevanjePeriodVazenja}]]></textFieldExpression>
 			</textField>
@@ -579,16 +581,16 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{snabdijevanjeDatumPocetkaVazenje}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="31" y="459" width="290" height="21" uuid="9202620b-abd5-4933-953d-e4d8b7f7ef12"/>
+				<reportElement x="31" y="459" width="499" height="21" uuid="9202620b-abd5-4933-953d-e4d8b7f7ef12"/>
 				<textElement verticalAlignment="Bottom">
-					<font size="9" isItalic="true"/>
+					<font fontName="DejaVu Sans" size="9" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[3 - PODACI O PODNOŠENJU IZVJEŠTAJA]]></text>
+				<text><![CDATA[3 - ПОДАЦИ О ПОДНОШЕЊУ ИЗВЈЕШТАЈА]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="30" y="480" width="181" height="19" uuid="23671768-6168-461f-80ff-07ed11ba84ff"/>
@@ -599,9 +601,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Izvještaj za godinu:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Извјештај за годину:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="499" width="181" height="34" uuid="8d1393b2-56fa-4c37-83cb-edcb3365ca70"/>
@@ -612,9 +614,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Prezime i ime osobe\nkoja je sastavila izvještaj / pozicija:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Презиме и име особе\nкоја је саставила извјештај / позиција:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="533" width="181" height="18" uuid="816fc32a-e5aa-4180-89a3-1ba8e1d61a6f"/>
@@ -625,9 +627,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Kontakt telefon:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Контакт телефон:"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="551" width="181" height="18" uuid="e1525f60-3306-4975-ae93-3996c3dcbb6f"/>
@@ -638,9 +640,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Mail adresa:"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["E-mail адреса:"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="211" y="480" width="319" height="19" uuid="2d0f969e-05e9-44d3-9c72-d1fe4256b776"/>
@@ -651,7 +653,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{godina}]]></textFieldExpression>
 			</textField>
@@ -664,7 +666,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{prezimeImePozicija}]]></textFieldExpression>
 			</textField>
@@ -677,7 +679,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{email}]]></textFieldExpression>
 			</textField>
@@ -690,16 +692,16 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{telefon}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="31" y="568" width="290" height="21" uuid="e5c44d36-9b49-4cdc-a320-1f16e9b84297"/>
+				<reportElement x="31" y="568" width="499" height="21" uuid="e5c44d36-9b49-4cdc-a320-1f16e9b84297"/>
 				<textElement verticalAlignment="Bottom">
-					<font size="9" isItalic="true"/>
+					<font fontName="DejaVu Sans" size="9" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[4 - PREUZETA I ISPORUČENA ELEKTRIČNA ENERGIJA, GUBICI]]></text>
+				<text><![CDATA[4 - ПРЕУЗЕТА И ИСПОРУЧЕНА ЕЛЕКТРИЧНА ЕНЕРГИЈА, ГУБИЦИ]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="30" y="589" width="50" height="87" uuid="fa6ffa39-fcc7-4da8-bf3f-43743b2e852a">
@@ -712,9 +714,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Radna jedinica"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Радна јединица"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="80" y="589" width="50" height="87" uuid="62bb6a3e-0978-4844-ae73-eee51855d1d8">
@@ -727,9 +729,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-					<font size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["PREUZETA EL. EN. (MWh)"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["ПРЕУЗЕТА ЕЛ. ЕН. (MWh)"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="130" y="601" width="50" height="75" uuid="aa4999e3-12b8-4a45-bcc8-3abbe51178d8">
@@ -743,9 +745,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-					<font size="9" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["potrošnja na\n110 kV naponu"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["потрошња на\n110 kV напону"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="180" y="601" width="50" height="75" uuid="14b588f0-a2e3-4816-b87e-b1275358afd3">
@@ -759,9 +761,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-					<font size="9" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["potrošnja na\n35 kV naponu"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["потрошња на\n35 kV напону"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="230" y="601" width="50" height="75" uuid="8514d3a5-43ef-4101-8fbb-70167e3926f3">
@@ -775,9 +777,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-					<font size="9" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["potrošnja na\nnaponskom\nnivou od 1 kV\ndo 35 kV"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["потрошња на\nнапонском\nнивоу од 1 kV\nдо 35 kV"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="280" y="601" width="50" height="75" uuid="3bc74727-cab0-4049-b967-a7bc23934329">
@@ -791,9 +793,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-					<font size="9" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["ostala potrošnja\nna niskom\nnaponu (0.4 kV)"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["остала потрошња\nна ниском\nнапону (0.4 kV)"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="330" y="601" width="50" height="75" uuid="13770c88-985a-44cd-bb27-bb0b82d23bee">
@@ -807,9 +809,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-					<font size="9" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["domaćinstva\n(0.4 kV)"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["домаћинства\n(0.4 kV)"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="380" y="601" width="50" height="75" uuid="69de5d12-078a-4328-a905-c0c419830b77">
@@ -823,9 +825,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-					<font size="9" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["javna rasvjeta\n(0.4 kV)"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["јавна расвјета\n(0.4 kV)"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="430" y="601" width="50" height="75" uuid="b3009a0e-7596-41d6-821f-cef685b62378">
@@ -839,9 +841,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-					<font size="9" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["UKUPNO ISPORUČENO"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["УКУПНО ИСПОРУЧЕНО"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="480" y="589" width="50" height="87" uuid="c96ed363-fb9a-45b6-a815-f6c12b77aa54">
@@ -854,9 +856,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
-					<font isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["GUBICI (%)"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["ГУБИЦИ (%)"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="130" y="589" width="350" height="12" uuid="71579dff-baff-4f2b-8172-8036c4113f8e"/>
@@ -867,9 +869,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["ISPORUČENA EL. EN. (MWh)"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["ИСПОРУЧЕНА ЕЛ. ЕН. (MWh)"]]></textFieldExpression>
 			</textField>
 			<frame>
 				<reportElement x="30" y="676" width="500" height="13" uuid="0d027953-1e9e-4aea-8821-e85dafadc6d9"/>
@@ -1088,12 +1090,12 @@
 				</componentElement>
 			</frame>
 			<staticText>
-				<reportElement x="30" y="-11" width="151" height="21" uuid="6548a656-f8d8-4a2b-bae2-f543272be5e6"/>
+				<reportElement x="30" y="-11" width="500" height="21" uuid="6548a656-f8d8-4a2b-bae2-f543272be5e6"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="2"/>
 				<textElement verticalAlignment="Bottom">
-					<font size="9" isItalic="true"/>
+					<font fontName="DejaVu Sans" size="9" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[1 - PODACI O PREDUZEĆU]]></text>
+				<text><![CDATA[1 - ПОДАЦИ О ПРЕДУЗЕЋУ]]></text>
 			</staticText>
 		</band>
 		<band height="48">
@@ -1109,9 +1111,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Ukupno isporučena energija krajnjim kupcima u TJ"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Укупно испоручена енергија крајњим купцима у TJ"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="430" y="0" width="100" height="11" uuid="5a202a38-39c1-4731-82ee-26f9c066c35a">
@@ -1124,7 +1126,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="8" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{ukupnoIsporucenaEnergija}+ " E (TJ)"]]></textFieldExpression>
 			</textField>
@@ -1142,9 +1144,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Primijenjena mjera"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Примијењена мјера"]]></textFieldExpression>
 			</textField>
 			<componentElement>
 				<reportElement x="30" y="48" width="500" height="13" forecolor="#000000" uuid="87407300-e943-49b3-a3d5-3b5c47dea0a4">
@@ -1231,9 +1233,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Vrsta uštede"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Врста уштеде"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="363" y="18" width="167" height="30" uuid="756344cb-ec08-4c17-bc40-fc7eff24f515">
@@ -1247,16 +1249,16 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Količina uštede\n(smanjenje gubitaka)"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Количина уштеде\n(смањење губитака)"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="30" y="-3" width="290" height="21" uuid="e86af435-cf6a-463c-8359-ada116c198dd"/>
+				<reportElement x="30" y="-3" width="500" height="21" uuid="e86af435-cf6a-463c-8359-ada116c198dd"/>
 				<textElement verticalAlignment="Bottom">
-					<font size="9" isItalic="true"/>
+					<font fontName="DejaVu Sans" size="9" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[5 - PROCJENA STANJA ENERGETSKE EFIKASNOSTI]]></text>
+				<text><![CDATA[5 - ПРОЦЈЕНА СТАЊА ЕНЕРГЕТСКЕ ЕФИКАСНОСТИ]]></text>
 			</staticText>
 		</band>
 		<band height="207">
@@ -1272,16 +1274,16 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[""]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="30" y="-6" width="380" height="21" uuid="d9be4de2-5d5c-49a2-ac4a-f433a0f8ff82"/>
+				<reportElement x="30" y="-6" width="500" height="21" uuid="d9be4de2-5d5c-49a2-ac4a-f433a0f8ff82"/>
 				<textElement verticalAlignment="Bottom">
-					<font size="9" isItalic="true"/>
+					<font fontName="DejaVu Sans" size="9" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[6 - PODACI O STEPENU MJERENJA ENERGIJE PREMA STRUKTURI KRAJNJIH KUPACA]]></text>
+				<text><![CDATA[6 - ПОДАЦИ О СТЕПЕНУ МЈЕРЕЊА ЕНЕРГИЈЕ ПРЕМА СТРУКТУРИ КРАЈЊИХ КУПАЦА]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="142" y="15" width="150" height="60" uuid="bd2ece8f-5e41-47e7-a987-4760e75bbcd0">
@@ -1295,9 +1297,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true" isUnderline="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Broj krajnjih kupaca kojima\nse obračun potrošnje\nenergije vrši na osnovu\nmjerenja potrošnje"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Број крајњих купаца којима\nсе обрачун потрошње\nенергије врши на основу\nмјерења потрошње"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="292" y="15" width="117" height="60" uuid="3aa69f75-3741-4ec3-972c-16b6e89376b5">
@@ -1311,9 +1313,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Ukupan broj\nkrajnjih kupaca"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Укупан број\nкрајњих купаца"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="409" y="15" width="121" height="60" uuid="0baa2577-c428-4b84-abd9-20e430c73c50">
@@ -1327,9 +1329,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Broj korisnika sa\nsistemom\ndaljinskog\nočitavanja"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Број корисника са\nсистемом\nдаљинског\nочитавања"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="75" width="112" height="20" uuid="6a1aea51-a464-4729-a879-25435e6aad0c">
@@ -1343,9 +1345,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Sektor domaćinstva"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Сектор домаћинства"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="142" y="75" width="150" height="20" uuid="487f3d01-846b-438a-a503-74bc29b1fc6d">
@@ -1359,7 +1361,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false" isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{domacinstvoBrojMjerenjePotrosnje}]]></textFieldExpression>
 			</textField>
@@ -1375,9 +1377,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
-					<font size="11" isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{domacinstvoUkupanBroj} + " K<sub>d</sub>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{domacinstvoUkupanBroj} + " (=K<sub>d</sub>)"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="409" y="75" width="121" height="20" uuid="7ce6d954-c997-4f22-aeb9-725550d7fa4b">
@@ -1391,7 +1393,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{domacinstvoBrojDaljinskoOcitavanje}]]></textFieldExpression>
 			</textField>
@@ -1407,9 +1409,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Sektor industrije"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Сектор индустрије"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="142" y="95" width="150" height="20" uuid="0bc97bea-fef1-49cd-a986-29e6dfc23956">
@@ -1423,7 +1425,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false" isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{industrijaBrojMjerenjePotrosnje}]]></textFieldExpression>
 			</textField>
@@ -1439,9 +1441,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
-					<font size="11" isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{industrijaUkupanBroj} + " K<sub>i</sub>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{industrijaUkupanBroj} + " (=K<sub>i</sub>)"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="409" y="95" width="121" height="20" uuid="5f07c714-34cb-493e-bad5-b37404b2aceb">
@@ -1455,7 +1457,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{industrijaBrojDaljinskoOcitavanje}]]></textFieldExpression>
 			</textField>
@@ -1471,9 +1473,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Ostali sektori"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Остали сектори"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="142" y="115" width="150" height="20" uuid="39edcb20-d9b8-4b16-a586-f495afbf5652">
@@ -1487,7 +1489,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false" isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{ostaloBrojMjerenjePotrosnje}]]></textFieldExpression>
 			</textField>
@@ -1503,9 +1505,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
-					<font size="11" isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{ostaloUkupanBroj} + " K<sub>o</sub>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ostaloUkupanBroj} + " (=K<sub>o</sub>)"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="409" y="115" width="121" height="20" uuid="55a98f6d-3432-4c70-ad2a-ac8a97608b45">
@@ -1519,7 +1521,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{ostaloBrojDaljinskoOcitavanje}]]></textFieldExpression>
 			</textField>
@@ -1535,9 +1537,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["UKUPNO"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["УКУПНО"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="142" y="135" width="150" height="20" uuid="923d9d8f-dcd5-405c-b2e9-b9f6d183d3f9">
@@ -1551,9 +1553,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false" isUnderline="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{ukupnoBrojMjerenjePotrosnje} + " K<sub>m</sub>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ukupnoBrojMjerenjePotrosnje} + " (=K<sub>m</sub>)"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="292" y="135" width="117" height="20" uuid="01a9da6c-2c9c-435a-b9a2-66a8a80ef59f">
@@ -1567,9 +1569,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
-					<font size="11" isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{ukupnoBrojKrajnjihKupaca} + " K<sub>u</sub>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ukupnoBrojKrajnjihKupaca} + " (=K<sub>u</sub>)"]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="409" y="135" width="121" height="20" uuid="ce5a3bec-c43c-4825-9eaa-92531e4835c8">
@@ -1583,17 +1585,17 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{ukupnoBrojDaljinskoOcitavanje}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="30" y="153" width="380" height="21" uuid="286f2f66-e3fe-4f74-b715-f1055c92c892"/>
+				<reportElement x="30" y="153" width="500" height="21" uuid="286f2f66-e3fe-4f74-b715-f1055c92c892"/>
 				<box rightPadding="0"/>
 				<textElement verticalAlignment="Bottom">
-					<font size="9" isItalic="true"/>
+					<font fontName="DejaVu Sans" size="9" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[7 - PODACI O PONUDAMA ENERGETSKIH USLUGA KRAJNJIM KUPCIMA]]></text>
+				<text><![CDATA[7 - ПОДАЦИ О ПОНУДАМА ЕНЕРГЕТСКИХ УСЛУГА КРАЈЊИМ КУПЦИМА]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="30" y="174" width="500" height="30" uuid="55711f09-d35e-4736-b586-b72a82e75532">
@@ -1607,7 +1609,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Top">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false" isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{podaciPonudeEnergetskihUsluga}]]></textFieldExpression>
 			</textField>
@@ -1616,9 +1618,9 @@
 			<staticText>
 				<reportElement x="30" y="-8" width="500" height="21" uuid="3465b95b-f5a7-4622-b291-feb132f15568"/>
 				<textElement verticalAlignment="Bottom">
-					<font size="9" isItalic="true"/>
+					<font fontName="DejaVu Sans" size="9" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[8 - PODACI O PONUDAMA ZA UGRADNJU INDIVIDUALNIH UREĐAJA ZA MJERENJE POTROŠNJE ENERGIJE]]></text>
+				<text><![CDATA[8 - ПОДАЦИ О ПОНУДАМА ЗА УГРАДЊУ ИНДИВИДУАЛНИХ УРЕЂАЈА ЗА МЈЕРЕЊЕ ПОТРОШЊЕ ЕНЕРГИЈЕ]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="30" y="13" width="500" height="30" uuid="c88e1543-b370-40e1-b7a1-608846856026">
@@ -1632,18 +1634,18 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Top">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false" isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{podaciPonudeUgradnjaIndividualnihUredjaja}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="47">
 			<staticText>
-				<reportElement x="30" y="-5" width="380" height="21" uuid="c573e609-461f-4315-81ba-ad99c9143199"/>
+				<reportElement x="30" y="-5" width="500" height="21" uuid="c573e609-461f-4315-81ba-ad99c9143199"/>
 				<textElement verticalAlignment="Bottom">
-					<font size="9" isItalic="true"/>
+					<font fontName="DejaVu Sans" size="9" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[9 - OSTALI PODACI RELEVANTNI ZA ENERGETSKU EFIKASNOST]]></text>
+				<text><![CDATA[9 - ОСТАЛИ ПОДАЦИ РЕЛЕВАНТНИ ЗА ЕНЕРГЕТСКУ ЕФИКАСНОСТ]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="30" y="16" width="500" height="30" uuid="7a06af86-a8ba-4690-9cf9-80ba3d808b00">
@@ -1657,7 +1659,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Left" verticalAlignment="Top">
-					<font size="11" isBold="false" isUnderline="false"/>
+					<font fontName="DejaVu Sans" size="9" isBold="false" isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{podaciOstaloEnergetskaEfikasnost}]]></textFieldExpression>
 			</textField>
@@ -1665,25 +1667,40 @@
 		<band height="82">
 			<staticText>
 				<reportElement x="271" y="40" width="28" height="20" uuid="2101972f-edb3-45e9-b93a-361f9a712e89"/>
-				<text><![CDATA[M.P.]]></text>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
+				<text><![CDATA[М.П.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="30" y="7" width="80" height="20" uuid="af44e49b-8cdd-4190-9766-12af66935512"/>
-				<text><![CDATA[Datum kreiranja:]]></text>
+				<reportElement x="30" y="7" width="90" height="20" uuid="af44e49b-8cdd-4190-9766-12af66935512"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
+				<text><![CDATA[Датум креирања:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="110" y="7" width="100" height="20" uuid="7a5a7669-6bcb-4cdb-a828-4535b628e378"/>
+				<reportElement x="120" y="7" width="100" height="20" uuid="7a5a7669-6bcb-4cdb-a828-4535b628e378"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{datumKreiranja}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="80" y="30" width="80" height="20" uuid="63faf051-48d4-4b77-852d-9f4c3443185b"/>
-				<text><![CDATA[Izvještaj sastavio]]></text>
+				<reportElement x="31" y="30" width="179" height="20" uuid="63faf051-48d4-4b77-852d-9f4c3443185b"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
+				<text><![CDATA[Извјештај саставио]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="405" y="30" width="70" height="20" uuid="3e4d73c3-ef64-4669-890e-ffb8d1730035">
+				<reportElement x="350" y="30" width="180" height="20" uuid="3e4d73c3-ef64-4669-890e-ffb8d1730035">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<text><![CDATA[Odgovorno lice]]></text>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
+				<text><![CDATA[Одговорно лице]]></text>
 			</staticText>
 			<line>
 				<reportElement x="30" y="75" width="180" height="1" uuid="977e8b79-2667-420d-ba8e-6912a06609e5">

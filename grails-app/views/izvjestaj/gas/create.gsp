@@ -23,13 +23,13 @@
             <div id="preuzetaIsporucenaTable" class="table-editable">
                 <table id="table1" class="table">
                     <tr>
-                        <th id="preuzetaKolicina" class="prety-th">PREUZETE KOLIČINE GASA (Sm3)</th>
-                        <th id="industrijskiPotrosaci" class="prety-th">Industrijski potrošači</th>
-                        <th id="sistemiDaljinskoGrijanja" class="prety-th">Sistemi daljinskog grijanja</th>
-                        <th id="komercijalniKrajnjiKupci" class="prety-th">Komercijalni krajnji kupci</th>
-                        <th id="domacinstva" class="prety-th">Domaćinstva</th>
-                        <th id="ukupnoIsporuceno" class="prety-th">UKUPNO ISPORUČENO</th>
-                        <th id="gubici" class="prety-th">GUBICI (%)</th>
+                        <th id="preuzetaKolicina" class="prety-th"><g:message code="izvjestaj.gas.t1.col01"/></th>
+                        <th id="industrijskiPotrosaci" class="prety-th"><g:message code="izvjestaj.gas.t1.col02"/></th>
+                        <th id="sistemiDaljinskoGrijanja" class="prety-th"><g:message code="izvjestaj.gas.t1.col03"/></th>
+                        <th id="komercijalniKrajnjiKupci" class="prety-th"><g:message code="izvjestaj.gas.t1.col04"/></th>
+                        <th id="domacinstva" class="prety-th"><g:message code="izvjestaj.gas.t1.col05"/></th>
+                        <th id="ukupnoIsporuceno" class="prety-th"><g:message code="izvjestaj.gas.t1.col06"/></th>
+                        <th id="gubici" class="prety-th"><g:message code="izvjestaj.gas.t1.col07"/></th>
                     </tr>
                     <tr>
                         <td class="editable-td" contenteditable="true"></td>
@@ -76,10 +76,9 @@
                         async: false,
                         data: dataJSON,
                         success: function handleSuccess(data) {
-                            successNotification({
-                                title: data.title,
-                                message: data.message
-                            });
+                            if (data.theme === 'warning') { warningNotification({ title: data.title, message: data.message }); }
+                            else if (data.theme === 'error') { errorNotification({ title: data.title, message: data.message }); }
+                            else { successNotification({ title: data.title, message: data.message }); }
                             setTimeout(function() {
                                 var path = window.location.pathname.split('/')[1];
                                 if (path === 'izvjestaj') {
@@ -91,10 +90,9 @@
                             }, 2000);
                         },
                         error: function handleError(data) {
-                            errorNotification({
-                                title: data.title,
-                                message: data.message
-                            });
+                            if (data.theme === 'warning') { warningNotification({ title: data.title, message: data.message }); }
+                            else if (data.theme === 'error') { errorNotification({ title: data.title, message: data.message }); }
+                            else { successNotification({ title: data.title, message: data.message }); }
                         }
                     });
                 });

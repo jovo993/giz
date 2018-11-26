@@ -8,9 +8,19 @@
 </head>
 
 <body>
-<div id="create-izvjestaj" role="main">
-    <h1 style="padding-left: 15px"><g:message code="izvjestaj.izmjeni.title"/></h1>
-    <g:hiddenField id="editable" name="editable" value="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}"/>
+<div id="create-izvjestaj" class="content scaffold-create" role="main">
+    <h1><g:message code="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) && !isUserAdmin ? 'izvjestaj.izmjeni.title' : 
+                           izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA) && !isUserAdmin ? 'izvjestaj.izmjeni.title' : 
+                           izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN) && !isUserAdmin ? 'izvjestaj.pregled.title' : 
+                           izvjestaj.status.equals(ba.giz.IzvjestajStatus.VERIFIKOVAN) && !isUserAdmin ? 'izvjestaj.pregled.title' : 
+                           izvjestaj.status.equals(ba.giz.IzvjestajStatus.ZAVRSEN) && !isUserAdmin ? 'izvjestaj.pregled.title' : 
+                           izvjestaj.status.equals(ba.giz.IzvjestajStatus.STORNIRAN) && !isUserAdmin ? 'izvjestaj.pregled.title' : 
+                           'izvjestaj.pregled.title'}"/>&nbsp;
+   </h1><h5 style="font-size: 0.8em;">
+                           (<g:message code="${'izvjestaj.trenutnistatus.title'}"/>&nbsp;
+                           <g:message code="ba.giz.IzvjestajStatus.${izvjestaj.status}"/>)
+    </h5>
+    <g:hiddenField id="editable" name="editable" value="${!isUserAdmin && (izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA))}"/>
     <form id="formIzvjestaj">
         <g:hiddenField name="izvjestaj.id" value="${izvjestaj.id}"/>
 
@@ -22,11 +32,11 @@
             <div id="preuzetaIsporucenaTable" class="table-editable">
                 <table id="table1" class="table">
                     <tr>
-                        <th id="poslovniPotrosaciMwh" class="prety-th">Poslovni potrošači po MWh</th>
-                        <th id="stambeniPotrosaciMwh" class="prety-th">Stambeni potrošači po MWh</th>
-                        <th id="stambeniPotrosaciM2" class="prety-th">Stambeni potrošači po m3</th>
-                        <th id="ukupnoIsporuceno" class="prety-th">UKUPNO ISPORUČENO</th>
-                        <th id="gubici" scope="col" class="prety-th">GUBICI (%)</th>
+                        <th id="poslovniPotrosaciMwh" class="prety-th"><g:message code="izvjestaj.te.t1.col01"/></th>
+                        <th id="stambeniPotrosaciMwh" class="prety-th"><g:message code="izvjestaj.te.t1.col02"/></th>
+                        <th id="stambeniPotrosaciM2" class="prety-th"><g:message code="izvjestaj.te.t1.col03"/></th>
+                        <th id="ukupnoIsporuceno" class="prety-th"><g:message code="izvjestaj.te.t1.col04"/></th>
+                        <th id="gubici" scope="col" class="prety-th"><g:message code="izvjestaj.te.t1.col05"/></th>
                     </tr>
                     <tr>
                         <td class="editable-td" contenteditable="true">${izvjestaj.isporucenaToplotnaEnergija?.poslovniPotrosaciMwh}</td>
@@ -91,9 +101,9 @@
                 <span id="energenti" class="table-add fa fa-plus fa-2x"></span>
                 <table id="table2" class="table">
                     <tr>
-                        <th id="energent" class="prety-th">Energent</th>
-                        <th id="godisnjaUpotrebljenaKolicina" class="prety-th">Godišnja upotrijebljena količina</th>
-                        <th id="jednicaMjere" class="prety-th">Jedinica mjere</th>
+                        <th id="energent" class="prety-th"><g:message code="izvjestaj.te.t2.col01"/></th>
+                        <th id="godisnjaUpotrebljenaKolicina" class="prety-th"><g:message code="izvjestaj.te.t2.col02"/></th>
+                        <th id="jednicaMjere" class="prety-th"><g:message code="izvjestaj.te.t2.col03"/></th>
                     </tr>
                     <g:each in="${izvjestaj.podaciEnergenti}" var="it" status="i">
                         <tr>
@@ -172,10 +182,9 @@
                         async: false,
                         data: dataJSON,
                         success: function handleSuccess(data) {
-                            successNotification({
-                              title: data.title,
-                              message: data.message
-                          });
+                            if (data.theme === 'warning') { warningNotification({ title: data.title, message: data.message }); }
+                            else if (data.theme === 'error') { errorNotification({ title: data.title, message: data.message }); }
+                            else { successNotification({ title: data.title, message: data.message }); }
                             if(message === 'poslan') {
                               setTimeout(function() {
                                 var path = window.location.pathname.split('/')[1];
@@ -189,10 +198,9 @@
                             }
                          },
                         error: function handleError(data) {
-                            errorNotification({
-                              title: data.title,
-                              message: data.message
-                          });
+                            if (data.theme === 'warning') { warningNotification({ title: data.title, message: data.message }); }
+                            else if (data.theme === 'error') { errorNotification({ title: data.title, message: data.message }); }
+                            else { successNotification({ title: data.title, message: data.message }); }
                         }
                     });
                 }

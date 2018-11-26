@@ -6,9 +6,11 @@ class PreduzeceStatus {
 
   String toString() {
     if (aktivan) {
-      "aktivan"
+      // "aktivan"
+      UserUtils.msg("ba.giz.User.AKTIVAN")
     } else {
-      "neaktivan"
+      // "neaktivan"
+      UserUtils.msg("ba.giz.User.NEAKTIVAN")
     }
   }
 }

@@ -53,27 +53,27 @@
             </thead>
             <tbody>
             <tr>
-                <td class="prety-th">Sektor domaćinstva</td>
+                <td class="prety-th"><g:message code="tabela.stepenMjerenja.EE.row1"/></td>
                 <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojMjerenjePotrosnje"
                            value="${izvjestaj?.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoBrojMjerenjePotrosnje}"></td>
                 <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoUkupanBroj"
                            value="${izvjestaj?.stepenMjerenjeEnergijeStrukturaKupaca?.domacinstvoUkupanBroj}"></td>
             </tr>
             <tr>
-                <td class="prety-th">Sektor industrije</td>
+                <td class="prety-th"><g:message code="tabela.stepenMjerenja.EE.row2"/></td>
                 <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojMjerenjePotrosnje"
                            value="${izvjestaj?.stepenMjerenjeEnergijeStrukturaKupaca?.industrijaBrojMjerenjePotrosnje}"></td>
                 <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.industrijaUkupanBroj"
                            value="${izvjestaj?.stepenMjerenjeEnergijeStrukturaKupaca?.industrijaUkupanBroj}"></td>
             </tr>
             <tr>
-                <td class="prety-th">Ostali sektori</td>
+                <td class="prety-th"><g:message code="tabela.stepenMjerenja.EE.row3"/></td>
                 <td><input class="rowDataSdSmt1" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloBrojMjerenjePotrosnje"
                            value="${izvjestaj?.stepenMjerenjeEnergijeStrukturaKupaca?.ostaloBrojMjerenjePotrosnje}"></td>
                 <td><input class="rowDataSdSmt2" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ostaloUkupanBroj"
                            value="${izvjestaj?.stepenMjerenjeEnergijeStrukturaKupaca?.ostaloUkupanBroj}"></td>
             <tr>
-                <td class="prety-th">Ukupno</td>
+                <td class="prety-th"><g:message code="tabela.stepenMjerenja.EE.row4"/></td>
                 <td><input class="colSumSmt1" disabled="" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojMjerenjePotrosnje"
                            value="${izvjestaj?.stepenMjerenjeEnergijeStrukturaKupaca?.ukupnoBrojMjerenjePotrosnje}"></td>
                 <td><input class="colSumSmt2" disabled="" style="width: 100%" name="izvjestaj.stepenMjerenjeEnergijeStrukturaKupaca.ukupnoBrojKrajnjihKupaca"

@@ -35,10 +35,9 @@
                     async: false,
                     data: {id : ${this.izvjestaj.id}},
                     success: function handleSuccess(data) {
-                      successNotification({
-                        title: data.title,
-                          message: data.message
-                      });
+                      if (data.theme === 'warning') { warningNotification({ title: data.title, message: data.message }); }
+                      else if (data.theme === 'error') { errorNotification({ title: data.title, message: data.message }); }
+                      else { successNotification({ title: data.title, message: data.message }); }
                       setTimeout(function() {
                                 var path = window.location.pathname.split('/')[1];
                                 if (path === 'izvjestaj') {
@@ -50,10 +49,9 @@
                               }, 2000);
                     },
                     error: function handleError(data) {
-                      errorNotification({
-                          title: data.title,
-                          message: data.message
-                      });
+                      if (data.theme === 'warning') { warningNotification({ title: data.title, message: data.message }); }
+                      else if (data.theme === 'error') { errorNotification({ title: data.title, message: data.message }); }
+                      else { successNotification({ title: data.title, message: data.message }); }
                     }
                   });
                 }
@@ -82,14 +80,14 @@
 <fieldset class="buttons">
     <sec:ifAnyGranted roles="ROLE_EE_USER, ROLE_G_USER, ROLE_TE_USER">
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}">
-            <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.edit.label"/></button>
+            <button id="submitButton"><i class="fa fa-edit"></i>  <g:message code="default.button.update.label"/></button>
             <button id="posaljiButton"><i class="fa fa-share-square"></i>   <g:message code="default.button.send.label"/></button>
             <button id="invalidateButton"><i class="fa fa-ban"></i>   <g:message code="default.button.invalidate.label"/></button>
         </g:if>
-        <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.VERIFIKOVAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.ZAVRSEN)}">
-            <button id="printPdfButton"><i class="fa fa-file-pdf"></i>   <g:message code="default.button.pdf.label"/></button>
-        </g:if>
     </sec:ifAnyGranted>
+    <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.VERIFIKOVAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.ZAVRSEN)}">
+        <button id="printPdfButton"><i class="fa fa-file-pdf"></i>   <g:message code="default.button.pdf.label"/></button>
+    </g:if>
     <sec:ifAnyGranted roles="ROLE_ADMIN">
         <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.POSLAN)}">
             <button id="vratiNaDoraduButton"><i class="fa fa-arrow-alt-circle-left"></i>   <g:message code="default.button.dorada.label"/></button>
@@ -100,6 +98,11 @@
         </g:if>
     </sec:ifAnyGranted>
     <g:link controller="homepage" action="homepage">
-        <button id="odustaniButton"><i class="fa fa-home"></i>   <g:message code="default.button.odustani.label"/></button>
+        <g:if test="${izvjestaj.status.equals(ba.giz.IzvjestajStatus.KREIRAN) || izvjestaj.status.equals(ba.giz.IzvjestajStatus.DORADA)}">
+            <button id="odustaniButton"><i class="fa fa-home"></i>   <g:message code="default.button.odustanibezsnimanja.label"/></button>
+        </g:if>
+        <g:else>
+            <button id="odustaniButton"><i class="fa fa-home"></i>   <g:message code="default.button.odustani.label"/></button>
+        </g:else>
     </g:link>
 </fieldset>

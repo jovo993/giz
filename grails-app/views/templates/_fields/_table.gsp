@@ -3,9 +3,10 @@
     <tr>
         <g:each in="${columns}" var="p" status="i">
             <g:set var="propTitle">${domainClass.propertyName}.${p}.label</g:set>
+            <g:set var="propAction">clanak.akcije.label</g:set>
             <g:sortableColumn property="${p}" title="${message(code: propTitle)}"/>
         </g:each>
-        <g:sortableColumn property="akcije" title="Akcije"/>
+        <g:sortableColumn property="akcije" title="${message(code: propAction)}"/>
     </tr>
     </thead>
     <tbody>

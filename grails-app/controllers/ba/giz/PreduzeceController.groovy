@@ -2,22 +2,40 @@ package ba.giz
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.util.Holders
 
 @Transactional(readOnly = true)
 class PreduzeceController {
 
   static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-  def index(Integer max) {
-    params.max = Math.min(max ?: 20, 100)
+  def index(Integer max, Integer offset) {
+    if (!UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+	   redirect(controller: "homepage", action: "homepage")
+	   return
+	}
+
+    params.max = (max ?: 10)
+    params.offset = (offset ?: 0)
+
     respond Preduzece.list(params), model: [columns: ["naziv", "sektor", "uloga", "status"], preduzeceCount: Preduzece.count()]
   }
 
   def show(Preduzece preduzece) {
+    if (!UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+	   redirect(controller: "homepage", action: "homepage")
+	   return
+	}
+
     respond preduzece
   }
 
   def create() {
+    if (!UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+	   redirect(controller: "homepage", action: "homepage")
+	   return
+	}
+
     respond new Preduzece(params)
   }
 
@@ -27,6 +45,12 @@ class PreduzeceController {
   }
 
   def basicEdit(Preduzece preduzece) {
+    if (!UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser) &&
+	    preduzece.id != Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id) {
+	   redirect(controller: "homepage", action: "homepage")
+	   return
+	}
+
     respond preduzece
   }
 

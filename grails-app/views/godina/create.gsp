@@ -7,7 +7,6 @@
     <body>
         <div class="nav" role="navigation">
             <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                 <li><g:link class="list" action="index"><g:message code="godina.list.label"/></g:link></li>
             </ul>
         </div>
@@ -28,7 +27,7 @@
                     <f:all bean="godina"/>
                 </fieldset>
                 <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" style="width: 160px"/>
                 </fieldset>
             </g:form>
         </div>

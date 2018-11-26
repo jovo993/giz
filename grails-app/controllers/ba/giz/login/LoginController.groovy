@@ -35,7 +35,7 @@ class LoginController {
 
   /** Show the login page. */
   def auth(params) {
-    params.max = params.max ?: 5
+    params.max = params.max ?: 3
     params.offset = params.offset ?: 0
 
     def conf = getConf()
@@ -54,7 +54,7 @@ class LoginController {
                                  passwordParameter  : conf.apf.passwordParameter,
                                  gspLayout          : conf.gsp.layoutAuth,
                                  clanci             : lista,
-                                 count              : Clanak.count()
+                                 clanakCount        : Clanak.count()
     ]
 
   }

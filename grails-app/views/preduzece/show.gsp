@@ -86,7 +86,7 @@
                     <g:textField name="ukupanGodisnjiPromet" required="false" value="${this.preduzece?.ukupanGodisnjiPromet}" readonly="readonly" style="width: 40%"/><br/>
                 </fieldset>
                 <fieldset class="buttons">
-                    <g:actionSubmit class="edit" action="edit" resource="${this.preduzece}" value="${message(code: 'default.button.edit.label', default: 'Edit')}" style="width: 10%"/>
+                    <g:actionSubmit class="edit" action="edit" resource="${this.preduzece}" value="${message(code: 'default.button.edit.label', default: 'Edit')}" style="width: 110px"/>
                 </fieldset>
             </g:form>
         </div>

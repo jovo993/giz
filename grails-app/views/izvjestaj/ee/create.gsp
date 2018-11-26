@@ -77,22 +77,22 @@
         </g:javascript>
 
         <fieldset class="fieldset">
-            <legend style="width: 60%">${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.EE.title')}</legend>
+            <legend style="width: 65%">${message(code: 'izvjestaj.preuzetaIsporucenaEnergija.fieldset.EE.title')}</legend>
 
             <div id="preuzetaIsporucenaTable" class="table-editable">
                 <span id="preuzetaIsporucena" class="table-add fa fa-plus fa-2x"></span>
                 <table id="table1" class="table">
                     <tr>
-                        <th id="radnaJedinica" class="prety-th" style="width: 10%">Radna jedinica</th>
-                        <th id="preuzetaElektricnaEnergija" class="prety-th" style="width: 10%">PREUZETA ELEKTRIČNA ENERGIJA (MWh)</th>
-                        <th id="potrosnjaNa110kV" class="prety-th" style="width: 10%">potrošnja na 110 kV naponu</th>
-                        <th id="potrosnjaNa35kV" class="prety-th" style="width: 10%">potrošnja na 35 kV naponu</th>
-                        <th id="potrosnjaNa1Do35kV" class="prety-th" style="width: 10%">potrošnja na naponskom nivou od 1 kV do 35 kV</th>
-                        <th id="potrosnjaOstala" class="prety-th" style="width: 10%">ostala potrošnja na niskom naponu (0.4kV)</th>
-                        <th id="potrosnjaDomacinstva" class="prety-th" style="width: 10%">domaćinstva (0.4kV)</th>
-                        <th id="potrosnjaJavnaRasvjeta" class="prety-th" style="width: 10%">javna rasvjeta (0.4kV)</th>
-                        <th id="ukupnoIsporuceno" class="prety-th" style="width: 10%">UKUPNO ISPORUČENO</th>
-                        <th id="gubici" class="prety-th" style="width: 10%">GUBICI (%)</th>
+                        <th id="radnaJedinica" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col01"/></th>
+                        <th id="preuzetaElektricnaEnergija" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col02"/></th>
+                        <th id="potrosnjaNa110kV" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col03"/></th>
+                        <th id="potrosnjaNa35kV" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col04"/></th>
+                        <th id="potrosnjaNa1Do35kV" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col05"/></th>
+                        <th id="potrosnjaOstala" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col06"/></th>
+                        <th id="potrosnjaDomacinstva" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col07"/></th>
+                        <th id="potrosnjaJavnaRasvjeta" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col08"/></th>
+                        <th id="ukupnoIsporuceno" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col09"/></th>
+                        <th id="gubici" class="prety-th" style="width: 10%"><g:message code="izvjestaj.ee.t1.col10"/></th>
                     </tr>
                     <tr class="hide">
                         <td class="editable-td rowDataSd" contenteditable="true"></td>
@@ -117,7 +117,7 @@
                     </tr>
                     <tfoot>
                     <tr>
-                        <td style="vertical-align: middle; text-align: center;">UKUPNO</td>
+                        <td style="vertical-align: middle; text-align: center;"><g:message code="izvjestaj.ee.t1.ukupno"/></td>
                         <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
                         <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
                         <td style="vertical-align: middle; text-align: center;" class="totalCol"></td>
@@ -164,10 +164,9 @@
                         async: false,
                         data: dataJSON,
                         success: function handleSuccess(data) {
-                            successNotification({
-                                title: data.title,
-                                message: data.message
-                            });
+                            if (data.theme === 'warning') { warningNotification({ title: data.title, message: data.message }); }
+                            else if (data.theme === 'error') { errorNotification({ title: data.title, message: data.message }); }
+                            else { successNotification({ title: data.title, message: data.message }); }
                             setTimeout(function() {
                                 var path = window.location.pathname.split('/')[1];
                                 if (path === 'izvjestaj') {
@@ -179,10 +178,9 @@
                             }, 2000);
                         },
                         error: function handleError(data) {
-                            errorNotification({
-                                title: data.title,
-                                message: data.message
-                            });
+                            if (data.theme === 'warning') { warningNotification({ title: data.title, message: data.message }); }
+                            else if (data.theme === 'error') { errorNotification({ title: data.title, message: data.message }); }
+                            else { successNotification({ title: data.title, message: data.message }); }
                         }
                     });
                 });

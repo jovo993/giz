@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'user.label', default: 'Korisnik')}" />
+        <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
         <title><g:message code="user.show.label"/></title>
     </head>
     <body>
@@ -43,7 +43,7 @@
                     <label for="enabled">
                         <g:message code="user.enabled.title"/>
                     </label>
-                    <g:textField name="enabled" required="false" value="${this.user?.enabled ? "aktivan" : "neaktivan"}" readonly="readonly" style="width: 40%"/><br/>
+                    <g:textField name="enabled" required="false" value="${this.user?.enabled ? message(code:'ba.giz.User.AKTIVAN') : message(code:'ba.giz.User.NEAKTIVAN')}" readonly="readonly" style="width: 40%"/><br/>
 
                     <label for="preduzece.naziv">
                         <g:message code="user.preduzece.naziv.title"/>
@@ -66,7 +66,7 @@
                     <g:textField name="telefon" required="false" value="${this.user?.telefon}" readonly="readonly" style="width: 40%"/><br/>
                 </fieldset>
                 <fieldset class="buttons">
-                    <g:actionSubmit class="edit" action="edit" resource="${this.user}" value="${message(code: 'default.button.edit.label', default: 'Edit')}" style="width: 10%"/>
+                    <g:actionSubmit class="edit" action="edit" resource="${this.user}" value="${message(code: 'default.button.edit.label', default: 'Edit')}" style="width: 110px"/>
                 </fieldset>
             </g:form>
         </div>

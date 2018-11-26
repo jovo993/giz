@@ -20,6 +20,13 @@ import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.NO_CONTENT
 import static pl.touk.excel.export.abilities.RowManipulationAbility.fillHeader
 
+import grails.util.Holders
+import org.springframework.context.MessageSource
+import org.springframework.context.i18n.LocaleContextHolder as LCU
+
+// import pl.touk.excel.export.getters.MessageFromPropertyGetter 
+import ba.giz.MsgFromPropertyGetter
+
 @Transactional(readOnly = true)
 class IzvjestajController {
 
@@ -27,23 +34,33 @@ class IzvjestajController {
     resolveViewAndRedirect(Izvjestaj.findById(id))
   }
 
-  def index(Integer max) {
-    params.max = Math.min(max ?: 10, 100)
+  def index(Integer max, Integer offset) {
+    params.max = (max ?: 10)
+    params.offset = (offset ?: 0)
+
     respond Izvjestaj.list(params), model: [izvjestajCount: Izvjestaj.count()]
   }
 
   def resolveViewAndRedirect(Izvjestaj izvjestaj) {
     Preduzece preduzece = Preduzece.findById(izvjestaj.preduzece.id)
+    Boolean isUserAdmin = UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)
+
+    if (!isUserAdmin &&
+      preduzece.id != Holders.applicationContext.getBean("springSecurityService").currentUser?.preduzece?.id) {
+      redirect(controller: "homepage", action: "homepage")
+      return
+    }
+    
     if (preduzece.sektor == Sektor.ELEKTRICNA_ENERGIJA) {
-      render view: "/izvjestaj/ee/edit", model: [izvjestaj: izvjestaj, id: izvjestaj.id]
+      render view: "/izvjestaj/ee/edit", model: [izvjestaj: izvjestaj, id: izvjestaj.id, isUserAdmin: isUserAdmin]
     }
 
     if (preduzece.sektor == Sektor.GAS) {
-      render view: "/izvjestaj/gas/edit", model: [izvjestaj: izvjestaj, id: izvjestaj.id]
+      render view: "/izvjestaj/gas/edit", model: [izvjestaj: izvjestaj, id: izvjestaj.id, isUserAdmin: isUserAdmin]
     }
 
     if (preduzece.sektor == Sektor.TOPLOTNA_ENERGIJA) {
-      render view: "/izvjestaj/te/edit", model: [izvjestaj: izvjestaj, id: izvjestaj.id]
+      render view: "/izvjestaj/te/edit", model: [izvjestaj: izvjestaj, id: izvjestaj.id, isUserAdmin: isUserAdmin]
     }
   }
 
@@ -64,6 +81,10 @@ class IzvjestajController {
   }
 
   def excelExport() {
+    if (!UserUtils.isUserAdmin(Holders.applicationContext.getBean("springSecurityService").currentUser)) {
+	   redirect(controller: "homepage", action: "homepage")
+	   return
+	}
     respond new IzvjestajExcelDTO()
   }
 
@@ -80,11 +101,11 @@ class IzvjestajController {
       izvjestaj.save flush: true, failOnError: true
 
       response.status = 200
-      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je uspješno kreiran.'] as JSON)
+      render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.kreiran"), theme: 'success'] as JSON)
     }
     catch (Exception e) {
       response.status = 500
-      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom kreiranja izvještaja.', error: e.getStackTrace()] as JSON)
+      render([title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.greskakreiranje"), theme: 'error', error: e.getStackTrace()] as JSON)
     }
 
   }
@@ -98,11 +119,11 @@ class IzvjestajController {
       izvjestaj.save flush: true, failOnError: true
 
       response.status = 200
-      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je uspješno ažuriran.'] as JSON)
+      render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.azuriran"), theme: 'success'] as JSON)
     }
     catch (Exception e) {
       response.status = 500
-      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom ažuriranja izvještaja.', error: e.getStackTrace()] as JSON)
+      render([title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.greskaazuriranje"), theme: 'error', error: e.getStackTrace()] as JSON)
     }
   }
 
@@ -146,12 +167,34 @@ class IzvjestajController {
 
     List<Izvjestaj> results = searchForExcel(dto)
 
+    // def headers = [
+    //   "Za godinu", "Status", "Izvje\u0161taj sastavio", "Datum podno\u0161enja", "Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
+    // ]
+
     def headers = [
-      "Za godinu", "Status", "Izvje\u0161taj sastavio", "Datum podno\u0161enja", "Naziv preduze\u0107a", "Sektor", "Uloge", "Adresa"
+      message(code: "excel1.godina"), message(code: "excel1.status"), message(code: "excel1.izvjestajsastavio"), message(code: "excel1.datumpodnosenja"), message(code: "excel1.nazivpreduzeca"), message(code: "excel1.sektor"), message(code: "excel1.uloge"), message(code: "excel1.adresa")
     ]
+
+/*
     def withProperties = [
-      "podaciPodnosenjeIzvjestaja.godina", "status", "podaciPodnosenjeIzvjestaja.prezimeImePozicija", "datumSlanja", "preduzece.naziv", "preduzece.sektor", "preduzece.uloga", "preduzece.adresa"
+      "podaciPodnosenjeIzvjestaja.godina", "status", "podaciPodnosenjeIzvjestaja.prezimeImePozicija", "datumSlanja",
+      "preduzece.naziv", "preduzece.sektor", "preduzece.uloga", "preduzece.adresa"
     ]
+*/
+
+    // BB: umjesto prethodnog zakomentarisanog bloka "def withProperties = ..."
+    // neophodno zbog konvertovanja statusa i sektora u cirilicu
+    MessageSource ms = Holders.applicationContext.getBean("messageSource")
+
+    def withProperties = [
+      "podaciPodnosenjeIzvjestaja.godina",
+      new MsgFromPropertyGetter(ms, 'ba.giz.IzvjestajStatus.', 'status', LCU.getLocale()),
+      "podaciPodnosenjeIzvjestaja.prezimeImePozicija",
+      "datumSlanja", "preduzece.naziv",
+      new MsgFromPropertyGetter(ms, 'ba.giz.Sektor.', 'preduzece', 'sektor', LCU.getLocale()),
+      "preduzece.uloga", "preduzece.adresa"
+    ]
+    // BB: umjesto prethodnog zakomentarisanog bloka "def withProperties = ..."
 
     new WebXlsxExporter().with {
       setResponseHeaders(response)
@@ -161,6 +204,7 @@ class IzvjestajController {
       response.outputStream.flush()
       finalize()
     }
+
   }
 
   @Transactional
@@ -173,19 +217,36 @@ class IzvjestajController {
 
     List<Izvjestaj> results = searchForExcel(dto)
 
-    def headers = ["Za godinu", "Naziv preduze\u0107a", "Sektor"]
+    // def headers = ["Za godinu", "Naziv preduze\u0107a", "Sektor"]
+    def headers = [message(code: "excel1.godina"), message(code: "excel1.nazivpreduzeca"), message(code: "excel1.sektor")]
 
-    def withProperties = ["podaciPodnosenjeIzvjestaja.godina", "preduzece.naziv", "preduzece.sektor"]
+    // def withProperties = ["podaciPodnosenjeIzvjestaja.godina", "preduzece.naziv", "preduzece.sektor"]
+
+    MessageSource ms = Holders.applicationContext.getBean("messageSource")
+    def withProperties = ["podaciPodnosenjeIzvjestaja.godina", "preduzece.naziv",
+    new MsgFromPropertyGetter(ms, 'ba.giz.Sektor.', 'preduzece', 'sektor', LCU.getLocale()) ]
 
     if (!dto.sektori || dto.sektori.isEmpty() || dto.sektori.contains(Sektor.ELEKTRICNA_ENERGIJA)) {
       //TODO: maybe add transient fields on "ee" Izvjestaj which correlate to numeric values in the "UKUPNO" row on "PREUZETA I ISPORUCENA EE, GUBICI" table
     }
 
     if (!dto.sektori || dto.sektori.isEmpty() || dto.sektori.contains(Sektor.GAS)) {
+      /*
       headers += [
         "Preuzete koli\u010Dine gasa (Sm3)", "Isporu\u010Dene koli\u010Dine gasa u Sm3 (industrijski potro\u0161a\u010Di)", "Isporu\u010Dene koli\u010Dine gasa u Sm3 (sistemi daljinskog grijanja)",
         "Isporu\u010Dene koli\u010Dine gasa u Sm3 (komercijalni krajnji kupci)", "Isporu\u010Dene koli\u010Dine gasa u Sm3 (doma\u0107instva)",
         "Ukupno isporu\u010Deno", "Gubici"
+      ]
+      */
+
+      headers += [
+        message(code: "excel2.g01"),
+        message(code: "excel2.g02"),
+        message(code: "excel2.g03"),
+        message(code: "excel2.g04"),
+        message(code: "excel2.g05"),
+        message(code: "excel2.g06"),
+        message(code: "excel2.g07")
       ]
 
       withProperties += [
@@ -196,9 +257,19 @@ class IzvjestajController {
     }
 
     if (!dto.sektori || dto.sektori.isEmpty() || dto.sektori.contains(Sektor.TOPLOTNA_ENERGIJA)) {
+      /*
       headers += [
         "Isporu\u010Dene koli\u010Dine TE u MWh (poslovni potro\u0161a\u010Di)", "Isporu\u010Dene koli\u010Dine TE u MWh (stambeni potro\u0161a\u010Di)",
         "Isporu\u010Dene koli\u010Dine TE po m2 (stambeni potro\u0161a\u010Di)", "Ukupno isporu\u010Deno", "Gubici"
+      ]
+      */
+
+      headers += [
+        message(code: "excel2.t01"),
+        message(code: "excel2.t02"),
+        message(code: "excel2.t03"),
+        message(code: "excel2.t04"),
+        message(code: "excel2.t05")
       ]
 
       withProperties += [
@@ -207,14 +278,27 @@ class IzvjestajController {
       ]
     }
 
-    headers << "Ukupno isporu\u010Dena energija krajnjim kupcima u TJ"
+    headers << message(code: "excel2.x00")
 
     withProperties << "ukupnoIsporucenaEnergija"
 
+    /*
     headers += [
       "Broj kupaca (doma\u0107instva- mjerenje potro\u0161nje)", "Broj kupaca (industrija- mjerenje potro\u0161nje)",
       "Broj kupaca (ostali sektori- mjerenje potro\u0161nje)", "Broj kupaca (ukupno- mjerenje potro\u0161nje)",
       "Ukupan broj kupaca (doma\u0107instva)", "Ukupan broj kupaca (industrija)", "Ukupan broj kupaca (ostali sektori)", "Ukupan broj kupaca (sveukupno)"
+    ]
+      */
+
+    headers += [
+      message(code: "excel2.x01"),
+      message(code: "excel2.x02"),
+      message(code: "excel2.x03"),
+      message(code: "excel2.x04"),
+      message(code: "excel2.x05"),
+      message(code: "excel2.x06"),
+      message(code: "excel2.x07"),
+      message(code: "excel2.x08")
     ]
 
     withProperties += [
@@ -224,10 +308,20 @@ class IzvjestajController {
     ]
 
     if (!dto.sektori || dto.sektori.isEmpty() || dto.sektori.contains(Sektor.ELEKTRICNA_ENERGIJA)) {
+
+      /*
       headers += [
         "Broj korisnika sa sistemom dalj. o\u010Ditavanja (doma\u0107instva)", "Broj korisnika sa sistemom dalj. o\u010Ditavanja (industrija)",
         "Broj korisnika sa sistemom dalj. o\u010Ditavanja (ostali sektori)", "Broj korisnika sa sistemom dalj. o\u010Ditavanja (ukupno)"
       ]
+      */
+
+    headers += [
+      message(code: "excel2.x09"),
+      message(code: "excel2.x10"),
+      message(code: "excel2.x11"),
+      message(code: "excel2.x12")
+    ]
 
       withProperties += [
         "stepenMjerenjeEnergijeStrukturaKupaca.domacinstvoBrojDaljinskoOcitavanje", "stepenMjerenjeEnergijeStrukturaKupaca.industrijaBrojDaljinskoOcitavanje",
@@ -300,11 +394,11 @@ class IzvjestajController {
       izvjestaj.save flush: true, failOnError: true
 
       response.status = 200
-      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je uspješno poslan.'] as JSON)
+      render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.poslan"), theme: 'success'] as JSON)
     }
     catch (Exception e) {
       response.status = 500
-      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom slanja izvještaja.', error: e.getStackTrace()] as JSON)
+      render([title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.greskaslanje"), theme: 'error', error: e.getStackTrace()] as JSON)
     }
   }
 
@@ -318,14 +412,14 @@ class IzvjestajController {
         izvjestaj.save flush: true, failOnError: true
 
         response.status = 200
-        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je vraćen na doradu.'] as JSON)
+        render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.vracen"), theme: 'success'] as JSON)
       } else {
         response.status = 500
-        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Nemate potrebne privilegije.'] as JSON)
+        render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.nemateprivilegije"), theme: 'warning'] as JSON)
       }
     } else {
       response.status = 500
-      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj nije u potrebnom statusu.'] as JSON)
+      render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.nijeustatusu"), theme: 'warning'] as JSON)
     }
   }
 
@@ -339,14 +433,14 @@ class IzvjestajController {
         izvjestaj.save flush: true, failOnError: true
 
         response.status = 200
-        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je verifikovan.'] as JSON)
+        render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.verifikovan"), theme: 'success'] as JSON)
       } else {
         response.status = 500
-        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Nemate potrebne privilegije.'] as JSON)
+        render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.nemateprivilegije"), theme: 'warning'] as JSON)
       }
     } else {
       response.status = 500
-      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj nije u potrebnom statusu.'] as JSON)
+      render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.nijeustatusu"), theme: 'warning'] as JSON)
     }
   }
 
@@ -360,14 +454,14 @@ class IzvjestajController {
         izvjestaj.save flush: true, failOnError: true
 
         response.status = 200
-        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je završen.'] as JSON)
+        render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.zavrsen"), theme: 'success'] as JSON)
       } else {
         response.status = 500
-        render([id: izvjestaj.id, title: 'Izvještaj', message: 'Nemate potrebne privilegije.'] as JSON)
+        render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.nemateprivilegije"), theme: 'warning'] as JSON)
       }
     } else {
       response.status = 500
-      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj nije u potrebnom statusu.'] as JSON)
+      render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.nijeustatusu"), theme: 'warning'] as JSON)
     }
   }
 
@@ -380,11 +474,11 @@ class IzvjestajController {
       izvjestaj.save flush: true, failOnError: true
 
       response.status = 200
-      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj je storniran.'] as JSON)
+      render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.storniran"), theme: 'success'] as JSON)
 
     } else {
       response.status = 500
-      render([id: izvjestaj.id, title: 'Izvještaj', message: 'Izvještaj nije u potrebnom statusu.'] as JSON)
+      render([id: izvjestaj.id, title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.nijeustatusu"), theme: 'warning'] as JSON)
     }
   }
 
@@ -392,8 +486,7 @@ class IzvjestajController {
   @Transactional
   def printPdf(params) {
     try {
-      DefaultJasperReportsContext.getInstance().setProperty("net.sf.jasperreports.default.font.name", "SansSerif")
-      DefaultJasperReportsContext.getInstance().setProperty("net.sf.jasperreports.default.pdf.encoding", "Cp1250")
+      
 
       def sc = session.getServletContext()
       def reportsPath = sc.getRealPath("/")
@@ -416,11 +509,11 @@ class IzvjestajController {
         preduzeceGodisnjiPromet                      : izvjestaj.preduzece.ukupanGodisnjiPromet,
         distribucijaRegistarskiBroj                  : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaRegistarskiBroj,
         distribucijaKomisija                         : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaKomisija,
-        distribucijaDatumPocetkaVazenje              : new SimpleDateFormat("dd.mm.yyyy.").format(izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje),
+        distribucijaDatumPocetkaVazenje              : ( izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje != null ? new SimpleDateFormat("dd.mm.yyyy.").format(izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaDatumPocetkaVazenje) : ""),
         distribucijaPeriodVazenja                    : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.distribucijaPeriodVazenja,
         snabdijevanjeRegistarskiBroj                 : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeRegistarskiBroj,
         snabdijevanjeKomisija                        : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeKomisija,
-        snabdijevanjeDatumPocetkaVazenje             : new SimpleDateFormat("dd.mm.yyyy.").format(izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje),
+        snabdijevanjeDatumPocetkaVazenje             : ( izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje != null ? new SimpleDateFormat("dd.mm.yyyy.").format(izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjeDatumPocetkaVazenje) : ""),
         snabdijevanjePeriodVazenja                   : izvjestaj.podaciDozvolaObavljanjeDjelatnosti.snabdijevanjePeriodVazenja,
         godina                                       : izvjestaj.podaciPodnosenjeIzvjestaja.godina,
         prezimeImePozicija                           : izvjestaj.podaciPodnosenjeIzvjestaja.prezimeImePozicija,
@@ -444,11 +537,15 @@ class IzvjestajController {
 
       if (izvjestaj.tip == IzvjestajTip.EE_DS) {
         report = reportsPath + "jasper/izvjestaj_ee.jrxml"
+        // report = reportsPath + "jasper/test.jrxml"
+
+        // String ukupno_i18n = message(code: "izvjestaj.ee.t1.ukupno")
+        // println ukupno_i18n
 
         List<PreuzetaIsporucenaEE> preuzetaIsporucenaEEList = izvjestaj.preuzetaIsporucenaEEList
         preuzetaIsporucenaEEList.add(
           new PreuzetaIsporucenaEE(
-            radnaJedinica: "UKUPNO", preuzetaElektricnaEnergija: preuzetaIsporucenaEEList.preuzetaElektricnaEnergija.sum(),
+            radnaJedinica: "= = =", preuzetaElektricnaEnergija: preuzetaIsporucenaEEList.preuzetaElektricnaEnergija.sum(),
             potrosnjaNa110kV: preuzetaIsporucenaEEList.potrosnjaNa110kV.sum(), potrosnjaNa35kV: preuzetaIsporucenaEEList.potrosnjaNa35kV.sum(),
             potrosnjaNa1Do35kV: preuzetaIsporucenaEEList.potrosnjaNa1Do35kV.sum(), potrosnjaOstala: preuzetaIsporucenaEEList.potrosnjaOstala.sum(),
             potrosnjaDomacinstva: preuzetaIsporucenaEEList.potrosnjaDomacinstva.sum(), potrosnjaJavnaRasvjeta: preuzetaIsporucenaEEList.potrosnjaJavnaRasvjeta.sum(),
@@ -507,7 +604,7 @@ class IzvjestajController {
       render([pdfByteArray: encoded] as JSON)
     } catch (Exception e) {
       response.status = 500
-      render([title: 'Izvještaj', message: 'Došlo je do greške prilikom generisanja izvještaja.', error: e.getStackTrace()] as JSON)
+      render([title: message(code: "nfc.izvjestaj"), message: message(code: "nfc.greskagenerisanje"), theme: 'error', error: e.getStackTrace()] as JSON)
     }
   }
 }

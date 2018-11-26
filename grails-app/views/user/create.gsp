@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <g:set var="entityName" value="${message(code: 'user.label', default: 'Korisnik')}"/>
+    <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}"/>
     <title><g:message code="user.create.label" args="[entityName]"/></title>
 </head>
 
@@ -64,7 +64,7 @@
             <label for="preduzece.id">
                 <g:message code="user.preduzece.naziv.title"/>
             </label>
-            <g:select name="preduzece.id" from="${ba.giz.Preduzece.list()}" value="${user?.preduzece?.id}" optionKey="id" noSelection="${['': 'Odaberite jednoga...']}" style="width: 40%"/><br/>
+            <g:select name="preduzece.id" from="${ba.giz.Preduzece.list()}" value="${user?.preduzece?.id}" optionKey="id" noSelection="${['': message(code: 'user.preduzece.odaberitejednog', default: 'Choose one company ...')]}" style="width: 40%"/><br/>
 
             <label for="pozicija">
                 <g:message code="user.pozicija.title"/>
@@ -82,7 +82,7 @@
             <g:textField name="telefon" value="${user?.telefon}" style="width: 40%"/><br/>
         </fieldset>
         <fieldset class="buttons">
-            <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" style="width: 10%"/>
+            <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" style="width: 130px"/>
         </fieldset>
     </g:form>
 </div>

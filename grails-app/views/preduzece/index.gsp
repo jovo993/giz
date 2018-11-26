@@ -19,9 +19,11 @@
             </g:if>
             <f:table collection="${preduzeceList}" />
 
-            <div class="pagination">
-                <g:paginate total="${preduzeceCount ?: 0}" />
-            </div>
+            <g:if test="${preduzeceCount.toInteger() > params.max.toInteger()}">
+                <div class="pagination">
+                    <g:paginate total="${preduzeceCount ?: 0}" />
+                </div>
+            </g:if>
         </div>
     </body>
 </html>
